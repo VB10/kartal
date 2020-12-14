@@ -1,0 +1,11 @@
+class RegexConstans {
+  static RegexConstans _instace;
+  static RegexConstans get instance {
+    if (_instace == null) _instace = RegexConstans._init();
+    return _instace;
+  }
+
+  RegexConstans._init();
+
+  final String emailRegex = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+}
