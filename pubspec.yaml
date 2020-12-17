@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  device_info: ^1.0.0
+  share: ^0.6.5+4
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:
@@ -17,7 +20,5 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
-flutter:
-
+flutter: null
