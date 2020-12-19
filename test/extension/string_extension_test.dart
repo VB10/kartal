@@ -3,8 +3,8 @@ import 'package:kartal/kartal.dart';
 
 void main() {
   test('adds one to input values', () {
-    var fifteenLiras = "15".tlMoney;
+    var fifteenLiras = "15";
 
-    expect(fifteenLiras.contains("TL"), true);
+    expect(fifteenLiras.isNotNullOrNoEmpty, true);
   });
 }

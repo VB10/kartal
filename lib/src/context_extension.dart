@@ -37,8 +37,6 @@ extension DurationExtension on BuildContext {
   Duration get durationLow => Duration(milliseconds: 500);
   Duration get durationNormal => Duration(seconds: 1);
   Duration get durationSlow => Duration(seconds: 2);
-  EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
 }
 
 extension PaddingExtension on BuildContext {
@@ -46,6 +44,9 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
   EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
   EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
+
+  EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
+  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
 }
 
 extension SizedBoxExtension on BuildContext {
@@ -57,22 +58,16 @@ extension SizedBoxExtension on BuildContext {
 }
 
 extension RadiusExtension on BuildContext {
-  BorderRadius get normalBorderRadius => BorderRadius.all(Radius.circular(width * 0.05));
-  BorderRadius get lowBorderRadius => BorderRadius.all(Radius.circular(width * 0.02));
-  BorderRadius get highBorderRadius => BorderRadius.all(Radius.circular(width * 0.1));
-
   Radius get lowRadius => Radius.circular(width * 0.02);
   Radius get normalRadius => Radius.circular(width * 0.05);
   Radius get highadius => Radius.circular(width * 0.1);
 }
 
-extension EdgeInsetsExtension on BuildContext {
-  EdgeInsetsGeometry get lowEdgeInsetsAll => EdgeInsets.all(5);
-  EdgeInsetsGeometry get normalEdgeInsetsAll => EdgeInsets.all(10);
-  EdgeInsetsGeometry get mediumEdgeInsetsAll => EdgeInsets.all(20);
-}
-
 extension BorderExtension on BuildContext {
+  BorderRadius get normalBorderRadius => BorderRadius.all(Radius.circular(width * 0.05));
+  BorderRadius get lowBorderRadius => BorderRadius.all(Radius.circular(width * 0.02));
+  BorderRadius get highBorderRadius => BorderRadius.all(Radius.circular(width * 0.1));
+
   RoundedRectangleBorder get roundedRectangleBorderLow => RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)));
 
   RoundedRectangleBorder get roundedRectangleAllBorderNormal => RoundedRectangleBorder(borderRadius: BorderRadius.circular(normalValue));

@@ -8,10 +8,6 @@ import 'constants/app_constants.dart';
 import 'constants/regex_constants.dart';
 import 'utility/device_utility.dart';
 
-extension StringExtension on String {
-  String get tlMoney => "$this TL";
-}
-
 extension StringColorExtension on String {
   Color get color => Color(int.parse("0xff$this"));
 }
