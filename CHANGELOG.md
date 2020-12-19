@@ -5,3 +5,7 @@
 ## [0.0.2] - 18/12/2020
 
 * More extension added with context, string, padding etc.
+
+## [1.0.0] - 19/12/2020
+
+* Documantationcompleted.
