@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: context.paddingAllLow,
+              padding: context.paddingLow,
               height: context.dynamicHeight(0.1),
               width: context.dynamicWidth(0.5),
               color: context.randomColor,

@@ -1,34 +1,83 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:kartal/src/int_extension.dart';
+
+import 'widget/sized-box/space_sized_height_box.dart';
+import 'widget/sized-box/space_sized_width_box.dart';
 
 extension ContextExtension on BuildContext {
-  ThemeData get theme => Theme.of(this);
-  TextTheme get textTheme => theme.textTheme;
-  ColorScheme get colorScheme => theme.colorScheme;
-}
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
 
-extension PageContextExtension on BuildContext {
-  Size get size => MediaQuery.of(this).size;
-  double get width => size.width;
-  double get height => size.height;
-}
+  TextTheme get textTheme => Theme.of(this).textTheme;
+  TextTheme get primaryTextTheme => Theme.of(this).primaryTextTheme;
 
-extension ColorExtension on BuildContext {
-  Color get randomColor => Colors.primaries[17.randomValue];
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+
+  ThemeData get appTheme => Theme.of(this);
+  MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
+
+  bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
+  Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
 }
 
 extension MediaQueryExtension on BuildContext {
+  double get height => mediaQuery.size.height;
+  double get width => mediaQuery.size.width;
+
   double get lowValue => height * 0.01;
   double get normalValue => height * 0.02;
-  double get mediumValue => height * 0.05;
-  double get heighValue => height * 0.1;
+  double get mediumValue => height * 0.04;
+  double get highValue => height * 0.1;
 
-  double dynamicHeight(double value) => height * value;
-  double dynamicWidth(double value) => width * value;
+  double dynamicWidth(double val) => width * val;
+  double dynamicHeight(double val) => height * val;
+}
+
+extension DurationExtension on BuildContext {
+  Duration get durationLow => Duration(milliseconds: 500);
+  Duration get durationNormal => Duration(seconds: 1);
+  Duration get durationSlow => Duration(seconds: 2);
 }
 
 extension PaddingExtension on BuildContext {
-  EdgeInsets get paddingAllLow => EdgeInsets.all(lowValue);
+  EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
+  EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
+  EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
+  EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
+
+  EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
+  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
+}
+
+extension SizedBoxExtension on BuildContext {
+  Widget get emptySizedWidthBoxLow => SpaceSizedWidthBox(width: 0.03);
+  Widget get emptySizedHeightBoxLow => SpaceSizedHeightBox(height: 0.01);
+  Widget get emptySizedHeightBoxLow3x => SpaceSizedHeightBox(height: 0.03);
+  Widget get emptySizedHeightBoxNormal => SpaceSizedHeightBox(height: 0.05);
+  Widget get emptySizedHeightBoxHigh => SpaceSizedHeightBox(height: 0.1);
+}
+
+extension RadiusExtension on BuildContext {
+  Radius get lowRadius => Radius.circular(width * 0.02);
+  Radius get normalRadius => Radius.circular(width * 0.05);
+  Radius get highadius => Radius.circular(width * 0.1);
+}
+
+extension BorderExtension on BuildContext {
+  BorderRadius get normalBorderRadius => BorderRadius.all(Radius.circular(width * 0.05));
+  BorderRadius get lowBorderRadius => BorderRadius.all(Radius.circular(width * 0.02));
+  BorderRadius get highBorderRadius => BorderRadius.all(Radius.circular(width * 0.1));
+
+  RoundedRectangleBorder get roundedRectangleBorderLow => RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)));
+
+  RoundedRectangleBorder get roundedRectangleAllBorderNormal => RoundedRectangleBorder(borderRadius: BorderRadius.circular(normalValue));
+
+  RoundedRectangleBorder get roundedRectangleBorderNormal =>
+      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)));
+
+  RoundedRectangleBorder get roundedRectangleBorderMedium =>
+      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)));
+
+  RoundedRectangleBorder get roundedRectangleBorderHigh =>
+      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)));
 }
