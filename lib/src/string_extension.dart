@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'constants/app_constants.dart';
+import 'constants/input_formatter_constants.dart';
 import 'constants/regex_constants.dart';
 import 'utility/device_utility.dart';
 
@@ -39,8 +41,6 @@ extension ShareText on String {
     }
   }
 
-  ///
-
   Future<void> shareMail(String title) async {
     final value = DeviceUtility.instance.shareMailText(title, this);
     final isLaunch = await launch(Uri.encodeFull(value));
@@ -55,4 +55,10 @@ extension ShareText on String {
 
     Share.share(this);
   }
+}
+
+extension FormatterExtension on String {
+  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
