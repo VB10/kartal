@@ -58,6 +58,10 @@ extension PaddingExtension on BuildContext {
 
 extension SizedBoxExtension on BuildContext {
   Widget get emptySizedWidthBoxLow => SpaceSizedWidthBox(width: 0.03);
+  Widget get emptySizedWidthBoxLow3x => SpaceSizedWidthBox(width: 0.03);
+  Widget get emptySizedWidthBoxNormal => SpaceSizedWidthBox(width: 0.53);
+  Widget get emptySizedWidthBoxHigh => SpaceSizedWidthBox(width: 0.1);
+
   Widget get emptySizedHeightBoxLow => SpaceSizedHeightBox(height: 0.01);
   Widget get emptySizedHeightBoxLow3x => SpaceSizedHeightBox(height: 0.03);
   Widget get emptySizedHeightBoxNormal => SpaceSizedHeightBox(height: 0.05);

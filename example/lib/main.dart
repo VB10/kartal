@@ -22,9 +22,22 @@ class HomePage extends StatelessWidget {
             buildTextFormFieldValid(),
             buildContainerRandomColor(context),
             buildImageRotate(),
+            buildTextFieldFormatter()
           ],
         ),
       ),
+    );
+  }
+
+  /// [Input Formatter] Validation
+  ///
+  /// [String] value mask and unmask
+  TextField buildTextFieldFormatter() {
+    return TextField(
+      inputFormatters: [InputFormatter.instance.phoneFormatter],
+      onChanged: (value) {
+        print(value.phoneFormatValue);
+      },
     );
   }
 

@@ -12,19 +12,26 @@ If you want to example with these extensions, you should be look example folder.
 You can easy use for network or any future request.
 
 ```dart
-extension FutureExtension on Future {
-  Widget toBuild<T>(
-      {@required Widget Function(T data) onSuccess,
-      @required Widget loaindgWidget,
-      @required Widget notFoundWidget,
-      @required Widget onError,
-      dynamic data})}
+  Future<String> fetchDummyData(BuildContext context) async {
+    await Future.delayed(context.durationLow);
+    return Future.value('Okey');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return fetchDummyData(context).toBuild<String>(
+        onSuccess: (data) {
+          return Text(data);
+        },
+        loaindgWidget: CircularProgressIndicator(),
+        notFoundWidget: Text('Oh no'),
+        onError: FlutterLogo());
+  }
 ```
 
 ## Context Extension
 
 ------
-
 You can easy to use context power so context help for many needs.
 
 ### General Context Extension
@@ -32,20 +39,17 @@ You can easy to use context power so context help for many needs.
 I use the most this extesnion. It's  most needed for the your products.
 
 ```dart
-extension ContextExtension on BuildContext {
-  MediaQueryData get mediaQuery => MediaQuery.of(this);
-
-  TextTheme get textTheme => Theme.of(this).textTheme;
-  TextTheme get primaryTextTheme => Theme.of(this).primaryTextTheme;
-
-  ColorScheme get colorScheme => Theme.of(this).colorScheme;
-
-  ThemeData get appTheme => Theme.of(this);
-  MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
-
-  bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
-  Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
-}
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(brightness: context.appBrightness),
+      body: Container(
+        height: context.mediaQuery.size.height,
+        color: context.colorScheme.onBackground,
+        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close', style: context.textTheme.subtitle1),
+      ),
+    );
+  }
 ```
 
 ### Widget Extension
@@ -64,15 +68,48 @@ extension WidgetExtension on Widget {
 These extension gives device size use so you can need dynamic(grid) value for device aspect, use the dyanmic height or width.
 
 ```dart
-extension MediaQueryExtension on BuildContext {
-  MediaQueryData get mediaQuery => MediaQuery.of(this);
-  double get height => mediaQuery.size.height;
-  double get width => mediaQuery.size.width;
-  double get lowValue => height * 0.01;
-  double dynamicWidth(double val) => width * val;
-  double dynamicHeight(double val) => height * val;
-}
+  SizedBox(
+      height: context.dynamicHeight(0.1),
+      width: context.dynamicWidth(0.1),
+      child: Text('${context.lowValue}'),
+    );
+  }
 
+```
+
+### Navigation Extension
+
+These directly access navigation features.
+
+```dart
+   Column(
+        children: [
+          FloatingActionButton(
+            child: Text('Navigation Prop'),
+            onPressed: () {
+              context.navigation.canPop();
+            },
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              context.pop();
+            },
+            child: Text('Navigation Pop'),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              context.navigateName('/hello');
+            },
+            child: Text('Navigation Named'),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              context.navigateToReset('/hello');
+            },
+            child: Text('Navigation Named and Remove'),
+          ),
+        ],
+      )
 ```
 
 ### Duration Extension
@@ -80,11 +117,11 @@ extension MediaQueryExtension on BuildContext {
 These extensions mainly for animation use.
 
 ```dart
-extension DurationExtension on BuildContext {
-  Duration get durationLow => Duration(milliseconds: 500);
-  Duration get durationNormal => Duration(seconds: 1);
-  Duration get durationSlow => Duration(seconds: 2);
-}
+AnimatedOpacity(
+      opacity: context.isKeyBoardOpen ? 1 : 0,
+      duration: context.durationLow,
+      child: Text('${context.durationLow.inHours}'),
+    );
 ```
 
 ### Padding Extension
@@ -92,14 +129,13 @@ extension DurationExtension on BuildContext {
 These extensions declare project main padding values.
 
 ```dart
-extension PaddingExtension on BuildContext {
-  EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
-  EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
-  EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
-  EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
-  EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
-}
+Padding(
+      padding: context.paddingLow,
+      child: Padding(
+        padding: context.horizontalPaddingMedium,
+        child: Text('${context.durationLow.inHours}'),
+      ),
+    )
 ```
 
 ### Empty Widget Extension
@@ -107,13 +143,15 @@ extension PaddingExtension on BuildContext {
 Sometimes need empty widget screen for space area, you can use that time.
 
 ```dart
-extension SizedBoxExtension on BuildContext {
-  Widget get emptySizedWidthBoxLow => SpaceSizedWidthBox(width: 0.03);
-  Widget get emptySizedHeightBoxLow => SpaceSizedHeightBox(height: 0.01);
-  Widget get emptySizedHeightBoxLow3x => SpaceSizedHeightBox(height: 0.03);
-  Widget get emptySizedHeightBoxNormal => SpaceSizedHeightBox(height: 0.05);
-  Widget get emptySizedHeightBoxHigh => SpaceSizedHeightBox(height: 0.1);
-}
+Column(
+      children: [
+        Text('${context.durationLow.inHours}'),
+        context.emptySizedHeightBoxHigh,
+        Row(
+          children: [Text('Row'), context.emptySizedWidthBoxLow, Text('Row')],
+        )
+      ],
+    )
 ```
 
 ### Radius Extension
@@ -121,52 +159,23 @@ extension SizedBoxExtension on BuildContext {
 This extension only uses to draw the border.
 
 ```dart
-extension RadiusExtension on BuildContext {
-  Radius get lowRadius => Radius.circular(width * 0.02);
-  Radius get normalRadius => Radius.circular(width * 0.05);
-  Radius get highadius => Radius.circular(width * 0.1);
-}
+  Container(
+      decoration: BoxDecoration(borderRadius: context.lowBorderRadius),
+    );
 
-```
-
-### Border Extension
-
-More using for rectangle border, container decration etc.
-
-```dart
-extension BorderExtension on BuildContext {
-
-      BorderRadius get normalBorderRadius => BorderRadius.all(Radius.circular(width * 0.05));
-  BorderRadius get lowBorderRadius => BorderRadius.all(Radius.circular(width * 0.02));
-  BorderRadius get highBorderRadius => BorderRadius.all(Radius.circular(width * 0.1));
-
-  RoundedRectangleBorder get roundedRectangleBorderLow => RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)));
-
-  RoundedRectangleBorder get roundedRectangleAllBorderNormal => RoundedRectangleBorder(borderRadius: BorderRadius.circular(normalValue));
-
-  RoundedRectangleBorder get roundedRectangleBorderNormal =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)));
-
-  RoundedRectangleBorder get roundedRectangleBorderMedium =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)));
-
-  RoundedRectangleBorder get roundedRectangleBorderHigh =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)));
-}
 ```
 
 ## Image Extension 🌠
 
-----------
+------
+
 You can use very easy rotiaton from image.
 
 ```dart
-extension ImageRotateExtension on Image {
-  Widget get rightRotation => RotationTransition(turns: AlwaysStoppedAnimation(0.5), child: this);
-  Widget get upRotation => RotationTransition(turns: AlwaysStoppedAnimation(0.25), child: this);
-  Widget get bottomRotation => RotationTransition(turns: AlwaysStoppedAnimation(0.75), child: this);
-  Widget get leftRotation => RotationTransition(turns: AlwaysStoppedAnimation(1), child: this);
-}
+  @override
+  Widget build(BuildContext context) {
+    return Image.network('https://picsum.photos/200/300').bottomRotation;
+  }
 ```
 
 ## Intager Extensıon
@@ -200,6 +209,26 @@ extension StringValidatorExtension on String {
 
 ```
 
+### Input Formatter
+
+You need the value mask and validation use formatter extension.
+
+```dart
+Column(
+      children: [
+        TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
+        TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
+        TextField(
+          inputFormatters: [InputFormatter.instance.phoneFormatter],
+          onChanged: (value) {
+            print('${value.phoneFormatValue}');
+          },
+        )
+      ],
+    );
+
+```
+
 ### Launch Any Content In App Dialog Extension
 
 You need open the value in device system. You can just say string value to launch prefix.
@@ -217,11 +246,14 @@ extension LaunchExtension on String {
 These extension share your value to other apps or optional apps.
 
 ```dart
-extension ShareText on String {
-  Future<void> shareWhatsApp() async { ... }
-  Future<void> shareMail(String title) async { ... }
-  Future<void> share() async { ... }
-}
+
+  void shareWhatssApp(String value) {
+    value.shareWhatsApp();
+  }
+
+  void openWeb(String value) {
+    value.launchWebsite;
+  }
 ```
 
 ### Authorization Extension
@@ -229,9 +261,9 @@ extension ShareText on String {
 Sometimes need this extension from send service request so easy create bearer token string.
 
 ```dart
-extension AuthorizationExtension on String {
-  Map<String, dynamic> get beraer => {"Authorization": "Bearer ${this}"};
-}
+  void bearerTokenHeader() {
+    print('TOKEN-X-X-X'.beraer);
+  }
 ```
 
 ## Tasks
