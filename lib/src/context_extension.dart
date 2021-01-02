@@ -46,7 +46,14 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
 
   EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: normalValue);
+  EdgeInsets get horizontalPaddingMedium => EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get horizontalPaddingHigh => EdgeInsets.symmetric(horizontal: highValue);
+
+  EdgeInsets get verticalPaddingLow => EdgeInsets.symmetric(vertical: lowValue);
+  EdgeInsets get verticalPaddingNormal => EdgeInsets.symmetric(vertical: normalValue);
+  EdgeInsets get verticalPaddingMedium => EdgeInsets.symmetric(vertical: mediumValue);
+  EdgeInsets get verticalPaddingHigh => EdgeInsets.symmetric(vertical: highValue);
 }
 
 extension SizedBoxExtension on BuildContext {
