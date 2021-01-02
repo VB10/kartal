@@ -12,11 +12,11 @@ class InputFormatter {
 
   InputFormatter._init();
 
-  String get _phoneMask => "0(###) ###-##-##";
-  String get _timeMask => "##/##/####";
-  String get _timeMaskUnderLine => "####-##-##";
+  String get _phoneMask => '0(###) ###-##-##';
+  String get _timeMask => '##/##/####';
+  String get _timeMaskUnderLine => '####-##-##';
 
-  MaskTextInputFormatter get phoneFormatter => MaskTextInputFormatter(mask: _phoneMask, filter: {"#": RegExp(r'[0-9]')});
-  MaskTextInputFormatter get timeFormatter => MaskTextInputFormatter(mask: _timeMask, filter: {"#": RegExp(r'[0-9]')});
-  MaskTextInputFormatter get timeFormatterOverLine => MaskTextInputFormatter(mask: _timeMaskUnderLine, filter: {"#": RegExp(r'[0-9]')});
+  MaskTextInputFormatter get phoneFormatter => MaskTextInputFormatter(mask: _phoneMask, filter: {'#': RegExp(r'[0-9]')});
+  MaskTextInputFormatter get timeFormatter => MaskTextInputFormatter(mask: _timeMask, filter: {'#': RegExp(r'[0-9]')});
+  MaskTextInputFormatter get timeFormatterOverLine => MaskTextInputFormatter(mask: _timeMaskUnderLine, filter: {'#': RegExp(r'[0-9]')});
 }
