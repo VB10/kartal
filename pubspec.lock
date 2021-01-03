@@ -79,6 +79,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  mask_text_input_formatter:
+    dependency: "direct main"
+    description:
+      name: mask_text_input_formatter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   matcher:
     dependency: transitive
     description:
@@ -107,6 +114,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
+  pedantic:
+    dependency: "direct main"
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.9.2"
   plugin_platform_interface:
     dependency: transitive
     description:

@@ -17,9 +17,9 @@ extension FutureExtension on Future {
             return loaindgWidget ?? CircularProgressIndicator();
           case ConnectionState.done:
             if (snapshot.hasData) return onSuccess(snapshot.data);
-            return onError ?? Text("Not Found");
+            return onError ?? Text('Not Found');
           default:
-            return notFoundWidget ?? Text("Not Found");
+            return notFoundWidget ?? Text('Not Found');
         }
       },
     );

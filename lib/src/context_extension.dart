@@ -46,11 +46,22 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
 
   EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: normalValue);
+  EdgeInsets get horizontalPaddingMedium => EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get horizontalPaddingHigh => EdgeInsets.symmetric(horizontal: highValue);
+
+  EdgeInsets get verticalPaddingLow => EdgeInsets.symmetric(vertical: lowValue);
+  EdgeInsets get verticalPaddingNormal => EdgeInsets.symmetric(vertical: normalValue);
+  EdgeInsets get verticalPaddingMedium => EdgeInsets.symmetric(vertical: mediumValue);
+  EdgeInsets get verticalPaddingHigh => EdgeInsets.symmetric(vertical: highValue);
 }
 
 extension SizedBoxExtension on BuildContext {
   Widget get emptySizedWidthBoxLow => SpaceSizedWidthBox(width: 0.03);
+  Widget get emptySizedWidthBoxLow3x => SpaceSizedWidthBox(width: 0.03);
+  Widget get emptySizedWidthBoxNormal => SpaceSizedWidthBox(width: 0.53);
+  Widget get emptySizedWidthBoxHigh => SpaceSizedWidthBox(width: 0.1);
+
   Widget get emptySizedHeightBoxLow => SpaceSizedHeightBox(height: 0.01);
   Widget get emptySizedHeightBoxLow3x => SpaceSizedHeightBox(height: 0.03);
   Widget get emptySizedHeightBoxNormal => SpaceSizedHeightBox(height: 0.05);
@@ -80,4 +91,20 @@ extension BorderExtension on BuildContext {
 
   RoundedRectangleBorder get roundedRectangleBorderHigh =>
       RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)));
+}
+
+extension NavigationExtension on BuildContext {
+  NavigatorState get navigation => Navigator.of(this);
+
+  Future<void> pop() async {
+    return await navigation.maybePop();
+  }
+
+  Future<T> navigateName<T>(String path, {Object data}) async {
+    return await navigation.pushNamed<T>(path, arguments: data);
+  }
+
+  Future<T> navigateToReset<T>(String path, {Object data}) async {
+    return await navigation.pushNamedAndRemoveUntil(path, (route) => false, arguments: data);
+  }
 }

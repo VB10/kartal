@@ -1,4 +1,4 @@
-## [0.0.1] - 14/12/2020
+# [0.0.1] - 14/12/2020
 
 * Context, Image, Int and String Extension first version added.
 
@@ -8,4 +8,10 @@
 
 ## [1.0.0] - 19/12/2020
 
-* Documantationcompleted.
+* Documantation completed.
+
+## [1.1.0] - 2/1/2021
+
+* Input formatter added on string extension.
+* Vertical padding added on context.
+* Navigation acsess added on context.
