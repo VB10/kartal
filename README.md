@@ -289,7 +289,7 @@ Sometimes need this extension from send service request so easy create bearer to
 ------
 
 - [ ] Advance String Extension
-- [ ] More Integer Extension
+- [ ] More Intager Extension
 - [ ] Unit Test
 - [ ] File Extension
 - [ ] SQLite etc. extension
