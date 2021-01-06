@@ -195,7 +195,7 @@ We need list operation sometmes null check etc.
 We can check this for empty and null.
 
 ```dart
-  final List values = null;
+   final List values = null;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -289,7 +289,7 @@ Sometimes need this extension from send service request so easy create bearer to
 ------
 
 - [ ] Advance String Extension
-- [ ] More Intager Extension
+- [ ] More Integer Extension
 - [ ] Unit Test
 - [ ] File Extension
 - [ ] SQLite etc. extension
