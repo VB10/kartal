@@ -15,7 +15,7 @@ class FutureExtensionView extends StatelessWidget {
           onSuccess: (data) {
             return Center(child: Text(data));
           },
-          laodingWidget: Center(child: CircularProgressIndicator()),
+          loadingWidget: Center(child: CircularProgressIndicator()),
           notFoundWidget: Text('Oh no'),
           onError: FlutterLogo()),
     );

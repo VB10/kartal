@@ -23,6 +23,7 @@ void main() {
         return null;
     }
   });
+
   setUp(() async {
     log = <MethodCall>[];
     await DeviceUtility.instance.initPackageInfo();

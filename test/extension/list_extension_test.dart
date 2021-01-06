@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 void main() {
   List values;
 
-  test('adds one to input values', () {
+  test('list item not null check', () {
     expect(values.isNotNullOrEmpty, true);
   });
 }
