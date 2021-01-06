@@ -27,7 +27,7 @@ class _PackageInfoViewState extends State<PackageInfoView> {
   Widget build(BuildContext context) {
     return Container(
       child: isInit
-          ? Text(''.appName)
+          ? Text(''.buildNumber)
           : Center(
               child: CircularProgressIndicator(),
             ),

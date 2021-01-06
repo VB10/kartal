@@ -57,10 +57,7 @@ I use the most this extesnion. It's  most needed for the your products.
 Sometimes need visible widget so you can this extension.
 
 ```dart
-extension WidgetExtension on Widget {
-  Widget toVisible(bool val) => val ? this : SizedBox(height: 1);
-}
-
+Text("Hello").toVisible(isAvaible);
 ```
 
 ### MediaQuery Extension
@@ -189,24 +186,47 @@ extension IntagerExtension on int {
 }
 ```
 
+## List Extension
+
+We need list operation sometmes null check etc.
+
+### List Validation Extension
+
+We can check this for empty and null.
+
+```dart
+  final List values = null;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: values.isNotNullOrEmpty ? Text('ok') : Text('false'),
+    );
+  }
+```
+
 ## String Extension
 
 ------
 
-Strıng need validation, color, launch, share etc.
+String need validation, color, launch, share etc.
+
+## Package Information Extension
+
+You can access directly applicaton platform information.
+
+```dart
+ Text(''.appName)
+ Text(''.version)
+ Text(''.packageName)
+ Text(''.buildNumber)
+```
 
 ### Validation Extension
 
 Validate your string value to some features.
 
 ```dart
-extension StringValidatorExtension on String {
-  bool get isNullOrEmpty => this == null || this.isEmpty;
-  bool get isNotNullOrNoEmpty => !isNullOrEmpty;
-
-  bool get isValidEmail => RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
-}
-
+ TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
 ```
 
 ### Input Formatter
@@ -234,11 +254,9 @@ Column(
 You need open the value in device system. You can just say string value to launch prefix.
 
 ```dart
-extension LaunchExtension on String {
-  get launchEmail => launch("mailto:$this");
-  get launchPhone => launch("tel:$this");
-  get launchWebsite => launch("$this");
-}
+ void openEmail(String value){
+    value.launchWebsite;
+ }
 ```
 
 ### Share Any Content External Apps Extension
