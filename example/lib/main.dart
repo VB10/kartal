@@ -1,3 +1,5 @@
+import 'package:example/samples/context_extension_view.dart';
+import 'package:example/samples/future_extension_view.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -14,15 +16,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Kartal Extension Application')),
+      // appBar: AppBar(title: Text('Kartal Extension Application')),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buildContainerPaddingAndHeight(context),
-            buildTextFormFieldValid(),
-            buildContainerRandomColor(context),
             buildImageRotate(),
-            buildTextFieldFormatter()
+            // buildContainerPaddingAndHeight(context),
+            // buildTextFormFieldValid(),
+            // buildContainerRandomColor(context),
+            // buildImageRotate(),
+            // buildTextFieldFormatter()
           ],
         ),
       ),
@@ -79,5 +83,5 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rorate right, left, top, bottom any image widget.
 
-  Image buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
 }

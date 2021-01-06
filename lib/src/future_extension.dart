@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 extension FutureExtension on Future {
   Widget toBuild<T>(
       {@required Widget Function(T data) onSuccess,
-      @required Widget loaindgWidget,
+      @required Widget laodingWidget,
       @required Widget notFoundWidget,
       @required Widget onError,
       dynamic data}) {
@@ -14,7 +14,7 @@ extension FutureExtension on Future {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
           case ConnectionState.active:
-            return loaindgWidget ?? CircularProgressIndicator();
+            return laodingWidget ?? CircularProgressIndicator();
           case ConnectionState.done:
             if (snapshot.hasData) return onSuccess(snapshot.data);
             return onError ?? Text('Not Found');

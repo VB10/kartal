@@ -9,12 +9,15 @@ class FutureExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fetchDummyData(context).toBuild<String>(
-        onSuccess: (data) {
-          return Text(data);
-        },
-        loaindgWidget: CircularProgressIndicator(),
-        notFoundWidget: Text('Oh no'),
-        onError: FlutterLogo());
+    return Scaffold(
+      appBar: AppBar(),
+      body: fetchDummyData(context).toBuild<String>(
+          onSuccess: (data) {
+            return Center(child: Text(data));
+          },
+          laodingWidget: Center(child: CircularProgressIndicator()),
+          notFoundWidget: Text('Oh no'),
+          onError: FlutterLogo()),
+    );
   }
 }
