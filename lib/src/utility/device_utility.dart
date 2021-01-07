@@ -1,5 +1,6 @@
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 
 import '../constants/app_constants.dart';
 
@@ -13,7 +14,9 @@ class DeviceUtility {
     return _instace;
   }
 
+  PackageInfo packageInfo;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
   IosDeviceInfo info;
   final Rect ipadPaddingBottom = Rect.fromLTWH(30, 50, 30, 50);
   DeviceUtility._init();
@@ -25,5 +28,9 @@ class DeviceUtility {
 
   String shareMailText(String title, String body) {
     return "mailto:?subject='$title'&body=$body ";
+  }
+
+  Future<void> initPackageInfo() async {
+    packageInfo = await PackageInfo.fromPlatform();
   }
 }

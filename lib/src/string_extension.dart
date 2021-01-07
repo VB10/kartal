@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,7 +16,7 @@ extension StringColorExtension on String {
 
 extension StringValidatorExtension on String {
   bool get isNullOrEmpty => this == null || isEmpty;
-  bool get isNotNullOrNoEmpty => !isNullOrEmpty;
+  bool get isNotNullOrNoEmpty => this != null && isNotEmpty;
 
   bool get isValidEmail => RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
 }
@@ -60,4 +61,38 @@ extension FormatterExtension on String {
   String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
   String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
   String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+}
+
+extension PackageInfoExtension on String {
+  String get appName {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.packageInfo.appName;
+    }
+  }
+
+  String get packageName {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.packageInfo.packageName;
+    }
+  }
+
+  String get version {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.packageInfo.version;
+    }
+  }
+
+  String get buildNumber {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.packageInfo.buildNumber;
+    }
+  }
 }

@@ -15,3 +15,8 @@
 * Input formatter added on string extension.
 * Vertical padding added on context.
 * Navigation acsess added on context.
+
+## [1.2.0] - 6/1/2021
+
+* List Extension added.
+* Platform extension added.
