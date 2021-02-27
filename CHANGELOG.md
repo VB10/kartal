@@ -20,3 +20,7 @@
 
 * List Extension added.
 * Platform extension added.
+
+## [2.0.0] - 27/2/2021
+
+* Null safety migration complete

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+
+import '../../../kartal.dart';
 
 class SpaceSizedWidthBox extends StatelessWidget {
   final double width;

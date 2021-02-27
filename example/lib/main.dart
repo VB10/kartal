@@ -1,5 +1,3 @@
-import 'package:example/samples/context_extension_view.dart';
-import 'package:example/samples/future_extension_view.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 

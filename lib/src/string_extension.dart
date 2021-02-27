@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'constants/app_constants.dart';
 import 'constants/input_formatter_constants.dart';
 import 'constants/regex_constants.dart';
+import 'exception/package_info_exception.dart';
 import 'utility/device_utility.dart';
 
 extension StringColorExtension on String {
@@ -15,8 +15,8 @@ extension StringColorExtension on String {
 }
 
 extension StringValidatorExtension on String {
-  bool get isNullOrEmpty => this == null || isEmpty;
-  bool get isNotNullOrNoEmpty => this != null && isNotEmpty;
+  bool get isNullOrEmpty => isEmpty;
+  bool get isNotNullOrNoEmpty => isNotEmpty;
 
   bool get isValidEmail => RegExp(RegexConstans.instance!.emailRegex).hasMatch(this);
 }
