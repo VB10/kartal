@@ -1,4 +1,11 @@
-extension ListExtension on List {
-  bool get isNullOrEmpty => this == null || isEmpty;
-  bool get isNotNullOrEmpty => this != null && isNotEmpty;
+extension ListExtension on List? {
+  bool get isNullOrEmpty => !isNotNullOrEmpty;
+
+  bool get isNotNullOrEmpty {
+    if (this is List) {
+      return this!.isNotEmpty;
+    } else {
+      return false;
+    }
+  }
 }

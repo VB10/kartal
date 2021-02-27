@@ -97,14 +97,14 @@ extension NavigationExtension on BuildContext {
   NavigatorState get navigation => Navigator.of(this);
 
   Future<void> pop() async {
-    return await navigation.maybePop();
+    await navigation.maybePop();
   }
 
-  Future<T> navigateName<T>(String path, {Object data}) async {
+  Future<T?> navigateName<T>(String path, {Object? data}) async {
     return await navigation.pushNamed<T>(path, arguments: data);
   }
 
-  Future<T> navigateToReset<T>(String path, {Object data}) async {
+  Future<T?> navigateToReset<T>(String path, {Object? data}) async {
     return await navigation.pushNamedAndRemoveUntil(path, (route) => false, arguments: data);
   }
 }

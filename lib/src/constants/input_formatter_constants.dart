@@ -1,8 +1,8 @@
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class InputFormatter {
-  static InputFormatter _instace;
-  static InputFormatter get instance {
+  static InputFormatter? _instace;
+  static InputFormatter? get instance {
     if (_instace != null) {
       return _instace;
     }
