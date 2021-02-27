@@ -99,7 +99,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.0.0"
+    version: "2.0.0-nullsafety.1"
   mask_text_input_formatter:
     dependency: transitive
     description:
