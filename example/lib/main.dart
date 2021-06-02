@@ -1,5 +1,3 @@
-import 'package:example/samples/context_extension_view.dart';
-import 'package:example/samples/future_extension_view.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -83,5 +81,6 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rorate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() =>
+      Image.network('https://picsum.photos/200/300').upRotation;
 }

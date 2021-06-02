@@ -1,4 +1,3 @@
-import 'package:example/samples/context_extension_view.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -7,7 +6,8 @@ class StringExtensionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
+        TextFormField(
+            validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
         TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
         TextField(
           inputFormatters: [InputFormatter.instance.phoneFormatter],
