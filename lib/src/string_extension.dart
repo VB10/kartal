@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:share/share.dart';
