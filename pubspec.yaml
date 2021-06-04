@@ -13,7 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
   device_info: ^1.0.0
-  easy_localization: ^3.0.0
   mask_text_input_formatter: ^1.2.1
   package_info: ^0.4.3+2
   pedantic: ^1.9.2

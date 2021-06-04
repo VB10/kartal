@@ -106,10 +106,6 @@ extension PackageInfoExtension on String {
   }
 }
 
-extension LocalizationExtension on String {
-  String get locale => this.tr();
-}
-
 extension NetworkImageExtension on String {
   String get randomImage => 'https://picsum.photos/200/300';
   String get randomSquareImage => 'https://picsum.photos/200';
