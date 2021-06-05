@@ -6,7 +6,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   final channel = MethodChannel('plugins.flutter.io/package_info');
-  List<MethodCall> log;
+  late List<MethodCall> log;
 
   channel.setMockMethodCallHandler((MethodCall methodCall) async {
     log.add(methodCall);
@@ -25,7 +25,7 @@ void main() {
   });
   setUp(() async {
     log = <MethodCall>[];
-    await DeviceUtility.instance.initPackageInfo();
+    await DeviceUtility.instance!.initPackageInfo();
   });
 
   test('Get Device Package', () {

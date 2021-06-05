@@ -2,22 +2,22 @@ name: kartal
 description: Kartal is an extension package for easy to use at app development
   time. You can access more features with primitive variables(context, string
   etc.).
-version: 1.2.0
+version: 2.0.0-nullsafety.1
 homepage: https://github.com/VB10/kartal
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0-259.16.beta <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  device_info: ^1.0.0
-  mask_text_input_formatter: ^1.2.1
-  package_info: ^0.4.3+2
-  pedantic: ^1.9.2
-  share: ^0.6.5+4
-  url_launcher: ^5.7.10
+  device_info: ^2.0.0
+  mask_text_input_formatter: ^2.0.0-nullsafety.2
+  package_info: ^2.0.0
+  pedantic: ^1.10.0
+  share: ^2.0.0
+  url_launcher: ^6.0.1
 
 dev_dependencies:
   flutter_test:

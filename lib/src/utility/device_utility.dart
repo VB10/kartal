@@ -5,8 +5,8 @@ import 'package:package_info/package_info.dart';
 import '../constants/app_constants.dart';
 
 class DeviceUtility {
-  static DeviceUtility _instace;
-  static DeviceUtility get instance {
+  static DeviceUtility? _instace;
+  static DeviceUtility? get instance {
     if (_instace != null) {
       return _instace;
     }
@@ -14,10 +14,10 @@ class DeviceUtility {
     return _instace;
   }
 
-  PackageInfo packageInfo;
+  PackageInfo? packageInfo;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
-  IosDeviceInfo info;
+  late IosDeviceInfo info;
   final Rect ipadPaddingBottom = Rect.fromLTWH(30, 50, 30, 50);
   DeviceUtility._init();
 
