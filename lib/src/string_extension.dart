@@ -18,8 +18,7 @@ extension StringValidatorExtension on String {
   bool get isNullOrEmpty => isEmpty;
   bool get isNotNullOrNoEmpty => isNotEmpty;
 
-  bool get isValidEmail =>
-      RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
+  bool get isValidEmail => RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
 }
 
 extension AuthorizationExtension on String {
@@ -35,8 +34,7 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch =
-          await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch = await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -44,7 +42,7 @@ extension ShareText on String {
   }
 
   Future<void> shareMail(String title) async {
-    final value = DeviceUtility.instance!.shareMailText(title, this);
+    final value = DeviceUtility.instance.shareMailText(title, this);
     final isLaunch = await launch(Uri.encodeFull(value));
     if (!isLaunch) await value.share();
   }
@@ -53,8 +51,7 @@ extension ShareText on String {
     if (Platform.isIOS) {
       final isAppIpad = await DeviceUtility.instance.isIpad();
       if (isAppIpad) {
-        await Share.share(this,
-            sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
+        await Share.share(this, sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
       }
     }
 
@@ -63,44 +60,41 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue =>
-      InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue =>
-      InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue =>
-      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
 
 extension PackageInfoExtension on String {
   String get appName {
-    if (DeviceUtility.instance!.packageInfo == null) {
+    if (DeviceUtility.instance.packageInfo == null) {
       throw PackageInfoNotFound();
     } else {
-      return DeviceUtility.instance!.packageInfo!.appName;
+      return DeviceUtility.instance.packageInfo!.appName;
     }
   }
 
   String get packageName {
-    if (DeviceUtility.instance!.packageInfo == null) {
+    if (DeviceUtility.instance.packageInfo == null) {
       throw PackageInfoNotFound();
     } else {
-      return DeviceUtility.instance!.packageInfo!.packageName;
+      return DeviceUtility.instance.packageInfo!.packageName;
     }
   }
 
   String get version {
-    if (DeviceUtility.instance!.packageInfo == null) {
+    if (DeviceUtility.instance.packageInfo == null) {
       throw PackageInfoNotFound();
     } else {
-      return DeviceUtility.instance!.packageInfo!.version;
+      return DeviceUtility.instance.packageInfo!.version;
     }
   }
 
   String get buildNumber {
-    if (DeviceUtility.instance!.packageInfo == null) {
+    if (DeviceUtility.instance.packageInfo == null) {
       throw PackageInfoNotFound();
     } else {
-      return DeviceUtility.instance!.packageInfo!.buildNumber;
+      return DeviceUtility.instance.packageInfo!.buildNumber;
     }
   }
 }
@@ -110,6 +104,5 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage =>
-      'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
 }

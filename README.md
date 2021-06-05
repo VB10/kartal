@@ -99,6 +99,12 @@ These directly access navigation features.
             },
             child: Text('Navigation Named'),
           ),
+           FloatingActionButton(
+            onPressed: () {
+              context.navigateToPage(HomeViewDetail(), type: SlideType.TOP);
+            },
+            child: Text('Navigation Named'),
+          ),
           FloatingActionButton(
             onPressed: () {
               context.navigateToReset('/hello');

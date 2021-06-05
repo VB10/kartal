@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'utility/page_animation/slider_route.dart';
 import 'widget/sized-box/space_sized_height_box.dart';
 import 'widget/sized-box/space_sized_width_box.dart';
 
@@ -106,5 +107,9 @@ extension NavigationExtension on BuildContext {
 
   Future<T?> navigateToReset<T>(String path, {Object? data}) async {
     return await navigation.pushNamedAndRemoveUntil(path, (route) => false, arguments: data);
+  }
+
+  Future<dynamic> navigateToPage(Widget page, {Object? extra, SlideType type = SlideType.DEFAULT}) async {
+    return await navigation.push(type.route(page, RouteSettings(arguments: extra)));
   }
 }
