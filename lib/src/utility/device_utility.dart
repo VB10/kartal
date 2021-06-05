@@ -6,12 +6,12 @@ import '../constants/app_constants.dart';
 
 class DeviceUtility {
   static DeviceUtility? _instace;
-  static DeviceUtility? get instance {
+  static DeviceUtility get instance {
     if (_instace != null) {
-      return _instace;
+      return _instace!;
     }
     _instace = DeviceUtility._init();
-    return _instace;
+    return _instace!;
   }
 
   PackageInfo? packageInfo;
