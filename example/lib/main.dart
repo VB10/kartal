@@ -81,5 +81,6 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rorate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() =>
+      Image.network('https://picsum.photos/200/300').upRotation;
 }

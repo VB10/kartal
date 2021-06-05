@@ -6,7 +6,8 @@ class StringExtensionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
+        TextFormField(
+            validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
         TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
         TextField(
           inputFormatters: [InputFormatter.instance.phoneFormatter],
