@@ -1,3 +1,7 @@
+# [2.1.1]
+
+* Migrated from the deprecated package_info plugin to package_info_plus.
+
 # [2.1.0] - 6/6/2021
 
 * Animated navigation
