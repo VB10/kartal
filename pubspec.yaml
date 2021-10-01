@@ -10,10 +10,11 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  device_info: ^2.0.0
   flutter:
     sdk: flutter
-  device_info: ^2.0.0
   mask_text_input_formatter: ^2.0.0-nullsafety.2
+  mime: ^1.0.0
   package_info_plus: ^1.0.4
   pedantic: ^1.10.0
   share: ^2.0.0
