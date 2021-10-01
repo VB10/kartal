@@ -25,7 +25,7 @@ void main() {
   });
   setUp(() async {
     log = <MethodCall>[];
-    await DeviceUtility.instance!.initPackageInfo();
+    await DeviceUtility.instance.initPackageInfo();
   });
 
   test('Get Device Package', () {
