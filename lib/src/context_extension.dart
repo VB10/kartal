@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'constants/responsivity_constants.dart';
 import 'utility/page_animation/slider_route.dart';
 import 'widget/sized-box/space_sized_height_box.dart';
 import 'widget/sized-box/space_sized_width_box.dart';
@@ -32,6 +34,34 @@ extension MediaQueryExtension on BuildContext {
 
   double dynamicWidth(double val) => width * val;
   double dynamicHeight(double val) => height * val;
+}
+
+//Device operating system checking with context value
+extension DeviceOSExtension on BuildContext {
+  bool get isAndroidDevice => Platform.isAndroid;
+  bool get isIOSDevice => Platform.isIOS;
+  bool get isWindowsDevice => Platform.isWindows;
+  bool get isLinuxDevice => Platform.isLinux;
+  bool get isMacOSDevicec => Platform.isMacOS;
+}
+
+//Device Screen Type By Width(300-600-900)
+//Values from https://flutter.dev/docs/development/ui/layout/building-adaptive-apps
+extension ContextDeviceTypeExtension on BuildContext {
+  bool get isSmallScreen =>
+      width >= ResponsivityConstants.instance.smallScreenSize &&
+              width < ResponsivityConstants.instance.mediumScreenSize
+          ? true
+          : false;
+
+  bool get isMediumScreen =>
+      width >= ResponsivityConstants.instance.mediumScreenSize &&
+              width < ResponsivityConstants.instance.largeScreenSize
+          ? true
+          : false;
+
+  bool get isLargeScreen =>
+      width >= ResponsivityConstants.instance.largeScreenSize ? true : false;
 }
 
 extension DurationExtension on BuildContext {
