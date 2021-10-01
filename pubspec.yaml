@@ -7,15 +7,15 @@ homepage: https://github.com/VB10/kartal
 
 environment:
   sdk: '>=2.12.0-259.16.beta <3.0.0'
-  flutter: ">=1.17.0"
+  flutter: '>=1.17.0'
 
 dependencies:
   device_info: ^2.0.0
   flutter:
     sdk: flutter
-  mask_text_input_formatter: ^2.0.0-nullsafety.2
+  mask_text_input_formatter: ^2.0.0
   mime: ^1.0.0
-  package_info_plus: ^1.0.4
+  package_info_plus: ^1.0.6
   pedantic: ^1.10.0
   share: ^2.0.0
   url_launcher: ^6.0.1

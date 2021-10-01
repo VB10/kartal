@@ -10,3 +10,4 @@ export 'src/string_extension.dart';
 export 'src/utility/device_utility.dart';
 export 'src/utility/page_animation/slider_route.dart';
 export 'src/widget_extension.dart';
+export 'src/file_extension.dart';
