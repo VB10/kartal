@@ -18,7 +18,7 @@ class DeviceUtility {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   late IosDeviceInfo info;
-  final Rect ipadPaddingBottom = Rect.fromLTWH(30, 50, 30, 50);
+  final Rect ipadPaddingBottom = const Rect.fromLTWH(30, 50, 30, 50);
   DeviceUtility._init();
 
   Future<bool> isIpad() async {

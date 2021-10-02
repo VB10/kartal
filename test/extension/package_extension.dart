@@ -5,7 +5,7 @@ import 'package:kartal/kartal.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  final channel = MethodChannel('plugins.flutter.io/package_info');
+  const channel = MethodChannel('plugins.flutter.io/package_info');
   late List<MethodCall> log;
 
   channel.setMockMethodCallHandler((MethodCall methodCall) async {

@@ -5,12 +5,12 @@ class ContextExtensionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: deprecated_member_use
       appBar: AppBar(brightness: context.appBrightness),
       body: Container(
         height: context.mediaQuery.size.height,
         color: context.colorScheme.onBackground,
-        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close',
-            style: context.textTheme.subtitle1),
+        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close', style: context.textTheme.subtitle1),
       ),
     );
   }
