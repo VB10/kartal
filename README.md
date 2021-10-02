@@ -269,6 +269,8 @@ Column(
       children: [
         TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
         TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
+        TextFormField(validator: (value) => value.isValidPassword ? null : 'fail'),
+
         TextField(
           inputFormatters: [InputFormatter.instance.phoneFormatter],
           onChanged: (value) {
@@ -313,6 +315,32 @@ Sometimes need this extension from send service request so easy create bearer to
   void bearerTokenHeader() {
     print('TOKEN-X-X-X'.beraer);
   }
+```
+
+## File Extension
+
+---
+
+There are extensions that will facilitate your file operations.
+
+### File Type Extension
+
+This extension shows what type a file is.
+
+```dart
+  final file = File('assets/image.png');
+  Container(
+    child: file.fileType == FileType.IMAGE ? Image.asset('${file.path}') : SizedBox();
+  );
+```
+
+There is also the use of .is type.
+
+```dart
+  final file = File('assets/image.jpeg');
+  Container(
+    child: file.isImageFile ? Image.asset('${file.path}') : SizedBox();
+  );
 ```
 
 ## Tasks
