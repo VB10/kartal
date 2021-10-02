@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:mime/mime.dart';
 import 'package:kartal/src/constants/file_constants.dart';
 
+// ignore: constant_identifier_names
 enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
 
 extension FileTypeExtension on File {
