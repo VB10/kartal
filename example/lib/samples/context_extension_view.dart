@@ -9,7 +9,8 @@ class ContextExtensionView extends StatelessWidget {
       body: Container(
         height: context.mediaQuery.size.height,
         color: context.colorScheme.onBackground,
-        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close', style: context.textTheme.subtitle1),
+        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close',
+            style: context.textTheme.subtitle1),
       ),
     );
   }

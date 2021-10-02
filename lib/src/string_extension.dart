@@ -18,7 +18,10 @@ extension StringValidatorExtension on String {
   bool get isNullOrEmpty => isEmpty;
   bool get isNotNullOrNoEmpty => isNotEmpty;
 
-  bool get isValidEmail => RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
+  bool get isValidEmail =>
+      RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
+  bool get isValidPassword =>
+      RegExp(RegexConstans.instance.passwordRegex).hasMatch(this);
 }
 
 extension AuthorizationExtension on String {
@@ -34,7 +37,8 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch = await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch =
+          await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -51,7 +55,8 @@ extension ShareText on String {
     if (Platform.isIOS) {
       final isAppIpad = await DeviceUtility.instance.isIpad();
       if (isAppIpad) {
-        await Share.share(this, sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
+        await Share.share(this,
+            sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
       }
     }
 
@@ -60,9 +65,12 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue =>
+      InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue =>
+      InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue =>
+      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
 
 extension PackageInfoExtension on String {
@@ -104,5 +112,6 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage =>
+      'https://www.gravatar.com/avatar/?d=mp&s=200';
 }

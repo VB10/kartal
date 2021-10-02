@@ -5,7 +5,7 @@
 Kartal is the place for my borning country so I created an extension for giving born to more power with simple use.
 If you want to example with these extensions, you should be look example folder.
 
-------
+---
 
 ## Future Extension
 
@@ -31,12 +31,13 @@ You can easy use for network or any future request.
 
 ## Context Extension
 
-------
+---
+
 You can easy to use context power so context help for many needs.
 
 ### General Context Extension
 
-I use the most this extesnion. It's  most needed for the your products.
+I use the most this extesnion. It's most needed for the your products.
 
 ```dart
   @override
@@ -168,9 +169,32 @@ This extension only uses to draw the border.
 
 ```
 
+### Device Screen Size Extension
+
+This extension is used to create responsive widgets.
+
+```dart
+  Scaffold(
+      drawer: context.isSmallScreen ? Drawer() : null,
+      body: Container(),
+    );
+
+```
+
+### Device Operatig System Extension
+
+This extension is used to create native widgets.
+
+```dart
+  SizedBox(
+      child: context.isIOSDevice ? CupertinoButton() : MaterialButton(),
+    );
+
+```
+
 ## Image Extension 🌠
 
-------
+---
 
 You can use very easy rotiaton from image.
 
@@ -183,7 +207,8 @@ You can use very easy rotiaton from image.
 
 ## Intager Extensıon
 
-------
+---
+
 Now, we has a a little code.
 
 ```dart
@@ -212,7 +237,7 @@ We can check this for empty and null.
 
 ## String Extension
 
-------
+---
 
 String need validation, color, launch, share etc.
 
@@ -244,6 +269,8 @@ Column(
       children: [
         TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
         TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
+        TextFormField(validator: (value) => value.isValidPassword ? null : 'fail'),
+
         TextField(
           inputFormatters: [InputFormatter.instance.phoneFormatter],
           onChanged: (value) {
@@ -290,9 +317,35 @@ Sometimes need this extension from send service request so easy create bearer to
   }
 ```
 
+## File Extension
+
+---
+
+There are extensions that will facilitate your file operations.
+
+### File Type Extension
+
+This extension shows what type a file is.
+
+```dart
+  final file = File('assets/image.png');
+  Container(
+    child: file.fileType == FileType.IMAGE ? Image.asset('${file.path}') : SizedBox();
+  );
+```
+
+There is also the use of .is type.
+
+```dart
+  final file = File('assets/image.jpeg');
+  Container(
+    child: file.isImageFile ? Image.asset('${file.path}') : SizedBox();
+  );
+```
+
 ## Tasks
 
-------
+---
 
 - [ ] Advance String Extension
 - [ ] More Integer Extension
@@ -301,7 +354,7 @@ Sometimes need this extension from send service request so easy create bearer to
 - [ ] SQLite etc. extension
 - [ ] Application Extensions
 
-------
+---
 
 ## License
 
