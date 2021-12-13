@@ -1,4 +1,9 @@
-# [2.2.0]
+# [2.2.1]
+
+- Added custom launch options
+- String extension fixed for nullable.
+
+## [2.2.0]
 
 - Lint updated then fixed problems.
 - @desxz added file type, tablet and new extensions to library.
