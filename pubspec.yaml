@@ -13,6 +13,7 @@ dependencies:
   device_info: ^2.0.0
   flutter:
     sdk: flutter
+  flutter_lints: ^1.0.4
   mask_text_input_formatter: ^2.0.0
   mime: ^1.0.0
   package_info_plus: ^1.0.6
@@ -21,7 +22,6 @@ dependencies:
   url_launcher: ^6.0.1
 
 dev_dependencies:
-  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
 

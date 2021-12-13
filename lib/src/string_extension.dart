@@ -14,12 +14,12 @@ extension StringColorExtension on String {
   Color get color => Color(int.parse('0xff$this'));
 }
 
-extension StringValidatorExtension on String {
-  bool get isNullOrEmpty => isEmpty;
-  bool get isNotNullOrNoEmpty => isNotEmpty;
+extension StringValidatorExtension on String? {
+  bool get isNullOrEmpty => this?.isEmpty ?? false;
+  bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
 
-  bool get isValidEmail => RegExp(RegexConstans.instance.emailRegex).hasMatch(this);
-  bool get isValidPassword => RegExp(RegexConstans.instance.passwordRegex).hasMatch(this);
+  bool get isValidEmail => this != null ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!) : false;
+  bool get isValidPassword => this != null ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!) : false;
 }
 
 extension AuthorizationExtension on String {
@@ -30,6 +30,26 @@ extension LaunchExtension on String {
   Future<bool> get launchEmail => launch('mailto:$this');
   Future<bool> get launchPhone => launch('tel:$this');
   Future<bool> get launchWebsite => launch(this);
+
+  Future<bool> launchWebsiteCustom({
+    bool? forceSafariVC,
+    bool forceWebView = false,
+    bool enableJavaScript = false,
+    bool enableDomStorage = false,
+    bool universalLinksOnly = false,
+    Map<String, String> headers = const <String, String>{},
+    Brightness? statusBarBrightness,
+    String? webOnlyWindowName,
+  }) =>
+      launch(this,
+          forceSafariVC: forceSafariVC,
+          forceWebView: forceWebView,
+          enableDomStorage: enableDomStorage,
+          enableJavaScript: enableJavaScript,
+          universalLinksOnly: universalLinksOnly,
+          headers: headers,
+          statusBarBrightness: statusBarBrightness,
+          webOnlyWindowName: webOnlyWindowName);
 }
 
 extension ShareText on String {
