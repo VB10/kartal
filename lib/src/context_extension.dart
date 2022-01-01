@@ -21,6 +21,8 @@ extension ContextExtension on BuildContext {
 
   bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
   Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
+
+  double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
 }
 
 extension MediaQueryExtension on BuildContext {
