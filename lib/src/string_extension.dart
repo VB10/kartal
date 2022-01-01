@@ -9,6 +9,7 @@ import 'constants/input_formatter_constants.dart';
 import 'constants/regex_constants.dart';
 import 'exception/package_info_exception.dart';
 import 'utility/device_utility.dart';
+import 'package:diacritic/diacritic.dart';
 
 extension StringColorExtension on String {
   Color get color => Color(int.parse('0xff$this'));
@@ -20,6 +21,10 @@ extension StringValidatorExtension on String? {
 
   bool get isValidEmail => this != null ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!) : false;
   bool get isValidPassword => this != null ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!) : false;
+
+  String? get withotSpecialCharacters {
+    return isNullOrEmpty ? this : removeDiacritics(this!);
+  }
 }
 
 extension AuthorizationExtension on String {

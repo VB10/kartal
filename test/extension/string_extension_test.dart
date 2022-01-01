@@ -7,4 +7,9 @@ void main() {
 
     expect(fifteenLiras.isNotNullOrNoEmpty, true);
   });
+
+  test('Remove special characters - çamur', () {
+    var correctText = 'çamur'.withotSpecialCharacters;
+    expect(correctText, 'camur');
+  });
 }

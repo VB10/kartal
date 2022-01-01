@@ -1,4 +1,9 @@
-# [2.2.1]
+# [2.3.0]
+
+- Navigation has accept Dynamic type for will be return this result
+- Removed special character extension added on string.
+
+## [2.2.1]
 
 - Added custom launch options
 - String extension fixed for nullable.
