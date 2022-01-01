@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 enum SlideType { RIGHT, LEFT, BOTTOM, TOP, DEFAULT }
 
 extension SlideTypeExtension on SlideType {
-  Route route(Widget page, RouteSettings settings) {
+  Route<T> route<T>(Widget page, RouteSettings settings) {
     switch (this) {
       case SlideType.RIGHT:
         return _SlideRightRoute(page: page, settings: settings);
@@ -24,7 +24,7 @@ extension SlideTypeExtension on SlideType {
   }
 }
 
-class _SlideRightRoute extends PageRouteBuilder {
+class _SlideRightRoute<T> extends PageRouteBuilder<T> {
   _SlideRightRoute({RouteSettings? settings, required Widget page})
       : super(
           settings: settings,
@@ -41,7 +41,7 @@ class _SlideRightRoute extends PageRouteBuilder {
         );
 }
 
-class _SlideLeftRoute extends PageRouteBuilder {
+class _SlideLeftRoute<T> extends PageRouteBuilder<T> {
   _SlideLeftRoute({RouteSettings? settings, required Widget page})
       : super(
           settings: settings,
@@ -59,7 +59,7 @@ class _SlideLeftRoute extends PageRouteBuilder {
         );
 }
 
-class _SlideTopRoute extends PageRouteBuilder {
+class _SlideTopRoute<T> extends PageRouteBuilder<T> {
   _SlideTopRoute({RouteSettings? settings, required Widget page})
       : super(
           settings: settings,
@@ -77,7 +77,7 @@ class _SlideTopRoute extends PageRouteBuilder {
         );
 }
 
-class _SlideBottomRoute extends PageRouteBuilder {
+class _SlideBottomRoute<T> extends PageRouteBuilder<T> {
   _SlideBottomRoute({required RouteSettings settings, required Widget page})
       : super(
           settings: settings,
