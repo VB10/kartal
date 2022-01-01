@@ -138,7 +138,7 @@ extension NavigationExtension on BuildContext {
     return await navigation.pushNamedAndRemoveUntil(path, (route) => false, arguments: data);
   }
 
-  Future<dynamic> navigateToPage(Widget page, {Object? extra, SlideType type = SlideType.DEFAULT}) async {
-    return await navigation.push(type.route(page, RouteSettings(arguments: extra)));
+  Future<T?> navigateToPage<T>(Widget page, {Object? extra, SlideType type = SlideType.DEFAULT}) async {
+    return await navigation.push<T>(type.route(page, RouteSettings(arguments: extra)));
   }
 }
