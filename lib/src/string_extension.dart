@@ -22,7 +22,7 @@ extension StringValidatorExtension on String? {
   bool get isValidEmail => this != null ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!) : false;
   bool get isValidPassword => this != null ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!) : false;
 
-  String? get withotSpecialCharacters {
+  String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
   }
 }
