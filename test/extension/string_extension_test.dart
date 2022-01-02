@@ -9,7 +9,7 @@ void main() {
   });
 
   test('Remove special characters - çamur', () {
-    var correctText = 'çamur'.withotSpecialCharacters;
+    var correctText = 'çamur'.withoutSpecialCharacters;
     expect(correctText, 'camur');
   });
 }
