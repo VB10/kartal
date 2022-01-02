@@ -1,5 +1,5 @@
 import 'dart:math';
 
-extension IntagerExtension on int {
+extension IntegerExtension on int {
   int get randomColorValue => Random().nextInt(this);
 }
