@@ -1,4 +1,9 @@
-# [2.3.0]
+## [2.3.0]
+
+- Navigation pop problems fixed
+- Web example added.
+
+## [2.3.0]
 
 - Navigation has accept Dynamic type for will be return this result
 - Removed special character extension added on string.
