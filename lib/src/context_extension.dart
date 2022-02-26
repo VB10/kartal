@@ -128,8 +128,8 @@ extension BorderExtension on BuildContext {
 extension NavigationExtension on BuildContext {
   NavigatorState get navigation => Navigator.of(this);
 
-  Future<void> pop() async {
-    await navigation.maybePop();
+  Future<T?> pop<T>([T? data]) async {
+    await navigation.maybePop(data);
   }
 
   Future<T?> navigateName<T>(String path, {Object? data}) async {
