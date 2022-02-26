@@ -1,4 +1,4 @@
-## [2.3.0]
+# [2.4.0]
 
 - Navigation pop problems fixed
 - Web example added.
