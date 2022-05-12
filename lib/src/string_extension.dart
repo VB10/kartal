@@ -15,12 +15,29 @@ extension StringColorExtension on String {
   Color get color => Color(int.parse('0xff$this'));
 }
 
+extension StringConverterExtension on String? {
+  String toCapitalized() => (this != null && this!.length > 0)
+      ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}'
+      : '';
+  String toTitleCase() => this != null
+      ? this!
+          .replaceAll(RegExp(' +'), ' ')
+          .split(' ')
+          .map((str) => str.toCapitalized())
+          .join(' ')
+      : '';
+}
+
 extension StringValidatorExtension on String? {
   bool get isNullOrEmpty => this?.isEmpty ?? false;
   bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
 
-  bool get isValidEmail => this != null ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!) : false;
-  bool get isValidPassword => this != null ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!) : false;
+  bool get isValidEmail => this != null
+      ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!)
+      : false;
+  bool get isValidPassword => this != null
+      ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!)
+      : false;
 
   String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
@@ -60,7 +77,8 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch = await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch =
+          await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -77,7 +95,8 @@ extension ShareText on String {
     if (Platform.isIOS) {
       final isAppIpad = await DeviceUtility.instance.isIpad();
       if (isAppIpad) {
-        await Share.share(this, sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
+        await Share.share(this,
+            sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom);
       }
     }
 
@@ -86,9 +105,12 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue =>
+      InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue =>
+      InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue =>
+      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
 
 extension PackageInfoExtension on String {
@@ -130,5 +152,6 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage =>
+      'https://www.gravatar.com/avatar/?d=mp&s=200';
 }
