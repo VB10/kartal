@@ -1,4 +1,9 @@
-# [2.4.0]
+# [2.3.2]
+
+- Flutter 3 linter updated
+- Some improvment added
+
+## [2.3.1]
 
 - Navigation pop problems fixed
 - Web example added.
