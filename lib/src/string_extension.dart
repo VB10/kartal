@@ -140,3 +140,10 @@ extension NetworkImageExtension on String {
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
   String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
 }
+
+///color extension. Renk kodu verilen stringe .toColor diyerek colora convert edebiliriz.
+/// Örnek:  'FFBBF1'.toColor
+extension ColorPaletteExtension on String {
+  int? get colorCode => int.tryParse('0xFF$this');
+  Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
+}

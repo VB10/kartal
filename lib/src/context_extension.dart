@@ -84,6 +84,26 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get verticalPaddingNormal => EdgeInsets.symmetric(vertical: normalValue);
   EdgeInsets get verticalPaddingMedium => EdgeInsets.symmetric(vertical: mediumValue);
   EdgeInsets get verticalPaddingHigh => EdgeInsets.symmetric(vertical: highValue);
+
+  EdgeInsets get onlyLeftPaddingLow => EdgeInsets.only(left: lowValue);
+  EdgeInsets get onlyLeftPaddingNormal => EdgeInsets.only(left: normalValue);
+  EdgeInsets get onlyLeftPaddingMedium => EdgeInsets.only(left: mediumValue);
+  EdgeInsets get onlyLeftPaddingHigh => EdgeInsets.only(left: highValue);
+
+  EdgeInsets get onlyRightPaddingLow => EdgeInsets.only(right: lowValue);
+  EdgeInsets get onlyRightPaddingNormal => EdgeInsets.only(right: normalValue);
+  EdgeInsets get onlyRightPaddingMedium => EdgeInsets.only(right: mediumValue);
+  EdgeInsets get onlyRightPaddingHigh => EdgeInsets.only(right: highValue);
+
+  EdgeInsets get onlyBottomPaddingLow => EdgeInsets.only(bottom: lowValue);
+  EdgeInsets get onlyBottomPaddingNormal => EdgeInsets.only(bottom: normalValue);
+  EdgeInsets get onlyBottomPaddingMedium => EdgeInsets.only(bottom: mediumValue);
+  EdgeInsets get onlyBottomPaddingHigh => EdgeInsets.only(bottom: highValue);
+
+  EdgeInsets get onlyTopPaddingLow => EdgeInsets.only(top: lowValue);
+  EdgeInsets get onlyTopPaddingNormal => EdgeInsets.only(top: normalValue);
+  EdgeInsets get onlyTopPaddingMedium => EdgeInsets.only(top: mediumValue);
+  EdgeInsets get onlyTopPaddingHigh => EdgeInsets.only(top: highValue);
 }
 
 extension SizedBoxExtension on BuildContext {
