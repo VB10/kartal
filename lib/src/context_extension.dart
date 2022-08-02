@@ -20,6 +20,7 @@ extension ContextExtension on BuildContext {
   MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
 
   bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
+  double get keboardPadding => MediaQuery.of(this).viewInsets.bottom;
   Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
 
   double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
@@ -152,9 +153,7 @@ extension NavigationExtension on BuildContext {
     return await navigation.maybePop(data);
   }
 
-  void popWithRoot() {
-    Navigator.of(this, rootNavigator: true).pop();
-  }
+  void popWithRoot() => Navigator.of(this, rootNavigator: true).pop();
 
   Future<T?> navigateName<T>(String path, {Object? data}) async {
     return await navigation.pushNamed<T>(path, arguments: data);

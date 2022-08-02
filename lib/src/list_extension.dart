@@ -1,4 +1,4 @@
-extension ListExtension on List? {
+extension ListExtension<T> on List<T>? {
   bool get isNullOrEmpty => !isNotNullOrEmpty;
 
   bool get isNotNullOrEmpty {

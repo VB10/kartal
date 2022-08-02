@@ -1,7 +1,15 @@
-# [2.3.2]
+# [2.4.0]
+
+- popWithRoot added in context.
+- new padding ability added
+- keyboard bottom padding added
+- collection exported
+- to disable has a opacity property for custom scenario.
+
+## [2.3.2]
 
 - Flutter 3 linter updated
-- Some improvment added
+- Some improvement added
 
 ## [2.3.1]
 
