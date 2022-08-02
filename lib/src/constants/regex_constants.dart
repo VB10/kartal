@@ -1,18 +1,14 @@
-class RegexConstans {
-  static RegexConstans? _instace;
-  static RegexConstans get instance {
-    if (_instace != null) {
-      return _instace!;
-    }
+class RegexConstants {
+  static RegexConstants? _instance;
+  static RegexConstants get instance {
+    if (_instance != null) return _instance!;
 
-    _instace = RegexConstans._init();
-    return _instace!;
+    _instance = RegexConstants._init();
+    return _instance!;
   }
 
-  RegexConstans._init();
+  RegexConstants._init();
 
-  final String emailRegex =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  final String passwordRegex =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  final String emailRegex = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  final String passwordRegex = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 }

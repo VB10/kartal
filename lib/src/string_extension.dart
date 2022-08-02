@@ -1,15 +1,14 @@
 import 'dart:io';
 
+import 'package:diacritic/diacritic.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/src/constants/app_constants.dart';
+import 'package:kartal/src/constants/input_formatter_constants.dart';
+import 'package:kartal/src/constants/regex_constants.dart';
+import 'package:kartal/src/exception/package_info_exception.dart';
+import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'constants/app_constants.dart';
-import 'constants/input_formatter_constants.dart';
-import 'constants/regex_constants.dart';
-import 'exception/package_info_exception.dart';
-import 'utility/device_utility.dart';
-import 'package:diacritic/diacritic.dart';
 
 extension StringColorExtension on String {
   Color get color => Color(int.parse('0xff$this'));
@@ -26,8 +25,8 @@ extension StringValidatorExtension on String? {
   bool get isNullOrEmpty => this?.isEmpty ?? false;
   bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
 
-  bool get isValidEmail => this != null ? RegExp(RegexConstans.instance.emailRegex).hasMatch(this!) : false;
-  bool get isValidPassword => this != null ? RegExp(RegexConstans.instance.passwordRegex).hasMatch(this!) : false;
+  bool get isValidEmail => this != null ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!) : false;
+  bool get isValidPassword => this != null ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!) : false;
 
   String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
@@ -53,15 +52,17 @@ extension LaunchExtension on String {
     Brightness? statusBarBrightness,
     String? webOnlyWindowName,
   }) =>
-      launch(this,
-          forceSafariVC: forceSafariVC,
-          forceWebView: forceWebView,
-          enableDomStorage: enableDomStorage,
-          enableJavaScript: enableJavaScript,
-          universalLinksOnly: universalLinksOnly,
-          headers: headers,
-          statusBarBrightness: statusBarBrightness,
-          webOnlyWindowName: webOnlyWindowName);
+      launch(
+        this,
+        forceSafariVC: forceSafariVC,
+        forceWebView: forceWebView,
+        enableDomStorage: enableDomStorage,
+        enableJavaScript: enableJavaScript,
+        universalLinksOnly: universalLinksOnly,
+        headers: headers,
+        statusBarBrightness: statusBarBrightness,
+        webOnlyWindowName: webOnlyWindowName,
+      );
 }
 
 extension ShareText on String {

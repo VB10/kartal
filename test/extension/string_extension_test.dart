@@ -3,16 +3,16 @@ import 'package:kartal/kartal.dart';
 
 void main() {
   test('adds one to input values', () {
-    var fifteenLiras = '15';
+    const fifteenLiras = '15';
 
     expect(fifteenLiras.isNotNullOrNoEmpty, true);
   });
 
   test('Remove special characters - çamur', () {
-    var correctText = 'çamur'.withoutSpecialCharacters;
+    final correctText = 'çamur'.withoutSpecialCharacters;
     expect(correctText, 'camur');
   });
-    group('toTitle Tests', () {
+  group('toTitle Tests', () {
     test('test no word title case', () async {
       const text = 'hello world';
       const expected = 'Hello World';

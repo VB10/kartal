@@ -3,10 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'constants/responsivity_constants.dart';
-import 'utility/page_animation/slider_route.dart';
-import 'widget/sized-box/space_sized_height_box.dart';
-import 'widget/sized-box/space_sized_width_box.dart';
+import 'package:kartal/src/constants/responsivity_constants.dart';
+import 'package:kartal/src/utility/page_animation/slider_route.dart';
+import 'package:kartal/src/widget/sized-box/space_sized_height_box.dart';
+import 'package:kartal/src/widget/sized-box/space_sized_width_box.dart';
 
 extension ContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
@@ -44,23 +44,23 @@ extension DeviceOSExtension on BuildContext {
   bool get isIOSDevice => Platform.isIOS;
   bool get isWindowsDevice => Platform.isWindows;
   bool get isLinuxDevice => Platform.isLinux;
-  bool get isMacOSDevicec => Platform.isMacOS;
+  bool get isMacOSDevice => Platform.isMacOS;
 }
 
 //Device Screen Type By Width(300-600-900)
 //Values from https://flutter.dev/docs/development/ui/layout/building-adaptive-apps
 extension ContextDeviceTypeExtension on BuildContext {
-  bool get isSmallScreen =>
-      width >= ResponsivityConstants.instance.smallScreenSize && width < ResponsivityConstants.instance.mediumScreenSize
-          ? true
-          : false;
+  bool get isSmallScreen => width >= ResponsibilityConstants.instance.smallScreenSize &&
+          width < ResponsibilityConstants.instance.mediumScreenSize
+      ? true
+      : false;
 
-  bool get isMediumScreen =>
-      width >= ResponsivityConstants.instance.mediumScreenSize && width < ResponsivityConstants.instance.largeScreenSize
-          ? true
-          : false;
+  bool get isMediumScreen => width >= ResponsibilityConstants.instance.mediumScreenSize &&
+          width < ResponsibilityConstants.instance.largeScreenSize
+      ? true
+      : false;
 
-  bool get isLargeScreen => width >= ResponsivityConstants.instance.largeScreenSize ? true : false;
+  bool get isLargeScreen => width >= ResponsibilityConstants.instance.largeScreenSize ? true : false;
 }
 
 extension DurationExtension on BuildContext {
@@ -101,7 +101,7 @@ extension SizedBoxExtension on BuildContext {
 extension RadiusExtension on BuildContext {
   Radius get lowRadius => Radius.circular(width * 0.02);
   Radius get normalRadius => Radius.circular(width * 0.05);
-  Radius get highadius => Radius.circular(width * 0.1);
+  Radius get highRadius => Radius.circular(width * 0.1);
 }
 
 extension BorderExtension on BuildContext {
@@ -130,6 +130,10 @@ extension NavigationExtension on BuildContext {
 
   Future<bool> pop<T>([T? data]) async {
     return await navigation.maybePop(data);
+  }
+
+  void popWithRoot() {
+    Navigator.of(this, rootNavigator: true).pop();
   }
 
   Future<T?> navigateName<T>(String path, {Object? data}) async {

@@ -1,17 +1,16 @@
-class ResponsivityConstants {
-  static ResponsivityConstants? _instace;
-  static ResponsivityConstants get instance {
-    if (_instace != null) {
-      return _instace!;
+class ResponsibilityConstants {
+  ResponsibilityConstants._init();
+  static ResponsibilityConstants? _instance;
+  static ResponsibilityConstants get instance {
+    if (_instance != null) {
+      return _instance!;
     }
 
-    _instace = ResponsivityConstants._init();
-    return _instace!;
+    _instance = ResponsibilityConstants._init();
+    return _instance!;
   }
 
-  ResponsivityConstants._init();
-
-  final smallScreenSize = 300;
-  final mediumScreenSize = 600;
-  final largeScreenSize = 900;
+  final double smallScreenSize = 300;
+  final double mediumScreenSize = 600;
+  final double largeScreenSize = 900;
 }

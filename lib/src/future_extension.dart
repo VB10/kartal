@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-extension FutureExtension on Future {
-  Widget toBuild<T>(
-      {required Widget Function(T? data) onSuccess,
-      required Widget loadingWidget,
-      required Widget notFoundWidget,
-      required Widget onError,
-      dynamic data}) {
+/// You can use future utility so easy with [FutureExtension]
+extension FutureExtension<T> on Future<T> {
+  /// It will create your future request on widget tree by using future builder.
+
+  Widget toBuild({
+    required Widget Function(T? data) onSuccess,
+    required Widget loadingWidget,
+    required Widget notFoundWidget,
+    required Widget onError,
+    T? data,
+  }) {
     return FutureBuilder<T>(
-      future: this as Future<T>?,
+      future: this,
       initialData: data,
       builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
         switch (snapshot.connectionState) {
@@ -18,7 +22,8 @@ extension FutureExtension on Future {
           case ConnectionState.done:
             if (snapshot.hasData) return onSuccess(snapshot.data);
             return onError;
-          default:
+
+          case ConnectionState.none:
             return notFoundWidget;
         }
       },
