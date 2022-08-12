@@ -37,7 +37,7 @@ You can easy to use context power so context help for many needs.
 
 ### General Context Extension
 
-I use the mostly this extension. It's most needed for your products.
+I mostly use this extension. It's most needed for your products.
 
 ```dart
   @override
