@@ -1,15 +1,14 @@
 class FileConstants {
-  static FileConstants? _instace;
+  FileConstants._init();
+  static FileConstants? _instance;
   static FileConstants get instance {
-    if (_instace != null) {
-      return _instace!;
+    if (_instance != null) {
+      return _instance!;
     }
 
-    _instace = FileConstants._init();
-    return _instace!;
+    _instance = FileConstants._init();
+    return _instance!;
   }
-
-  FileConstants._init();
 
   final imageType = 'image/';
   final videoType = 'video/';

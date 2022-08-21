@@ -1,4 +1,9 @@
-# [2.4.0]
+# [2.4.1]
+
+- added sliver extension on widget
+- small fixes
+
+## [2.4.0]
 
 - popWithRoot added in context.
 - new padding ability added

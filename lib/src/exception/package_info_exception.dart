@@ -1,6 +1,7 @@
 class PackageInfoNotFound implements Exception {
-  final String description = 'Please call the await DeviceUtiltiy.instance.initPackageInfo()';
   PackageInfoNotFound();
+  final String description =
+      'Please call the await DeviceUtiltiy.instance.initPackageInfo()';
 
   @override
   String toString() {

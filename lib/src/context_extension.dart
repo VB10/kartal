@@ -20,7 +20,7 @@ extension ContextExtension on BuildContext {
   MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
 
   bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
-  double get keboardPadding => MediaQuery.of(this).viewInsets.bottom;
+  double get keyboardPadding => MediaQuery.of(this).viewInsets.bottom;
   Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
 
   double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
@@ -51,17 +51,20 @@ extension DeviceOSExtension on BuildContext {
 //Device Screen Type By Width(300-600-900)
 //Values from https://flutter.dev/docs/development/ui/layout/building-adaptive-apps
 extension ContextDeviceTypeExtension on BuildContext {
-  bool get isSmallScreen => width >= ResponsibilityConstants.instance.smallScreenSize &&
-          width < ResponsibilityConstants.instance.mediumScreenSize
-      ? true
-      : false;
+  bool get isSmallScreen =>
+      width >= ResponsibilityConstants.instance.smallScreenSize &&
+              width < ResponsibilityConstants.instance.mediumScreenSize
+          ? true
+          : false;
 
-  bool get isMediumScreen => width >= ResponsibilityConstants.instance.mediumScreenSize &&
-          width < ResponsibilityConstants.instance.largeScreenSize
-      ? true
-      : false;
+  bool get isMediumScreen =>
+      width >= ResponsibilityConstants.instance.mediumScreenSize &&
+              width < ResponsibilityConstants.instance.largeScreenSize
+          ? true
+          : false;
 
-  bool get isLargeScreen => width >= ResponsibilityConstants.instance.largeScreenSize ? true : false;
+  bool get isLargeScreen =>
+      width >= ResponsibilityConstants.instance.largeScreenSize ? true : false;
 }
 
 extension DurationExtension on BuildContext {
@@ -76,15 +79,22 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
   EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
 
-  EdgeInsets get horizontalPaddingLow => EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal => EdgeInsets.symmetric(horizontal: normalValue);
-  EdgeInsets get horizontalPaddingMedium => EdgeInsets.symmetric(horizontal: mediumValue);
-  EdgeInsets get horizontalPaddingHigh => EdgeInsets.symmetric(horizontal: highValue);
+  EdgeInsets get horizontalPaddingLow =>
+      EdgeInsets.symmetric(horizontal: lowValue);
+  EdgeInsets get horizontalPaddingNormal =>
+      EdgeInsets.symmetric(horizontal: normalValue);
+  EdgeInsets get horizontalPaddingMedium =>
+      EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get horizontalPaddingHigh =>
+      EdgeInsets.symmetric(horizontal: highValue);
 
   EdgeInsets get verticalPaddingLow => EdgeInsets.symmetric(vertical: lowValue);
-  EdgeInsets get verticalPaddingNormal => EdgeInsets.symmetric(vertical: normalValue);
-  EdgeInsets get verticalPaddingMedium => EdgeInsets.symmetric(vertical: mediumValue);
-  EdgeInsets get verticalPaddingHigh => EdgeInsets.symmetric(vertical: highValue);
+  EdgeInsets get verticalPaddingNormal =>
+      EdgeInsets.symmetric(vertical: normalValue);
+  EdgeInsets get verticalPaddingMedium =>
+      EdgeInsets.symmetric(vertical: mediumValue);
+  EdgeInsets get verticalPaddingHigh =>
+      EdgeInsets.symmetric(vertical: highValue);
 
   EdgeInsets get onlyLeftPaddingLow => EdgeInsets.only(left: lowValue);
   EdgeInsets get onlyLeftPaddingNormal => EdgeInsets.only(left: normalValue);
@@ -97,8 +107,10 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get onlyRightPaddingHigh => EdgeInsets.only(right: highValue);
 
   EdgeInsets get onlyBottomPaddingLow => EdgeInsets.only(bottom: lowValue);
-  EdgeInsets get onlyBottomPaddingNormal => EdgeInsets.only(bottom: normalValue);
-  EdgeInsets get onlyBottomPaddingMedium => EdgeInsets.only(bottom: mediumValue);
+  EdgeInsets get onlyBottomPaddingNormal =>
+      EdgeInsets.only(bottom: normalValue);
+  EdgeInsets get onlyBottomPaddingMedium =>
+      EdgeInsets.only(bottom: mediumValue);
   EdgeInsets get onlyBottomPaddingHigh => EdgeInsets.only(bottom: highValue);
 
   EdgeInsets get onlyTopPaddingLow => EdgeInsets.only(top: lowValue);
@@ -114,8 +126,10 @@ extension SizedBoxExtension on BuildContext {
   Widget get emptySizedWidthBoxHigh => const SpaceSizedWidthBox(width: 0.1);
 
   Widget get emptySizedHeightBoxLow => const SpaceSizedHeightBox(height: 0.01);
-  Widget get emptySizedHeightBoxLow3x => const SpaceSizedHeightBox(height: 0.03);
-  Widget get emptySizedHeightBoxNormal => const SpaceSizedHeightBox(height: 0.05);
+  Widget get emptySizedHeightBoxLow3x =>
+      const SpaceSizedHeightBox(height: 0.03);
+  Widget get emptySizedHeightBoxNormal =>
+      const SpaceSizedHeightBox(height: 0.05);
   Widget get emptySizedHeightBoxHigh => const SpaceSizedHeightBox(height: 0.1);
 }
 
@@ -126,44 +140,64 @@ extension RadiusExtension on BuildContext {
 }
 
 extension BorderExtension on BuildContext {
-  BorderRadius get normalBorderRadius => BorderRadius.all(Radius.circular(width * 0.05));
-  BorderRadius get lowBorderRadius => BorderRadius.all(Radius.circular(width * 0.02));
-  BorderRadius get highBorderRadius => BorderRadius.all(Radius.circular(width * 0.1));
+  BorderRadius get normalBorderRadius =>
+      BorderRadius.all(Radius.circular(width * 0.05));
+  BorderRadius get lowBorderRadius =>
+      BorderRadius.all(Radius.circular(width * 0.02));
+  BorderRadius get highBorderRadius =>
+      BorderRadius.all(Radius.circular(width * 0.1));
 
   RoundedRectangleBorder get roundedRectangleBorderLow =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)));
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)),
+      );
 
   RoundedRectangleBorder get roundedRectangleAllBorderNormal =>
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(normalValue));
 
   RoundedRectangleBorder get roundedRectangleBorderNormal =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)));
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)),
+      );
 
   RoundedRectangleBorder get roundedRectangleBorderMedium =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)));
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)),
+      );
 
   RoundedRectangleBorder get roundedRectangleBorderHigh =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)));
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)),
+      );
 }
 
 extension NavigationExtension on BuildContext {
   NavigatorState get navigation => Navigator.of(this);
 
   Future<bool> pop<T>([T? data]) async {
-    return await navigation.maybePop(data);
+    return navigation.maybePop(data);
   }
 
   void popWithRoot() => Navigator.of(this, rootNavigator: true).pop();
 
   Future<T?> navigateName<T>(String path, {Object? data}) async {
-    return await navigation.pushNamed<T>(path, arguments: data);
+    return navigation.pushNamed<T>(path, arguments: data);
   }
 
   Future<T?> navigateToReset<T>(String path, {Object? data}) async {
-    return await navigation.pushNamedAndRemoveUntil(path, (route) => false, arguments: data);
+    return navigation.pushNamedAndRemoveUntil(
+      path,
+      (route) => false,
+      arguments: data,
+    );
   }
 
-  Future<T?> navigateToPage<T>(Widget page, {Object? extra, SlideType type = SlideType.DEFAULT}) async {
-    return await navigation.push<T>(type.route(page, RouteSettings(arguments: extra)));
+  Future<T?> navigateToPage<T>(
+    Widget page, {
+    Object? extra,
+    SlideType type = SlideType.DEFAULT,
+  }) async {
+    return navigation
+        .push<T>(type.route(page, RouteSettings(arguments: extra)));
   }
 }
