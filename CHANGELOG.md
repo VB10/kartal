@@ -1,4 +1,9 @@
-# [2.4.1]
+# [2.4.2]
+
+- improved email regex
+- added lineLength on string
+
+## [2.4.1]
 
 - added sliver extension on widget
 - small fixes

@@ -39,6 +39,11 @@ void main() {
       expect(text.toTitleCase(), expected);
     });
   });
+
+  test('test email', () async {
+    const text = 'v@x-y.com';
+    expect(text.isValidEmail, true);
+  });
   group('toCapitalized Tests', () {
     test('test no word capitalize case', () async {
       const text = 'helLo world';
@@ -60,6 +65,7 @@ void main() {
       const expected = '';
       expect(text.toCapitalized(), expected);
     });
+
     test('test null string', () async {
       const String? text = null;
       const expected = '';

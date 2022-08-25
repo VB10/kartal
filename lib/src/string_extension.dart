@@ -10,33 +10,27 @@ import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+extension StringCommonExtension on String? {
+  int get lineLength => '\n'.allMatches(this ?? '').length + 1;
+}
+
 extension StringColorExtension on String {
   Color get color => Color(int.parse('0xff$this'));
 }
 
 extension StringConverterExtension on String? {
-  String toCapitalized() => (this != null && this!.isNotEmpty)
-      ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}'
-      : '';
-  String toTitleCase() => this != null
-      ? this!
-          .replaceAll(RegExp(' +'), ' ')
-          .split(' ')
-          .map((str) => str.toCapitalized())
-          .join(' ')
-      : '';
+  String toCapitalized() =>
+      (this != null && this!.isNotEmpty) ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}' : '';
+  String toTitleCase() =>
+      this != null ? this!.replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ') : '';
 }
 
 extension StringValidatorExtension on String? {
   bool get isNullOrEmpty => this?.isEmpty ?? false;
   bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
 
-  bool get isValidEmail => this != null
-      ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!)
-      : false;
-  bool get isValidPassword => this != null
-      ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!)
-      : false;
+  bool get isValidEmail => this != null ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!) : false;
+  bool get isValidPassword => this != null ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!) : false;
 
   String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
@@ -44,7 +38,7 @@ extension StringValidatorExtension on String? {
 }
 
 extension AuthorizationExtension on String {
-  Map<String, dynamic> get beraer => {'Authorization': 'Bearer ${this}'};
+  Map<String, dynamic> get bearer => {'Authorization': 'Bearer ${this}'};
 }
 
 extension LaunchExtension on String {
@@ -78,8 +72,7 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch =
-          await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch = await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -108,12 +101,9 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue =>
-      InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue =>
-      InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue =>
-      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
 
 extension PackageInfoExtension on String {
@@ -155,8 +145,7 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage =>
-      'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
 }
 
 extension ColorPaletteExtension on String {
