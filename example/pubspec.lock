@@ -127,7 +127,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.4.2"
+    version: "2.4.3"
   mask_text_input_formatter:
     dependency: transitive
     description:

@@ -1,4 +1,8 @@
-# [2.4.2]
+# [2.4.3]
+
+- added plus format in email regex
+
+## [2.4.2]
 
 - improved email regex
 - added lineLength on string
