@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  _appInit();
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -53,7 +58,7 @@ class HomePage extends StatelessWidget {
       height: context.dynamicHeight(0.1),
       width: context.dynamicWidth(0.5),
       color: context.randomColor,
-      child: Text('Hello World'),
+      child: const Text('Hello World'),
     );
   }
 
@@ -73,7 +78,7 @@ class HomePage extends StatelessWidget {
   Container buildContainerRandomColor(BuildContext context) {
     return Container(
       color: context.randomColor,
-      child: Text('Hello World'),
+      child: const Text('Hello World'),
     );
   }
 
@@ -81,6 +86,9 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rorate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() =>
-      Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+}
+
+void _appInit() {
+  WidgetsFlutterBinding.ensureInitialized();
 }
