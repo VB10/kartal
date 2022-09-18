@@ -37,7 +37,7 @@ You can easy to use context power so context help for many needs.
 
 ### General Context Extension
 
-I use the most this extesnion. It's most needed for the your products.
+I mostly use this extension. It's most needed for your products.
 
 ```dart
   @override
@@ -55,7 +55,7 @@ I use the most this extesnion. It's most needed for the your products.
 
 ### Widget Extension
 
-Sometimes need visible widget so you can this extension.
+Sometimes you need visible widget so you can this extension.
 
 ```dart
 Text("Hello").toVisible(isAvaible);
@@ -63,7 +63,7 @@ Text("Hello").toVisible(isAvaible);
 
 ### MediaQuery Extension
 
-These extension gives device size use so you can need dynamic(grid) value for device aspect, use the dyanmic height or width.
+This extension gives device size use so you can need dynamic(grid) value for device aspect, use the dynamic height or width.
 
 ```dart
   SizedBox(
@@ -77,7 +77,7 @@ These extension gives device size use so you can need dynamic(grid) value for de
 
 ### Navigation Extension
 
-These directly access navigation features.
+This extension can directly access the navigation features.
 
 ```dart
    Column(
@@ -130,7 +130,7 @@ AnimatedOpacity(
 
 ### Padding Extension
 
-These extensions declare project main padding values.
+These extensions declares the projects main padding values.
 
 ```dart
 Padding(
@@ -144,7 +144,7 @@ Padding(
 
 ### Empty Widget Extension
 
-Sometimes need empty widget screen for space area, you can use that time.
+Sometimes you need empty widget screen for space area, you can use that time.
 
 ```dart
 Column(
@@ -171,7 +171,7 @@ This extension only uses to draw the border.
 
 ### Device Screen Size Extension
 
-This extension is used to create responsive widgets.
+This extension can be used to create responsive widgets.
 
 ```dart
   Scaffold(
@@ -183,7 +183,7 @@ This extension is used to create responsive widgets.
 
 ### Device Operatig System Extension
 
-This extension is used to create native widgets.
+This extension can be used to create native widgets.
 
 ```dart
   SizedBox(
@@ -196,7 +196,7 @@ This extension is used to create native widgets.
 
 ---
 
-You can use very easy rotiaton from image.
+You can use very easy rotation from image.
 
 ```dart
   @override
@@ -209,7 +209,7 @@ You can use very easy rotiaton from image.
 
 ---
 
-Now, we has a a little code.
+Now, we have a little code.
 
 ```dart
 extension IntagerExtension on int {
@@ -219,7 +219,7 @@ extension IntagerExtension on int {
 
 ## List Extension
 
-We need list operation sometmes null check etc.
+We need list operation sometimes null check etc.
 
 ### List Validation Extension
 
@@ -239,11 +239,11 @@ We can check this for empty and null.
 
 ---
 
-String need validation, color, launch, share etc.
+String needs validation, color, launch, share etc.
 
 ## Package Information Extension
 
-You can access directly applicaton platform information.
+You can access directly application platform information.
 
 ```dart
  Text(''.appName)
@@ -284,7 +284,7 @@ Column(
 
 ### Launch Any Content In App Dialog Extension
 
-You need open the value in device system. You can just say string value to launch prefix.
+You need to open the value in device system. You can just say string value to launch prefix.
 
 ```dart
  void openEmail(String value){
@@ -294,7 +294,7 @@ You need open the value in device system. You can just say string value to launc
 
 ### Share Any Content External Apps Extension
 
-These extension share your value to other apps or optional apps.
+This extension can share your value to other apps or optional apps.
 
 ```dart
 
@@ -309,7 +309,7 @@ These extension share your value to other apps or optional apps.
 
 ### Authorization Extension
 
-Sometimes need this extension from send service request so easy create bearer token string.
+Sometimes you need this extension from send service request so easy create bearer token string.
 
 ```dart
   void bearerTokenHeader() {
