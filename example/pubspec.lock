@@ -127,7 +127,21 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.4.3"
+    version: "2.5.0"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  lottie:
+    dependency: transitive
+    description:
+      name: lottie
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.3"
   mask_text_input_formatter:
     dependency: transitive
     description:
