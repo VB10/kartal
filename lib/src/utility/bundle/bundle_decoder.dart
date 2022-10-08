@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:vexana/vexana.dart';
+import 'package:kartal/src/utility/bundle/INetworkModel.dart';
 
 typedef ComputeCallback<T extends INetworkModel<T>, R> = Future<R> Function(_ComputeArgument<T>);
 

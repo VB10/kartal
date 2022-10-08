@@ -1,4 +1,6 @@
-import 'package:vexana/vexana.dart';
+
+
+import 'package:kartal/src/utility/bundle/INetworkModel.dart';
 
 class FalseModel extends INetworkModel<FalseModel> {
   FalseModel({

@@ -1,4 +1,5 @@
-import 'package:vexana/vexana.dart';
+
+import 'package:kartal/src/utility/bundle/INetworkModel.dart';
 
 class Post extends INetworkModel<Post> {
   factory Post.fromJson(Map<String, dynamic> json) {
