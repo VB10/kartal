@@ -9,6 +9,7 @@ import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 extension StringCommonExtension on String? {
   int get lineLength => '\n'.allMatches(this ?? '').length + 1;
@@ -19,18 +20,31 @@ extension StringColorExtension on String {
 }
 
 extension StringConverterExtension on String? {
-  String toCapitalized() =>
-      (this != null && this!.isNotEmpty) ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}' : '';
-  String toTitleCase() =>
-      this != null ? this!.replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ') : '';
+  String toCapitalized() => (this != null && this!.isNotEmpty)
+      ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}'
+      : '';
+  String toTitleCase() => this != null
+      ? this!
+          .replaceAll(RegExp(' +'), ' ')
+          .split(' ')
+          .map((str) => str.toCapitalized())
+          .join(' ')
+      : '';
 }
 
 extension StringValidatorExtension on String? {
-  bool get isNullOrEmpty => this?.isEmpty ?? false;
-  bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
+  bool get isNotNullOrNoEmpty => this != null && this!.isNotEmpty;
 
-  bool get isValidEmail => this != null ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!) : false;
-  bool get isValidPassword => this != null ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!) : false;
+  // ignore: avoid_bool_literals_in_conditional_expressions
+  bool get isValidEmail => isNotNullOrNoEmpty
+      ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!)
+      : false;
+
+  // ignore: avoid_bool_literals_in_conditional_expressions
+  bool get isValidPassword => isNotNullOrNoEmpty
+      ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!)
+      : false;
 
   String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
@@ -42,9 +56,9 @@ extension AuthorizationExtension on String {
 }
 
 extension LaunchExtension on String {
-  Future<bool> get launchEmail => launch('mailto:$this');
-  Future<bool> get launchPhone => launch('tel:$this');
-  Future<bool> get launchWebsite => launch(this);
+  Future<bool> get launchEmail => launchUrlString('mailto:$this');
+  Future<bool> get launchPhone => launchUrlString('tel:$this');
+  Future<bool> get launchWebsite => launchUrlString(this);
 
   Future<bool> launchWebsiteCustom({
     bool? forceSafariVC,
@@ -72,7 +86,8 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch = await launch('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch =
+          await launchUrlString('${KartalAppConstants.WHATS_APP_PREFIX}$this');
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -81,7 +96,7 @@ extension ShareText on String {
 
   Future<void> shareMail(String title) async {
     final value = DeviceUtility.instance.shareMailText(title, this);
-    final isLaunch = await launch(Uri.encodeFull(value));
+    final isLaunch = await launchUrlString(Uri.encodeFull(value));
     if (!isLaunch) await value.share();
   }
 
@@ -101,9 +116,12 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue => InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue => InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue => InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue =>
+      InputFormatter.instance.phoneFormatter.unmaskText(this);
+  String get timeFormatValue =>
+      InputFormatter.instance.timeFormatter.unmaskText(this);
+  String get timeOverlineFormatValue =>
+      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
 }
 
 extension PackageInfoExtension on String {
@@ -145,7 +163,8 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage =>
+      'https://www.gravatar.com/avatar/?d=mp&s=200';
 }
 
 extension ColorPaletteExtension on String {

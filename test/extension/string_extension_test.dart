@@ -8,6 +8,14 @@ void main() {
     expect(fifteenLiras.isNotNullOrNoEmpty, true);
   });
 
+  test('[isnullormepty] check', () {
+    const dataEmpty = '';
+    String? dataNil;
+
+    expect(dataEmpty.isNullOrEmpty, true);
+    expect(dataNil.isNullOrEmpty, true);
+  });
+
   test('Remove special characters - çamur', () {
     final correctText = 'çamur'.withoutSpecialCharacters;
     expect(correctText, 'camur');

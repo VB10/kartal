@@ -1,4 +1,8 @@
-# [2.4.3]
+# [2.5.1]
+
+- Same coding fixes and fixing package dependency.
+
+## [2.4.3]
 
 - added plus format in email regex
 
