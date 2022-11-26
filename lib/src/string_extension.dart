@@ -156,6 +156,14 @@ extension PackageInfoExtension on String {
       return DeviceUtility.instance.packageInfo!.buildNumber;
     }
   }
+
+  Future<String> get deviceId async {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.getUniqueDeviceId();
+    }
+  }
 }
 
 extension NetworkImageExtension on String {
