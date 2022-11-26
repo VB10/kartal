@@ -28,9 +28,8 @@ extension SlideTypeExtension on SlideType {
 }
 
 class _SlideRightRoute<T> extends PageRouteBuilder<T> {
-  _SlideRightRoute({RouteSettings? settings, required Widget page})
+  _SlideRightRoute({super.settings, required Widget page})
       : super(
-          settings: settings,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -54,9 +53,8 @@ class _SlideRightRoute<T> extends PageRouteBuilder<T> {
 }
 
 class _SlideLeftRoute<T> extends PageRouteBuilder<T> {
-  _SlideLeftRoute({RouteSettings? settings, required Widget page})
+  _SlideLeftRoute({super.settings, required Widget page})
       : super(
-          settings: settings,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -80,9 +78,8 @@ class _SlideLeftRoute<T> extends PageRouteBuilder<T> {
 }
 
 class _SlideTopRoute<T> extends PageRouteBuilder<T> {
-  _SlideTopRoute({RouteSettings? settings, required Widget page})
+  _SlideTopRoute({super.settings, required Widget page})
       : super(
-          settings: settings,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,

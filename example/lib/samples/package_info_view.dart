@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class PackageInfoView extends StatefulWidget {
+  const PackageInfoView({super.key});
+
   @override
-  _PackageInfoViewState createState() => _PackageInfoViewState();
+  State<PackageInfoView> createState() => _PackageInfoViewState();
 }
 
 class _PackageInfoViewState extends State<PackageInfoView> {
@@ -26,7 +28,7 @@ class _PackageInfoViewState extends State<PackageInfoView> {
     return Container(
       child: isInit
           ? Text(''.buildNumber)
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );

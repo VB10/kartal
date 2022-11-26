@@ -1,7 +1,13 @@
-
-import 'package:kartal/src/utility/bundle/INetworkModel.dart';
+import 'package:kartal/src/utility/bundle/i_network_model.dart';
 
 class Post extends INetworkModel<Post> {
+  Post({
+    this.userId,
+    this.id,
+    this.title,
+    this.body,
+  });
+
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       userId: json['userId'] as int?,
@@ -11,12 +17,6 @@ class Post extends INetworkModel<Post> {
     );
   }
 
-  Post({
-    this.userId,
-    this.id,
-    this.title,
-    this.body,
-  });
   int? userId;
   int? id;
   String? title;
