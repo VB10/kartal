@@ -2,24 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class StringExtensionView extends StatelessWidget {
+  const StringExtensionView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
-            validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
-        TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
+          validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail',
+        ),
+        TextFormField(
+          validator: (value) => value.isValidEmail ? null : 'fail',
+        ),
         TextField(
-          inputFormatters: [InputFormatter.instance.phoneFormatter],
+          inputFormatters: [
+            InputFormatter.instance.phoneFormatter,
+          ],
           onChanged: (value) {
-            print('${value.phoneFormatValue}');
+            debugPrint(value.phoneFormatValue);
           },
         )
       ],
     );
   }
 
-  void shareWhatssApp(String value) {
+  void shareWhatsApp(String value) {
     value.shareWhatsApp();
   }
 
@@ -28,6 +35,6 @@ class StringExtensionView extends StatelessWidget {
   }
 
   void bearerTokenHeader() {
-    print('TOKEN-X-X-X'.beraer);
+    print('TOKEN-X-X-X'.bearer);
   }
 }

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class WidgetExtensionViews extends StatelessWidget {
-  final bool isDataValid = false;
+  const WidgetExtensionViews({super.key});
+
+  bool get isDataValid => false;
+  
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('is data not found'),
-    ).toVisible(isDataValid);
+    return const Text('is data not found').toVisible(isDataValid);
   }
 }

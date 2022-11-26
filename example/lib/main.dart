@@ -4,18 +4,25 @@ import 'package:kartal/kartal.dart';
 void main() {
   _appInit();
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: HomePage());
+    return const MaterialApp(
+      title: 'Material App',
+      home: HomePage(),
+    );
   }
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,6 @@ class HomePage extends StatelessWidget {
             // buildContainerPaddingAndHeight(context),
             // buildTextFormFieldValid(),
             // buildContainerRandomColor(context),
-            // buildImageRotate(),
             // buildTextFieldFormatter()
           ],
         ),
@@ -39,20 +45,20 @@ class HomePage extends StatelessWidget {
   /// [Input Formatter] Validation
   ///
   /// [String] value mask and unmask
-  TextField buildTextFieldFormatter() {
+  Widget buildTextFieldFormatter() {
     return TextField(
       inputFormatters: [InputFormatter.instance.phoneFormatter],
       onChanged: (value) {
-        print(value.phoneFormatValue);
+        debugPrint(value.phoneFormatValue);
       },
     );
   }
 
-  /// [Context] Helper
+  /// [context] Helper
   ///
-  /// Padding, height etc. direct acess and use centrically for app
+  /// Padding, height etc. direct access and use centrically for app
 
-  Container buildContainerPaddingAndHeight(BuildContext context) {
+  Widget buildContainerPaddingAndHeight(BuildContext context) {
     return Container(
       padding: context.paddingLow,
       height: context.dynamicHeight(0.1),
@@ -64,8 +70,8 @@ class HomePage extends StatelessWidget {
 
   /// [String] Validator
   ///
-  /// Need validation for your field, use to "stirng.isValidEmail"
-  TextFormField buildTextFormFieldValid() {
+  /// Need validation for your field, use to "string.isValidEmail"
+  Widget buildTextFormFieldValid() {
     return TextFormField(
       autovalidateMode: AutovalidateMode.always,
       validator: (value) => value.isValidEmail ? null : 'OH NOO',
@@ -75,8 +81,8 @@ class HomePage extends StatelessWidget {
   /// [Color] Generator
   ///
   /// Need draw any color for widget, just call [context.randomColor]
-  Container buildContainerRandomColor(BuildContext context) {
-    return Container(
+  Widget buildContainerRandomColor(BuildContext context) {
+    return ColoredBox(
       color: context.randomColor,
       child: const Text('Hello World'),
     );
@@ -84,9 +90,10 @@ class HomePage extends StatelessWidget {
 
   /// [Image] Rotation
   ///
-  /// You can rorate right, left, top, bottom any image widget.
+  /// You can rotate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() =>
+      Image.network('https://picsum.photos/200/300').upRotation;
 }
 
 void _appInit() {

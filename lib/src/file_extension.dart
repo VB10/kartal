@@ -1,6 +1,7 @@
 import 'dart:io';
-import 'package:mime/mime.dart';
+
 import 'package:kartal/src/constants/file_constants.dart';
+import 'package:mime/mime.dart';
 
 // ignore: constant_identifier_names
 enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
@@ -23,8 +24,8 @@ extension FileTypeExtension on File {
     return FileType.UNKNOWN;
   }
 
-  bool get isImageFile => fileType == FileType.IMAGE ? true : false;
-  bool get isVideoFile => fileType == FileType.VIDEO ? true : false;
-  bool get isAudioFile => fileType == FileType.AUDIO ? true : false;
-  bool get isTextFile => fileType == FileType.TEXT ? true : false;
+  bool get isImageFile => fileType == FileType.IMAGE;
+  bool get isVideoFile => fileType == FileType.VIDEO;
+  bool get isAudioFile => fileType == FileType.AUDIO;
+  bool get isTextFile => fileType == FileType.TEXT;
 }

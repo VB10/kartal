@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class ContextExtensionView extends StatelessWidget {
+  const ContextExtensionView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +12,10 @@ class ContextExtensionView extends StatelessWidget {
       body: Container(
         height: context.mediaQuery.size.height,
         color: context.colorScheme.onBackground,
-        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close', style: context.textTheme.subtitle1),
+        child: Text(
+          context.isKeyBoardOpen ? 'Open' : 'Close',
+          style: context.textTheme.subtitle1,
+        ),
       ),
     );
   }
@@ -47,14 +52,18 @@ class ContextExtensionView extends StatelessWidget {
         Text('${context.durationLow.inHours}'),
         context.emptySizedHeightBoxHigh,
         Row(
-          children: [Text('Row'), context.emptySizedWidthBoxLow, Text('Row')],
+          children: [
+            const Text('Row'),
+            context.emptySizedWidthBoxLow,
+            const Text('Row')
+          ],
         )
       ],
     );
   }
 
-  Widget raidusExtension(BuildContext context) {
-    return Container(
+  Widget radiusExtension(BuildContext context) {
+    return DecoratedBox(
       decoration: BoxDecoration(borderRadius: context.lowBorderRadius),
     );
   }
