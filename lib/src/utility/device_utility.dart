@@ -9,6 +9,11 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceUtility {
   DeviceUtility._init();
+
+  static Future<void> deviceInit() async {
+    await instance.initPackageInfo();
+  }
+
   static DeviceUtility? _instance;
   static DeviceUtility get instance {
     if (_instance != null) {
