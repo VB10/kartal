@@ -1,4 +1,9 @@
-# [2.5.1]
+# [2.7.0]
+
+- added device id method in string extension
+- added some coding fix
+
+## [2.5.1]
 
 - Same coding fixes and fixing package dependency.
 
