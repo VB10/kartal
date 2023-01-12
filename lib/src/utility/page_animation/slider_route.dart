@@ -1,35 +1,40 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
-// ignore: constant_identifier_names
-enum SlideType { RIGHT, LEFT, BOTTOM, TOP, DEFAULT }
+enum SlideType {
+  RIGHT(offSet: Offset(-1, 0)),
+  LEFT(offSet: Offset(1, 0)),
+  BOTTOM(offSet: Offset(0, -1)),
+  TOP(offSet: Offset(0, 1)),
+  DEFAULT();
+
+  const SlideType({this.offSet});
+
+  final Offset? offSet;
+}
 
 extension SlideTypeExtension on SlideType {
   Route<T> route<T>(Widget page, RouteSettings settings) {
-    switch (this) {
-      case SlideType.RIGHT:
-        return _SlideRightRoute(page: page, settings: settings);
-
-      case SlideType.TOP:
-        return _SlideTopRoute(page: page, settings: settings);
-
-      case SlideType.BOTTOM:
-        return _SlideBottomRoute(page: page, settings: settings);
-
-      case SlideType.LEFT:
-        return _SlideLeftRoute(page: page, settings: settings);
-
-      case SlideType.DEFAULT:
-        return MaterialPageRoute(
-          builder: (context) => page,
-          settings: settings,
-        );
-    }
+    return this == SlideType.DEFAULT
+        ? MaterialPageRoute(
+            builder: (context) => page,
+            settings: settings,
+          )
+        : _SlideRoute(
+            page: page,
+            settings: settings,
+            slideType: this,
+          );
   }
 }
 
-class _SlideRightRoute<T> extends PageRouteBuilder<T> {
-  _SlideRightRoute({super.settings, required Widget page})
-      : super(
+class _SlideRoute<T> extends PageRouteBuilder<T> {
+  _SlideRoute({
+    super.settings,
+    required Widget page,
+    required SlideType slideType,
+  }) : super(
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -44,83 +49,7 @@ class _SlideRightRoute<T> extends PageRouteBuilder<T> {
           ) =>
               SlideTransition(
             position: Tween<Offset>(
-              begin: const Offset(-1, 0),
-              end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          ),
-        );
-}
-
-class _SlideLeftRoute<T> extends PageRouteBuilder<T> {
-  _SlideLeftRoute({super.settings, required Widget page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          ),
-        );
-}
-
-class _SlideTopRoute<T> extends PageRouteBuilder<T> {
-  _SlideTopRoute({super.settings, required Widget page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(0, 1),
-              end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          ),
-        );
-}
-
-class _SlideBottomRoute<T> extends PageRouteBuilder<T> {
-  _SlideBottomRoute({required RouteSettings settings, required Widget page})
-      : super(
-          settings: settings,
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(0, -1),
+              begin: slideType.offSet,
               end: Offset.zero,
             ).animate(animation),
             child: child,
