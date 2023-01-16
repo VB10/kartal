@@ -158,6 +158,28 @@ Column(
     )
 ```
 
+```dart
+Column(
+      children: [
+        Text('${context.durationLow.inHours}'),
+        context.emptySizedHeightBoxHigh,
+        Row(
+          children: [Text('Row'), context.emptySizedWidthBoxLow, Text('Row')],
+        )
+      ],
+    )
+```
+or
+```dart
+Column(
+      children: [
+        10.ph,
+        Text('Kartal'),
+        10.ph,
+      ],
+    )
+```
+
 ### Radius Extension
 
 This extension only uses to draw the border.

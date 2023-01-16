@@ -6,6 +6,12 @@ class NumberExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('${10.randomColorValue}');
+    return Column(
+      children: [
+        10.ph,
+        Text('${10.randomColorValue}'),
+        10.ph,
+      ],
+    );
   }
 }
