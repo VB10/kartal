@@ -7,7 +7,7 @@ import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -178,4 +178,25 @@ extension NetworkImageExtension on String {
 extension ColorPaletteExtension on String {
   int? get colorCode => int.tryParse('0xFF$this');
   Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
+}
+
+extension NumberParsing on String {
+  int get parseInt => int.parse(this);
+
+  int? get tryParseInt => int.tryParse(this);
+
+  double get parseDouble => double.parse(this);
+
+  double? get tryParseDouble => double.tryParse(this);
+}
+
+extension StringExtensions on String {
+  String get firstWord {
+    final wordList = split('');
+    if (wordList.isNotEmpty) {
+      return wordList[0];
+    } else {
+      return ' ';
+    }
+  }
 }

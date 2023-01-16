@@ -9,3 +9,9 @@ extension ListExtension<T> on List<T>? {
     }
   }
 }
+
+extension UnaryNumber on List<Object> {
+  bool get isEven => length.isEven;
+  bool get isOdd => !isEven;
+  static bool isListEven(List<Object> list) => list.isEven;
+}
