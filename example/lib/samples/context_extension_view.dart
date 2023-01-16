@@ -53,6 +53,7 @@ class ContextExtensionView extends StatelessWidget {
         context.emptySizedHeightBoxHigh,
         Row(
           children: [
+            5.pw,
             const Text('Row'),
             context.emptySizedWidthBoxLow,
             const Text('Row')

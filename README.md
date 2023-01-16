@@ -157,18 +157,6 @@ Column(
       ],
     )
 ```
-
-```dart
-Column(
-      children: [
-        Text('${context.durationLow.inHours}'),
-        context.emptySizedHeightBoxHigh,
-        Row(
-          children: [Text('Row'), context.emptySizedWidthBoxLow, Text('Row')],
-        )
-      ],
-    )
-```
 or
 ```dart
 Column(
