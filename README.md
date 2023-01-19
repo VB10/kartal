@@ -245,6 +245,13 @@ We can check this for empty and null.
   }
 ```
 
+We can also pull a random element from the list.
+
+```dart
+ final List<String> list = ["1", "2", "3", "4", "5"];
+ String? element = list.getRandom();
+```
+
 ## String Extension
 
 ---
