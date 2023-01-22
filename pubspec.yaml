@@ -2,7 +2,7 @@ name: kartal
 description: Kartal is an extension package for easy to use at app development
   time. You can access more features with primitive variables(context, string
   etc.).
-version: 2.7.0
+version: 2.8.0
 repository: https://github.com/VB10/kartal
 
 environment:
@@ -20,6 +20,7 @@ dependencies:
   package_info_plus: ^3.0.2
 
   share_plus: ^6.3.0
+  share_plus_web: ^3.1.0
   url_launcher: ^6.1.5
 
 dev_dependencies:

@@ -7,8 +7,8 @@ import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
 
 extension StringCommonExtension on String? {
@@ -61,24 +61,20 @@ extension LaunchExtension on String {
   Future<bool> get launchWebsite => launchUrlString(this);
 
   Future<bool> launchWebsiteCustom({
-    bool? forceSafariVC,
-    bool forceWebView = false,
     bool enableJavaScript = false,
     bool enableDomStorage = false,
-    bool universalLinksOnly = false,
     Map<String, String> headers = const <String, String>{},
-    Brightness? statusBarBrightness,
     String? webOnlyWindowName,
+    LaunchMode mode = LaunchMode.platformDefault,
   }) =>
-      launch(
+      launchUrlString(
         this,
-        forceSafariVC: forceSafariVC,
-        forceWebView: forceWebView,
-        enableDomStorage: enableDomStorage,
-        enableJavaScript: enableJavaScript,
-        universalLinksOnly: universalLinksOnly,
-        headers: headers,
-        statusBarBrightness: statusBarBrightness,
+        webViewConfiguration: WebViewConfiguration(
+          enableDomStorage: enableDomStorage,
+          enableJavaScript: enableJavaScript,
+          headers: headers,
+        ),
+        mode: mode,
         webOnlyWindowName: webOnlyWindowName,
       );
 }

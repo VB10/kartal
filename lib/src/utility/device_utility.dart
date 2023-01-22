@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/app_constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -31,7 +31,9 @@ class DeviceUtility {
 
   Future<bool> isIpad() async {
     info = await deviceInfo.iosInfo;
-    return info.name.toLowerCase().contains(KartalAppConstants.IPAD_TYPE);
+    return (info.name ?? '')
+        .toLowerCase()
+        .contains(KartalAppConstants.IPAD_TYPE);
   }
 
   String shareMailText(String title, String body) {
@@ -45,7 +47,7 @@ class DeviceUtility {
   Future<String> getUniqueDeviceId() async {
     if (Platform.isIOS) {
       final iosDeviceInfo = await deviceInfo.iosInfo;
-      return iosDeviceInfo.identifierForVendor;
+      return iosDeviceInfo.identifierForVendor ?? '';
     } else if (Platform.isAndroid) {
       final androidDeviceInfo = await deviceInfo.androidInfo;
 

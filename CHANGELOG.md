@@ -1,4 +1,11 @@
-# [2.7.0]
+# [2.8.0]
+
+- device info package updated
+- added new platform support
+- added new key extension feature
+- updated indexOrNull for generic list
+
+## [2.7.0]
 
 - added device id method in string extension
 - added some coding fix

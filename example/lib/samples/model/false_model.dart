@@ -1,5 +1,3 @@
-
-
 import 'package:kartal/src/utility/bundle/i_network_model.dart';
 
 class FalseModel extends INetworkModel<FalseModel> {
