@@ -205,28 +205,58 @@ You can use very easy rotation from image.
   }
 ```
 
-## Intager Extensıon
-
----
+## Integer Extension
 
 Now, we have a little code.
 
 ```dart
-extension IntagerExtension on int {
-  int get randomValue => Random().nextInt(17);
-}
+10.randomValue
+```
+
+## Key Extension
+
+Find a render object with using key
+
+```dart
+   final GlobalKey key = GlobalKey();
+   final GlobalObjectKey key2 = GlobalObjectKey('vb');
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key:key,
+      child:Text('hello',key:key2)
+    );
+  }
+  void findElementAndDetail(){
+    final box = key.renderBox;
+    final boxHeight = key.height
+  }
+
+    void scrollToObjectKey(){
+      key2.scrollToWidget()
+  }
+
 ```
 
 ## List Extension
 
-We need list operation sometimes null check etc.
+You can find a specific index or null value for the list
+
+```dart
+   final List<User>? values;
+  void searchIndex(){
+    values.indexOrNull
+  }
+```
 
 ### List Validation Extension
 
 We can check this for empty and null.
 
 ```dart
-   final List values = null;
+   final List<T>? values = null;
   @override
   Widget build(BuildContext context) {
     return Container(
