@@ -63,7 +63,11 @@ class ContextExtensionView extends StatelessWidget {
   }
 
   Widget radiusExtension(BuildContext context) {
+<<<<<<< HEAD
     return Container(
+=======
+    return DecoratedBox(
+>>>>>>> master
       decoration: BoxDecoration(borderRadius: context.lowBorderRadius),
     );
   }

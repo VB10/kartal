@@ -3,6 +3,8 @@
         "Autovalidate",
         "kartal",
         "packageinfoexample",
-        "responsivity"
-    ]
+        "responsivity",
+        "kartal"
+    ],
+    "dart.lineLength": 80
 }

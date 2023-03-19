@@ -7,8 +7,9 @@ import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 extension StringCommonExtension on String? {
   int get lineLength => '\n'.allMatches(this ?? '').length + 1;
@@ -41,11 +42,11 @@ extension StringConverterExtension on String? {
 }
 
 extension StringValidatorExtension on String? {
-  bool get isNullOrEmpty => this?.isEmpty ?? false;
-  bool get isNotNullOrNoEmpty => this?.isNotEmpty ?? false;
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
+  bool get isNotNullOrNoEmpty => this != null && this!.isNotEmpty;
 
   bool get isValidEmail {
-    if (this == null) return false;
+    if (!isNotNullOrNoEmpty) return false;
     return RegExp(
       RegexConstants.instance().emailRegex,
     ).hasMatch(this!);
@@ -68,29 +69,25 @@ extension AuthorizationExtension on String {
 }
 
 extension LaunchExtension on String {
-  Future<bool> get launchEmail => launch('mailto:$this');
-  Future<bool> get launchPhone => launch('tel:$this');
-  Future<bool> get launchWebsite => launch(this);
+  Future<bool> get launchEmail => launchUrlString('mailto:$this');
+  Future<bool> get launchPhone => launchUrlString('tel:$this');
+  Future<bool> get launchWebsite => launchUrlString(this);
 
   Future<bool> launchWebsiteCustom({
-    bool? forceSafariVC,
-    bool forceWebView = false,
     bool enableJavaScript = false,
     bool enableDomStorage = false,
-    bool universalLinksOnly = false,
     Map<String, String> headers = const <String, String>{},
-    Brightness? statusBarBrightness,
     String? webOnlyWindowName,
+    LaunchMode mode = LaunchMode.platformDefault,
   }) =>
-      launch(
+      launchUrlString(
         this,
-        forceSafariVC: forceSafariVC,
-        forceWebView: forceWebView,
-        enableDomStorage: enableDomStorage,
-        enableJavaScript: enableJavaScript,
-        universalLinksOnly: universalLinksOnly,
-        headers: headers,
-        statusBarBrightness: statusBarBrightness,
+        webViewConfiguration: WebViewConfiguration(
+          enableDomStorage: enableDomStorage,
+          enableJavaScript: enableJavaScript,
+          headers: headers,
+        ),
+        mode: mode,
         webOnlyWindowName: webOnlyWindowName,
       );
 }
@@ -109,7 +106,7 @@ extension ShareText on String {
 
   Future<void> shareMail(String title) async {
     final value = DeviceUtility.instance.shareMailText(title, this);
-    final isLaunch = await launch(Uri.encodeFull(value));
+    final isLaunch = await launchUrlString(Uri.encodeFull(value));
     if (!isLaunch) await value.share();
   }
 
@@ -174,6 +171,14 @@ extension PackageInfoExtension on String {
       return DeviceUtility.instance.packageInfo!.buildNumber;
     }
   }
+
+  Future<String> get deviceId async {
+    if (DeviceUtility.instance.packageInfo == null) {
+      throw PackageInfoNotFound();
+    } else {
+      return DeviceUtility.instance.getUniqueDeviceId();
+    }
+  }
 }
 
 extension NetworkImageExtension on String {
@@ -181,7 +186,8 @@ extension NetworkImageExtension on String {
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  String get customHighProfileImage => 'https://www.gravatar.com/avatar/?d=mp&s=200';
+  String get customHighProfileImage =>
+      'https://www.gravatar.com/avatar/?d=mp&s=200';
 }
 
 extension ColorPaletteExtension on String {

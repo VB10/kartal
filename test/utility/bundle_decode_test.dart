@@ -13,22 +13,26 @@ void main() {
     posts = [];
   });
   test('try to decode bundle json to expected model', () async {
-    posts = await BundleDecoder('assets/placeholder.json').crackBundle<Post, List<Post>>(model: Post());
+    posts = await BundleDecoder('assets/placeholder.json')
+        .crackBundle<Post, List<Post>>(model: Post());
     expect(posts, isNotNull);
   });
 
   test('expect not decoding to false model', () async {
-    posts = await BundleDecoder('assets/placeholder.json').crackBundle<Post, List<Post>>(model: Post());
+    posts = await BundleDecoder('assets/placeholder.json')
+        .crackBundle<Post, List<Post>>(model: Post());
     expect(posts, isNot(FalseModel()));
   });
 
   test('expect decoding to not return empty list', () async {
-    posts = await BundleDecoder('assets/placeholder.json').crackBundle<Post, List<Post>>(model: Post());
+    posts = await BundleDecoder('assets/placeholder.json')
+        .crackBundle<Post, List<Post>>(model: Post());
     expect(posts, isNotEmpty);
   });
 
   test('expect decoding to return correct number of items', () async {
-    posts = await BundleDecoder('assets/placeholder.json').crackBundle<Post, List<Post>>(model: Post());
+    posts = await BundleDecoder('assets/placeholder.json')
+        .crackBundle<Post, List<Post>>(model: Post());
     expect(posts?.length, 100);
   });
 }

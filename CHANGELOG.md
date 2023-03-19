@@ -1,4 +1,24 @@
-# [2.4.2]
+# [2.8.0]
+
+- device info package updated
+- added new platform support
+- added new key extension feature
+- updated indexOrNull for generic list
+
+## [2.7.0]
+
+- added device id method in string extension
+- added some coding fix
+
+## [2.5.1]
+
+- Same coding fixes and fixing package dependency.
+
+## [2.4.3]
+
+- added plus format in email regex
+
+## [2.4.2]
 
 - improved email regex
 - added lineLength on string

@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
             // buildContainerPaddingAndHeight(context),
             // buildTextFormFieldValid(),
             // buildContainerRandomColor(context),
-            // buildImageRotate(),
             // buildTextFieldFormatter()
           ],
         ),
@@ -44,7 +43,7 @@ class HomePage extends StatelessWidget {
   /// [Input Formatter] Validation
   ///
   /// [String] value mask and unmask
-  TextField buildTextFieldFormatter() {
+  Widget buildTextFieldFormatter() {
     return TextField(
       inputFormatters: [InputFormatter.instance().phoneFormatter],
       onChanged: (value) {
@@ -59,7 +58,7 @@ class HomePage extends StatelessWidget {
   ///
   /// Padding, height etc. direct access and use centrally for app
 
-  Container buildContainerPaddingAndHeight(BuildContext context) {
+  Widget buildContainerPaddingAndHeight(BuildContext context) {
     return Container(
       padding: context.paddingLow,
       height: context.dynamicHeight(0.1),
@@ -93,7 +92,8 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rotate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() =>
+      Image.network('https://picsum.photos/200/300').upRotation;
 }
 
 void _appInit() {

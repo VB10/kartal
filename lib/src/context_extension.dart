@@ -4,8 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/responsivity_constants.dart';
 import 'package:kartal/src/utility/page_animation/slider_route.dart';
-import 'package:kartal/src/widget/sized-box/space_sized_height_box.dart';
-import 'package:kartal/src/widget/sized-box/space_sized_width_box.dart';
+import 'package:kartal/src/widget/sized_box/space_sized_height_box.dart';
+import 'package:kartal/src/widget/sized_box/space_sized_width_box.dart';
 
 extension ContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
@@ -261,17 +261,23 @@ extension BorderExtension on BuildContext {
 extension NavigationExtension on BuildContext {
   NavigatorState get navigation => Navigator.of(this);
 
-  Future<bool> pop<T>([T? data]) async {
+  Future<bool> pop<T extends Object?>([T? data]) async {
     return navigation.maybePop(data);
   }
 
   void popWithRoot() => Navigator.of(this, rootNavigator: true).pop();
 
-  Future<T?> navigateName<T>(String path, {Object? data}) async {
+  Future<T?> navigateName<T extends Object?>(
+    String path, {
+    Object? data,
+  }) async {
     return navigation.pushNamed<T>(path, arguments: data);
   }
 
-  Future<T?> navigateToReset<T>(String path, {Object? data}) async {
+  Future<T?> navigateToReset<T extends Object?>(
+    String path, {
+    Object? data,
+  }) async {
     return navigation.pushNamedAndRemoveUntil(
       path,
       (route) => false,
@@ -279,7 +285,7 @@ extension NavigationExtension on BuildContext {
     );
   }
 
-  Future<T?> navigateToPage<T>(
+  Future<T?> navigateToPage<T extends Object?>(
     Widget page, {
     Object? extra,
     SlideType type = SlideType.DEFAULT,

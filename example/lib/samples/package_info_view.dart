@@ -7,7 +7,7 @@ class PackageInfoView extends StatefulWidget {
   const PackageInfoView({super.key});
 
   @override
-  _PackageInfoViewState createState() => _PackageInfoViewState();
+  State<PackageInfoView> createState() => _PackageInfoViewState();
 }
 
 class _PackageInfoViewState extends State<PackageInfoView> {

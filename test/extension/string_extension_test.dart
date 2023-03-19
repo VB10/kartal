@@ -8,6 +8,14 @@ void main() {
     expect(fifteenLiras.isNotNullOrNoEmpty, true);
   });
 
+  test('[isnullormepty] check', () {
+    const dataEmpty = '';
+    String? dataNil;
+
+    expect(dataEmpty.isNullOrEmpty, true);
+    expect(dataNil.isNullOrEmpty, true);
+  });
+
   test('Remove special characters - çamur', () {
     final correctText = 'çamur'.withoutSpecialCharacters;
     expect(correctText, 'camur');
@@ -40,10 +48,18 @@ void main() {
     });
   });
 
-  test('test email', () async {
-    const text = 'v@x-y.com';
-    expect(text.isValidEmail, true);
+  group('Email Regex', () {
+    test('test email', () async {
+      const text = 'v@x-y.com';
+      expect(text.isValidEmail, true);
+    });
+
+    test('test email', () async {
+      const text = 'veli+plus@x-y.com';
+      expect(text.isValidEmail, true);
+    });
   });
+
   group('toCapitalized Tests', () {
     test('test no word capitalize case', () async {
       const text = 'helLo world';
