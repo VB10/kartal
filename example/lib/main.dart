@@ -1,21 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 void main() {
   _appInit();
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: HomePage());
+    return const MaterialApp(title: 'Material App', home: HomePage());
   }
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +46,16 @@ class HomePage extends StatelessWidget {
   /// [String] value mask and unmask
   TextField buildTextFieldFormatter() {
     return TextField(
-      inputFormatters: [InputFormatter.instance.phoneFormatter],
+      inputFormatters: [InputFormatter.instance().phoneFormatter],
       onChanged: (value) {
-        print(value.phoneFormatValue);
+        if (kDebugMode) {
+          print(value.phoneFormatValue);
+        }
       },
     );
   }
 
-  /// [Context] Helper
+  /// [BuildContext] Helper
   ///
   /// Padding, height etc. direct acess and use centrically for app
 
@@ -75,8 +82,8 @@ class HomePage extends StatelessWidget {
   /// [Color] Generator
   ///
   /// Need draw any color for widget, just call [context.randomColor]
-  Container buildContainerRandomColor(BuildContext context) {
-    return Container(
+  ColoredBox buildContainerRandomColor(BuildContext context) {
+    return ColoredBox(
       color: context.randomColor,
       child: const Text('Hello World'),
     );
@@ -84,7 +91,7 @@ class HomePage extends StatelessWidget {
 
   /// [Image] Rotation
   ///
-  /// You can rorate right, left, top, bottom any image widget.
+  /// You can rotate right, left, top, bottom any image widget.
 
   Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').upRotation;
 }
