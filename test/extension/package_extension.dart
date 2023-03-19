@@ -19,6 +19,7 @@ void main() {
           'version': '1.0',
         };
       default:
+        // ignore: prefer_asserts_with_message
         assert(false);
         return null;
     }

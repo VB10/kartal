@@ -18,5 +18,11 @@ linter:
   # producing the lint.
 
   rules:
+    avoid_print: true # Uncomment to disable the `avoid_print` rule
+    prefer_single_quotes: true # Uncomment to enable the `prefer_single_quotes` rule
+    always_declare_return_types: true
+    avoid_empty_else: true
+    depend_on_referenced_packages: false
     public_member_api_docs: false
-    prefer_constructors_over_static_methods: false
+    sort_constructors_first: true
+    prefer_const_constructors: true

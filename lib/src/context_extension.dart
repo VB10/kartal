@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
 import 'package:kartal/src/constants/responsivity_constants.dart';
 import 'package:kartal/src/utility/page_animation/slider_route.dart';
 import 'package:kartal/src/widget/sized-box/space_sized_height_box.dart';
@@ -51,20 +50,19 @@ extension DeviceOSExtension on BuildContext {
 //Device Screen Type By Width(300-600-900)
 //Values from https://flutter.dev/docs/development/ui/layout/building-adaptive-apps
 extension ContextDeviceTypeExtension on BuildContext {
-  bool get isSmallScreen =>
-      width >= ResponsibilityConstants.instance.smallScreenSize &&
-              width < ResponsibilityConstants.instance.mediumScreenSize
-          ? true
-          : false;
+  bool get isSmallScreen {
+    return width >= ResponsibilityConstants.instance().smallScreenSize &&
+        width < ResponsibilityConstants.instance().mediumScreenSize;
+  }
 
-  bool get isMediumScreen =>
-      width >= ResponsibilityConstants.instance.mediumScreenSize &&
-              width < ResponsibilityConstants.instance.largeScreenSize
-          ? true
-          : false;
+  bool get isMediumScreen {
+    return width >= ResponsibilityConstants.instance().mediumScreenSize &&
+        width < ResponsibilityConstants.instance().largeScreenSize;
+  }
 
-  bool get isLargeScreen =>
-      width >= ResponsibilityConstants.instance.largeScreenSize ? true : false;
+  bool get isLargeScreen {
+    return width >= ResponsibilityConstants.instance().largeScreenSize;
+  }
 }
 
 extension DurationExtension on BuildContext {
@@ -79,58 +77,135 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
   EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
 
-  EdgeInsets get horizontalPaddingLow =>
-      EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get horizontalPaddingNormal =>
-      EdgeInsets.symmetric(horizontal: normalValue);
-  EdgeInsets get horizontalPaddingMedium =>
-      EdgeInsets.symmetric(horizontal: mediumValue);
-  EdgeInsets get horizontalPaddingHigh =>
-      EdgeInsets.symmetric(horizontal: highValue);
+  EdgeInsets get horizontalPaddingLow {
+    return EdgeInsets.symmetric(horizontal: lowValue);
+  }
 
-  EdgeInsets get verticalPaddingLow => EdgeInsets.symmetric(vertical: lowValue);
-  EdgeInsets get verticalPaddingNormal =>
-      EdgeInsets.symmetric(vertical: normalValue);
-  EdgeInsets get verticalPaddingMedium =>
-      EdgeInsets.symmetric(vertical: mediumValue);
-  EdgeInsets get verticalPaddingHigh =>
-      EdgeInsets.symmetric(vertical: highValue);
+  EdgeInsets get horizontalPaddingNormal {
+    return EdgeInsets.symmetric(horizontal: normalValue);
+  }
 
-  EdgeInsets get onlyLeftPaddingLow => EdgeInsets.only(left: lowValue);
-  EdgeInsets get onlyLeftPaddingNormal => EdgeInsets.only(left: normalValue);
-  EdgeInsets get onlyLeftPaddingMedium => EdgeInsets.only(left: mediumValue);
-  EdgeInsets get onlyLeftPaddingHigh => EdgeInsets.only(left: highValue);
+  EdgeInsets get horizontalPaddingMedium {
+    return EdgeInsets.symmetric(horizontal: mediumValue);
+  }
 
-  EdgeInsets get onlyRightPaddingLow => EdgeInsets.only(right: lowValue);
-  EdgeInsets get onlyRightPaddingNormal => EdgeInsets.only(right: normalValue);
-  EdgeInsets get onlyRightPaddingMedium => EdgeInsets.only(right: mediumValue);
-  EdgeInsets get onlyRightPaddingHigh => EdgeInsets.only(right: highValue);
+  EdgeInsets get horizontalPaddingHigh {
+    return EdgeInsets.symmetric(horizontal: highValue);
+  }
 
-  EdgeInsets get onlyBottomPaddingLow => EdgeInsets.only(bottom: lowValue);
-  EdgeInsets get onlyBottomPaddingNormal =>
-      EdgeInsets.only(bottom: normalValue);
-  EdgeInsets get onlyBottomPaddingMedium =>
-      EdgeInsets.only(bottom: mediumValue);
-  EdgeInsets get onlyBottomPaddingHigh => EdgeInsets.only(bottom: highValue);
+  EdgeInsets get verticalPaddingLow {
+    return EdgeInsets.symmetric(vertical: lowValue);
+  }
 
-  EdgeInsets get onlyTopPaddingLow => EdgeInsets.only(top: lowValue);
-  EdgeInsets get onlyTopPaddingNormal => EdgeInsets.only(top: normalValue);
-  EdgeInsets get onlyTopPaddingMedium => EdgeInsets.only(top: mediumValue);
-  EdgeInsets get onlyTopPaddingHigh => EdgeInsets.only(top: highValue);
+  EdgeInsets get verticalPaddingNormal {
+    return EdgeInsets.symmetric(vertical: normalValue);
+  }
+
+  EdgeInsets get verticalPaddingMedium {
+    return EdgeInsets.symmetric(vertical: mediumValue);
+  }
+
+  EdgeInsets get verticalPaddingHigh {
+    return EdgeInsets.symmetric(vertical: highValue);
+  }
+
+  EdgeInsets get onlyLeftPaddingLow {
+    return EdgeInsets.only(left: lowValue);
+  }
+
+  EdgeInsets get onlyLeftPaddingNormal {
+    return EdgeInsets.only(left: normalValue);
+  }
+
+  EdgeInsets get onlyLeftPaddingMedium {
+    return EdgeInsets.only(left: mediumValue);
+  }
+
+  EdgeInsets get onlyLeftPaddingHigh {
+    return EdgeInsets.only(left: highValue);
+  }
+
+  EdgeInsets get onlyRightPaddingLow {
+    return EdgeInsets.only(right: lowValue);
+  }
+
+  EdgeInsets get onlyRightPaddingNormal {
+    return EdgeInsets.only(right: normalValue);
+  }
+
+  EdgeInsets get onlyRightPaddingMedium {
+    return EdgeInsets.only(right: mediumValue);
+  }
+
+  EdgeInsets get onlyRightPaddingHigh {
+    return EdgeInsets.only(right: highValue);
+  }
+
+  EdgeInsets get onlyBottomPaddingLow {
+    return EdgeInsets.only(bottom: lowValue);
+  }
+
+  EdgeInsets get onlyBottomPaddingNormal {
+    return EdgeInsets.only(bottom: normalValue);
+  }
+
+  EdgeInsets get onlyBottomPaddingMedium {
+    return EdgeInsets.only(bottom: mediumValue);
+  }
+
+  EdgeInsets get onlyBottomPaddingHigh {
+    return EdgeInsets.only(bottom: highValue);
+  }
+
+  EdgeInsets get onlyTopPaddingLow {
+    return EdgeInsets.only(top: lowValue);
+  }
+
+  EdgeInsets get onlyTopPaddingNormal {
+    return EdgeInsets.only(top: normalValue);
+  }
+
+  EdgeInsets get onlyTopPaddingMedium {
+    return EdgeInsets.only(top: mediumValue);
+  }
+
+  EdgeInsets get onlyTopPaddingHigh {
+    return EdgeInsets.only(top: highValue);
+  }
 }
 
 extension SizedBoxExtension on BuildContext {
-  Widget get emptySizedWidthBoxLow => const SpaceSizedWidthBox(width: 0.01);
-  Widget get emptySizedWidthBoxLow3x => const SpaceSizedWidthBox(width: 0.03);
-  Widget get emptySizedWidthBoxNormal => const SpaceSizedWidthBox(width: 0.05);
-  Widget get emptySizedWidthBoxHigh => const SpaceSizedWidthBox(width: 0.1);
+  Widget get emptySizedWidthBoxLow {
+    return const SpaceSizedWidthBox(width: 0.01);
+  }
 
-  Widget get emptySizedHeightBoxLow => const SpaceSizedHeightBox(height: 0.01);
-  Widget get emptySizedHeightBoxLow3x =>
-      const SpaceSizedHeightBox(height: 0.03);
-  Widget get emptySizedHeightBoxNormal =>
-      const SpaceSizedHeightBox(height: 0.05);
-  Widget get emptySizedHeightBoxHigh => const SpaceSizedHeightBox(height: 0.1);
+  Widget get emptySizedWidthBoxLow3x {
+    return const SpaceSizedWidthBox(width: 0.03);
+  }
+
+  Widget get emptySizedWidthBoxNormal {
+    return const SpaceSizedWidthBox(width: 0.05);
+  }
+
+  Widget get emptySizedWidthBoxHigh {
+    return const SpaceSizedWidthBox(width: 0.1);
+  }
+
+  Widget get emptySizedHeightBoxLow {
+    return const SpaceSizedHeightBox(height: 0.01);
+  }
+
+  Widget get emptySizedHeightBoxLow3x {
+    return const SpaceSizedHeightBox(height: 0.03);
+  }
+
+  Widget get emptySizedHeightBoxNormal {
+    return const SpaceSizedHeightBox(height: 0.05);
+  }
+
+  Widget get emptySizedHeightBoxHigh {
+    return const SpaceSizedHeightBox(height: 0.1);
+  }
 }
 
 extension RadiusExtension on BuildContext {
@@ -140,35 +215,47 @@ extension RadiusExtension on BuildContext {
 }
 
 extension BorderExtension on BuildContext {
-  BorderRadius get normalBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.05));
-  BorderRadius get lowBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.02));
-  BorderRadius get highBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.1));
+  BorderRadius get normalBorderRadius {
+    return BorderRadius.all(Radius.circular(width * 0.05));
+  }
 
-  RoundedRectangleBorder get roundedRectangleBorderLow =>
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)),
-      );
+  BorderRadius get lowBorderRadius {
+    return BorderRadius.all(Radius.circular(width * 0.02));
+  }
 
-  RoundedRectangleBorder get roundedRectangleAllBorderNormal =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(normalValue));
+  BorderRadius get highBorderRadius {
+    return BorderRadius.all(Radius.circular(width * 0.1));
+  }
 
-  RoundedRectangleBorder get roundedRectangleBorderNormal =>
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)),
-      );
+  RoundedRectangleBorder get roundedRectangleBorderLow {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)),
+    );
+  }
 
-  RoundedRectangleBorder get roundedRectangleBorderMedium =>
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)),
-      );
+  RoundedRectangleBorder get roundedRectangleAllBorderNormal {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(normalValue),
+    );
+  }
 
-  RoundedRectangleBorder get roundedRectangleBorderHigh =>
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)),
-      );
+  RoundedRectangleBorder get roundedRectangleBorderNormal {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)),
+    );
+  }
+
+  RoundedRectangleBorder get roundedRectangleBorderMedium {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)),
+    );
+  }
+
+  RoundedRectangleBorder get roundedRectangleBorderHigh {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)),
+    );
+  }
 }
 
 extension NavigationExtension on BuildContext {
@@ -197,7 +284,8 @@ extension NavigationExtension on BuildContext {
     Object? extra,
     SlideType type = SlideType.DEFAULT,
   }) async {
-    return navigation
-        .push<T>(type.route(page, RouteSettings(arguments: extra)));
+    return navigation.push<T>(
+      type.route(page, RouteSettings(arguments: extra)),
+    );
   }
 }
