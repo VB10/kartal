@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import 'package:kartal/src/utility/bundle/INetworkModel.dart';
-=======
 import 'package:kartal/src/utility/bundle/i_network_model.dart';
->>>>>>> master
 
 class Post extends INetworkModel<Post> {
   Post({
@@ -11,10 +7,6 @@ class Post extends INetworkModel<Post> {
     this.title,
     this.body,
   });
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       userId: json['userId'] as int?,
@@ -23,10 +15,6 @@ class Post extends INetworkModel<Post> {
       body: json['body'] as String?,
     );
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   int? userId;
   int? id;
   String? title;
