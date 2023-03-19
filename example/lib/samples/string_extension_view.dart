@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -15,14 +16,16 @@ class StringExtensionView extends StatelessWidget {
         TextField(
           inputFormatters: [InputFormatter.instance().phoneFormatter],
           onChanged: (value) {
-            print(value.phoneFormatValue);
+            if (kDebugMode) {
+              print(value.phoneFormatValue);
+            }
           },
         )
       ],
     );
   }
 
-  void shareWhatssApp(String value) {
+  void shareWhatsApp(String value) {
     value.shareWhatsApp();
   }
 
@@ -31,6 +34,8 @@ class StringExtensionView extends StatelessWidget {
   }
 
   void bearerTokenHeader() {
-    print('TOKEN-X-X-X'.bearer);
+    if (kDebugMode) {
+      print('TOKEN-X-X-X'.bearer);
+    }
   }
 }
