@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
 
   /// [BuildContext] Helper
   ///
-  /// Padding, height etc. direct acess and use centrically for app
+  /// Padding, height etc. direct access and use centrally for app
 
   Container buildContainerPaddingAndHeight(BuildContext context) {
     return Container(
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
 
   /// [String] Validator
   ///
-  /// Need validation for your field, use to "stirng.isValidEmail"
+  /// Need validation for your field, use to "string.isValidEmail"
   TextFormField buildTextFormFieldValid() {
     return TextFormField(
       autovalidateMode: AutovalidateMode.always,
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
 
   /// [Color] Generator
   ///
-  /// Need draw any color for widget, just call [context.randomColor]
+  /// Need draw any color for widget, just call context.randomColor
   ColoredBox buildContainerRandomColor(BuildContext context) {
     return ColoredBox(
       color: context.randomColor,
