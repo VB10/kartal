@@ -1,8 +1,12 @@
+// ignore_for_file: avoid_relative_lib_imports
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/src/utility/bundle/bundle_decoder.dart';
 
 import '../../example/lib/samples/model/false_model.dart';
 import '../../example/lib/samples/model/post.dart';
+
+
 
 void main() {
   late List<Post>? posts;

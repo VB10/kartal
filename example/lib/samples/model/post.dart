@@ -7,7 +7,6 @@ class Post extends INetworkModel<Post> {
     this.title,
     this.body,
   });
-
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       userId: json['userId'] as int?,
@@ -16,7 +15,6 @@ class Post extends INetworkModel<Post> {
       body: json['body'] as String?,
     );
   }
-
   int? userId;
   int? id;
   String? title;

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Material App',
-      home: HomePage(),
-    );
+    return const MaterialApp(title: 'Material App', home: HomePage());
   }
 }
 
@@ -47,16 +45,18 @@ class HomePage extends StatelessWidget {
   /// [String] value mask and unmask
   Widget buildTextFieldFormatter() {
     return TextField(
-      inputFormatters: [InputFormatter.instance.phoneFormatter],
+      inputFormatters: [InputFormatter.instance().phoneFormatter],
       onChanged: (value) {
-        debugPrint(value.phoneFormatValue);
+        if (kDebugMode) {
+          print(value.phoneFormatValue);
+        }
       },
     );
   }
 
-  /// [context] Helper
+  /// [BuildContext] Helper
   ///
-  /// Padding, height etc. direct access and use centrically for app
+  /// Padding, height etc. direct access and use centrally for app
 
   Widget buildContainerPaddingAndHeight(BuildContext context) {
     return Container(
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
   /// [String] Validator
   ///
   /// Need validation for your field, use to "string.isValidEmail"
-  Widget buildTextFormFieldValid() {
+  TextFormField buildTextFormFieldValid() {
     return TextFormField(
       autovalidateMode: AutovalidateMode.always,
       validator: (value) => value.isValidEmail ? null : 'OH NOO',
@@ -80,8 +80,8 @@ class HomePage extends StatelessWidget {
 
   /// [Color] Generator
   ///
-  /// Need draw any color for widget, just call [context.randomColor]
-  Widget buildContainerRandomColor(BuildContext context) {
+  /// Need draw any color for widget, just call context.randomColor
+  ColoredBox buildContainerRandomColor(BuildContext context) {
     return ColoredBox(
       color: context.randomColor,
       child: const Text('Hello World'),

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_library_directive
+
 library kartal;
 
 export 'package:collection/collection.dart';

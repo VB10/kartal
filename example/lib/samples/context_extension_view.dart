@@ -14,7 +14,7 @@ class ContextExtensionView extends StatelessWidget {
         color: context.colorScheme.onBackground,
         child: Text(
           context.isKeyBoardOpen ? 'Open' : 'Close',
-          style: context.textTheme.subtitle1,
+          style: context.textTheme.titleMedium,
         ),
       ),
     );
@@ -55,7 +55,7 @@ class ContextExtensionView extends StatelessWidget {
           children: [
             const Text('Row'),
             context.emptySizedWidthBoxLow,
-            const Text('Row')
+            const Text('Row'),
           ],
         )
       ],
@@ -63,7 +63,11 @@ class ContextExtensionView extends StatelessWidget {
   }
 
   Widget radiusExtension(BuildContext context) {
+<<<<<<< HEAD
+    return Container(
+=======
     return DecoratedBox(
+>>>>>>> master
       decoration: BoxDecoration(borderRadius: context.lowBorderRadius),
     );
   }
