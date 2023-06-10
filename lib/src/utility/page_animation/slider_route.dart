@@ -12,21 +12,18 @@ enum SlideType {
   const SlideType({this.offSet});
 
   final Offset? offSet;
-}
 
-extension SlideTypeExtension on SlideType {
-  Route<T> route<T>(Widget page, RouteSettings settings) {
-    return this == SlideType.DEFAULT
-        ? MaterialPageRoute(
-            builder: (context) => page,
-            settings: settings,
-          )
-        : _SlideRoute(
-            page: page,
-            settings: settings,
-            slideType: this,
-          );
-  }
+  Route<T> route<T>(Widget page, RouteSettings settings) =>
+      this == SlideType.DEFAULT
+          ? MaterialPageRoute(
+              builder: (context) => page,
+              settings: settings,
+            )
+          : _SlideRoute(
+              page: page,
+              settings: settings,
+              slideType: this,
+            );
 }
 
 class _SlideRoute<T> extends PageRouteBuilder<T> {

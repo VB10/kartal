@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
 
@@ -87,5 +89,116 @@ void main() {
       const expected = '';
       expect(text.toCapitalized(), expected);
     });
+  });
+
+  //
+
+  test('Test lineLength property', () {
+    String? text = 'Hello\nWorld';
+    expect(text.lineLength, equals(2));
+  });
+
+  test('Test color property', () {
+    const hexColor = 'FF0000'; // Kırmızı rengin hexadecimal değeri
+    expect(hexColor.color, equals(const Color(0xFFFF0000)));
+  });
+
+  test('Test toCapitalized method', () {
+    String? text = 'hello world';
+    expect(text.toCapitalized(), equals('Hello world'));
+  });
+
+  test('Test toTitleCase method', () {
+    String? text = 'hello world';
+    expect(text.toTitleCase(), equals('Hello World'));
+  });
+
+  test('Test isNullOrEmpty property', () {
+    String? text = '';
+    expect(text.isNullOrEmpty, isTrue);
+  });
+
+  test('Test isNotNullOrNoEmpty property', () {
+    String? text = 'Hello';
+    expect(text.isNotNullOrNoEmpty, isTrue);
+  });
+
+  test('Test isValidEmail property', () {
+    String? email = 'test@example.com';
+    expect(email.isValidEmail, isTrue);
+  });
+
+  test('Test isValidPassword method', () {
+    String? validPassword = 'Password123!';
+    String? invalidPassword1 = 'password';
+    String? invalidPassword2 = '12345678';
+    String? invalidPassword3 = 'PASSWORD';
+    String? invalidPassword4 = 'Password!';
+    String? invalidPassword5 = 'Password123';
+
+    expect(validPassword.isValidPassword, isTrue);
+    expect(invalidPassword1.isValidPassword, isFalse);
+    expect(invalidPassword2.isValidPassword, isFalse);
+    expect(invalidPassword3.isValidPassword, isFalse);
+    expect(invalidPassword4.isValidPassword, isFalse);
+    expect(invalidPassword5.isValidPassword, isFalse);
+  });
+
+  test('Test withoutSpecialCharacters property', () {
+    String? text = 'héllö wôrld';
+    expect(text.withoutSpecialCharacters, equals('hello world'));
+  });
+
+  test('Test bearer property', () {
+    const token = 'abcd1234';
+    expect(token.bearer, equals({'Authorization': 'Bearer abcd1234'}));
+  });
+
+  test('Test phoneFormatValue method', () {
+    const phoneNumber = '0(123) 456-78-99';
+    final formattedPhoneNumber = phoneNumber.phoneFormatValue;
+    expect(formattedPhoneNumber, equals('1234567899'));
+  });
+
+  test('Test timeFormatValue method', () {
+    const timeString = '12/31/2021';
+    final formattedTime = timeString.timeFormatValue;
+    expect(formattedTime, equals('12312021'));
+  });
+
+  test('Test timeOverlineFormatValue method', () {
+    const timeString = '2022-11-05';
+    final formattedTime = timeString.timeOverlineFormatValue;
+    expect(formattedTime, equals('20221105'));
+  });
+
+  test('Test randomImage property', () {
+    final randomImage = ''.randomImage;
+    expect(randomImage, isNotEmpty);
+  });
+
+  test('Test randomSquareImage property', () {
+    final randomSquareImage = ''.randomSquareImage;
+    expect(randomSquareImage, isNotEmpty);
+  });
+
+  test('Test customProfileImage property', () {
+    final customProfileImage = ''.customProfileImage;
+    expect(customProfileImage, isNotEmpty);
+  });
+
+  test('Test customHighProfileImage property', () {
+    final customHighProfileImage = ''.customHighProfileImage;
+    expect(customHighProfileImage, isNotEmpty);
+  });
+
+  test('Test colorCode property', () {
+    const hexColor = 'FF0000';
+    expect(hexColor.colorCode, equals(0xFFFF0000));
+  });
+
+  test('Test toColor property', () {
+    const hexColor = 'FF0000';
+    expect(hexColor.toColor, equals(const Color(0xFFFF0000)));
   });
 }

@@ -1,7 +1,6 @@
 class ResponsibilityConstants {
-  factory ResponsibilityConstants.instance() {
-    return _instance ??= ResponsibilityConstants._init();
-  }
+  factory ResponsibilityConstants.instance() =>
+      _instance ??= ResponsibilityConstants._init();
   ResponsibilityConstants._init();
   static ResponsibilityConstants? _instance;
 

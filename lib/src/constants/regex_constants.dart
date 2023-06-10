@@ -1,7 +1,5 @@
 class RegexConstants {
-  factory RegexConstants.instance() {
-    return _instance ??= RegexConstants._init();
-  }
+  factory RegexConstants.instance() => _instance ??= RegexConstants._init();
   RegexConstants._init();
   static RegexConstants? _instance;
 
