@@ -41,6 +41,10 @@ class _StringExtension {
           .join(' ')
       : '';
 
+  int? get colorCode => int.tryParse('0xFF$value');
+
+  Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
+
   /// Returns true if this string is null or empty.
   bool get isNullOrEmpty => value?.isEmpty ?? true;
 
@@ -98,6 +102,8 @@ class _StringExtension {
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
   String get customHighProfileImage =>
       'https://www.gravatar.com/avatar/?d=mp&s=200';
+
+  Map<String, dynamic> get bearer => {'Authorization': 'Bearer $value'};
 
   /// Launches the email app with this email address.
   Future<bool> get launchEmail => launchUrlString('mailto:$value');

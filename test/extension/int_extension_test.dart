@@ -14,6 +14,4 @@ void main() {
       lessThan(colorRange),
     ); // Rastgele değer, renk aralığından küçük olmalı
   });
-
-  // Benzer şekilde başka test senaryoları da eklenebilir
 }

@@ -45,6 +45,8 @@ class _FileExtension {
 
 extension FileTypeExtension on File {
   _FileExtension get ext => _FileExtension(this);
+
+  @Deprecated('Use ext instead')
   FileType get fileType {
     final mimeType = lookupMimeType(path);
     if (mimeType?.startsWith(FileConstants.instance().imageType) ?? false) {
@@ -62,8 +64,12 @@ extension FileTypeExtension on File {
     return FileType.UNKNOWN;
   }
 
+  @Deprecated('Use ext instead')
   bool get isImageFile => fileType == FileType.IMAGE;
+  @Deprecated('Use ext instead')
   bool get isVideoFile => fileType == FileType.VIDEO;
+  @Deprecated('Use ext instead')
   bool get isAudioFile => fileType == FileType.AUDIO;
+  @Deprecated('Use ext instead')
   bool get isTextFile => fileType == FileType.TEXT;
 }
