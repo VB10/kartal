@@ -11,27 +11,27 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class _StringExtension {
-  _StringExtension(this.value);
+  _StringExtension(String? value) : _value = value;
 
-  final String? value;
+  final String? _value;
 
-  int get lineLength => '\n'.allMatches(value ?? '').length + 1;
-  Color get color => Color(int.parse('0xff$value'));
+  int get lineLength => '\n'.allMatches(_value ?? '').length + 1;
+  Color get color => Color(int.parse('0xff$_value'));
 
   /// Converts the first letter of the string to capital letter and returns the resulting string.
   /// If the string is null or empty, returns an empty string.
   String toCapitalized() {
-    final condition = value?.isNotEmpty ?? false;
+    final condition = _value?.isNotEmpty ?? false;
     if (!condition) return '';
-    final firstIndexUpperCased = value![0].toUpperCase();
-    final restOfTheString = value!.substring(1).toLowerCase();
+    final firstIndexUpperCased = _value![0].toUpperCase();
+    final restOfTheString = _value!.substring(1).toLowerCase();
     return condition ? firstIndexUpperCased + restOfTheString : '';
   }
 
   /// Converts all letters of the string to title case and returns the resulting string.
   /// If the string is null or empty, returns an empty string.
-  String toTitleCase() => value != null
-      ? value!
+  String toTitleCase() => _value != null
+      ? _value!
           .replaceAll(
             RegExp(' +'),
             ' ',
@@ -41,22 +41,22 @@ class _StringExtension {
           .join(' ')
       : '';
 
-  int? get colorCode => int.tryParse('0xFF$value');
+  int? get colorCode => int.tryParse('0xFF$_value');
 
   Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
 
   /// Returns true if this string is null or empty.
-  bool get isNullOrEmpty => value?.isEmpty ?? true;
+  bool get isNullOrEmpty => _value?.isEmpty ?? true;
 
   /// Returns true if this string is not null and not empty.
-  bool get isNotNullOrNoEmpty => value?.isNotEmpty ?? false;
+  bool get isNotNullOrNoEmpty => _value?.isNotEmpty ?? false;
 
   // Check if email is valid
   bool get isValidEmail {
     if (!isNotNullOrNoEmpty) return false;
     return RegExp(
       RegexConstants.instance().emailRegex,
-    ).hasMatch(value!);
+    ).hasMatch(_value!);
   }
 
   /// Checks if the password is valid.
@@ -67,34 +67,34 @@ class _StringExtension {
   ///
   /// Returns `true` if the password is valid, otherwise returns `false`.
   bool get isValidPassword {
-    if (value == null) return false;
+    if (_value == null) return false;
     return RegExp(
       RegexConstants.instance().passwordRegex,
-    ).hasMatch(value!);
+    ).hasMatch(_value!);
   }
 
   /// Removes all diacritics from the string.
   ///
   /// For example, [removeDiacritics] would transform 'à' to 'a'.
   String? get withoutSpecialCharacters =>
-      isNullOrEmpty ? value : removeDiacritics(value ?? '');
+      isNullOrEmpty ? _value : removeDiacritics(_value ?? '');
 
-  /// Returns the value of the phone number without the formatting characters.
+  /// Returns the _value of the phone number without the formatting characters.
   String get phoneFormatValue =>
-      InputFormatter.instance().phoneFormatter.unmaskText(value ?? '');
+      InputFormatter.instance().phoneFormatter.unmaskText(_value ?? '');
 
-  /// Formats the value of this [String] as a time.
+  /// Formats the _value of this [String] as a time.
   ///
-  /// This assumes that the value of this [String] is a time string, and
-  /// returns a [String] representing the formatted version of the value.
+  /// This assumes that the _value of this [String] is a time string, and
+  /// returns a [String] representing the formatted version of the _value.
   String get timeFormatValue =>
-      InputFormatter.instance().timeFormatter.unmaskText(value ?? '');
+      InputFormatter.instance().timeFormatter.unmaskText(_value ?? '');
 
   /// Unmasks the text for the time overline format.
   ///
   /// This format only allows numbers.
   String get timeOverlineFormatValue =>
-      InputFormatter.instance().timeFormatterOverLine.unmaskText(value ?? '');
+      InputFormatter.instance().timeFormatterOverLine.unmaskText(_value ?? '');
 
   String get randomImage => 'https://picsum.photos/200/300';
   String get randomSquareImage => 'https://picsum.photos/200';
@@ -103,15 +103,15 @@ class _StringExtension {
   String get customHighProfileImage =>
       'https://www.gravatar.com/avatar/?d=mp&s=200';
 
-  Map<String, dynamic> get bearer => {'Authorization': 'Bearer $value'};
+  Map<String, dynamic> get bearer => {'Authorization': 'Bearer $_value'};
 
   /// Launches the email app with this email address.
-  Future<bool> get launchEmail => launchUrlString('mailto:$value');
+  Future<bool> get launchEmail => launchUrlString('mailto:$_value');
   // Launch the phone application with the given number.
-  Future<bool> get launchPhone => launchUrlString('tel:$value');
+  Future<bool> get launchPhone => launchUrlString('tel:$_value');
 
   /// Returns whether or not the user can launch the website.
-  Future<bool> get launchWebsite => launchUrlString(value ?? '');
+  Future<bool> get launchWebsite => launchUrlString(_value ?? '');
 
   Future<bool> launchWebsiteCustom({
     bool enableJavaScript = false,
@@ -121,7 +121,7 @@ class _StringExtension {
     LaunchMode mode = LaunchMode.platformDefault,
   }) =>
       launchUrlString(
-        value ?? '',
+        _value ?? '',
         webViewConfiguration: WebViewConfiguration(
           enableDomStorage: enableDomStorage,
           enableJavaScript: enableJavaScript,
@@ -144,9 +144,9 @@ class _StringExtension {
 
   Future<void> shareMail(String title) async {
     final mailBodyText =
-        DeviceUtility.instance.shareMailText(title, value ?? '');
+        DeviceUtility.instance.shareMailText(title, _value ?? '');
     final isLaunch = await launchUrlString(Uri.encodeFull(mailBodyText));
-    if (!isLaunch) await value?.share();
+    if (!isLaunch) await _value?.share();
   }
 
   Future<void> share() async {
@@ -154,13 +154,13 @@ class _StringExtension {
       final isAppIpad = await DeviceUtility.instance.isIpad();
       if (isAppIpad) {
         await Share.share(
-          value ?? '',
+          _value ?? '',
           sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom,
         );
       }
     }
 
-    await Share.share(value ?? '');
+    await Share.share(_value ?? '');
   }
 
   String get appName {
@@ -260,23 +260,23 @@ extension StringExtension on String? {
     ).hasMatch(this!);
   }
 
-  @Deprecated('Use ext.isValidPhoneNumber instead')
+  @Deprecated('Use ext.withoutSpecialCharacters instead')
   String? get withoutSpecialCharacters =>
       isNullOrEmpty ? this : removeDiacritics(this!);
 
   @Deprecated('Use ext.bearer instead')
   Map<String, dynamic> get bearer => {'Authorization': 'Bearer $this'};
 
-  @Deprecated('Use ext.phoneFormatValue instead')
-  String get phoneFormatValue =>
+  @Deprecated('Use ext.phoneFormat_value instead')
+  String get phoneFormat_value =>
       InputFormatter.instance().phoneFormatter.unmaskText(this ?? '');
 
-  @Deprecated('Use ext.timeFormatValue instead')
-  String get timeFormatValue =>
+  @Deprecated('Use ext.timeFormat_value instead')
+  String get timeFormat_value =>
       InputFormatter.instance().timeFormatter.unmaskText(this ?? '');
 
-  @Deprecated('Use ext.timeOverlineFormatValue instead')
-  String get timeOverlineFormatValue =>
+  @Deprecated('Use ext.timeOverlineFormat_value instead')
+  String get timeOverlineFormat_value =>
       InputFormatter.instance().timeFormatterOverLine.unmaskText(this ?? '');
 
   @Deprecated('Use ext.randomImage instead')

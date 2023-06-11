@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class _WidgetExtension {
-  _WidgetExtension(this.widget);
+  _WidgetExtension(Widget widget) : _widget = widget;
 
-  final Widget widget;
+  final Widget _widget;
 
   /// Returns the widget if [value] is true, otherwise returns a SizedBox with zero size.
   Widget toVisible({bool value = true}) =>
-      value ? widget : const SizedBox.shrink();
+      value ? _widget : const SizedBox.shrink();
 
   /// Returns a widget that is disabled based on the [disable] parameter.
   /// If [disable] is true, the widget is rendered with reduced opacity using the [Opacity] widget.
@@ -16,12 +16,12 @@ class _WidgetExtension {
         ignoring: disable ?? true,
         child: Opacity(
           opacity: (disable ?? true) ? (opacity ?? 0.2) : 1,
-          child: widget,
+          child: _widget,
         ),
       );
 
   /// Wraps the widget in a [SliverToBoxAdapter] widget for use in a [CustomScrollView].
-  Widget get sliver => SliverToBoxAdapter(child: widget);
+  Widget get sliver => SliverToBoxAdapter(child: _widget);
 }
 
 extension WidgetExtension on Widget {

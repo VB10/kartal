@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 /// Provides convenient access to commonly used [Duration] values.
 class _ContextDurationExtension {
-  _ContextDurationExtension(this.context);
-  final BuildContext context;
-
   /// Returns a [Duration] object with a low duration of 500 milliseconds.
   Duration get durationLow => const Duration(milliseconds: 500);
 
@@ -16,7 +13,7 @@ class _ContextDurationExtension {
 }
 
 extension DurationExtension on BuildContext {
-  _ContextDurationExtension get duration => _ContextDurationExtension(this);
+  _ContextDurationExtension get duration => _ContextDurationExtension();
 
   @Deprecated('Use duration.durationLow instead')
   Duration get durationLow => const Duration(milliseconds: 500);

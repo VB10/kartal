@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 /// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
 class _KeyExtension<T extends State> {
-  _KeyExtension(this.key);
-  final GlobalKey<T> key;
+  _KeyExtension(GlobalKey<T> key) : _key = key;
+  final GlobalKey<T> _key;
 
   /// Returns the [RenderBox] associated with the current widget.
   RenderBox? get rendererBox {
-    final object = key.currentContext?.findRenderObject();
+    final object = _key.currentContext?.findRenderObject();
     if (object == null) return null;
     if (object is! RenderBox) return null;
 
@@ -25,9 +25,9 @@ class _KeyExtension<T extends State> {
     ScrollPositionAlignmentPolicy alignmentPolicy =
         ScrollPositionAlignmentPolicy.explicit,
   }) {
-    if (key.currentContext == null) return;
+    if (_key.currentContext == null) return;
     Scrollable.ensureVisible(
-      key.currentContext!,
+      _key.currentContext!,
       alignmentPolicy: alignmentPolicy,
     );
   }

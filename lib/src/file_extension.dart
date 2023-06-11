@@ -9,12 +9,12 @@ enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
 /// Provides convenient access to determine the type of a file and check if it belongs to specific types.
 
 class _FileExtension {
-  _FileExtension(this.file);
-  final File file;
+  _FileExtension(File file) : _file = file;
+  final File _file;
 
   /// Returns the [FileType] of the file based on its MIME type.
   FileType get fileType {
-    final mimeType = lookupMimeType(file.path);
+    final mimeType = lookupMimeType(_file.path);
     if (mimeType?.startsWith(FileConstants.instance().imageType) ?? false) {
       return FileType.IMAGE;
     }

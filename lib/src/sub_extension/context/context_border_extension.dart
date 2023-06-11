@@ -5,14 +5,14 @@ import 'package:kartal/src/sub_extension/context/index.dart';
 
 /// Extension methods for [BuildContext] to create [BorderRadius] objects.
 class _ContextBorderExtension {
-  _ContextBorderExtension(this.context);
-  final BuildContext context;
+  _ContextBorderExtension(BuildContext context) : _context = context;
+  final BuildContext _context;
 
-  double get width => context.sized.width;
-  double get lowValue => context.sized.lowValue;
-  double get normalValue => context.sized.normalValue;
-  double get highValue => context.sized.highValue;
-  double get mediumValue => context.sized.mediumValue;
+  double get width => _context.sized.width;
+  double get lowValue => _context.sized.lowValue;
+  double get normalValue => _context.sized.normalValue;
+  double get highValue => _context.sized.highValue;
+  double get mediumValue => _context.sized.mediumValue;
 
   /// Returns a [Radius] object with a circular radius equal to [width] multiplied by 0.02.
   Radius get lowRadius => Radius.circular(width * 0.02);

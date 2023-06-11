@@ -6,10 +6,10 @@ import 'package:kartal/src/sub_extension/context/index.dart';
 
 /// Provides convenient access to commonly used properties related to screen sizes and device platforms.
 class _ContextDeviceExtension {
-  _ContextDeviceExtension(this.context);
-  final BuildContext context;
+  _ContextDeviceExtension(BuildContext context) : _context = context;
+  final BuildContext _context;
 
-  double get width => context.sized.width;
+  double get width => _context.sized.width;
 
   /// Returns `true` if the width of the screen is within the range of small screens,
   /// based on the values defined in [ResponsibilityConstants].

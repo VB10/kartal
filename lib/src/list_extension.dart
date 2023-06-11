@@ -1,15 +1,15 @@
 class _ListExtension<T> {
-  _ListExtension(this.list);
+  _ListExtension(List<T>? list) : _list = list;
 
-  final List<T>? list;
+  final List<T>? _list;
 
   /// Returns `true` if the list is null or empty.
   bool get isNullOrEmpty => !isNotNullOrEmpty;
 
   /// Returns `true` if the list is not null and not empty.
   bool get isNotNullOrEmpty {
-    if (list != null) {
-      return list!.isNotEmpty;
+    if (_list != null) {
+      return _list!.isNotEmpty;
     } else {
       return false;
     }
@@ -18,7 +18,7 @@ class _ListExtension<T> {
   /// Returns the index of the first element that satisfies the provided [search] function.
   /// If no element is found, returns null.
   int? indexOrNull(bool Function(T) search) {
-    final result = list?.indexWhere(search);
+    final result = _list?.indexWhere(search);
     return result != -1 ? result : null;
   }
 }

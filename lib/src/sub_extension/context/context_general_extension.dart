@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 /// Provides convenient access to commonly used properties from [MediaQueryData] and [ThemeData]
 /// related to the current [BuildContext].
 class _ContextGeneralExtension {
-  _ContextGeneralExtension(this.context);
-  final BuildContext context;
+  _ContextGeneralExtension(BuildContext context) : _context = context;
+  final BuildContext _context;
 
   /// Returns the [MediaQueryData] associated with the current [BuildContext].
-  MediaQueryData get mediaQuery => MediaQuery.of(context);
+  MediaQueryData get mediaQuery => MediaQuery.of(_context);
 
   /// Returns the [ThemeData] associated with the current [BuildContext].
-  ThemeData get appTheme => Theme.of(context);
+  ThemeData get appTheme => Theme.of(_context);
 
   /// Returns the [TextTheme] defined in the current [ThemeData].
   TextTheme get textTheme => appTheme.textTheme;

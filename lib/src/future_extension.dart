@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// You can use future utility so easy with [FutureExtension]
 class _FutureExtension<T> {
-  _FutureExtension(this.future);
+  _FutureExtension(Future<T> future) : _future = future;
 
-  final Future<T> future;
+  final Future<T> _future;
 
   /// Builds a widget based on the state of a future. It allows specifying different widgets for
   /// different states, such as loading, success, not found, and error.
@@ -16,7 +16,7 @@ class _FutureExtension<T> {
     T? data,
   }) =>
       FutureBuilder<T>(
-        future: future,
+        future: _future,
         initialData: data,
         builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
           switch (snapshot.connectionState) {

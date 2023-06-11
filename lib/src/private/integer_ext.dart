@@ -1,8 +1,8 @@
 part of '../int_extension.dart';
 
 class IntegerExt {
-  IntegerExt(this.value);
+  IntegerExt(int value) : _value = value;
 
-  final int value;
-  int get randomColorValue => Random(value).nextInt(256);
+  final int _value;
+  int get randomColorValue => Random(_value).nextInt(256);
 }

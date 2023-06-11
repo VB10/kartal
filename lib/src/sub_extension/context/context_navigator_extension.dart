@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class _ContextNavigationExtension {
-  _ContextNavigationExtension(this.context);
-
-  final BuildContext context;
+  _ContextNavigationExtension(BuildContext context) : _context = context;
+  final BuildContext _context;
 
   /// Returns the [NavigatorState] associated with the current [BuildContext].
-  NavigatorState get navigation => Navigator.of(context);
+  NavigatorState get navigation => Navigator.of(_context);
 
   /// Pops the top route from the [Navigator] stack and returns a [Future] that completes with
   /// `true` if the route was successfully popped or `false` otherwise. Optionally, you can pass
@@ -17,7 +16,7 @@ class _ContextNavigationExtension {
       navigation.maybePop(data);
 
   /// Pops all routes until the root route from the [Navigator] stack.
-  void popWithRoot() => Navigator.of(context, rootNavigator: true).pop();
+  void popWithRoot() => Navigator.of(_context, rootNavigator: true).pop();
 
   /// Pushes a named route onto the [Navigator] stack identified by [path]. You can optionally pass
   /// [data] to be passed as arguments to the pushed route. Returns a [Future] that completes with

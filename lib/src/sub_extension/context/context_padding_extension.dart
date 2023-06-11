@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:kartal/src/sub_extension/context/index.dart';
 
 class _ContextPaddingExtension {
-  _ContextPaddingExtension(this.context);
-  final BuildContext context;
+  _ContextPaddingExtension(BuildContext context) : _context = context;
+  final BuildContext _context;
 
-  double get lowValue => context.sized.lowValue;
-  double get normalValue => context.sized.normalValue;
-  double get mediumValue => context.sized.mediumValue;
-  double get highValue => context.sized.highValue;
+  /// Returns a value representing a low dimension, calculated as 0.01 times the current widget's height.
+  double get lowValue => _context.sized.lowValue;
+
+  /// Returns a value representing a normal dimension, calculated as 0.02 times the current widget's height.
+  double get normalValue => _context.sized.normalValue;
+
+  /// Returns a value representing a medium dimension, calculated as 0.04 times the current widget's height.
+  double get mediumValue => _context.sized.mediumValue;
+
+  /// Returns a value representing a high dimension, calculated as 0.1 times the current widget's height.
+  double get highValue => _context.sized.highValue;
 
   /// Returns an [EdgeInsets] object with equal padding on all sides, where the value is set to
   /// [lowValue].
