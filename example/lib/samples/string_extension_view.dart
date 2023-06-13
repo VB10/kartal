@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -11,15 +12,13 @@ class StringExtensionView extends StatelessWidget {
         TextFormField(
           validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail',
         ),
-        TextFormField(
-          validator: (value) => value.isValidEmail ? null : 'fail',
-        ),
+        TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
         TextField(
-          inputFormatters: [
-            InputFormatter.instance.phoneFormatter,
-          ],
+          inputFormatters: [InputFormatter.instance().phoneFormatter],
           onChanged: (value) {
-            debugPrint(value.phoneFormatValue);
+            if (kDebugMode) {
+              print(value.phoneFormatValue);
+            }
           },
         )
       ],
@@ -35,6 +34,8 @@ class StringExtensionView extends StatelessWidget {
   }
 
   void bearerTokenHeader() {
-    print('TOKEN-X-X-X'.bearer);
+    if (kDebugMode) {
+      print('TOKEN-X-X-X'.bearer);
+    }
   }
 }

@@ -9,16 +9,16 @@ enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
 extension FileTypeExtension on File {
   FileType get fileType {
     final mimeType = lookupMimeType(path);
-    if (mimeType?.startsWith(FileConstants.instance.imageType) ?? false) {
+    if (mimeType?.startsWith(FileConstants.instance().imageType) ?? false) {
       return FileType.IMAGE;
     }
-    if (mimeType?.startsWith(FileConstants.instance.videoType) ?? false) {
+    if (mimeType?.startsWith(FileConstants.instance().videoType) ?? false) {
       return FileType.VIDEO;
     }
-    if (mimeType?.startsWith(FileConstants.instance.audioType) ?? false) {
+    if (mimeType?.startsWith(FileConstants.instance().audioType) ?? false) {
       return FileType.AUDIO;
     }
-    if (mimeType?.startsWith(FileConstants.instance.textType) ?? false) {
+    if (mimeType?.startsWith(FileConstants.instance().textType) ?? false) {
       return FileType.TEXT;
     }
     return FileType.UNKNOWN;

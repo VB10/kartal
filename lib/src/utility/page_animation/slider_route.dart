@@ -31,9 +31,9 @@ extension SlideTypeExtension on SlideType {
 
 class _SlideRoute<T> extends PageRouteBuilder<T> {
   _SlideRoute({
-    super.settings,
     required Widget page,
     required SlideType slideType,
+    super.settings,
   }) : super(
           pageBuilder: (
             BuildContext context,

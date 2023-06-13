@@ -8,7 +8,7 @@ import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 extension StringCommonExtension on String? {
@@ -20,31 +20,44 @@ extension StringColorExtension on String {
 }
 
 extension StringConverterExtension on String? {
-  String toCapitalized() => (this != null && this!.isNotEmpty)
-      ? '${this![0].toUpperCase()}${this!.substring(1).toLowerCase()}'
-      : '';
-  String toTitleCase() => this != null
-      ? this!
-          .replaceAll(RegExp(' +'), ' ')
-          .split(' ')
-          .map((str) => str.toCapitalized())
-          .join(' ')
-      : '';
+  String toCapitalized() {
+    final condition = this != null && this!.isNotEmpty;
+    final firstIndexUpperCased = this![0].toUpperCase();
+    final restOfTheString = this!.substring(1).toLowerCase();
+    return condition ? firstIndexUpperCased + restOfTheString : '';
+  }
+
+  String toTitleCase() {
+    return this != null
+        ? this!
+            .replaceAll(
+              RegExp(' +'),
+              ' ',
+            )
+            .split(' ')
+            .map((str) => str.toCapitalized())
+            .join(' ')
+        : '';
+  }
 }
 
 extension StringValidatorExtension on String? {
   bool get isNullOrEmpty => this == null || this!.isEmpty;
   bool get isNotNullOrNoEmpty => this != null && this!.isNotEmpty;
 
-  // ignore: avoid_bool_literals_in_conditional_expressions
-  bool get isValidEmail => isNotNullOrNoEmpty
-      ? RegExp(RegexConstants.instance.emailRegex).hasMatch(this!)
-      : false;
+  bool get isValidEmail {
+    if (!isNotNullOrNoEmpty) return false;
+    return RegExp(
+      RegexConstants.instance().emailRegex,
+    ).hasMatch(this!);
+  }
 
-  // ignore: avoid_bool_literals_in_conditional_expressions
-  bool get isValidPassword => isNotNullOrNoEmpty
-      ? RegExp(RegexConstants.instance.passwordRegex).hasMatch(this!)
-      : false;
+  bool get isValidPassword {
+    if (this == null) return false;
+    return RegExp(
+      RegexConstants.instance().passwordRegex,
+    ).hasMatch(this!);
+  }
 
   String? get withoutSpecialCharacters {
     return isNullOrEmpty ? this : removeDiacritics(this!);
@@ -52,7 +65,7 @@ extension StringValidatorExtension on String? {
 }
 
 extension AuthorizationExtension on String {
-  Map<String, dynamic> get bearer => {'Authorization': 'Bearer ${this}'};
+  Map<String, dynamic> get bearer => {'Authorization': 'Bearer $this'};
 }
 
 extension LaunchExtension on String {
@@ -82,8 +95,9 @@ extension LaunchExtension on String {
 extension ShareText on String {
   Future<void> shareWhatsApp() async {
     try {
-      final isLaunch =
-          await launchUrlString('${KartalAppConstants.WHATS_APP_PREFIX}$this');
+      final isLaunch = await launch(
+        '${KartalAppConstants.WHATS_APP_PREFIX}$this',
+      );
       if (!isLaunch) await share();
     } catch (e) {
       await share();
@@ -112,12 +126,17 @@ extension ShareText on String {
 }
 
 extension FormatterExtension on String {
-  String get phoneFormatValue =>
-      InputFormatter.instance.phoneFormatter.unmaskText(this);
-  String get timeFormatValue =>
-      InputFormatter.instance.timeFormatter.unmaskText(this);
-  String get timeOverlineFormatValue =>
-      InputFormatter.instance.timeFormatterOverLine.unmaskText(this);
+  String get phoneFormatValue {
+    return InputFormatter.instance().phoneFormatter.unmaskText(this);
+  }
+
+  String get timeFormatValue {
+    return InputFormatter.instance().timeFormatter.unmaskText(this);
+  }
+
+  String get timeOverlineFormatValue {
+    return InputFormatter.instance().timeFormatterOverLine.unmaskText(this);
+  }
 }
 
 extension PackageInfoExtension on String {
