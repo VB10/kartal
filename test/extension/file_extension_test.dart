@@ -8,36 +8,36 @@ void main() {
   test('Filetype Extension Returning File Type', () {
     final testFile = File('/test/file/path/testFile.jpeg');
 
-    expect(testFile.fileType, FileType.IMAGE);
+    expect(testFile.ext.fileType, FileType.IMAGE);
   });
 
   test('FileType Extension .isImageFile Checking', () {
     final testFile = File('/test/file/path/testFile.jpeg');
 
-    expect(testFile.isImageFile, true);
+    expect(testFile.ext.isImageFile, true);
   });
 
   test('FileType Extension .isVideoFile Checking', () {
     final testFile = File('/test/file/path/testFile.mp4');
 
-    expect(testFile.isVideoFile, true);
+    expect(testFile.ext.isVideoFile, true);
   });
 
   test('FileType Extension .isAudioFile Checking', () {
     final testFile = File('/test/file/path/testFile.mp3');
 
-    expect(testFile.isAudioFile, true);
+    expect(testFile.ext.isAudioFile, true);
   });
 
   test('FileType Extension .isTextFile Checking', () {
     final testFile = File('/test/file/path/testFile.txt');
 
-    expect(testFile.isTextFile, true);
+    expect(testFile.ext.isTextFile, true);
   });
 
   test('FileType Extension Unknown Type', () {
     final testFile = File('/test/file/path/testFile.asdasrsr');
 
-    expect(testFile.fileType, FileType.UNKNOWN);
+    expect(testFile.ext.fileType, FileType.UNKNOWN);
   });
 }

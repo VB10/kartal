@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:kartal/src/utility/bundle/i_network_model.dart';
+import 'package:kartal/src/utility/bundle/network_model_interface.dart';
 
 typedef ComputeCallback<T extends INetworkModel<T>, R> = Future<R> Function(
   // ignore: library_private_types_in_public_api
@@ -53,9 +53,9 @@ mixin _BundleHelpers {
       final listJson = json.decode(argument.bundle) as List<dynamic>;
       try {
         final transformedData = listJson
-            .map((data) {
-              return argument.model.fromJson(data as Map<String, dynamic>);
-            })
+            .map(
+              (data) => argument.model.fromJson(data as Map<String, dynamic>),
+            )
             .cast<T>()
             .toList() as R;
 

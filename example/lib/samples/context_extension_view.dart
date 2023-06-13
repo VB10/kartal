@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -6,7 +8,11 @@ class ContextExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        // String? daat;
+        // context.mediaQuery.size.height
     return Scaffold(
+
+
       // ignore: deprecated_member_use
       appBar: AppBar(brightness: context.appBrightness),
       body: Container(
