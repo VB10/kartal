@@ -28,8 +28,7 @@ extension WidgetExtension on Widget {
   _WidgetExtension get ext => _WidgetExtension(this);
 
   @Deprecated('Use ext.toVisible instead')
-  Widget toVisible({bool value = true}) =>
-      value ? this : const SizedBox.shrink();
+  Widget toVisible(bool value) => value ? this : const SizedBox.shrink();
 
   @Deprecated('Use ext.toDisabled instead')
   Widget toDisabled({bool? disable, double? opacity}) => IgnorePointer(

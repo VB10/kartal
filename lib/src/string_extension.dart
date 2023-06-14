@@ -365,6 +365,10 @@ extension StringExtension on String? {
     }
   }
 
+  @Deprecated('Use ext.phoneFormatValue instead')
+  String get phoneFormatValue =>
+      InputFormatter.instance().phoneFormatter.unmaskText(this ?? '');
+
   @Deprecated('Use ext.packageName instead')
   String get packageName {
     if (DeviceUtility.instance.packageInfo == null) {
