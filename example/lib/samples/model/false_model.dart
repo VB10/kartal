@@ -1,4 +1,4 @@
-import 'package:kartal/src/utility/bundle/i_network_model.dart';
+import 'package:kartal/src/utility/bundle/network_model_interface.dart';
 
 class FalseModel extends INetworkModel<FalseModel> {
   FalseModel({
@@ -8,15 +8,13 @@ class FalseModel extends INetworkModel<FalseModel> {
     this.url,
     this.thumbnailUrl,
   });
-  factory FalseModel.fromJson(Map<String, dynamic> json) {
-    return FalseModel(
-      albumId: json['albumId'] as int?,
-      id: json['id'] as int?,
-      title: json['title'] as String?,
-      url: json['url'] as String?,
-      thumbnailUrl: json['thumbnailUrl'] as String?,
-    );
-  }
+  factory FalseModel.fromJson(Map<String, dynamic> json) => FalseModel(
+        albumId: json['albumId'] as int?,
+        id: json['id'] as int?,
+        title: json['title'] as String?,
+        url: json['url'] as String?,
+        thumbnailUrl: json['thumbnailUrl'] as String?,
+      );
   int? albumId;
   int? id;
   String? title;
@@ -29,13 +27,11 @@ class FalseModel extends INetworkModel<FalseModel> {
   @override
   Map<String, dynamic>? toJson() => _toJson();
 
-  Map<String, dynamic> _toJson() {
-    return {
-      'albumId': albumId,
-      'id': id,
-      'title': title,
-      'url': url,
-      'thumbnailUrl': thumbnailUrl,
-    };
-  }
+  Map<String, dynamic> _toJson() => {
+        'albumId': albumId,
+        'id': id,
+        'title': title,
+        'url': url,
+        'thumbnailUrl': thumbnailUrl,
+      };
 }

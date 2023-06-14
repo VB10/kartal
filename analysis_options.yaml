@@ -14,3 +14,6 @@ linter:
     public_member_api_docs: false
     sort_constructors_first: true
     prefer_const_constructors: true
+    prefer_expression_function_bodies: true
+    lines_longer_than_80_chars: true
+    library_private_types_in_public_api: false

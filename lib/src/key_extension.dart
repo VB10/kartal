@@ -1,9 +1,42 @@
 import 'package:flutter/material.dart';
 
-extension KeyExtension on GlobalKey {
-  /// Object box
-  ///
-  /// You can control your widget with key
+/// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
+class _KeyExtension<T extends State> {
+  _KeyExtension(GlobalKey<T> key) : _key = key;
+  final GlobalKey<T> _key;
+
+  /// Returns the [RenderBox] associated with the current widget.
+  RenderBox? get rendererBox {
+    final object = _key.currentContext?.findRenderObject();
+    if (object == null) return null;
+    if (object is! RenderBox) return null;
+
+    return object;
+  }
+
+  /// Returns the global offset of the current widget.
+  Offset? get offset => rendererBox?.localToGlobal(Offset.zero);
+
+  /// Returns the height of the current widget.
+  double? get height => rendererBox?.size.height;
+
+  /// Scrolls to the current widget.
+  void scrollToWidget({
+    ScrollPositionAlignmentPolicy alignmentPolicy =
+        ScrollPositionAlignmentPolicy.explicit,
+  }) {
+    if (_key.currentContext == null) return;
+    Scrollable.ensureVisible(
+      _key.currentContext!,
+      alignmentPolicy: alignmentPolicy,
+    );
+  }
+}
+
+extension KeyExtension<T extends State> on GlobalKey<T> {
+  _KeyExtension<T> get ext => _KeyExtension<T>(this);
+
+  @Deprecated('Use ext.rendererBox instead')
   RenderBox? get rendererBox {
     final object = currentContext?.findRenderObject();
     if (object == null) return null;
@@ -12,13 +45,13 @@ extension KeyExtension on GlobalKey {
     return object;
   }
 
+  @Deprecated('Use ext.offset instead')
   Offset? get offset => rendererBox?.localToGlobal(Offset.zero);
 
+  @Deprecated('Use ext.height instead')
   double? get height => rendererBox?.size.height;
-}
 
-extension GlobalObjectScroll on GlobalObjectKey {
-  /// Scroll to specific widget
+  @Deprecated('Use ext.scrollToWidget instead')
   void scrollToWidget({
     ScrollPositionAlignmentPolicy alignmentPolicy =
         ScrollPositionAlignmentPolicy.explicit,

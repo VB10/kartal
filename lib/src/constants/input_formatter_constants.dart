@@ -2,9 +2,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class InputFormatter {
   InputFormatter._init();
-  factory InputFormatter.instance() {
-   return _instance ??= InputFormatter._init();
-  }
+  static InputFormatter get instance => _instance ??= InputFormatter._init();
   static InputFormatter? _instance;
 
   String get _phoneMask => '0(###) ###-##-##';

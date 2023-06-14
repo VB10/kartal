@@ -1,4 +1,8 @@
-# [2.8.0]
+# [3.0.0]
+
+- updated major package version changes
+
+## [2.8.0]
 
 - device info package updated
 - added new platform support
