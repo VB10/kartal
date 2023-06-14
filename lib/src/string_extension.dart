@@ -81,20 +81,20 @@ class _StringExtension {
 
   /// Returns the _value of the phone number without the formatting characters.
   String get phoneFormatValue =>
-      InputFormatter.instance().phoneFormatter.unmaskText(_value ?? '');
+      InputFormatter.instance.phoneFormatter.unmaskText(_value ?? '');
 
   /// Formats the _value of this [String] as a time.
   ///
   /// This assumes that the _value of this [String] is a time string, and
   /// returns a [String] representing the formatted version of the _value.
   String get timeFormatValue =>
-      InputFormatter.instance().timeFormatter.unmaskText(_value ?? '');
+      InputFormatter.instance.timeFormatter.unmaskText(_value ?? '');
 
   /// Unmasks the text for the time overline format.
   ///
   /// This format only allows numbers.
   String get timeOverlineFormatValue =>
-      InputFormatter.instance().timeFormatterOverLine.unmaskText(_value ?? '');
+      InputFormatter.instance.timeFormatterOverLine.unmaskText(_value ?? '');
 
   String get randomImage => 'https://picsum.photos/200/300';
   String get randomSquareImage => 'https://picsum.photos/200';
@@ -269,15 +269,15 @@ extension StringExtension on String? {
 
   @Deprecated('Use ext.phoneFormat_value instead')
   String get phoneFormat_value =>
-      InputFormatter.instance().phoneFormatter.unmaskText(this ?? '');
+      InputFormatter.instance.phoneFormatter.unmaskText(this ?? '');
 
   @Deprecated('Use ext.timeFormat_value instead')
   String get timeFormat_value =>
-      InputFormatter.instance().timeFormatter.unmaskText(this ?? '');
+      InputFormatter.instance.timeFormatter.unmaskText(this ?? '');
 
   @Deprecated('Use ext.timeOverlineFormat_value instead')
   String get timeOverlineFormat_value =>
-      InputFormatter.instance().timeFormatterOverLine.unmaskText(this ?? '');
+      InputFormatter.instance.timeFormatterOverLine.unmaskText(this ?? '');
 
   @Deprecated('Use ext.randomImage instead')
   String get randomImage => 'https://picsum.photos/200/300';
@@ -367,7 +367,7 @@ extension StringExtension on String? {
 
   @Deprecated('Use ext.phoneFormatValue instead')
   String get phoneFormatValue =>
-      InputFormatter.instance().phoneFormatter.unmaskText(this ?? '');
+      InputFormatter.instance.phoneFormatter.unmaskText(this ?? '');
 
   @Deprecated('Use ext.packageName instead')
   String get packageName {
