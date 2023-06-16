@@ -16,7 +16,7 @@ class ContextExtensionView extends StatelessWidget {
       // ignore: deprecated_member_use
       appBar: AppBar(brightness: context.appBrightness),
       body: Container(
-        height: context.mediaQuery.size.height,
+        height: context. mediaQuery.size.height,
         color: context.colorScheme.onBackground,
         child: Text(
           context.isKeyBoardOpen ? 'Open' : 'Close',
@@ -26,34 +26,27 @@ class ContextExtensionView extends StatelessWidget {
     );
   }
 
-  Widget mediaQueryWidgets(BuildContext context) {
-    return SizedBox(
+  Widget mediaQueryWidgets(BuildContext context) => SizedBox(
       height: context.dynamicHeight(0.1),
       width: context.dynamicWidth(0.1),
       child: Text('${context.lowValue}'),
     );
-  }
 
-  Widget animatedContainerDuration(BuildContext context) {
-    return AnimatedOpacity(
+  Widget animatedContainerDuration(BuildContext context) => AnimatedOpacity(
       opacity: context.isKeyBoardOpen ? 1 : 0,
       duration: context.durationLow,
       child: Text('${context.durationLow.inHours}'),
     );
-  }
 
-  Widget paddingExtension(BuildContext context) {
-    return Padding(
+  Widget paddingExtension(BuildContext context) => Padding(
       padding: context.paddingLow,
       child: Padding(
         padding: context.horizontalPaddingMedium,
         child: Text('${context.durationLow.inHours}'),
       ),
     );
-  }
 
-  Widget emptySizedBox(BuildContext context) {
-    return Column(
+  Widget emptySizedBox(BuildContext context) => Column(
       children: [
         Text('${context.durationLow.inHours}'),
         context.emptySizedHeightBoxHigh,
@@ -66,7 +59,6 @@ class ContextExtensionView extends StatelessWidget {
         )
       ],
     );
-  }
 
   Widget radiusExtension(BuildContext context) {
 <<<<<<< HEAD
