@@ -8,6 +8,9 @@ class WidgetExtensionViews extends StatelessWidget {
 
   final bool isDataValid = false;
   @override
-  Widget build(BuildContext context) =>
-      const Text('is data not found').toVisible(isDataValid);
+  Widget build(BuildContext context) => const Text(
+        'is data not found',
+      ).ext.toVisible(
+            value: isDataValid,
+          );
 }

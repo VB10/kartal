@@ -10,7 +10,7 @@ class ListExtensionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: values.isNotNullOrEmpty ? const Text('ok') : const Text('false'),
+      child: values.ext.isNotNullOrEmpty ? const Text('ok') : const Text('false'),
     );
   }
 }

@@ -29,7 +29,7 @@ class _PackageInfoViewState extends State<PackageInfoView> {
   Widget build(BuildContext context) {
     return Container(
       child: isInit
-          ? Text(''.buildNumber)
+          ? Text(''.ext.buildNumber)
           : const Center(
               child: CircularProgressIndicator(),
             ),

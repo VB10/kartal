@@ -45,10 +45,10 @@ class HomePage extends StatelessWidget {
   /// [String] value mask and unmask
   Widget buildTextFieldFormatter() {
     return TextField(
-      inputFormatters: [InputFormatter.instance().phoneFormatter],
+      inputFormatters: [InputFormatter.instance.phoneFormatter],
       onChanged: (value) {
         if (kDebugMode) {
-          print(value.phoneFormatValue);
+          print(value.ext.phoneFormatValue);
         }
       },
     );
@@ -60,10 +60,10 @@ class HomePage extends StatelessWidget {
 
   Widget buildContainerPaddingAndHeight(BuildContext context) {
     return Container(
-      padding: context.paddingLow,
-      height: context.dynamicHeight(0.1),
-      width: context.dynamicWidth(0.5),
-      color: context.randomColor,
+      padding: context.padding.low,
+      height: context.sized.dynamicHeight(0.1),
+      width: context.sized.dynamicWidth(0.5),
+      color: context.general.randomColor,
       child: const Text('Hello World'),
     );
   }
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
   TextFormField buildTextFormFieldValid() {
     return TextFormField(
       autovalidateMode: AutovalidateMode.always,
-      validator: (value) => value.isValidEmail ? null : 'OH NOO',
+      validator: (value) => value.ext.isValidEmail ? null : 'OH NOO',
     );
   }
 
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
   /// Need draw any color for widget, just call context.randomColor
   ColoredBox buildContainerRandomColor(BuildContext context) {
     return ColoredBox(
-      color: context.randomColor,
+      color: context.general.randomColor,
       child: const Text('Hello World'),
     );
   }
@@ -92,8 +92,7 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rotate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() =>
-      Image.network('https://picsum.photos/200/300').upRotation;
+  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').ext.upRotation;
 }
 
 void _appInit() {

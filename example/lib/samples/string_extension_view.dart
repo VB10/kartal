@@ -9,16 +9,16 @@ class StringExtensionView extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           TextFormField(
-            validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail',
+            validator: (value) => value.ext.isNotNullOrNoEmpty ? null : 'fail',
           ),
           TextFormField(
-            validator: (value) => value.isValidEmail ? null : 'fail',
+            validator: (value) => value.ext.isValidEmail ? null : 'fail',
           ),
           TextField(
             inputFormatters: [InputFormatter.instance.phoneFormatter],
             onChanged: (value) {
               if (kDebugMode) {
-                print(value.phoneFormatValue);
+                print(value.ext.phoneFormatValue);
               }
             },
           )
@@ -26,16 +26,16 @@ class StringExtensionView extends StatelessWidget {
       );
 
   void shareWhatsApp(String value) {
-    value.shareWhatsApp();
+    value.ext.shareWhatsApp();
   }
 
   void openWeb(String value) {
-    value.launchWebsite;
+    value.ext.launchWebsite;
   }
 
   void bearerTokenHeader() {
     if (kDebugMode) {
-      print('TOKEN-X-X-X'.bearer);
+      print('TOKEN-X-X-X'.ext.bearer);
     }
   }
 }

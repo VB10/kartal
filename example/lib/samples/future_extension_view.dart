@@ -5,7 +5,7 @@ class FutureExtensionView extends StatelessWidget {
   const FutureExtensionView({super.key});
 
   Future<String> fetchDummyData(BuildContext context) async {
-    await Future<String>.delayed(context.durationLow);
+    await Future<String>.delayed(context.duration.durationLow);
     return Future.value('Oke');
   }
 
@@ -13,14 +13,14 @@ class FutureExtensionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: fetchDummyData(context).toBuild(
-        onSuccess: (data) {
-          return Center(child: Text(data ?? ''));
-        },
-        loadingWidget: const Center(child: CircularProgressIndicator()),
-        notFoundWidget: const Text('Oh no'),
-        onError: const FlutterLogo(),
-      ),
+      body: fetchDummyData(context).ext.toBuild(
+            onSuccess: (data) {
+              return Center(child: Text(data ?? ''));
+            },
+            loadingWidget: const Center(child: CircularProgressIndicator()),
+            notFoundWidget: const Text('Oh no'),
+            onError: const FlutterLogo(),
+          ),
     );
   }
 }

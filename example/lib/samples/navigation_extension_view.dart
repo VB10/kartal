@@ -11,24 +11,24 @@ class NavigationViewExtension extends StatelessWidget {
         FloatingActionButton(
           child: const Text('Navigation Prop'),
           onPressed: () {
-            context.navigation.canPop();
+            context.route.navigation.canPop();
           },
         ),
         FloatingActionButton(
           onPressed: () {
-            context.pop<void>();
+            context.route.pop<void>();
           },
           child: const Text('Navigation Pop'),
         ),
         FloatingActionButton(
           onPressed: () {
-            context.navigateName<void>('/hello');
+            context.route.navigateName<void>('/hello');
           },
           child: const Text('Navigation Named'),
         ),
         FloatingActionButton(
           onPressed: () {
-            context.navigateToReset<void>('/hello');
+            context.route.navigateToReset<void>('/hello');
           },
           child: const Text('Navigation Named and Remove'),
         ),
