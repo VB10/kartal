@@ -9,24 +9,24 @@ class _ContextDeviceExtension {
   _ContextDeviceExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
-  double get width => _context.sized.width;
+  double get _width => _context.sized.width;
 
   /// Returns `true` if the width of the screen is within the range of small screens,
   /// based on the values defined in [ResponsibilityConstants].
   bool get isSmallScreen =>
-      width >= ResponsibilityConstants.instance().smallScreenSize &&
-      width < ResponsibilityConstants.instance().mediumScreenSize;
+      _width >= ResponsibilityConstants.instance().smallScreenSize &&
+      _width < ResponsibilityConstants.instance().mediumScreenSize;
 
   /// Returns `true` if the width of the screen is within the range of medium screens,
   /// based on the values defined in [ResponsibilityConstants].
   bool get isMediumScreen =>
-      width >= ResponsibilityConstants.instance().mediumScreenSize &&
-      width < ResponsibilityConstants.instance().largeScreenSize;
+      _width >= ResponsibilityConstants.instance().mediumScreenSize &&
+      _width < ResponsibilityConstants.instance().largeScreenSize;
 
   /// Returns `true` if the width of the screen is within the range of large screens,
   /// based on the values defined in [ResponsibilityConstants].
   bool get isLargeScreen =>
-      width >= ResponsibilityConstants.instance().largeScreenSize;
+      _width >= ResponsibilityConstants.instance().largeScreenSize;
 
   /// Returns `true` if the current device is running on Android.
   bool get isAndroidDevice => Platform.isAndroid;
