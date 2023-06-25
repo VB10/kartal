@@ -2,389 +2,243 @@
 
 ![kartal](https://www.gezilecekyerler.biz/wp-content/uploads/2015/12/Kartal-%C4%B0stanbul.jpg)
 
-Kartal is the place for my borning country so I created an extension for giving born to more power with simple use.
-If you want to example with these extensions, you should be look example folder.
+My birth country is Kartal, so I created an extension to give born more power.
 
----
+You should look at the example folder if you want to see an example using these extensions.
 
-## Future Extension
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/vb10)
 
-You can easy use for network or any future request.
+## Context extension
 
-```dart
-  Future<String> fetchDummyData(BuildContext context) async {
-    await Future.delayed(context.durationLow);
-    return Future.value('Okey');
-  }
+You can use context.border to all.
 
-  @override
-  Widget build(BuildContext context) {
-    return fetchDummyData(context).toBuild<String>(
-        onSuccess: (data) {
-          return Text(data);
-        },
-        loaindgWidget: CircularProgressIndicator(),
-        notFoundWidget: Text('Oh no'),
-        onError: FlutterLogo());
-  }
-```
+### Border
 
-## Context Extension
+- `lowRadius` (Radius)
+- `normalRadius` (Radius)
+- `highRadius` (Radius)
+- `normalBorderRadius` (BorderRadius)
+- `lowBorderRadius` (BorderRadius)
+- `highBorderRadius` (BorderRadius)
+- `roundedRectangleBorderLow` (RoundedRectangleBorder)
+- `roundedRectangleAllBorderNormal` (RoundedRectangleBorder)
+- `roundedRectangleBorderNormal` (RoundedRectangleBorder)
+- `roundedRectangleBorderMedium` (RoundedRectangleBorder)
+- `roundedRectangleBorderHigh` (RoundedRectangleBorder)
 
----
+### Device
 
-You can easy to use context power so context help for many needs.
+You can use context.device to all.
 
-### General Context Extension
+- `isSmallScreen` (bool)
+- `isMediumScreen` (bool)
+- `isLargeScreen` (bool)
+- `isAndroidDevice` (bool)
+- `isIOSDevice` (bool)
+- `isWindowsDevice` (bool)
+- `isLinuxDevice` (bool)
+- `isMacOSDevice` (bool)
 
-I mostly use this extension. It's most needed for your products.
+### Duration
 
-```dart
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(brightness: context.appBrightness),
-      body: Container(
-        height: context.mediaQuery.size.height,
-        color: context.colorScheme.onBackground,
-        child: Text(context.isKeyBoardOpen ? 'Open' : 'Close', style: context.textTheme.subtitle1),
-      ),
-    );
-  }
-```
+You can use context.duration to all.
 
-### Widget Extension
+- `durationLow` (Duration)
+- `durationNormal` (Duration)
+- `durationSlow` (Duration)
 
-Sometimes you need visible widget so you can this extension.
+### General
 
-```dart
-Text("Hello").toVisible(isAvaible);
-```
+You can use context.general to all
 
-### MediaQuery Extension
+- `mediaQuery` (MediaQueryData)
+- `appTheme` (ThemeData)
+- `textTheme` (TextTheme)
+- `primaryTextTheme` (TextTheme)
+- `colorScheme` (ColorScheme)
+- `randomColor` (MaterialColor)
+- `isKeyBoardOpen` (bool)
+- `keyboardPadding` (double)
+- `appBrightness` (Brightness)
+- `textScaleFactor` (double)
 
-This extension gives device size use so you can need dynamic(grid) value for device aspect, use the dynamic height or width.
+### Navigation
 
-```dart
-  SizedBox(
-      height: context.dynamicHeight(0.1),
-      width: context.dynamicWidth(0.1),
-      child: Text('${context.lowValue}'),
-    );
-  }
+You can use context.route to all
 
-```
+- `navigation` (NavigatorState)
+- `pop<T extends Object?>` (Future<bool>)
+- `popWithRoot` (void)
+- `navigateName<T extends Object?>` (Future<T?>)
+- `navigateToReset<T extends Object?>` (Future<T?>)
+- `navigateToPage<T extends Object?>` (Future<T?>)
 
-### Navigation Extension
+### Padding
 
-This extension can directly access the navigation features.
+You can use context.padding to all
 
-```dart
-   Column(
-        children: [
-          FloatingActionButton(
-            child: Text('Navigation Prop'),
-            onPressed: () {
-              context.navigation.canPop();
-            },
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              context.pop();
-            },
-            child: Text('Navigation Pop'),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              context.navigateName('/hello');
-            },
-            child: Text('Navigation Named'),
-          ),
-           FloatingActionButton(
-            onPressed: () {
-              context.navigateToPage(HomeViewDetail(), type: SlideType.TOP);
-            },
-            child: Text('Navigation Named'),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              context.navigateToReset('/hello');
-            },
-            child: Text('Navigation Named and Remove'),
-          ),
-        ],
-      )
-```
+- `_lowValue` (double): 0.01 \* widget height
+- `_normalValue` (double): 0.02 \* widget height
+- `_mediumValue` (double): 0.04 \* widget height
+- `_highValue` (double): 0.1 \* widget height
+- `low` (EdgeInsets): EdgeInsets.all(\_lowValue)
+- `normal` (EdgeInsets): EdgeInsets.all(\_normalValue)
+- `medium` (EdgeInsets): EdgeInsets.all(\_mediumValue)
+- `high` (EdgeInsets): EdgeInsets.all(\_highValue)
+- `horizontalLow` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_lowValue)
+- `horizontalNormal` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_normalValue)
+- `horizontalMedium` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_mediumValue)
+- `horizontalHigh` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_highValue)
+- `verticalLow` (EdgeInsets): EdgeInsets.symmetric(vertical: \_lowValue)
+- `verticalNormal` (EdgeInsets): EdgeInsets.symmetric(vertical: \_normalValue)
+- `verticalMedium` (EdgeInsets): EdgeInsets.symmetric(vertical: \_mediumValue)
+- `verticalHigh` (EdgeInsets): EdgeInsets.symmetric(vertical: \_highValue)
+- `onlyLeftLow` (EdgeInsets): EdgeInsets.only(left: \_lowValue)
+- `onlyLeftNormal` (EdgeInsets): EdgeInsets.only(left: \_normalValue)
+- `onlyLeftMedium` (EdgeInsets): EdgeInsets.only(left: \_mediumValue)
+- `onlyLeftHigh` (EdgeInsets): EdgeInsets.only(left: \_highValue)
+- `onlyRightLow` (EdgeInsets): EdgeInsets.only(right: \_lowValue)
+- `onlyRightNormal` (EdgeInsets): EdgeInsets.only(right: \_normalValue)
+- `onlyRightMedium` (EdgeInsets): EdgeInsets.only(right: \_mediumValue)
+- `onlyRightHigh` (EdgeInsets): EdgeInsets.only(right: \_highValue)
+- `onlyBottomLow` (EdgeInsets): EdgeInsets.only(bottom: \_lowValue)
+- `onlyBottomNormal` (EdgeInsets): EdgeInsets.only(bottom: \_normalValue)
+- `onlyBottomMedium` (EdgeInsets): EdgeInsets.only(bottom: \_mediumValue)
+- `onlyBottomHigh` (EdgeInsets): EdgeInsets.only(bottom: \_highValue)
+- `onlyTopLow` (EdgeInsets): EdgeInsets.only(top: \_lowValue)
+- `onlyTopNormal` (EdgeInsets): EdgeInsets.only(top: \_normalValue)
+- `onlyTopMedium` (EdgeInsets): EdgeInsets.only(top: \_mediumValue)
+- `onlyTopHigh` (EdgeInsets): EdgeInsets.only(top: \_highValue)
 
-### Duration Extension
+### Size
 
-These extensions mainly for animation use.
+You can use context.sized to all
 
-```dart
-AnimatedOpacity(
-      opacity: context.isKeyBoardOpen ? 1 : 0,
-      duration: context.durationLow,
-      child: Text('${context.durationLow.inHours}'),
-    );
-```
+- `emptySizedWidthBoxLow` (Widget): Empty `SpaceSizedWidthBox` widget with a low width size of 0.01 times the height.
+- `emptySizedWidthBoxLow3x` (Widget): Empty `SpaceSizedWidthBox` widget with a low width size of 0.03 times the height.
+- `emptySizedWidthBoxNormal` (Widget): Empty `SpaceSizedWidthBox` widget with a normal width size of 0.05 times the height.
+- `emptySizedWidthBoxHigh` (Widget): Empty `SpaceSizedWidthBox` widget with a high width size of 0.1 times the height.
+- `emptySizedHeightBoxLow` (Widget): Empty `SpaceSizedHeightBox` widget with a low height size of 0.01 times the height.
+- `emptySizedHeightBoxLow3x` (Widget): Empty `SpaceSizedHeightBox` widget with a low height size of 0.03 times the height.
+- `emptySizedHeightBoxNormal` (Widget): Empty `SpaceSizedHeightBox` widget with a normal height size of 0.05 times the height.
+- `emptySizedHeightBoxHigh` (Widget): Empty `SpaceSizedHeightBox` widget with a high height size of 0.1 times the height.
+- `height` (double): Height of the current widget's `MediaQuery`.
+- `width` (double): Width of the current widget's `MediaQuery`.
+- `lowValue` (double): A value representing a low dimension, calculated as 0.01 times the current widget's height.
+- `normalValue` (double): A value representing a normal dimension, calculated as 0.02 times the current widget's height.
+- `mediumValue` (double): A value representing a medium dimension, calculated as 0.04 times the current widget's height.
+- `highValue` (double): A value representing a high dimension, calculated as 0.1 times the current widget's height.
+- `dynamicWidth(double val)` (double): Calculates and returns a dynamic width value based on the provided `val` and the current widget's width.
+- `dynamicHeight(double val)` (double): Calculates and returns a dynamic height value based on the provided `val` and the current widget's height.
 
-### Padding Extension
+## String extension
 
-These extensions declares the projects main padding values.
+You can use 'any string '.ext to all
 
-```dart
-Padding(
-      padding: context.paddingLow,
-      child: Padding(
-        padding: context.horizontalPaddingMedium,
-        child: Text('${context.durationLow.inHours}'),
-      ),
-    )
-```
+- `lineLength` (int): Returns the number of lines in the string.
+- `color` (Color): Returns a Color object parsed from the string.
+- `toCapitalized()` (String): Converts the first letter of the string to a capital letter.
+- `toTitleCase()` (String): Converts all letters of the string to title case.
+- `colorCode` (int?): Returns the color code parsed from the string.
+- `toColor` (Color): Returns a Color object from the color code.
+- `isNullOrEmpty` (bool): Returns true if the string is null or empty.
+- `isNotNullOrNoEmpty` (bool): Returns true if the string is not null and not empty.
+- `isValidEmail` (bool): Checks if the string is a valid email address.
+- `isValidPassword` (bool): Checks if the string is a valid password.
+- `withoutSpecialCharacters` (String?): Removes all diacritics from the string.
+- `phoneFormatValue` (String): Returns the value of the phone number without formatting characters.
+- `timeFormatValue` (String): Formats the value of the string as a time.
+- `timeOverlineFormatValue` (String): Unmasks the text for the time overline format.
+- `randomImage` (String): Returns a URL for a random image.
+- `randomSquareImage` (String): Returns a URL for a random square image.
+- `customProfileImage` (String): Returns a URL for a custom profile image.
+- `customHighProfileImage` (String): Returns a URL for a custom high-resolution profile image.
+- `bearer` (Map<String, dynamic>): Returns a map with a bearer token.
+- `launchEmail` (Future<bool>): Launches the email app with the email address.
+- `launchPhone` (Future<bool>): Launches the phone app with the phone number.
+- `launchWebsite` (Future<bool>): Launches the website with the string as the URL.
+- `launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
+- `shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
+- `shareMail(String title)` (Future<void>): Shares the string via email with a title.
+- `share()` (Future<void>): Shares the string.
+- `appName` (String): Returns the name of the app.
+- `packageName` (String): Returns the package name of the app.
+- `version` (String): Returns the version of the app.
+- `buildNumber` (String): Returns the build number of the app.
+- `deviceId` (Future<String>): Returns the unique device ID.
 
-### Empty Widget Extension
+## File extension
 
-Sometimes you need empty widget screen for space area, you can use that time.
+You can use File().ext to all
 
-```dart
-Column(
-      children: [
-        Text('${context.durationLow.inHours}'),
-        context.emptySizedHeightBoxHigh,
-        Row(
-          children: [Text('Row'), context.emptySizedWidthBoxLow, Text('Row')],
-        )
-      ],
-    )
-```
+- `fileType` (FileType): Returns the FileType of the file based on its MIME type.
+- `isImageFile` (bool): Returns true if the file is of type FileType.IMAGE.
+- `isVideoFile` (bool): Returns true if the file is of type FileType.VIDEO.
+- `isAudioFile` (bool): Returns true if the file is of type FileType.AUDIO.
+- `isTextFile` (bool): Returns true if the file is of type FileType.TEXT.
 
-### Radius Extension
+## Future extension
 
-This extension only uses to draw the border.
+You can use Future().ext
 
-```dart
-  Container(
-      decoration: BoxDecoration(borderRadius: context.lowBorderRadius),
-    );
+- `toBuild` (Widget): Builds a widget based on the state of a future. It allows specifying different widgets for different states, such as loading, success, not found, and error.
 
-```
+  - `onSuccess` (required): Widget Function(T? data) - Specifies the widget to display when the future completes successfully. It receives the data from the future as a parameter.
+  - `loadingWidget` (required): Widget - Specifies the widget to display while the future is loading or in an active state.
+  - `notFoundWidget` (required): Widget - Specifies the widget to display when the future has no connection state.
+  - `onError` (required): Widget - Specifies the widget to display when an error occurs during the future's execution.
+  - `data` (optional): T? - The initial data to provide to the future builder.
 
-### Device Screen Size Extension
+## Image Extension
 
-This extension can be used to create responsive widgets.
+You can use Image().ext to all
 
-```dart
-  Scaffold(
-      drawer: context.isSmallScreen ? Drawer() : null,
-      body: Container(),
-    );
+- `rightRotation` (Widget): Returns a [RotationTransition] widget that applies a right rotation animation to the image.
 
-```
+- `upRotation` (Widget): Returns a [RotationTransition] widget that applies an up rotation animation to the image.
 
-### Device Operatig System Extension
+- `bottomRotation` (Widget): Returns a [RotationTransition] widget that applies a bottom rotation animation to the image.
 
-This extension can be used to create native widgets.
-
-```dart
-  SizedBox(
-      child: context.isIOSDevice ? CupertinoButton() : MaterialButton(),
-    );
-
-```
-
-## Image Extension 🌠
-
----
-
-You can use very easy rotation from image.
-
-```dart
-  @override
-  Widget build(BuildContext context) {
-    return Image.network('https://picsum.photos/200/300').bottomRotation;
-  }
-```
-
-## Integer Extension
-
-Now, we have a little code.
-
-```dart
-10.randomValue
-```
+- `leftRotation` (Widget): Returns a [RotationTransition] widget that applies a left rotation animation to the image.
 
 ## Key Extension
 
-Find a render object with using key
+- `RenderBox? get rendererBox`
 
-```dart
-   final GlobalKey key = GlobalKey();
-   final GlobalObjectKey key2 = GlobalObjectKey('vb');
+  - Returns the `RenderBox` associated with the current widget.
+  - Return Type: `RenderBox?`
 
+- `Offset? get offset`
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      key:key,
-      child:Text('hello',key:key2)
-    );
-  }
-  void findElementAndDetail(){
-    final box = key.renderBox;
-    final boxHeight = key.height
-  }
+  - Returns the global offset of the current widget.
+  - Return Type: `Offset?`
 
-    void scrollToObjectKey(){
-      key2.scrollToWidget()
-  }
+- `double? get height`
 
-```
+  - Returns the height of the current widget.
+  - Return Type: `double?`
+
+- `void scrollToWidget({ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit})`
+  - Scrolls to the current widget.
+  - Parameters:
+    - `alignmentPolicy` (optional): The alignment policy during scrolling. Default: `ScrollPositionAlignmentPolicy.explicit`.
+  - Return Type: `void`
 
 ## List Extension
 
-You can find a specific index or null value for the list
+You can use List.ext to all
 
-```dart
-   final List<User>? values;
-  void searchIndex(){
-    values.indexOrNull
-  }
-```
+- `bool get isNullOrEmpty`
+- `bool get isNotNullOrEmpty`
+- `int? indexOrNull(bool Function(T) search)`
 
-### List Validation Extension
+## Widget extension
 
-We can check this for empty and null.
+You can use Widget.ext
 
-```dart
-   final List<T>? values = null;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: values.isNotNullOrEmpty ? Text('ok') : Text('false'),
-    );
-  }
-```
-
-## String Extension
-
----
-
-String needs validation, color, launch, share etc.
-
-## Package Information Extension
-
-You can access directly application platform information.
-
-```dart
- Text(''.appName)
- Text(''.version)
- Text(''.packageName)
- Text(''.buildNumber)
-```
-
-### Validation Extension
-
-Validate your string value to some features.
-
-```dart
- TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
-```
-
-### Input Formatter
-
-You need the value mask and validation use formatter extension.
-
-```dart
-Column(
-      children: [
-        TextFormField(validator: (value) => value.isNotNullOrNoEmpty ? null : 'fail'),
-        TextFormField(validator: (value) => value.isValidEmail ? null : 'fail'),
-        TextFormField(validator: (value) => value.isValidPassword ? null : 'fail'),
-
-        TextField(
-          inputFormatters: [InputFormatter.instance.phoneFormatter],
-          onChanged: (value) {
-            print('${value.phoneFormatValue}');
-          },
-        )
-      ],
-    );
-
-```
-
-### Launch Any Content In App Dialog Extension
-
-You need to open the value in device system. You can just say string value to launch prefix.
-
-```dart
- void openEmail(String value){
-    value.launchWebsite;
- }
-```
-
-### Share Any Content External Apps Extension
-
-This extension can share your value to other apps or optional apps.
-
-```dart
-
-  void shareWhatssApp(String value) {
-    value.shareWhatsApp();
-  }
-
-  void openWeb(String value) {
-    value.launchWebsite;
-  }
-```
-
-### Authorization Extension
-
-Sometimes you need this extension from send service request so easy create bearer token string.
-
-```dart
-  void bearerTokenHeader() {
-    print('TOKEN-X-X-X'.beraer);
-  }
-```
-
-## File Extension
-
----
-
-There are extensions that will facilitate your file operations.
-
-### File Type Extension
-
-This extension shows what type a file is.
-
-```dart
-  final file = File('assets/image.png');
-  Container(
-    child: file.fileType == FileType.IMAGE ? Image.asset('${file.path}') : SizedBox();
-  );
-```
-
-There is also the use of .is type.
-
-```dart
-  final file = File('assets/image.jpeg');
-  Container(
-    child: file.isImageFile ? Image.asset('${file.path}') : SizedBox();
-  );
-```
-
-## Tasks
-
----
-
-- [ ] Advance String Extension
-- [ ] More Integer Extension
-- [ ] Unit Test
-- [ ] File Extension
-- [ ] SQLite etc. extension
-- [ ] Application Extensions
-
----
+- `toVisible({bool value = true})`
+- `toDisabled({bool? disable, double? opacity})`
+- `get sliver`
 
 ## License
 
@@ -395,3 +249,11 @@ There is also the use of .is type.
 ## Youtube Channel
 
 [![Youtube](https://yt3.ggpht.com/a/AATXAJyul3hpzl86GIjF-EZxBzy6T62PJxpvzRwz9AbUOw=s288-c-k-c0xffffffff-no-rj-mo)](https://www.youtube.com/watch?v=UCdUaAKTLJrPZFStzEJnpQAg)
+
+## Contributors
+
+<a href="https://github.com/vb10/kartal/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vb10/kartal" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
