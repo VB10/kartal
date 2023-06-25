@@ -1,4 +1,8 @@
-# [3.0.0]
+# [3.0.1]
+
+- Readme updated for new version requirement
+
+## [3.0.0]
 
 - updated major package version changes
 
