@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:diacritic/diacritic.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/app_constants.dart';
 import 'package:kartal/src/constants/input_formatter_constants.dart';
@@ -203,6 +205,25 @@ class _StringExtension {
         return DeviceUtility.instance.getUniqueDeviceId();
       }
     }
+  }
+
+  /// this method work with string value to convert json or any model
+  Future<T?> safeJsonDecodeCompute<T>() async {
+    if (_value.ext.isNullOrEmpty) return null;
+    try {
+      final response = await compute<String, dynamic>(
+        jsonDecode,
+        _value!,
+      );
+
+      if (response is T) {
+        return response;
+      }
+    } catch (e) {
+      return null;
+    }
+
+    return null;
   }
 }
 
