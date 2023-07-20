@@ -8,61 +8,61 @@ class _ContextBorderExtension {
   _ContextBorderExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
-  double get width => _context.sized.width;
-  double get lowValue => _context.sized.lowValue;
-  double get normalValue => _context.sized.normalValue;
-  double get highValue => _context.sized.highValue;
-  double get mediumValue => _context.sized.mediumValue;
+  double get _width => _context.sized.width;
+  double get _lowValue => _context.sized.lowValue;
+  double get _normalValue => _context.sized.normalValue;
+  double get _highValue => _context.sized.highValue;
+  double get _mediumValue => _context.sized.mediumValue;
 
   /// Returns a [Radius] object with a circular radius equal to [width] multiplied by 0.02.
-  Radius get lowRadius => Radius.circular(width * 0.02);
+  Radius get lowRadius => Radius.circular(_width * 0.02);
 
   /// Returns a [Radius] object with a circular radius equal to [width] multiplied by 0.05.
-  Radius get normalRadius => Radius.circular(width * 0.05);
+  Radius get normalRadius => Radius.circular(_width * 0.05);
 
   /// Returns a [Radius] object with a circular radius equal to [width] multiplied by 0.1.
-  Radius get highRadius => Radius.circular(width * 0.1);
+  Radius get highRadius => Radius.circular(_width * 0.1);
 
   /// Returns a [BorderRadius] object with all corners having a circular radius of [width] multiplied by 0.05.
   BorderRadius get normalBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.05));
+      BorderRadius.all(Radius.circular(_width * 0.05));
 
   /// Returns a [BorderRadius] object with all corners having a circular radius of [width] multiplied by 0.02.
   BorderRadius get lowBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.02));
+      BorderRadius.all(Radius.circular(_width * 0.02));
 
   /// Returns a [BorderRadius] object with all corners having a circular radius of [width] multiplied by 0.1.
   BorderRadius get highBorderRadius =>
-      BorderRadius.all(Radius.circular(width * 0.1));
+      BorderRadius.all(Radius.circular(_width * 0.1));
 
   /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [lowValue].
   RoundedRectangleBorder get roundedRectangleBorderLow =>
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(lowValue)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(_lowValue)),
       );
 
   /// Returns a [RoundedRectangleBorder] object with all corners having a circular radius of [normalValue].
   RoundedRectangleBorder get roundedRectangleAllBorderNormal =>
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(normalValue),
+        borderRadius: BorderRadius.circular(_normalValue),
       );
 
   /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [normalValue].
   RoundedRectangleBorder get roundedRectangleBorderNormal =>
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(normalValue)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(_normalValue)),
       );
 
   /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [mediumValue].
   RoundedRectangleBorder get roundedRectangleBorderMedium =>
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(mediumValue)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(_mediumValue)),
       );
 
   /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [highValue].
   RoundedRectangleBorder get roundedRectangleBorderHigh =>
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(highValue)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(_highValue)),
       );
 }
 
