@@ -5,18 +5,16 @@ class ContextExtensionView extends StatelessWidget {
   const ContextExtensionView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: context.general.mediaQuery.size.height,
-        color: context.general.colorScheme.onBackground,
-        child: Text(
-          context.general.isKeyBoardOpen ? 'Open' : 'Close',
-          style: context.general.textTheme.titleMedium,
+  Widget build(BuildContext context) => Scaffold(
+        body: Container(
+          height: context.general.mediaQuery.size.height,
+          color: context.general.colorScheme.onBackground,
+          child: Text(
+            context.general.isKeyBoardOpen ? 'Open' : 'Close',
+            style: context.general.textTheme.titleMedium,
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   Widget mediaQueryWidgets(BuildContext context) => SizedBox(
         height: context.sized.dynamicHeight(0.1),
@@ -52,9 +50,7 @@ class ContextExtensionView extends StatelessWidget {
         ],
       );
 
-  Widget radiusExtension(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(borderRadius: context.border.lowBorderRadius),
-    );
-  }
+  Widget radiusExtension(BuildContext context) => DecoratedBox(
+        decoration: BoxDecoration(borderRadius: context.border.lowBorderRadius),
+      );
 }

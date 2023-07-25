@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
+import 'package:kartal/src/map_extension.dart';
 
 void main() {
   test('adds one to input values', () {
@@ -199,4 +200,32 @@ void main() {
     const hexColor = 'FF0000';
     expect(hexColor.ext.toColor, equals(const Color(0xFFFF0000)));
   });
+
+  test('Test safeJsonDecodeCompute property', () async {
+    const response = '{"name": "John Doe"}';
+
+    final jsonMap =
+        await response.ext.safeJsonDecodeCompute<Map<String, dynamic>>();
+
+    if (jsonMap != null) {
+      final name = jsonMap['name'];
+      expect(name, equals('John Doe'));
+    }
+  });
+
+  test('Test safeJsonEncodeCompute property', () async {
+    final user = _User('veli');
+    final jsonEncodedUser = await user.toJson().ext.safeJsonEncodeCompute();
+    expect(jsonEncodedUser, isNotNull);
+  });
+}
+
+class _User {
+  _User(this.name);
+
+  final String name;
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+      };
 }

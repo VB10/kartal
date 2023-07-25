@@ -8,28 +8,31 @@ void main() {
   const channel = MethodChannel('plugins.flutter.io/package_info');
   late List<MethodCall> log;
 
-  channel.setMockMethodCallHandler((MethodCall methodCall) async {
-    log.add(methodCall);
-    switch (methodCall.method) {
-      case 'getAll':
-        return <String, dynamic>{
-          'appName': 'package_info_example',
-          'buildNumber': '1',
-          'packageName': 'io.flutter.plugins.packageinfoexample',
-          'version': '1.0',
-        };
-      default:
-        assert(false);
-        return null;
-    }
-  });
-
   setUp(() async {
     log = <MethodCall>[];
     await DeviceUtility.instance.initPackageInfo();
+    const iosUtsnameMap = <String, dynamic>{
+      'release': 'release',
+      'version': 'version',
+      'machine': 'machine',
+      'sysname': 'sysname',
+      'nodename': 'nodename',
+    };
+    const iosDeviceInfoMap = <String, dynamic>{
+      'name': 'name',
+      'model': 'model',
+      'utsname': iosUtsnameMap,
+      'systemName': 'systemName',
+      'isPhysicalDevice': 'true',
+      'systemVersion': 'systemVersion',
+      'localizedModel': 'localizedModel',
+      'identifierForVendor': 'identifierForVendor',
+    };
   });
 
   test('Get Device Package', () {
+    // final iosDeviceInfo = IosDeviceInfo.fromMap(iosDeviceInfoMap);
+
     expect(''.appName, isNotNull);
     expect(''.packageName, isNotNull);
     expect(''.version, isNotNull);

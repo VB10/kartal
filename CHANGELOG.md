@@ -1,4 +1,10 @@
-# [3.0.1]
+# [3.1.0]
+
+- Added on new extension about json encode and decode operation
+- You can call safeJsonDecodeCompute with any string value
+- You can call safeJsonEncodeCompute with Map<String,dynamic> value
+
+## [3.0.1]
 
 - Readme updated for new version requirement
 
