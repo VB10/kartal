@@ -1,4 +1,8 @@
-# [3.1.0]
+# [3.2.0]
+
+- makeSafe and makeSafeCustom added for iterable nullable list.
+
+## [3.1.0]
 
 - Added on new extension about json encode and decode operation
 - You can call safeJsonDecodeCompute with any string value

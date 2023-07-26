@@ -6,5 +6,6 @@
         "responsivity",
         "kartal"
     ],
-    "dart.lineLength": 80
+    "dart.lineLength": 80,
+    "docwriter.hotkey.mac": "⌥ + ."
 }
