@@ -7,18 +7,53 @@ import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/app_constants.dart';
 import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
+import 'package:kartal/src/constants/string_constants.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class _StringExtension {
+mixin _StringExtensionMixin {
+  /// The function `_getBoolFromString` converts a string value to a boolean value if it matches the
+  /// true or false constants, otherwise it returns null.
+  ///
+  /// Args:
+  ///   value (String): The `value` parameter is a string that represents a boolean value.
+  ///
+  /// Returns:
+  ///   The method `_getBoolFromString` returns a `bool?` value.
+  bool? _getBoolFromString(String value) {
+    final valueLowerCased = value.toLowerCase().trim();
+    final isEqualTrueString = valueLowerCased == StringConstants.trueConstant;
+    final isEqualFalseString = valueLowerCased == StringConstants.falseConstant;
+    if (isEqualTrueString || isEqualFalseString) return isEqualTrueString;
+    return null;
+  }
+}
+
+class _StringExtension with _StringExtensionMixin {
   _StringExtension(String? value) : _value = value;
 
   final String? _value;
 
   int get lineLength => '\n'.allMatches(_value ?? '').length + 1;
   Color get color => Color(int.parse('0xff$_value'));
+
+  /// The function `toPrimitiveFromGeneric` converts a generic value to a primitive type (bool, int,
+  /// double, or string) if possible.
+  ///
+  /// Returns:
+  ///   The method is returning a value of type T, which can be a boolean, integer, double, or string.
+  /// If none of these types match, it will return null.
+  T? toPrimitiveFromGeneric<T>() {
+    final value = _value;
+    if (value == null) return null;
+    if (T == bool) return _getBoolFromString(value) as T?;
+    if (T == int) return int.tryParse(value) as T?;
+    if (T == double) return double.tryParse(value) as T?;
+    if (T == String) return value as T?;
+    return null;
+  }
 
   /// Converts the first letter of the string to capital letter and returns the resulting string.
   /// If the string is null or empty, returns an empty string.

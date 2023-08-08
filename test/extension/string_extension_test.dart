@@ -218,6 +218,57 @@ void main() {
     final jsonEncodedUser = await user.toJson().ext.safeJsonEncodeCompute();
     expect(jsonEncodedUser, isNotNull);
   });
+
+  test('Test toPrimitiveFromGeneric property', () {
+    String? valueForNull;
+    const valueForEmpty = '';
+    const valueForBool = 'true';
+    const valueForInt = '1';
+    const valueForDouble = '1.0';
+    const valueForString = 'Hello World';
+
+    expect(valueForNull.ext.toPrimitiveFromGeneric<bool>(), isNull);
+    expect(valueForNull.ext.toPrimitiveFromGeneric<int>(), isNull);
+    expect(valueForNull.ext.toPrimitiveFromGeneric<double>(), isNull);
+    expect(valueForNull.ext.toPrimitiveFromGeneric<String>(), isNull);
+
+    expect(valueForEmpty.ext.toPrimitiveFromGeneric<bool>(), isNull);
+    expect(valueForEmpty.ext.toPrimitiveFromGeneric<int>(), isNull);
+    expect(valueForEmpty.ext.toPrimitiveFromGeneric<double>(), isNull);
+    expect(valueForEmpty.ext.toPrimitiveFromGeneric<String>(), isEmpty);
+
+    expect(valueForBool.ext.toPrimitiveFromGeneric<bool>(), isTrue);
+    expect(valueForBool.ext.toPrimitiveFromGeneric<int>(), isNull);
+    expect(valueForBool.ext.toPrimitiveFromGeneric<double>(), isNull);
+    expect(
+      valueForBool.ext.toPrimitiveFromGeneric<String>(),
+      equals(valueForBool),
+    );
+
+    expect(valueForInt.ext.toPrimitiveFromGeneric<bool>(), isNull);
+    expect(valueForInt.ext.toPrimitiveFromGeneric<int>(), equals(1));
+    expect(valueForInt.ext.toPrimitiveFromGeneric<double>(), equals(1.0));
+    expect(
+      valueForInt.ext.toPrimitiveFromGeneric<String>(),
+      equals(valueForInt),
+    );
+
+    expect(valueForDouble.ext.toPrimitiveFromGeneric<bool>(), isNull);
+    expect(valueForDouble.ext.toPrimitiveFromGeneric<int>(), isNull);
+    expect(valueForDouble.ext.toPrimitiveFromGeneric<double>(), equals(1.0));
+    expect(
+      valueForDouble.ext.toPrimitiveFromGeneric<String>(),
+      equals(valueForDouble),
+    );
+
+    expect(valueForString.ext.toPrimitiveFromGeneric<bool>(), isNull);
+    expect(valueForString.ext.toPrimitiveFromGeneric<int>(), isNull);
+    expect(valueForString.ext.toPrimitiveFromGeneric<double>(), isNull);
+    expect(
+      valueForString.ext.toPrimitiveFromGeneric<String>(),
+      equals(valueForString),
+    );
+  });
 }
 
 class _User {
