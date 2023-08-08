@@ -13,23 +13,7 @@ import 'package:kartal/src/utility/device_utility.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-mixin _StringExtensionMixin {
-  /// The function `_getBoolFromString` converts a string value to a boolean value if it matches the
-  /// true or false constants, otherwise it returns null.
-  ///
-  /// Args:
-  ///   value (String): The `value` parameter is a string that represents a boolean value.
-  ///
-  /// Returns:
-  ///   The method `_getBoolFromString` returns a `bool?` value.
-  bool? _getBoolFromString(String value) {
-    final valueLowerCased = value.toLowerCase().trim();
-    final isEqualTrueString = valueLowerCased == StringConstants.trueConstant;
-    final isEqualFalseString = valueLowerCased == StringConstants.falseConstant;
-    if (isEqualTrueString || isEqualFalseString) return isEqualTrueString;
-    return null;
-  }
-}
+part 'utility/mixin/string_extension_mixin.dart';
 
 class _StringExtension with _StringExtensionMixin {
   _StringExtension(String? value) : _value = value;
