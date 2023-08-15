@@ -10,6 +10,8 @@ You should look at the example folder if you want to see an example using these 
 
 ## Context extension
 
+![Context Extension](./github/context_extension.png)
+
 You can use context.border to all.
 
 ### Border
@@ -63,6 +65,8 @@ You can use context.general to all
 - `textScaleFactor` (double)
 
 ### Navigation
+
+![Context Extension](./github/navigation_extension.png)
 
 You can use context.route to all
 
@@ -133,6 +137,8 @@ You can use context.sized to all
 
 ## String extension
 
+![Context Extension](./github/string_extension.png)
+
 You can use 'any string '.ext to all
 
 - `lineLength` (int): Returns the number of lines in the string.
@@ -179,6 +185,8 @@ You can use File().ext to all
 
 ## Future extension
 
+![Context Extension](./github/future_extension.png)
+
 You can use Future().ext
 
 - `toBuild` (Widget): Builds a widget based on the state of a future. It allows specifying different widgets for different states, such as loading, success, not found, and error.
@@ -190,6 +198,8 @@ You can use Future().ext
   - `data` (optional): T? - The initial data to provide to the future builder.
 
 ## Image Extension
+
+![Context Extension](./github/image_extension.png)
 
 You can use Image().ext to all
 
@@ -233,6 +243,8 @@ You can use List.ext to all
 - `int? indexOrNull(bool Function(T) search)`
 
 ## Widget extension
+
+![Context Extension](./github/widget_extension.png)
 
 You can use Widget.ext
 

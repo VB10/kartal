@@ -9,5 +9,5 @@ class SpaceSizedHeightBox extends StatelessWidget {
   final double height;
   @override
   Widget build(BuildContext context) =>
-      SizedBox(height: context.height * height);
+      SizedBox(height: context.sized.height * height);
 }

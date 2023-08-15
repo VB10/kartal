@@ -11,6 +11,18 @@ class _ContextGeneralExtension {
   /// Returns the [MediaQueryData] associated with the current [BuildContext].
   MediaQueryData get mediaQuery => MediaQuery.of(_context);
 
+  /// Returns the [Size] associated with the current [BuildContext].
+  Size get mediaSize => MediaQuery.sizeOf(_context);
+
+  /// Returns the [Size] associated with the current [BuildContext].
+  EdgeInsets get mediaViewInset => MediaQuery.viewInsetsOf(_context);
+
+  /// Returns the [Brightness] associated with the current [BuildContext].
+  Brightness get mediaBrightness => MediaQuery.platformBrightnessOf(_context);
+
+  /// Returns the [double] associated with the current [BuildContext].
+  double get mediaTextScale => MediaQuery.textScaleFactorOf(_context);
+
   /// Returns the [ThemeData] associated with the current [BuildContext].
   ThemeData get appTheme => Theme.of(_context);
 
@@ -28,19 +40,19 @@ class _ContextGeneralExtension {
 
   /// Returns whether the software keyboard is open, based on the bottom insets of the current
   /// [MediaQueryData].
-  bool get isKeyBoardOpen => mediaQuery.viewInsets.bottom > 0;
+  bool get isKeyBoardOpen => mediaViewInset.bottom > 0;
 
   /// Returns the height of the software keyboard, based on the bottom insets of the current
   /// [MediaQueryData].
-  double get keyboardPadding => mediaQuery.viewInsets.bottom;
+  double get keyboardPadding => mediaViewInset.bottom;
 
   /// Returns the brightness of the application, based on the platform brightness of the current
   /// [MediaQueryData].
-  Brightness get appBrightness => mediaQuery.platformBrightness;
+  Brightness get appBrightness => mediaBrightness;
 
   /// Returns the text scale factor applied to the application, based on the current
   /// [MediaQueryData].
-  double get textScaleFactor => mediaQuery.textScaleFactor;
+  double get textScaleFactor => mediaTextScale;
 }
 
 extension ContextExtension on BuildContext {

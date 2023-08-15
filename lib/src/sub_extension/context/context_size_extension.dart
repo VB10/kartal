@@ -34,10 +34,10 @@ class _ContextSizeExtension {
   Widget get emptySizedHeightBoxHigh => const SpaceSizedHeightBox(height: 0.1);
 
   /// Returns the height of the current widget's [MediaQuery].
-  double get height => _context.general.mediaQuery.size.height;
+  double get height => _context.general.mediaSize.height;
 
   /// Returns the width of the current widget's [MediaQuery].
-  double get width => _context.general.mediaQuery.size.width;
+  double get width => _context.general.mediaSize.width;
 
   /// Returns a value representing a low dimension, calculated as 0.01 times the current widget's height.
   double get lowValue => height * 0.01;
