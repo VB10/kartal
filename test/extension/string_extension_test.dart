@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
+import 'package:kartal/src/exception/generic_type_exception.dart';
 import 'package:kartal/src/map_extension.dart';
 
 void main() {
@@ -231,11 +232,35 @@ void main() {
     expect(valueForNull.ext.toPrimitiveFromGeneric<int>(), isNull);
     expect(valueForNull.ext.toPrimitiveFromGeneric<double>(), isNull);
     expect(valueForNull.ext.toPrimitiveFromGeneric<String>(), isNull);
+    expect(
+      valueForNull.ext.toPrimitiveFromGeneric<List<String>>(),
+      isNull,
+    );
+    expect(
+      valueForNull.ext.toPrimitiveFromGeneric<List<List<String>>>(),
+      isNull,
+    );
+    expect(
+      valueForNull.ext.toPrimitiveFromGeneric<List<List<List<String>>>>(),
+      isNull,
+    );
 
     expect(valueForEmpty.ext.toPrimitiveFromGeneric<bool>(), isNull);
     expect(valueForEmpty.ext.toPrimitiveFromGeneric<int>(), isNull);
     expect(valueForEmpty.ext.toPrimitiveFromGeneric<double>(), isNull);
     expect(valueForEmpty.ext.toPrimitiveFromGeneric<String>(), isEmpty);
+    expect(
+      () => valueForEmpty.ext.toPrimitiveFromGeneric<List<String>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      () => valueForEmpty.ext.toPrimitiveFromGeneric<List<List<String>>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      valueForEmpty.ext.toPrimitiveFromGeneric<List<List<List<String>>>>(),
+      isNull,
+    );
 
     expect(valueForBool.ext.toPrimitiveFromGeneric<bool>(), isTrue);
     expect(valueForBool.ext.toPrimitiveFromGeneric<int>(), isNull);
@@ -243,6 +268,18 @@ void main() {
     expect(
       valueForBool.ext.toPrimitiveFromGeneric<String>(),
       equals(valueForBool),
+    );
+    expect(
+      () => valueForBool.ext.toPrimitiveFromGeneric<List<bool>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      () => valueForBool.ext.toPrimitiveFromGeneric<List<List<bool>>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      valueForBool.ext.toPrimitiveFromGeneric<List<List<List<bool>>>>(),
+      isNull,
     );
 
     expect(valueForInt.ext.toPrimitiveFromGeneric<bool>(), isNull);
@@ -252,6 +289,18 @@ void main() {
       valueForInt.ext.toPrimitiveFromGeneric<String>(),
       equals(valueForInt),
     );
+    expect(
+      () => valueForInt.ext.toPrimitiveFromGeneric<List<int>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      () => valueForInt.ext.toPrimitiveFromGeneric<List<List<int>>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      valueForInt.ext.toPrimitiveFromGeneric<List<List<List<int>>>>(),
+      isNull,
+    );
 
     expect(valueForDouble.ext.toPrimitiveFromGeneric<bool>(), isNull);
     expect(valueForDouble.ext.toPrimitiveFromGeneric<int>(), isNull);
@@ -260,6 +309,18 @@ void main() {
       valueForDouble.ext.toPrimitiveFromGeneric<String>(),
       equals(valueForDouble),
     );
+    expect(
+      () => valueForDouble.ext.toPrimitiveFromGeneric<List<double>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      () => valueForDouble.ext.toPrimitiveFromGeneric<List<List<double>>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      valueForDouble.ext.toPrimitiveFromGeneric<List<List<List<double>>>>(),
+      isNull,
+    );
 
     expect(valueForString.ext.toPrimitiveFromGeneric<bool>(), isNull);
     expect(valueForString.ext.toPrimitiveFromGeneric<int>(), isNull);
@@ -267,6 +328,18 @@ void main() {
     expect(
       valueForString.ext.toPrimitiveFromGeneric<String>(),
       equals(valueForString),
+    );
+    expect(
+      () => valueForString.ext.toPrimitiveFromGeneric<List<String>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      () => valueForString.ext.toPrimitiveFromGeneric<List<List<String>>>(),
+      throwsA(isA<ListTypeNotSupported>()),
+    );
+    expect(
+      valueForString.ext.toPrimitiveFromGeneric<List<List<List<String>>>>(),
+      isNull,
     );
   });
 }
