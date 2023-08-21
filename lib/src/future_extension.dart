@@ -19,26 +19,24 @@ class _FutureExtension<T> {
         future: _future,
         initialData: data,
         builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-            case ConnectionState.active:
-              // Display the loading widget when the future is in a waiting or active state.
-              return loadingWidget;
-            case ConnectionState.done:
-              if (snapshot.hasData) {
+          final result = switch (snapshot.connectionState) {
+            // Display the loading widget when the future is in a waiting or active state.
+            ConnectionState.waiting || ConnectionState.active => loadingWidget,
+            // Display the success widget when the future is done and has data.
+            ConnectionState.done => snapshot.hasData
+                ?
                 // Display the success widget when the future is done and has data.
-                return onSuccess(snapshot.data);
-              } else {
+                onSuccess(snapshot.data)
                 // Display the error widget when the future is done but has no data.
-                return onError;
-              }
-            case ConnectionState.none:
-              // Display the not found widget when the future has no connection state.
-              return notFoundWidget;
-          }
+                : onError,
+            // Display the not found widget when the future has no connection state.
+            _ => notFoundWidget,
+          };
+          return result;
         },
       );
 }
+
 
 extension FutureExtension<T> on Future<T> {
   _FutureExtension<T> get ext => _FutureExtension(this);
