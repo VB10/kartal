@@ -1,6 +1,6 @@
 import 'package:kartal/src/utility/bundle/network_model_interface.dart';
 
-class FalseModel extends INetworkModel<FalseModel> {
+class FalseModel extends IAssetModel<FalseModel> {
   FalseModel({
     this.albumId,
     this.id,

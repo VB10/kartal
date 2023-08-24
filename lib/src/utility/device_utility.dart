@@ -8,7 +8,7 @@ import 'package:kartal/src/constants/app_constants.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 /// A utility class for device-related operations and information.
-class DeviceUtility {
+final class DeviceUtility {
   DeviceUtility._init();
 
   static DeviceUtility? _instance;
@@ -30,9 +30,7 @@ class DeviceUtility {
   /// Checks if the current device is an iPad.
   Future<bool> isIpad() async {
     info = await deviceInfo.iosInfo;
-    return (info.name ?? '')
-        .toLowerCase()
-        .contains(KartalAppConstants.IPAD_TYPE);
+    return (info.name).toLowerCase().contains(KartalAppConstants.IPAD_TYPE);
   }
 
   /// Generates a mailto link with the given [title] and [body] for sharing via email.

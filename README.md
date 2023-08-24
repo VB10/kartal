@@ -224,6 +224,15 @@ You can use Image().ext to all
     - `alignmentPolicy` (optional): The alignment policy during scrolling. Default: `ScrollPositionAlignmentPolicy.explicit`.
   - Return Type: `void`
 
+## Asset Reader
+
+You can parse your asset file with generic way.
+
+```dart
+   final posts = await BundleDecoder('assets/placeholder.json')
+        .crackBundle<Post, List<Post>>(model: Post());
+```
+
 ## List Extension
 
 You can use List.ext to all

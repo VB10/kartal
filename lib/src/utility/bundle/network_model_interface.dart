@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-abstract class INetworkModel<T> {
-  Map<String, dynamic>? toJson();
+// ignore: one_member_abstracts
+abstract mixin class IAssetModel<T> {
   T fromJson(Map<String, dynamic> json);
 }

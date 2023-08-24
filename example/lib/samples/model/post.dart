@@ -1,6 +1,6 @@
 import 'package:kartal/src/utility/bundle/network_model_interface.dart';
 
-class Post extends INetworkModel<Post> {
+class Post extends IAssetModel<Post> {
   Post({
     this.userId,
     this.id,

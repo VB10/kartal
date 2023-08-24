@@ -4,19 +4,27 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/src/utility/bundle/network_model_interface.dart';
 
-typedef ComputeCallback<T extends INetworkModel<T>, R> = Future<R> Function(
-  // ignore: library_private_types_in_public_api
+typedef ComputeCallback<T extends IAssetModel<T>, R> = Future<R> Function(
   _ComputeArgument<T>,
 );
 
-class BundleDecoder extends _BaseBundleDecoder with _BundleHelpers {
+final class BundleDecoder extends _BaseBundleDecoder with _BundleHelpers {
   BundleDecoder(super.assetPath);
 
-  Future<R?> crackBundle<T extends INetworkModel<T>, R>({
+  /// The function `crackBundle` loads a bundle and returns the decoded data, or throws an error if there is an exception.
+  ///
+  /// Args:
+  ///   model (T): The `model` parameter is of type `T` which extends `IAssetModel<T>`. It is a required parameter and is
+  /// used as input to `_loadBundle` function.
+  ///
+  /// Returns:
+  ///   a `Future<R?>` object.
+  Future<R?> crackBundle<T extends IAssetModel<T>, R>({
     required T model,
   }) async {
     try {
-      final decodedData = await loadBundle<T, R>(super.assetPath, model: model);
+      final decodedData =
+          await _loadBundle<T, R>(super.assetPath, model: model);
       return decodedData;
     } catch (e) {
       rethrow;
@@ -25,14 +33,15 @@ class BundleDecoder extends _BaseBundleDecoder with _BundleHelpers {
 }
 
 mixin _BundleHelpers {
-  Future<R?> loadBundle<T extends INetworkModel<T>, R>(
+  Future<R?> _loadBundle<T extends IAssetModel<T>, R>(
     String path, {
     required T model,
   }) async {
     try {
       final bundle = await rootBundle.loadString(path);
 
-      Future<R> callBack(_ComputeArgument<T> argument) => parse<T, R>(argument);
+      Future<R> callBack(_ComputeArgument<T> argument) =>
+          _parse<T, R>(argument);
 
       return await compute(
         callBack,
@@ -46,7 +55,7 @@ mixin _BundleHelpers {
     }
   }
 
-  Future<R> parse<T extends INetworkModel<T>, R>(
+  Future<R> _parse<T extends IAssetModel<T>, R>(
     _ComputeArgument<T> argument,
   ) async {
     if (R == List<T>) {
@@ -74,7 +83,7 @@ class _BaseBundleDecoder {
   final String assetPath;
 }
 
-class _ComputeArgument<T extends INetworkModel<T>> {
+class _ComputeArgument<T extends IAssetModel<T>> {
   _ComputeArgument({required this.bundle, required this.model});
 
   final String bundle;
