@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:kartal/src/utility/bundle/network_model_interface.dart';
+import 'package:kartal/src/utility/bundle/asset_model_interface.dart';
 
 typedef ComputeCallback<T extends IAssetModel<T>, R> = Future<R> Function(
   _ComputeArgument<T>,

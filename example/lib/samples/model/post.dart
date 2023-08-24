@@ -1,4 +1,4 @@
-import 'package:kartal/src/utility/bundle/network_model_interface.dart';
+import 'package:kartal/src/utility/bundle/asset_model_interface.dart';
 
 class Post extends IAssetModel<Post> {
   Post({
