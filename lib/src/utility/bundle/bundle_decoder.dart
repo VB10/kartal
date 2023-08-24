@@ -21,10 +21,14 @@ final class BundleDecoder extends _BaseBundleDecoder with _BundleHelpers {
   ///   a `Future<R?>` object.
   Future<R?> crackBundle<T extends IAssetModel<T>, R>({
     required T model,
+    AssetBundle? assetBundle,
   }) async {
     try {
-      final decodedData =
-          await _loadBundle<T, R>(super.assetPath, model: model);
+      final decodedData = await _loadBundle<T, R>(
+        super.assetPath,
+        model: model,
+        assetBundle: assetBundle,
+      );
       return decodedData;
     } catch (e) {
       rethrow;
@@ -36,9 +40,10 @@ mixin _BundleHelpers {
   Future<R?> _loadBundle<T extends IAssetModel<T>, R>(
     String path, {
     required T model,
+    AssetBundle? assetBundle,
   }) async {
     try {
-      final bundle = await rootBundle.loadString(path);
+      final bundle = await (assetBundle ?? rootBundle).loadString(path);
 
       Future<R> callBack(_ComputeArgument<T> argument) =>
           _parse<T, R>(argument);
@@ -60,20 +65,17 @@ mixin _BundleHelpers {
   ) async {
     if (R == List<T>) {
       final listJson = json.decode(argument.bundle) as List<dynamic>;
-      try {
-        final transformedData = listJson
-            .map(
-              (data) => argument.model.fromJson(data as Map<String, dynamic>),
-            )
-            .cast<T>()
-            .toList() as R;
+      final transformedData = listJson
+          .map(
+            (data) => argument.model.fromJson(data as Map<String, dynamic>),
+          )
+          .cast<T>()
+          .toList() as R;
 
-        return transformedData;
-      } catch (e) {
-        throw Exception('Error while parsing:$e');
-      }
+      return transformedData;
     } else {
-      return json.decode(argument.bundle) as R;
+      final jsonBody = json.decode(argument.bundle) as Map<String, dynamic>;
+      return argument.model.fromJson(jsonBody) as R;
     }
   }
 }
