@@ -158,7 +158,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "3.2.0"
+    version: "3.3.0"
   mask_text_input_formatter:
     dependency: transitive
     description:

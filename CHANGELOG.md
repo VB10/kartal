@@ -1,3 +1,8 @@
+# [3.3.0]
+
+- Added mediaSize, mediaViewInset, mediaBrightness etc instead of directly use MediaQuery.
+- Updated readme file for some sample images.
+
 # [3.2.0]
 
 - makeSafe and makeSafeCustom added for iterable nullable list.

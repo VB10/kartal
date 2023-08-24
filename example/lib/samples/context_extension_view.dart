@@ -7,7 +7,7 @@ class ContextExtensionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
-          height: context.general.mediaQuery.size.height,
+          height: context.sized.height,
           color: context.general.colorScheme.onBackground,
           child: Text(
             context.general.isKeyBoardOpen ? 'Open' : 'Close',
