@@ -73,10 +73,10 @@ mixin _BundleHelpers {
           .toList() as R;
 
       return transformedData;
-    } else {
-      final jsonBody = json.decode(argument.bundle) as Map<String, dynamic>;
-      return argument.model.fromJson(jsonBody) as R;
     }
+
+    final jsonBody = json.decode(argument.bundle) as Map<String, dynamic>;
+    return argument.model.fromJson(jsonBody) as R;
   }
 }
 
