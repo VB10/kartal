@@ -1,4 +1,8 @@
-# [3.4.0]
+# [3.4.1]
+
+- Deleted json data in test folder
+
+## [3.4.0]
 
 - Bundle decoder has fixed for single model parse
 - Removed unused json file
