@@ -164,6 +164,7 @@ You can use 'any string '.ext to all
 - `launchPhone` (Future<bool>): Launches the phone app with the phone number.
 - `launchWebsite` (Future<bool>): Launches the website with the string as the URL.
 - `launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
+- `launchMap` (Future<bool>): Launches the map with any value.
 - `shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
 - `shareMail(String title)` (Future<void>): Shares the string via email with a title.
 - `share()` (Future<void>): Shares the string.

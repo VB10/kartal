@@ -6,23 +6,31 @@ class StringExtensionView extends StatelessWidget {
   const StringExtensionView({super.key});
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          TextFormField(
-            validator: (value) => value.ext.isNotNullOrNoEmpty ? null : 'fail',
-          ),
-          TextFormField(
-            validator: (value) => value.ext.isValidEmail ? null : 'fail',
-          ),
-          TextField(
-            inputFormatters: [InputFormatter.instance.phoneFormatter],
-            onChanged: (value) {
-              if (kDebugMode) {
-                print(value.ext.phoneFormatValue);
-              }
-            },
-          )
-        ],
+  Widget build(BuildContext context) => Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            '§123§1e§1'.ext.launchMaps();
+          },
+        ),
+        body: Column(
+          children: [
+            TextFormField(
+              validator: (value) =>
+                  value.ext.isNotNullOrNoEmpty ? null : 'fail',
+            ),
+            TextFormField(
+              validator: (value) => value.ext.isValidEmail ? null : 'fail',
+            ),
+            TextField(
+              inputFormatters: [InputFormatter.instance.phoneFormatter],
+              onChanged: (value) {
+                if (kDebugMode) {
+                  print(value.ext.phoneFormatValue);
+                }
+              },
+            ),
+          ],
+        ),
       );
 
   void shareWhatsApp(String value) {

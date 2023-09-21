@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
 import 'package:kartal/src/map_extension.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   test('adds one to input values', () {
@@ -94,7 +95,7 @@ void main() {
   });
 
   test('Test lineLength property', () {
-    String? text = 'Hello\nWorld';
+    const text = 'Hello\nWorld';
     expect(text.ext.lineLength, equals(2));
   });
 
@@ -104,37 +105,37 @@ void main() {
   });
 
   test('Test toCapitalized method', () {
-    String? text = 'hello world';
+    const text = 'hello world';
     expect(text.ext.toCapitalized(), equals('Hello world'));
   });
 
   test('Test toTitleCase method', () {
-    String? text = 'hello world';
+    const text = 'hello world';
     expect(text.ext.toTitleCase(), equals('Hello World'));
   });
 
   test('Test isNullOrEmpty property', () {
-    String? text = '';
+    const text = '';
     expect(text.ext.isNullOrEmpty, isTrue);
   });
 
   test('Test isNotNullOrNoEmpty property', () {
-    String? text = 'Hello';
+    const text = 'Hello';
     expect(text.ext.isNotNullOrNoEmpty, isTrue);
   });
 
   test('Test isValidEmail property', () {
-    String? email = 'test@example.com';
+    const email = 'test@example.com';
     expect(email.ext.isValidEmail, isTrue);
   });
 
   test('Test isValidPassword method', () {
-    String? validPassword = 'Password123!';
-    String? invalidPassword1 = 'password';
-    String? invalidPassword2 = '12345678';
-    String? invalidPassword3 = 'PASSWORD';
-    String? invalidPassword4 = 'Password!';
-    String? invalidPassword5 = 'Password123';
+    const validPassword = 'Password123!';
+    const invalidPassword1 = 'password';
+    const invalidPassword2 = '12345678';
+    const invalidPassword3 = 'PASSWORD';
+    const invalidPassword4 = 'Password!';
+    const invalidPassword5 = 'Password123';
 
     expect(validPassword.isValidPassword, isTrue);
     expect(invalidPassword1.isValidPassword, isFalse);
@@ -145,7 +146,7 @@ void main() {
   });
 
   test('Test withoutSpecialCharacters property', () {
-    String? text = 'héllö wôrld';
+    const text = 'héllö wôrld';
     expect(text.ext.withoutSpecialCharacters, equals('hello world'));
   });
 
@@ -341,6 +342,32 @@ void main() {
       valueForString.ext.toPrimitiveFromGeneric<List<List<List<String>>>>(),
       isNull,
     );
+  });
+
+  test('Test launchMaps function it as expected for scenario', () {
+    ''.ext.launchMaps();
+  });
+
+  group('Test launchMAps', () {
+    test('Launch maps with empty text [False]', () async {
+      final respsone = await ''.ext.launchMaps();
+
+      expect(respsone, false);
+    });
+
+    test('Launch maps with right text [True]', () async {
+      final response = await 'Istanbul'.ext.launchMaps(
+            callBack: (
+              urlString, {
+              mode = LaunchMode.externalApplication,
+              webOnlyWindowName,
+              webViewConfiguration = const WebViewConfiguration(),
+            }) =>
+                Future.value(true),
+          );
+
+      expect(response, true);
+    });
   });
 }
 
