@@ -71,13 +71,38 @@ class _StringExtension with _StringExtensionMixin {
 
   Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
 
+  /// String returns the first word of an expression.
+  ///
+  /// For example:
+  /// ```dart
+  /// final String str = "Kartal is an extension package for easy to use at app development time.";
+  /// print(str.ext.getFirstWord); // Kartal
+  /// ```
+  String get getFirstWord {
+    final wordList = _value?.split(' ');
+    if (wordList?.isNotEmpty ?? false) {
+      return wordList?.first ?? '';
+    } else {
+      return '';
+    }
+  }
+
+  /// Creates a new Uri object by parsing a URI string.
+  Uri get uriParse => Uri.parse(_value ?? '');
+
+  /// Encode the string component using percent-encoding to make it safe for literal use as a URI component.
+  String get uriEncodeComponent => Uri.encodeComponent(_value ?? '');
+
+  /// Encodes the string uri using percent-encoding to make it safe for literal use as a full URI.
+  String get uriEncodeFull => Uri.encodeFull(_value ?? '');
+
   /// Returns true if this string is null or empty.
   bool get isNullOrEmpty => _value?.isEmpty ?? true;
 
   /// Returns true if this string is not null and not empty.
   bool get isNotNullOrNoEmpty => _value?.isNotEmpty ?? false;
 
-  // Check if email is valid
+  /// Check if email is valid
   bool get isValidEmail {
     if (!isNotNullOrNoEmpty) return false;
     return RegExp(
@@ -142,7 +167,7 @@ class _StringExtension with _StringExtensionMixin {
     final query = _value;
     if (query.ext.isNullOrEmpty) return false;
 
-    final encodedQuery = Uri.encodeComponent(query!);
+    final encodedQuery = query.ext.uriEncodeComponent;
 
     var result = false;
 
@@ -202,7 +227,7 @@ class _StringExtension with _StringExtensionMixin {
   Future<void> shareMail(String title) async {
     final mailBodyText =
         DeviceUtility.instance.shareMailText(title, _value ?? '');
-    final isLaunch = await launchUrlString(Uri.encodeFull(mailBodyText));
+    final isLaunch = await launchUrlString(mailBodyText.ext.uriEncodeFull);
     if (!isLaunch) await _value?.share();
   }
 
@@ -370,6 +395,21 @@ extension StringExtension on String? {
   @Deprecated('Use ext.toColor instead')
   Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
 
+  String get getFirstWord {
+    final wordList = this?.split(' ');
+    if (wordList?.isNotEmpty ?? false) {
+      return wordList?.first ?? '';
+    } else {
+      return '';
+    }
+  }
+
+  Uri get toUri => Uri.parse(this ?? '');
+
+  String get uriEncodeComponent => Uri.encodeComponent(this ?? '');
+
+  String get uriEncodeFull => Uri.encodeFull(this ?? '');
+
   @Deprecated('Use ext.launchEmail instead')
   Future<bool> get launchEmail => launchUrlString('mailto:$this');
 
@@ -413,7 +453,7 @@ extension StringExtension on String? {
   @Deprecated('Use ext.shareMail instead')
   Future<void> shareMail(String title) async {
     final value = DeviceUtility.instance.shareMailText(title, this ?? '');
-    final isLaunch = await launchUrlString(Uri.encodeFull(value));
+    final isLaunch = await launchUrlString(value.ext.uriEncodeFull);
     if (!isLaunch) await value.share();
   }
 

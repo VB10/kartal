@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kartal/src/list_extension.dart';
 
 class _WidgetExtension {
   _WidgetExtension(Widget widget) : _widget = widget;
@@ -22,6 +23,18 @@ class _WidgetExtension {
 
   /// Wraps the widget in a [SliverToBoxAdapter] widget for use in a [CustomScrollView].
   Widget get sliver => SliverToBoxAdapter(child: _widget);
+
+  /// If a List is null, it shows the Widget it takes as a parameter,
+  /// otherwise it shows the normally used widget.
+  Widget checkNullableWidget({
+    required Widget nullWidget,
+    List<dynamic>? list,
+  }) {
+    if (list.ext.isNullOrEmpty) {
+      return nullWidget;
+    }
+    return _widget;
+  }
 }
 
 extension WidgetExtension on Widget {
@@ -41,4 +54,14 @@ extension WidgetExtension on Widget {
 
   @Deprecated('Use ext.sliver instead')
   Widget get sliver => SliverToBoxAdapter(child: this);
+
+  Widget checkNullableWidget({
+    required Widget nullWidget,
+    List<dynamic>? list,
+  }) {
+    if (list.ext.isNullOrEmpty) {
+      return nullWidget;
+    }
+    return this;
+  }
 }
