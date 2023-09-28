@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-import 'samples/string_extension_view.dart';
+import 'samples/future_extension_view.dart';
 
 void main() {
   _appInit();
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      const MaterialApp(title: 'Material App', home: StringExtensionView());
+      const MaterialApp(title: 'Material App', home: FutureExtensionView());
 }
 
 class HomePage extends StatelessWidget {

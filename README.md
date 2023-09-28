@@ -198,6 +198,11 @@ You can use Future().ext
   - `onError` (required): Widget - Specifies the widget to display when an error occurs during the future's execution.
   - `data` (optional): T? - The initial data to provide to the future builder.
 
+- `timeoutOrNull` (T or null) When operation complete before the timeout limit it will return data. if any problem accrued it will return null.
+
+  - `timeOutDuration` (required): Duration - Specifies the timeout duration. Default value is 10 seconds.
+  - `enableLogger`, (optional): It will print your error issues in debug console.
+
 ## Image Extension
 
 ![Context Extension](./github/image_extension.png)

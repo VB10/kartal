@@ -158,7 +158,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "3.4.1"
+    version: "3.4.2"
   logger:
     dependency: transitive
     description:
