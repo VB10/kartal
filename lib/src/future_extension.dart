@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// You can use future utility so easy with [FutureExtension]
@@ -35,8 +36,20 @@ class _FutureExtension<T> {
           return result;
         },
       );
-}
 
+  Future<T?> timeoutOrNull({
+    Duration timeOutDuration = const Duration(seconds: 10),
+    bool enableLogger = true,
+  }) async {
+    try {
+      final response = await _future.timeout(timeOutDuration);
+      return response;
+    } catch (e) {
+      if (enableLogger && kDebugMode) print('$T $e');
+      return null;
+    }
+  }
+}
 
 extension FutureExtension<T> on Future<T> {
   _FutureExtension<T> get ext => _FutureExtension(this);

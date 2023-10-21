@@ -1,4 +1,12 @@
-# [3.4.1]
+# [3.4.3]
+
+- Timeout extension added for any future request
+
+## [3.4.2]
+
+- Added Maps Redirection with Any String Value
+
+## [3.4.1]
 
 - Deleted json data in test folder
 

@@ -10,6 +10,7 @@ import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device_utility.dart';
+import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -129,6 +130,37 @@ class _StringExtension with _StringExtensionMixin {
       'https://www.gravatar.com/avatar/?d=mp&s=200';
 
   Map<String, dynamic> get bearer => {'Authorization': 'Bearer $_value'};
+
+  ///
+  /// The function will launch to relaeted maps for your in device
+  /// When try to launch in apple it will open AppleMaps or Gogle maps web link if catch any problem.
+  /// When try to launch in android it will open GoogleMaps or Gogle maps web link if catch any problem.
+  ///
+  Future<bool> launchMaps({
+    LaunchUrlCallBack? callBack,
+  }) async {
+    final query = _value;
+    if (query.ext.isNullOrEmpty) return false;
+
+    final encodedQuery = Uri.encodeComponent(query!);
+
+    var result = false;
+
+    if (Platform.isIOS) {
+      result = await MapsUtility.openAppleMapsWithQuery(
+        encodedQuery,
+        callBack: callBack,
+      );
+    } else {
+      result = await MapsUtility.openGoogleMapsWithQuery(
+        encodedQuery,
+        callBack: callBack,
+      );
+    }
+
+    if (result) return true;
+    return MapsUtility.openGoogleWebMapsWithQuery(encodedQuery);
+  }
 
   /// Launches the email app with this email address.
   Future<bool> get launchEmail => launchUrlString('mailto:$_value');

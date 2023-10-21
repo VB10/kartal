@@ -164,6 +164,7 @@ You can use 'any string '.ext to all
 - `launchPhone` (Future<bool>): Launches the phone app with the phone number.
 - `launchWebsite` (Future<bool>): Launches the website with the string as the URL.
 - `launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
+- `launchMap` (Future<bool>): Launches the map with any value.
 - `shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
 - `shareMail(String title)` (Future<void>): Shares the string via email with a title.
 - `share()` (Future<void>): Shares the string.
@@ -196,6 +197,11 @@ You can use Future().ext
   - `notFoundWidget` (required): Widget - Specifies the widget to display when the future has no connection state.
   - `onError` (required): Widget - Specifies the widget to display when an error occurs during the future's execution.
   - `data` (optional): T? - The initial data to provide to the future builder.
+
+- `timeoutOrNull` (T or null) When operation complete before the timeout limit it will return data. if any problem accrued it will return null.
+
+  - `timeOutDuration` (required): Duration - Specifies the timeout duration. Default value is 10 seconds.
+  - `enableLogger`, (optional): It will print your error issues in debug console.
 
 ## Image Extension
 
