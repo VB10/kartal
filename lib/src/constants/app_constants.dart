@@ -8,6 +8,6 @@ class KartalAppConstants {
   static const String GOOGLE_MAPS_WEB_LINK =
       'https://www.google.com/maps/search/?api=1&query=';
 
-  static const String GOOGLE_MAPS_DEEP_URL = 'comgooglemaps://?q=';
+  static const String GOOGLE_MAPS_DEEP_URL = 'geo:0,0?q=';
   static const String APPLE_MAPS_DEEP_URL = 'maps://?q=';
 }
