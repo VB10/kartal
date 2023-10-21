@@ -2,12 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// You can use future utility so easy with [FutureExtension]
-class _FutureExtension<T> {
+final class _FutureExtension<T> {
   _FutureExtension(Future<T> future) : _future = future;
 
   final Future<T> _future;
 
-  /// Builds a widget based on the state of a future. It allows specifying different widgets for
+  /// Builds a widget based on the state of a future. It allows specifying
+  /// different widgets for
   /// different states, such as loading, success, not found, and error.
   Widget toBuild({
     required Widget Function(T? data) onSuccess,
@@ -21,7 +22,8 @@ class _FutureExtension<T> {
         initialData: data,
         builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
           final result = switch (snapshot.connectionState) {
-            // Display the loading widget when the future is in a waiting or active state.
+            // Display the loading widget when the future is in a waiting
+            //  or active state.
             ConnectionState.waiting || ConnectionState.active => loadingWidget,
             // Display the success widget when the future is done and has data.
             ConnectionState.done => snapshot.hasData
@@ -45,7 +47,7 @@ class _FutureExtension<T> {
       final response = await _future.timeout(timeOutDuration);
       return response;
     } catch (e) {
-      if (enableLogger && kDebugMode) print('$T $e');
+      if (enableLogger && kDebugMode) debugPrint('$T $e');
       return null;
     }
   }
@@ -53,30 +55,4 @@ class _FutureExtension<T> {
 
 extension FutureExtension<T> on Future<T> {
   _FutureExtension<T> get ext => _FutureExtension(this);
-
-  @Deprecated('Use ext.toBuild instead')
-  Widget toBuild({
-    required Widget Function(T? data) onSuccess,
-    required Widget loadingWidget,
-    required Widget notFoundWidget,
-    required Widget onError,
-    T? data,
-  }) =>
-      FutureBuilder<T>(
-        future: this,
-        initialData: data,
-        builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-            case ConnectionState.active:
-              return loadingWidget;
-            case ConnectionState.done:
-              if (snapshot.hasData) return onSuccess(snapshot.data);
-              return onError;
-
-            case ConnectionState.none:
-              return notFoundWidget;
-          }
-        },
-      );
 }

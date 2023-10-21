@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
-import 'package:kartal/src/map_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -17,7 +16,7 @@ void main() {
     const dataEmpty = '';
     String? dataNil;
 
-    expect(dataEmpty.isNullOrEmpty, true);
+    expect(dataEmpty.ext.isNullOrEmpty, true);
     expect(dataNil.ext.isNullOrEmpty, true);
   });
 
@@ -137,12 +136,12 @@ void main() {
     const invalidPassword4 = 'Password!';
     const invalidPassword5 = 'Password123';
 
-    expect(validPassword.isValidPassword, isTrue);
-    expect(invalidPassword1.isValidPassword, isFalse);
-    expect(invalidPassword2.isValidPassword, isFalse);
-    expect(invalidPassword3.isValidPassword, isFalse);
-    expect(invalidPassword4.isValidPassword, isFalse);
-    expect(invalidPassword5.isValidPassword, isFalse);
+    expect(validPassword.ext.isValidPassword, isTrue);
+    expect(invalidPassword1.ext.isValidPassword, isFalse);
+    expect(invalidPassword2.ext.isValidPassword, isFalse);
+    expect(invalidPassword3.ext.isValidPassword, isFalse);
+    expect(invalidPassword4.ext.isValidPassword, isFalse);
+    expect(invalidPassword5.ext.isValidPassword, isFalse);
   });
 
   test('Test withoutSpecialCharacters property', () {
@@ -368,6 +367,30 @@ void main() {
 
       expect(response, true);
     });
+  });
+
+  test('Custom link preview test- Success', () async {
+    final response = await CustomLinkPreview.getLinkPreviewData(
+      'https://www.wnycstudios.org/podcasts/radiolab/podcasts',
+    );
+
+    expect(response != null, true);
+  });
+
+  test('Custom link preview test- Fail', () async {
+    final response = await CustomLinkPreview.getLinkPreviewData(
+      'https://www.wnycstudios.org/ss',
+    );
+
+    expect(response == null, true);
+  });
+
+  test('Custom link preview test- Without url', () async {
+    final response = await CustomLinkPreview.getLinkPreviewData(
+      'xssxs',
+    );
+
+    expect(response == null, true);
   });
 }
 

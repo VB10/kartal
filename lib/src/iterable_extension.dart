@@ -17,6 +17,6 @@ class _IterableExtension<T> {
       _list.where(onHandle).cast<T>().toList();
 }
 
-extension IterableExtension<T> on Iterable<T?> {
-  _IterableExtension<T> get ext => _IterableExtension<T>(this);
+extension IterableExtensions<T> on Iterable<T?> {
+  _IterableExtension<T> get exts => _IterableExtension<T>(this);
 }

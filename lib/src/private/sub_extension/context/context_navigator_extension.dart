@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:kartal/kartal.dart';
 
-class _ContextNavigationExtension {
+extension NavigationExtension on BuildContext {
+  _ContextNavigationExtension get route => _ContextNavigationExtension(this);
+}
+
+final class _ContextNavigationExtension {
   _ContextNavigationExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
@@ -45,48 +48,6 @@ class _ContextNavigationExtension {
   /// passed as arguments to the pushed page. The [type] parameter specifies the transition type
   /// when pushing the page, with the default value being [SlideType.DEFAULT]. Returns a [Future]
   /// that completes with the result value returned by the page.
-  Future<T?> navigateToPage<T extends Object?>(
-    Widget page, {
-    Object? extra,
-    SlideType type = SlideType.DEFAULT,
-  }) async =>
-      navigation.push<T>(
-        type.route(page, RouteSettings(arguments: extra)),
-      );
-}
-
-extension NavigationExtension on BuildContext {
-  _ContextNavigationExtension get route => _ContextNavigationExtension(this);
-
-  @Deprecated('Use ext.navigation instead')
-  NavigatorState get navigation => Navigator.of(this);
-
-  @Deprecated('Use ext.pop instead')
-  Future<bool> pop<T extends Object?>([T? data]) async =>
-      navigation.maybePop(data);
-
-  @Deprecated('Use ext.popWithRoot instead')
-  void popWithRoot() => Navigator.of(this, rootNavigator: true).pop();
-
-  @Deprecated('Use ext.navigateName instead')
-  Future<T?> navigateName<T extends Object?>(
-    String path, {
-    Object? data,
-  }) async =>
-      navigation.pushNamed<T>(path, arguments: data);
-
-  @Deprecated('Use ext.navigateToReset instead')
-  Future<T?> navigateToReset<T extends Object?>(
-    String path, {
-    Object? data,
-  }) async =>
-      navigation.pushNamedAndRemoveUntil(
-        path,
-        (route) => false,
-        arguments: data,
-      );
-
-  @Deprecated('Use ext.navigateToPage instead')
   Future<T?> navigateToPage<T extends Object?>(
     Widget page, {
     Object? extra,

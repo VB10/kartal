@@ -9,7 +9,7 @@ class StringExtensionView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            '§123§1e§1'.ext.launchMaps();
+            'Istanbul Kartal'.ext.launchMaps();
           },
         ),
         body: Column(

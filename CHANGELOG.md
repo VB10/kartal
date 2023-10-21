@@ -1,4 +1,8 @@
-# [3.4.3]
+# [3.4.4]
+
+- Fixed open maps issue for android side.
+
+## [3.4.3]
 
 - Timeout extension added for any future request
 

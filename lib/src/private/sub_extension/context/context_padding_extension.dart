@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/src/sub_extension/context/index.dart';
+import 'package:kartal/src/private/sub_extension/context/index.dart';
 
-class _ContextExtension {
+/// Contains extension methods on the [BuildContext] class to simplify the creation of
+/// [EdgeInsets] objects for padding in Flutter.
+extension PaddingExtension on BuildContext {
+  _ContextExtension get padding => _ContextExtension(this);
+}
+
+final class _ContextExtension {
   _ContextExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
@@ -130,78 +136,4 @@ class _ContextExtension {
   /// Returns an [EdgeInsets] object with  only on the top side, where the top
   /// value is set to [_highValue].
   EdgeInsets get onlyTopHigh => EdgeInsets.only(top: _highValue);
-}
-
-// -- Deprecated
-
-/// Contains extension methods on the [BuildContext] class to simplify the creation of
-/// [EdgeInsets] objects for padding in Flutter.
-extension PaddingExtension on BuildContext {
-  _ContextExtension get padding => _ContextExtension(this);
-
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get paddingMedium => EdgeInsets.all(mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get paddingHigh => EdgeInsets.all(highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get horizontalPaddingLow =>
-      EdgeInsets.symmetric(horizontal: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get horizontalPaddingNormal =>
-      EdgeInsets.symmetric(horizontal: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get horizontalPaddingMedium =>
-      EdgeInsets.symmetric(horizontal: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get horizontalPaddingHigh =>
-      EdgeInsets.symmetric(horizontal: highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get verticalPaddingLow => EdgeInsets.symmetric(vertical: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get verticalPaddingNormal =>
-      EdgeInsets.symmetric(vertical: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get verticalPaddingMedium =>
-      EdgeInsets.symmetric(vertical: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get verticalPaddingHigh =>
-      EdgeInsets.symmetric(vertical: highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyLeftPaddingLow => EdgeInsets.only(left: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyLeftPaddingNormal => EdgeInsets.only(left: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyLeftPaddingMedium => EdgeInsets.only(left: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyLeftPaddingHigh => EdgeInsets.only(left: highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyRightPaddingLow => EdgeInsets.only(right: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyRightPaddingNormal => EdgeInsets.only(right: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyRightPaddingMedium => EdgeInsets.only(right: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyRightPaddingHigh => EdgeInsets.only(right: highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyBottomPaddingLow => EdgeInsets.only(bottom: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyBottomPaddingNormal =>
-      EdgeInsets.only(bottom: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyBottomPaddingMedium =>
-      EdgeInsets.only(bottom: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyBottomPaddingHigh => EdgeInsets.only(bottom: highValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyTopPaddingLow => EdgeInsets.only(top: lowValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyTopPaddingNormal => EdgeInsets.only(top: normalValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyTopPaddingMedium => EdgeInsets.only(top: mediumValue);
-  @Deprecated('You should use the [ext] property instead')
-  EdgeInsets get onlyTopPaddingHigh => EdgeInsets.only(top: highValue);
 }
