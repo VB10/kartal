@@ -1,4 +1,4 @@
-class _IterableExtension<T> {
+final class _IterableExtension<T> {
   _IterableExtension(Iterable<T?> list) : _list = list;
 
   final Iterable<T?> _list;

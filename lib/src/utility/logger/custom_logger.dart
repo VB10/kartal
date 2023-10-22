@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
-mixin CustomLogger {
-  static void error<T>(Object object) {
+@immutable
+final class CustomLogger {
+  const CustomLogger._();
+
+  static void showError<T>(Object object) {
     if (!kDebugMode) return;
     Logger().e('$T $object');
   }

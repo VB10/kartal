@@ -1,5 +1,4 @@
 import 'package:kartal/kartal.dart';
-import 'package:kartal/src/utility/core/custom_logger.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 typedef LaunchUrlCallBack = Future<bool> Function(
@@ -9,7 +8,9 @@ typedef LaunchUrlCallBack = Future<bool> Function(
   String? webOnlyWindowName,
 });
 
-mixin MapsUtility {
+final class MapsUtility {
+  const MapsUtility._();
+
   /// The function opens Apple Maps with a specified query.
   ///
   /// Args:
@@ -26,7 +27,7 @@ mixin MapsUtility {
       return callBack?.call(appleMapsWithQuery) ??
           launchUrlString(appleMapsWithQuery);
     } catch (error) {
-      CustomLogger.error<MapsUtility>(error);
+      CustomLogger.showError<MapsUtility>(error);
 
       return false;
     }
@@ -48,7 +49,7 @@ mixin MapsUtility {
       return callBack?.call(googleMapsWithQuery) ??
           launchUrlString(googleMapsWithQuery);
     } catch (error) {
-      CustomLogger.error<MapsUtility>(error);
+      CustomLogger.showError<MapsUtility>(error);
       return false;
     }
   }
@@ -65,7 +66,7 @@ mixin MapsUtility {
     try {
       return launchUrlString(googleMapsWithQuery);
     } catch (error) {
-      CustomLogger.error<MapsUtility>(error);
+      CustomLogger.showError<MapsUtility>(error);
       return false;
     }
   }

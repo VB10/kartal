@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+import 'package:kartal/src/widget/route/slide_route.dart';
 
 extension NavigationExtension on BuildContext {
   _ContextNavigationExtension get route => _ContextNavigationExtension(this);
