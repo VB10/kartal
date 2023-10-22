@@ -1,65 +1,76 @@
-/// The code snippet defines a private class `_DateExtension` that takes two `DateTime` parameters:
-/// `currentTime` and `dateTime`. It also defines two private variables `_currentTime` and `_dateTime`
-/// to store these parameters.
-final class _DateExtension {
-  _DateExtension({
-    required DateTime currentTime,
-    required DateTime dateTime,
-    required DateDifferenceModel dateDifferenceModel,
-  })  : _currentTime = currentTime,
-        _dateTime = dateTime,
-        _dateDifferenceModel = dateDifferenceModel;
-  final DateTime _currentTime;
-  final DateTime _dateTime;
-  final DateDifferenceModel _dateDifferenceModel;
+/// The `_CurrentTimeExtension` takes a `targetTime` parameter in its constructor
+/// and compares it with the current time.
+final class _CurrentTimeExtension {
+  _CurrentTimeExtension(
+    DateTime targetTime,
+  ) : _targetTime = targetTime;
 
-  /// The `differenceTime` getter is a method that calculates the time difference between the current
-  /// DateTime object and the current time.
-  String get differenceTime {
-    final dayDifference = _currentTime.difference(_dateTime).inDays;
-    final hourDifference = _currentTime.difference(_dateTime).inHours;
-    final minuteDifference = _currentTime.difference(_dateTime).inMinutes;
+  final DateTime _targetTime;
+
+  /// The `differenceTime` method returns that represents the difference
+  ///  between the current time and the `targetTime`.
+  String differenceTime({
+    DateLocalizationLabel localizationLabel = const DateLocalizationLabel(),
+  }) {
+    /// The `currentTime` variable represents the current time.
+    final currentTime = DateTime.now();
+
+    /// The `yearDifference` variable represents the difference between the current time and the `targetTime` in years.
+    final yearDifference = currentTime.difference(_targetTime).inDays ~/ 365;
+    if (yearDifference > 0) {
+      return '$yearDifference ${localizationLabel.yearLabel}';
+    }
+
+    /// The `monthDifference` variable represents the difference between the current time and the `targetTime` in months.
+    final monthDifference = currentTime.difference(_targetTime).inDays ~/ 30;
+    if (monthDifference > 0) {
+      return '$monthDifference ${localizationLabel.monthLabel}';
+    }
+
+    /// The `dayDifference` variable represents the difference between the current time and the `targetTime` in days.
+    final dayDifference = currentTime.difference(_targetTime).inDays;
     if (dayDifference > 0) {
-      return '$dayDifference ${_dateDifferenceModel.dayDifferenceLabel}}';
-    } else if (hourDifference > 0) {
-      return '$hourDifference ${_dateDifferenceModel.hourDifferenceLabel}';
-    } else if (minuteDifference > 0) {
-      return '$minuteDifference ${_dateDifferenceModel.minuteDifferenceLabel}';
+      return '$dayDifference ${localizationLabel.dayLabel}';
+    }
+
+    /// The `hourDifference` variable represents the difference between the current time and the `targetTime` in hours.
+    final hourDifference = currentTime.difference(_targetTime).inHours;
+    if (hourDifference > 0) {
+      return '$hourDifference ${localizationLabel.hourLabel}';
+    }
+
+    /// The `minuteDifference` variable represents the difference between the current time and the `targetTime` in minutes.
+    final minuteDifference = currentTime.difference(_targetTime).inMinutes;
+    if (minuteDifference > 0) {
+      return '$minuteDifference ${localizationLabel.minuteLabel}';
+    }
+
+    /// The `secondDifference` variable represents the difference between the current time and the `targetTime` in seconds.
+    final secondDifference = currentTime.difference(_targetTime).inSeconds;
+    if (secondDifference > 0) {
+      return '$secondDifference ${localizationLabel.secondLabel}';
     }
     return '';
   }
 }
 
-/// The code snippet defines an extension method `timeDiff` on the `DateTime` class. This extension
-/// method returns a custom extension object `_DateExtension` that calculates the time difference
-/// between the current time and a given time.
-
-extension DateTimeExtension1 on DateTime {
-  /// The function returns a custom extension object that calculates the time difference between the
-  /// current time and a given time.
-  ///
-  /// Args:
-  ///   currentTime (DateTime): The `currentTime` parameter is a nullable `DateTime` object that
-  /// represents the current time. If a value is provided, it will be used as the current time for
-  /// calculating the time difference. If no value is provided, the current system time will be used.
-  _DateExtension timeDiff({
-    DateTime? currentTime,
-    DateDifferenceModel? dateDifferenceModel,
-  }) =>
-      _DateExtension(
-        currentTime: currentTime ?? DateTime.now(),
-        dateTime: this,
-        dateDifferenceModel: dateDifferenceModel ?? const DateDifferenceModel(),
-      );
+extension ComparingDateLocalizationExtension on DateTime {
+  _CurrentTimeExtension get ext => _CurrentTimeExtension(this);
 }
 
-final class DateDifferenceModel {
-  const DateDifferenceModel({
-    this.dayDifferenceLabel = 'days ago',
-    this.hourDifferenceLabel = 'hours ago',
-    this.minuteDifferenceLabel = 'minutes ago',
+final class DateLocalizationLabel {
+  const DateLocalizationLabel({
+    this.yearLabel = 'years ago',
+    this.monthLabel = 'months ago',
+    this.dayLabel = 'days ago',
+    this.hourLabel = 'hours ago',
+    this.minuteLabel = 'minutes ago',
+    this.secondLabel = 'seconds ago',
   });
-  final String dayDifferenceLabel;
-  final String hourDifferenceLabel;
-  final String minuteDifferenceLabel;
+  final String yearLabel;
+  final String monthLabel;
+  final String dayLabel;
+  final String hourLabel;
+  final String minuteLabel;
+  final String secondLabel;
 }
