@@ -1,4 +1,5 @@
 export 'context_extension.dart';
+export 'date_extension.dart';
 export 'file_extension.dart';
 export 'future_extension.dart';
 export 'image_extension.dart';
