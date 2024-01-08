@@ -2,9 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+extension ContextExtension on BuildContext {
+  _ContextGeneralExtension get general => _ContextGeneralExtension(this);
+}
+
 /// Provides convenient access to commonly used properties from [MediaQueryData] and [ThemeData]
 /// related to the current [BuildContext].
-class _ContextGeneralExtension {
+final class _ContextGeneralExtension {
   _ContextGeneralExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
@@ -53,29 +57,4 @@ class _ContextGeneralExtension {
   /// Returns the text scale factor applied to the application, based on the current
   /// [MediaQueryData].
   double get textScaleFactor => mediaTextScale;
-}
-
-extension ContextExtension on BuildContext {
-  _ContextGeneralExtension get general => _ContextGeneralExtension(this);
-
-  @Deprecated('Use general.mediaQuery instead')
-  MediaQueryData get mediaQuery => MediaQuery.of(this);
-  @Deprecated('Use general.mediaQuery instead')
-  TextTheme get textTheme => Theme.of(this).textTheme;
-  @Deprecated('Use general.mediaQuery instead')
-  TextTheme get primaryTextTheme => Theme.of(this).primaryTextTheme;
-  @Deprecated('Use general.mediaQuery instead')
-  ColorScheme get colorScheme => Theme.of(this).colorScheme;
-  @Deprecated('Use general.mediaQuery instead')
-  ThemeData get appTheme => Theme.of(this);
-  @Deprecated('Use general.mediaQuery instead')
-  MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
-  @Deprecated('Use general.mediaQuery instead')
-  bool get isKeyBoardOpen => MediaQuery.of(this).viewInsets.bottom > 0;
-  @Deprecated('Use general.mediaQuery instead')
-  double get keyboardPadding => MediaQuery.of(this).viewInsets.bottom;
-  @Deprecated('Use general.mediaQuery instead')
-  Brightness get appBrightness => MediaQuery.of(this).platformBrightness;
-  @Deprecated('Use general.mediaQuery instead')
-  double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
 }

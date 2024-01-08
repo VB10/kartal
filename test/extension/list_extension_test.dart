@@ -33,13 +33,13 @@ void main() {
   });
 
   test('Test indexOrNull method for finding existing item', () {
-    List<String>? stringList = ['apple', 'banana', 'orange'];
+    final stringList = <String>['apple', 'banana', 'orange'];
     final index = stringList.ext.indexOrNull((item) => item == 'banana');
     expect(index, equals(1));
   });
 
   test('Test indexOrNull method for finding non-existing item', () {
-    List<String>? stringList = ['apple', 'banana', 'orange'];
+    final stringList = <String>['apple', 'banana', 'orange'];
     final index = stringList.ext.indexOrNull((item) => item == 'grape');
     expect(index, isNull);
   });

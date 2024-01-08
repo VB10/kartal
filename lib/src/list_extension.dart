@@ -1,4 +1,8 @@
-class _ListExtension<T> {
+extension ListExtension<T> on List<T>? {
+  _ListExtension<T> get ext => _ListExtension<T>(this);
+}
+
+final class _ListExtension<T> {
   _ListExtension(List<T>? list) : _list = list;
 
   final List<T>? _list;
@@ -19,28 +23,6 @@ class _ListExtension<T> {
   /// If no element is found, returns null.
   int? indexOrNull(bool Function(T) search) {
     final result = _list?.indexWhere(search);
-    return result != -1 ? result : null;
-  }
-}
-
-extension ListExtension<T> on List<T>? {
-  _ListExtension<T> get ext => _ListExtension<T>(this);
-
-  @Deprecated('Use ext.isNullOrEmpty instead')
-  bool get isNullOrEmpty => !isNotNullOrEmpty;
-
-  @Deprecated('Use ext.isNotNullOrEmpty instead')
-  bool get isNotNullOrEmpty {
-    if (this is List) {
-      return this!.isNotEmpty;
-    } else {
-      return false;
-    }
-  }
-
-  @Deprecated('Use ext.indexOrNull instead')
-  int? indexOrNull(bool Function(T) search) {
-    final result = this?.indexWhere(search);
     return result != -1 ? result : null;
   }
 }

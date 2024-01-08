@@ -14,9 +14,13 @@ import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-part 'utility/mixin/string_extension_mixin.dart';
+part 'private/mixin/string_extension_mixin.dart';
 
-class _StringExtension with _StringExtensionMixin {
+extension StringExtension on String? {
+  _StringExtension get ext => _StringExtension(this);
+}
+
+final class _StringExtension with _StringExtensionMixin {
   _StringExtension(String? value) : _value = value;
 
   final String? _value;
@@ -63,7 +67,7 @@ class _StringExtension with _StringExtensionMixin {
             ' ',
           )
           .split(' ')
-          .map((str) => str.toCapitalized())
+          .map((str) => str.ext.toCapitalized())
           .join(' ')
       : '';
 
@@ -123,9 +127,11 @@ class _StringExtension with _StringExtensionMixin {
       InputFormatter.instance.timeFormatterOverLine.unmaskText(_value ?? '');
 
   String get randomImage => 'https://picsum.photos/200/300';
+
   String get randomSquareImage => 'https://picsum.photos/200';
 
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
+
   String get customHighProfileImage =>
       'https://www.gravatar.com/avatar/?d=mp&s=200';
 
@@ -203,7 +209,7 @@ class _StringExtension with _StringExtensionMixin {
     final mailBodyText =
         DeviceUtility.instance.shareMailText(title, _value ?? '');
     final isLaunch = await launchUrlString(Uri.encodeFull(mailBodyText));
-    if (!isLaunch) await _value?.share();
+    if (!isLaunch) await _value?.ext.share();
   }
 
   Future<void> share() async {
@@ -279,205 +285,5 @@ class _StringExtension with _StringExtensionMixin {
     }
 
     return null;
-  }
-}
-
-// Deprecated: Use ext.toVisible instead
-
-extension StringExtension on String? {
-  _StringExtension get ext => _StringExtension(this);
-
-  @Deprecated('Use ext.lineLength instead')
-  int get lineLength => '\n'.allMatches(this ?? '').length + 1;
-
-  @Deprecated('Use ext.color instead')
-  Color get color => Color(int.parse('0xff$this'));
-
-  @Deprecated('Use ext.toCapitalized instead')
-  String toCapitalized() {
-    final condition = this != null && this!.isNotEmpty;
-    if (!condition) return '';
-    final firstIndexUpperCased = this![0].toUpperCase();
-    final restOfTheString = this!.substring(1).toLowerCase();
-    return condition ? firstIndexUpperCased + restOfTheString : '';
-  }
-
-  @Deprecated('Use ext.toTitleCase instead')
-  String toTitleCase() => this != null
-      ? this!
-          .replaceAll(
-            RegExp(' +'),
-            ' ',
-          )
-          .split(' ')
-          .map((str) => str.toCapitalized())
-          .join(' ')
-      : '';
-
-  @Deprecated('Use ext.isNullOrEmpty instead')
-  bool get isNullOrEmpty => this == null || this!.isEmpty;
-
-  @Deprecated('Use ext.isNotNullOrNoEmpty instead')
-  bool get isNotNullOrNoEmpty => this != null && this!.isNotEmpty;
-
-  @Deprecated('Use ext.isValidEmail instead')
-  bool get isValidEmail {
-    if (!isNotNullOrNoEmpty) return false;
-    return RegExp(
-      RegexConstants.instance().emailRegex,
-    ).hasMatch(this!);
-  }
-
-  @Deprecated('Use ext.isValidPassword instead')
-  bool get isValidPassword {
-    if (this == null) return false;
-    return RegExp(
-      RegexConstants.instance().passwordRegex,
-    ).hasMatch(this!);
-  }
-
-  @Deprecated('Use ext.withoutSpecialCharacters instead')
-  String? get withoutSpecialCharacters =>
-      isNullOrEmpty ? this : removeDiacritics(this!);
-
-  @Deprecated('Use ext.bearer instead')
-  Map<String, dynamic> get bearer => {'Authorization': 'Bearer $this'};
-
-  @Deprecated('Use ext.phoneFormat_value instead')
-  String get phoneFormat_value =>
-      InputFormatter.instance.phoneFormatter.unmaskText(this ?? '');
-
-  @Deprecated('Use ext.timeFormat_value instead')
-  String get timeFormat_value =>
-      InputFormatter.instance.timeFormatter.unmaskText(this ?? '');
-
-  @Deprecated('Use ext.timeOverlineFormat_value instead')
-  String get timeOverlineFormat_value =>
-      InputFormatter.instance.timeFormatterOverLine.unmaskText(this ?? '');
-
-  @Deprecated('Use ext.randomImage instead')
-  String get randomImage => 'https://picsum.photos/200/300';
-  @Deprecated('Use ext.randomSquareImage instead')
-  String get randomSquareImage => 'https://picsum.photos/200';
-  @Deprecated('Use ext.customProfileImage instead')
-  String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
-  @Deprecated('Use ext.customHighProfileImage instead')
-  String get customHighProfileImage =>
-      'https://www.gravatar.com/avatar/?d=mp&s=200';
-  @Deprecated('Use ext.colorCode instead')
-  int? get colorCode => int.tryParse('0xFF$this');
-
-  @Deprecated('Use ext.toColor instead')
-  Color get toColor => Color(colorCode ?? 0xFFFFFFFF);
-
-  @Deprecated('Use ext.launchEmail instead')
-  Future<bool> get launchEmail => launchUrlString('mailto:$this');
-
-  @Deprecated('Use ext.launchPhone instead')
-  Future<bool> get launchPhone => launchUrlString('tel:$this');
-
-  @Deprecated('Use ext.launchWebsite instead')
-  Future<bool> get launchWebsite => launchUrlString(this ?? '');
-
-  @Deprecated('Use ext.launchWebsiteCustom instead')
-  Future<bool> launchWebsiteCustom({
-    bool enableJavaScript = false,
-    bool enableDomStorage = false,
-    Map<String, String> headers = const <String, String>{},
-    String? webOnlyWindowName,
-    LaunchMode mode = LaunchMode.platformDefault,
-  }) =>
-      launchUrlString(
-        this ?? '',
-        webViewConfiguration: WebViewConfiguration(
-          enableDomStorage: enableDomStorage,
-          enableJavaScript: enableJavaScript,
-          headers: headers,
-        ),
-        mode: mode,
-        webOnlyWindowName: webOnlyWindowName,
-      );
-
-  @Deprecated('Use ext.shareWhatsApp instead')
-  Future<void> shareWhatsApp() async {
-    try {
-      final isLaunch = await launchUrlString(
-        '${KartalAppConstants.WHATS_APP_PREFIX}$this',
-      );
-      if (!isLaunch) await share();
-    } catch (e) {
-      await share();
-    }
-  }
-
-  @Deprecated('Use ext.shareMail instead')
-  Future<void> shareMail(String title) async {
-    final value = DeviceUtility.instance.shareMailText(title, this ?? '');
-    final isLaunch = await launchUrlString(Uri.encodeFull(value));
-    if (!isLaunch) await value.share();
-  }
-
-  @Deprecated('Use ext.share instead')
-  Future<void> share() async {
-    if (Platform.isIOS) {
-      final isAppIpad = await DeviceUtility.instance.isIpad();
-      if (isAppIpad) {
-        await Share.share(
-          this ?? '',
-          sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom,
-        );
-      }
-    }
-
-    await Share.share(this ?? '');
-  }
-
-  @Deprecated('Use ext.appName instead')
-  String get appName {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.appName;
-    }
-  }
-
-  @Deprecated('Use ext.phoneFormatValue instead')
-  String get phoneFormatValue =>
-      InputFormatter.instance.phoneFormatter.unmaskText(this ?? '');
-
-  @Deprecated('Use ext.packageName instead')
-  String get packageName {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.packageName;
-    }
-  }
-
-  @Deprecated('Use ext.version instead')
-  String get version {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.version;
-    }
-  }
-
-  @Deprecated('Use ext.buildNumber instead')
-  String get buildNumber {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.buildNumber;
-    }
-  }
-
-  @Deprecated('Use ext.deviceId instead')
-  Future<String> get deviceId async {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.getUniqueDeviceId();
-    }
   }
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-class _WidgetExtension {
+extension WidgetExtension on Widget {
+  _WidgetExtension get ext => _WidgetExtension(this);
+}
+
+final class _WidgetExtension {
   _WidgetExtension(Widget widget) : _widget = widget;
 
   final Widget _widget;
@@ -22,23 +26,4 @@ class _WidgetExtension {
 
   /// Wraps the widget in a [SliverToBoxAdapter] widget for use in a [CustomScrollView].
   Widget get sliver => SliverToBoxAdapter(child: _widget);
-}
-
-extension WidgetExtension on Widget {
-  _WidgetExtension get ext => _WidgetExtension(this);
-
-  @Deprecated('Use ext.toVisible instead')
-  Widget toVisible(bool value) => value ? this : const SizedBox.shrink();
-
-  @Deprecated('Use ext.toDisabled instead')
-  Widget toDisabled([bool? disable, double? opacity]) => IgnorePointer(
-        ignoring: disable ?? true,
-        child: Opacity(
-          opacity: (disable ?? true) ? (opacity ?? 0.2) : 1,
-          child: this,
-        ),
-      );
-
-  @Deprecated('Use ext.sliver instead')
-  Widget get sliver => SliverToBoxAdapter(child: this);
 }

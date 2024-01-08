@@ -1,4 +1,15 @@
-# [3.4.3]
+# [3.5.0]
+
+- New version has removed all deprecated code now using.
+- Added new extension about LinkPreview for any url.
+- Fixed issue for iterable extension
+- Updated readme file for utility and some other extension
+
+## [3.4.4]
+
+- Fixed open maps issue for android side.
+
+## [3.4.3]
 
 - Timeout extension added for any future request
 

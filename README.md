@@ -249,6 +249,13 @@ You can parse your asset file with generic way.
         .crackBundle<Post, List<Post>>(model: Post());
 ```
 
+## Iterable Extension
+
+You can use [Iterable.ext] to all
+
+- `List<T> makeSafe()`
+- `List<T> makeSafeCustom(bool Function(T? value) onHandle)`
+
 ## List Extension
 
 You can use List.ext to all
@@ -266,6 +273,15 @@ You can use Widget.ext
 - `toVisible({bool value = true})`
 - `toDisabled({bool? disable, double? opacity})`
 - `get sliver`
+
+## Utility
+
+Some useful functions for general using.
+
+- `MapsUtility.openAppleMapsWithQuery`, `MapsUtility.openGoogleMapsWithQuery`, `MapsUtility.openGoogleWebMapsWithQuery`,
+- `CustomLinkPreview.getLinkPreviewData`
+- `CustomLogger.showError`
+- `BundleDecoder('assetPath').crackBundle`
 
 ## License
 
