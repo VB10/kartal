@@ -8,7 +8,7 @@ extension BorderExtension on BuildContext {
 }
 
 /// Extension methods for [BuildContext] to create [BorderRadius] objects.
-class _ContextBorderExtension {
+final class _ContextBorderExtension {
   _ContextBorderExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
