@@ -197,7 +197,7 @@ final class _StringExtension with _StringExtensionMixin {
   Future<void> shareWhatsApp() async {
     try {
       final isLaunch = await launchUrlString(
-        '${KartalAppConstants.WHATS_APP_PREFIX}$this',
+        '${KartalAppConstants.WHATS_APP_PREFIX}$_value',
       );
       if (!isLaunch) await share();
     } catch (e) {
