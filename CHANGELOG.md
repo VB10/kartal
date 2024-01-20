@@ -1,10 +1,14 @@
-# [4.0.0-dev1]
+# [4.0.0-dev2]
+- Fixed share issue for whatsapp
+
+
+## [4.0.0-dev1]
 - Added link preview extension
 - Implemented new date extension from #60
 - Added new extension for iterable list
 
 
-# [3.5.0]
+## [3.5.0]
 
 - New version has removed all deprecated code now using.
 - Added new extension about LinkPreview for any url.
