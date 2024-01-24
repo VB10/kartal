@@ -35,9 +35,9 @@ class ContextExtensionView extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     final id = UniqueKey();
-                    context.popupManager.showLoader(id: id);
+                    context.popupManager.showLoader(id: id.toString());
                     Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader(id: id);
+                      context.popupManager.hideLoader(id: id.toString());
                     });
                   },
                   child: const Text('Show loader with id'),

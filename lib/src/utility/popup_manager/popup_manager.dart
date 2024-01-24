@@ -10,16 +10,18 @@ final class LoaderRoute extends DialogRoute<dynamic> {
     super.barrierDismissible,
   });
 
-  final Object? id;
+  final String? id;
 }
 
 /// Helper class for showing popups
 ///
 /// [NavigatorState] key or [NavigatorState]'s itself is required either of Root's or Nested Navigator's
 @immutable
-class PopupManager {
+final class PopupManager {
+  /// It is recommended to use root navigator's key
   PopupManager(GlobalKey<NavigatorState> navigatorKey) : _state = navigatorKey.currentState;
 
+  /// It is recommended to set rootNavigator: true eg. Navigator.of(context, rootNavigator: true)
   PopupManager.withState(this._state);
 
   final NavigatorState? _state;
@@ -27,42 +29,42 @@ class PopupManager {
 
   /// Shows loader dialog
   /// Provide [id] id if you have multiple loaders and want to close a specific one
-  void showLoader({Object? id, bool barrierDismissible = false, WidgetBuilder? loaderBuilder}) {
+  void showLoader({String? id, bool barrierDismissible = false, WidgetBuilder? widgetBuilder}) {
     assert(_state != null, 'Tried to show loader but navigatorState was null.');
-    final navigatorState = _state!;
+
     assert(
-      id == null || _routes.where((element) => element.id == id).toList().isEmpty,
+      id == null || _routes.where((element) => element.id == id).isEmpty,
       'There is already a loader showing with id: $id',
     );
 
     final route = LoaderRoute(
       id: id,
       barrierDismissible: barrierDismissible,
-      context: navigatorState.context,
-      builder: loaderBuilder ??
+      context: _state!.context,
+      builder: widgetBuilder ??
           (BuildContext context) => const Center(
                 child: CircularProgressIndicator(),
               ),
     );
 
     _routes.add(route);
-    navigatorState.push(route);
+    _state!.push(route);
   }
 
   /// If [id] is provided closes loader with given [id]
   /// If not closes latest shown loader
-  void hideLoader({Object? id}) {
+  void hideLoader({String? id}) {
     assert(
-      id == null || _routes.where((element) => element.id == id).toList().isNotEmpty,
+      id == null || _routes.where((element) => element.id == id).isNotEmpty,
       'Tried to close loader with id: $id which does not exist',
     );
     assert(_state != null, 'Tried to hide loader but navigatorState was null.');
-    final navigatorState = _state!;
+
     if (id == null) {
-      navigatorState.removeRoute(_routes.removeLast());
-    } else {
-      final routeIndex = _routes.indexWhere((element) => element.id == id);
-      navigatorState.removeRoute(_routes.removeAt(routeIndex));
+      _state!.removeRoute(_routes.removeLast());
+      return;
     }
+    final routeIndex = _routes.indexWhere((element) => element.id == id);
+    _state!.removeRoute(_routes.removeAt(routeIndex));
   }
 }

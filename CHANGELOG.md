@@ -1,9 +1,13 @@
-## [4.0.0-dev3]
-- Added popupManager extension on BuildContext for showing loaders
-- Added PopupManager class for showing loaders
+## [4.0.0-dev4]
+- Added PopupManager extension on BuildContext for showing loader widget
+- Added PopupManager class for showing loader widget
 
+# [4.0.0-dev3]
+- Fixed some extension with default value
+- Added new extension for nullable boolean check
+- Some coding fixes
 
-# [4.0.0-dev2]
+## [4.0.0-dev2]
 - Fixed share issue for whatsapp
 
 
