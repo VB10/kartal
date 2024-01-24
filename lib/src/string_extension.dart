@@ -20,6 +20,10 @@ extension StringExtension on String? {
   _StringExtension get ext => _StringExtension(this);
 }
 
+extension StringDefaultExtension on String {
+  _StringExtension get ext => _StringExtension(this);
+}
+
 final class _StringExtension with _StringExtensionMixin {
   _StringExtension(String? value) : _value = value;
 

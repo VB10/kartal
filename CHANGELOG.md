@@ -1,4 +1,9 @@
-# [4.0.0-dev2]
+# [4.0.0-dev3]
+- Fixed some extension with default value
+- Added new extension for nullable boolean check
+- Some coding fixes
+
+## [4.0.0-dev2]
 - Fixed share issue for whatsapp
 
 
