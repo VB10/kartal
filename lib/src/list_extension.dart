@@ -2,6 +2,10 @@ extension ListExtension<T> on List<T>? {
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
+extension ListDefaultExtension<T> on List<T> {
+  _ListExtension<T> get ext => _ListExtension<T>(this);
+}
+
 final class _ListExtension<T> {
   _ListExtension(List<T>? list) : _list = list;
 
@@ -18,6 +22,9 @@ final class _ListExtension<T> {
       return false;
     }
   }
+
+  List<T> makeSafe() =>
+      _list?.where((element) => element != null).cast<T>().toList() ?? [];
 
   /// Returns the index of the first element that satisfies the provided [search] function.
   /// If no element is found, returns null.

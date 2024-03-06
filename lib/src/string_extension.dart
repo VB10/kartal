@@ -20,6 +20,10 @@ extension StringExtension on String? {
   _StringExtension get ext => _StringExtension(this);
 }
 
+extension StringDefaultExtension on String {
+  _StringExtension get ext => _StringExtension(this);
+}
+
 final class _StringExtension with _StringExtensionMixin {
   _StringExtension(String? value) : _value = value;
 
@@ -197,7 +201,7 @@ final class _StringExtension with _StringExtensionMixin {
   Future<void> shareWhatsApp() async {
     try {
       final isLaunch = await launchUrlString(
-        '${KartalAppConstants.WHATS_APP_PREFIX}$this',
+        '${KartalAppConstants.WHATS_APP_PREFIX}$_value',
       );
       if (!isLaunch) await share();
     } catch (e) {

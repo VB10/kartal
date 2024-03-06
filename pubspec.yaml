@@ -4,6 +4,9 @@ description: Kartal is an extension package for easy to use at app development
   etc.).
 version: 4.0.0-dev4
 repository: https://github.com/VB10/kartal
+screenshots:
+  - description: 'City of Kartal, Istanbul'
+    path: screen_shots/kartal.jpeg
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

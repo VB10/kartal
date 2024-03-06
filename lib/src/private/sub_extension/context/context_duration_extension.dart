@@ -6,11 +6,17 @@ extension DurationExtension on BuildContext {
 
 /// Provides convenient access to commonly used [Duration] values.
 final class _ContextDurationExtension {
+  @Deprecated('Please use Durations instead')
+
   /// Returns a [Duration] object with a low duration of 500 milliseconds.
   Duration get durationLow => const Duration(milliseconds: 500);
 
+  @Deprecated('Please use Durations instead')
+
   /// Returns a [Duration] object with a normal duration of 1 second.
   Duration get durationNormal => const Duration(seconds: 1);
+
+  @Deprecated('Please use Durations instead')
 
   /// Returns a [Duration] object with a slow duration of 2 seconds.
   Duration get durationSlow => const Duration(seconds: 2);
