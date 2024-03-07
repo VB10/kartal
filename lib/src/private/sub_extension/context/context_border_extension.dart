@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/src/private/sub_extension/context/index.dart';
 
 extension BorderExtension on BuildContext {
+  /// Provides convenient access to commonly used properties from [Border] and [BorderRadius]
   _ContextBorderExtension get border => _ContextBorderExtension(this);
 }
 
