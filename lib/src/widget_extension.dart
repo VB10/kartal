@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension WidgetExtension on Widget {
+  /// Widget extension with [ext] property.
   _WidgetExtension get ext => _WidgetExtension(this);
 }
 

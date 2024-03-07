@@ -3,6 +3,7 @@ final class _IterableExtension<T> {
 
   final Iterable<T?> _list;
 
+  ///  Convert to nullable list for safe operations.
   List<T> makeSafe() =>
       _list.where((element) => element != null).cast<T>().toList();
 
@@ -18,5 +19,6 @@ final class _IterableExtension<T> {
 }
 
 extension IterableExtensions<T> on Iterable<T?> {
+  /// Iterable extension with [exts] property.
   _IterableExtension<T> get exts => _IterableExtension<T>(this);
 }

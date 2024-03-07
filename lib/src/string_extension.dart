@@ -1,17 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:diacritic/diacritic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/src/constants/app_constants.dart';
 import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
-import 'package:kartal/src/exception/package_info_exception.dart';
-import 'package:kartal/src/utility/device_utility.dart';
+import 'package:kartal/src/platform/platform.dart';
 import 'package:kartal/src/utility/maps_utility.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 part 'private/mixin/string_extension_mixin.dart';
@@ -130,15 +126,20 @@ final class _StringExtension with _StringExtensionMixin {
   String get timeOverlineFormatValue =>
       InputFormatter.instance.timeFormatterOverLine.unmaskText(_value ?? '');
 
+  /// Random image -> picsum 200x300
   String get randomImage => 'https://picsum.photos/200/300';
 
+  /// Random image -> picsum 200x200
   String get randomSquareImage => 'https://picsum.photos/200';
 
+  /// Random image -> picsum 200x300
   String get customProfileImage => 'https://www.gravatar.com/avatar/?d=mp';
 
+  /// Profile image from gravatar
   String get customHighProfileImage =>
       'https://www.gravatar.com/avatar/?d=mp&s=200';
 
+  /// Returns the value of map with bearer token
   Map<String, dynamic> get bearer => {'Authorization': 'Bearer $_value'};
 
   ///
@@ -156,7 +157,7 @@ final class _StringExtension with _StringExtensionMixin {
 
     var result = false;
 
-    if (Platform.isIOS) {
+    if (Platform.instance.isIOS) {
       result = await MapsUtility.openAppleMapsWithQuery(
         encodedQuery,
         callBack: callBack,
@@ -180,6 +181,7 @@ final class _StringExtension with _StringExtensionMixin {
   /// Returns whether or not the user can launch the website.
   Future<bool> get launchWebsite => launchUrlString(_value ?? '');
 
+  /// Returns whether or not the user can launch the website.
   Future<bool> launchWebsiteCustom({
     bool enableJavaScript = false,
     bool enableDomStorage = false,
@@ -198,79 +200,30 @@ final class _StringExtension with _StringExtensionMixin {
         webOnlyWindowName: webOnlyWindowName,
       );
 
-  Future<void> shareWhatsApp() async {
-    try {
-      final isLaunch = await launchUrlString(
-        '${KartalAppConstants.WHATS_APP_PREFIX}$_value',
-      );
-      if (!isLaunch) await share();
-    } catch (e) {
-      await share();
-    }
-  }
+  /// Share your value with WhatsApp
+  Future<void> shareWhatsApp() async => Platform.instance.shareWhatsApp(_value);
 
-  Future<void> shareMail(String title) async {
-    final mailBodyText =
-        DeviceUtility.instance.shareMailText(title, _value ?? '');
-    final isLaunch = await launchUrlString(Uri.encodeFull(mailBodyText));
-    if (!isLaunch) await _value?.ext.share();
-  }
+  /// Share your value with Mail
+  Future<void> shareMail(String title) async =>
+      Platform.instance.shareMail(title, _value);
 
-  Future<void> share() async {
-    if (Platform.isIOS) {
-      final isAppIpad = await DeviceUtility.instance.isIpad();
-      if (isAppIpad) {
-        await Share.share(
-          _value ?? '',
-          sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom,
-        );
-      }
-    }
+  /// Share your value  General
+  Future<void> share() async => Platform.instance.share(_value);
 
-    await Share.share(_value ?? '');
-  }
+  /// Application name from platform
+  String get appName => Platform.instance.appName;
 
-  String get appName {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.appName;
-    }
-  }
+  /// Application package name from platform
+  String get packageName => Platform.instance.version;
 
-  String get packageName {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.packageName;
-    }
-  }
+  /// Application version from platform
+  String get version => Platform.instance.version;
 
-  String get version {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.version;
-    }
-  }
+  /// Application build number from platform
+  String get buildNumber => Platform.instance.buildNumber;
 
-  String get buildNumber {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.buildNumber;
-    }
-  }
-
-  Future<String> get deviceId async {
-    {
-      if (DeviceUtility.instance.packageInfo == null) {
-        throw PackageInfoNotFound();
-      } else {
-        return DeviceUtility.instance.getUniqueDeviceId();
-      }
-    }
-  }
+  /// Application device id from platform
+  Future<String> get deviceId async => (await Platform.instance.deviceId) ?? '';
 
   /// this method work with string value to convert json or any model
   Future<T?> safeJsonDecodeCompute<T>() async {

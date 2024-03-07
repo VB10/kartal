@@ -1,8 +1,10 @@
 extension ListExtension<T> on List<T>? {
+  /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
 extension ListDefaultExtension<T> on List<T> {
+  /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
@@ -23,6 +25,7 @@ final class _ListExtension<T> {
     }
   }
 
+  /// Convert to nullable list for safe operations.
   List<T> makeSafe() =>
       _list?.where((element) => element != null).cast<T>().toList() ?? [];
 
