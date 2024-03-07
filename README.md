@@ -1,7 +1,5 @@
 # kartal
 
-![kartal](https://www.gezilecekyerler.biz/wp-content/uploads/2015/12/Kartal-%C4%B0stanbul.jpg)
-
 My birth country is Kartal, so I created an extension to give born more power.
 
 You should look at the example folder if you want to see an example using these extensions.
