@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// A [DialogRoute] shows [CircularProgressIndicator] in center
-final class LoaderRoute extends DialogRoute<dynamic> {
+final class LoaderRoute extends DialogRoute<void> {
   @visibleForTesting
   LoaderRoute({
     required super.context,

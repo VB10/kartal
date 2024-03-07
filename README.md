@@ -135,6 +135,13 @@ You can use context.sized to all
 - `dynamicWidth(double val)` (double): Calculates and returns a dynamic width value based on the provided `val` and the current widget's width.
 - `dynamicHeight(double val)` (double): Calculates and returns a dynamic height value based on the provided `val` and the current widget's height.
 
+## Popup
+
+You can use context.popupManager to all
+
+- `showLoader` (Function): A method shows loader indicator by pushing a `DialogRoute`. Takes optional `id`, `barrierDismissible` and `widgetBuilder`.
+- `hideLoader` (Function): A method hides current active loader by removing `DialogRoute`. Takes optional `id`. If `id` is not provided will close latest one.
+
 ## String extension
 
 ![Context Extension](./github/string_extension.png)
