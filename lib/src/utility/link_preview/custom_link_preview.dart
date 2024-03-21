@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as html_parser;
@@ -7,6 +5,9 @@ import 'package:kartal/src/utility/link_preview/custom_link_preview_data.dart';
 
 final class CustomLinkPreview {
   const CustomLinkPreview._();
+
+  /// This method is used to validate the url
+  static const _ok = 200;
 
   static bool _validateUrl(String url) =>
       Uri.tryParse(url)?.hasAbsolutePath ?? false;
@@ -19,7 +20,7 @@ final class CustomLinkPreview {
     } catch (_) {
       return null;
     }
-    if (response.statusCode == HttpStatus.ok) {
+    if (response.statusCode == _ok) {
       final document = html_parser.parse(response.data);
       final title = _fetchTitleFromUrl(document);
       final description = _fetchDescriptionFromUrl(document);
