@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/web.dart'
+    if (dart.library.io) 'package:logger/logger.dart';
 
 @immutable
 final class CustomLogger {

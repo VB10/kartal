@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/index.dart';
+import 'package:kartal/src/platform/custom_platform.dart';
 import 'package:kartal/src/private/sub_extension/context/index.dart';
 
 extension ContextDeviceTypeExtension on BuildContext {
@@ -33,17 +32,17 @@ final class _ContextDeviceExtension {
       _width >= ResponsibilityConstants.instance().largeScreenSize;
 
   /// Returns `true` if the current device is running on Android.
-  bool get isAndroidDevice => Platform.isAndroid;
+  bool get isAndroidDevice => CustomPlatform.instance.isAndroid;
 
   /// Returns `true` if the current device is running on iOS.
-  bool get isIOSDevice => Platform.isIOS;
+  bool get isIOSDevice => CustomPlatform.instance.isIOS;
 
   /// Returns `true` if the current device is running on Windows.
-  bool get isWindowsDevice => Platform.isWindows;
+  bool get isWindowsDevice => CustomPlatform.instance.isWindows;
 
   /// Returns `true` if the current device is running on Linux.
-  bool get isLinuxDevice => Platform.isLinux;
+  bool get isLinuxDevice => CustomPlatform.instance.isLinux;
 
   /// Returns `true` if the current device is running on macOS.
-  bool get isMacOSDevice => Platform.isMacOS;
+  bool get isMacOSDevice => CustomPlatform.instance.isMacOS;
 }

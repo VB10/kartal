@@ -1,10 +1,10 @@
 import 'dart:html';
 
-import 'package:kartal/src/platform/platform.dart';
+import 'package:kartal/src/platform/custom_platform.dart';
 
-Platform get instance => WebPlatform();
+CustomPlatform get instance => WebPlatform();
 
-final class WebPlatform implements Platform {
+final class WebPlatform implements CustomPlatform {
   @override
   bool get isIOS => false;
 
@@ -32,4 +32,17 @@ final class WebPlatform implements Platform {
 
   @override
   String get version => window.navigator.appVersion;
+
+  /// TODO: fix it for web platform by checking the user agent
+  @override
+  bool get isAndroid => false;
+
+  @override
+  bool get isLinux => false;
+
+  @override
+  bool get isMacOS => false;
+
+  @override
+  bool get isWindows => false;
 }

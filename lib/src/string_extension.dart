@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
-import 'package:kartal/src/platform/platform.dart';
+import 'package:kartal/src/platform/custom_platform.dart';
 import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -157,7 +157,7 @@ final class _StringExtension with _StringExtensionMixin {
 
     var result = false;
 
-    if (Platform.instance.isIOS) {
+    if (CustomPlatform.instance.isIOS) {
       result = await MapsUtility.openAppleMapsWithQuery(
         encodedQuery,
         callBack: callBack,
@@ -201,29 +201,31 @@ final class _StringExtension with _StringExtensionMixin {
       );
 
   /// Share your value with WhatsApp
-  Future<void> shareWhatsApp() async => Platform.instance.shareWhatsApp(_value);
+  Future<void> shareWhatsApp() async =>
+      CustomPlatform.instance.shareWhatsApp(_value);
 
   /// Share your value with Mail
   Future<void> shareMail(String title) async =>
-      Platform.instance.shareMail(title, _value);
+      CustomPlatform.instance.shareMail(title, _value);
 
   /// Share your value  General
-  Future<void> share() async => Platform.instance.share(_value);
+  Future<void> share() async => CustomPlatform.instance.share(_value);
 
-  /// Application name from platform
-  String get appName => Platform.instance.appName;
+  /// Application name from CustomPlatform
+  String get appName => CustomPlatform.instance.appName;
 
-  /// Application package name from platform
-  String get packageName => Platform.instance.version;
+  /// Application package name from CustomPlatform
+  String get packageName => CustomPlatform.instance.version;
 
-  /// Application version from platform
-  String get version => Platform.instance.version;
+  /// Application version from CustomPlatform
+  String get version => CustomPlatform.instance.version;
 
-  /// Application build number from platform
-  String get buildNumber => Platform.instance.buildNumber;
+  /// Application build number from CustomPlatform
+  String get buildNumber => CustomPlatform.instance.buildNumber;
 
-  /// Application device id from platform
-  Future<String> get deviceId async => (await Platform.instance.deviceId) ?? '';
+  /// Application device id from CustomPlatform
+  Future<String> get deviceId async =>
+      (await CustomPlatform.instance.deviceId) ?? '';
 
   /// this method work with string value to convert json or any model
   Future<T?> safeJsonDecodeCompute<T>() async {

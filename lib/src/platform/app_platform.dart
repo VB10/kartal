@@ -2,62 +2,43 @@ import 'dart:io' as io;
 
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
-import 'package:kartal/src/platform/platform.dart';
+import 'package:kartal/src/platform/custom_platform.dart';
+import 'package:kartal/src/utility/device/device_utils_io.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-Platform get instance => AppPlatform();
+CustomPlatform get instance => AppPlatform();
 
-final class AppPlatform implements Platform {
+final class AppPlatform implements CustomPlatform {
   @override
   bool get isIOS => io.Platform.isIOS;
 
-  @override
-  String get appName {
-    if (DeviceUtility.instance.packageInfo == null) {
+  DeviceUtilsIO get _deviceUtils =>
+      DeviceUtility.instance.deviceUtils as DeviceUtilsIO;
+
+  PackageInfo get _packageInfo {
+    if (_deviceUtils.packageInfo == null) {
       throw PackageInfoNotFound();
     } else {
-      return DeviceUtility.instance.packageInfo!.appName;
+      return _deviceUtils.packageInfo!;
     }
   }
 
   @override
-  String get packageName {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.packageName;
-    }
-  }
+  String get appName => _packageInfo.appName;
 
   @override
-  String get version {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.version;
-    }
-  }
+  String get packageName => _packageInfo.packageName;
 
   @override
-  String get buildNumber {
-    if (DeviceUtility.instance.packageInfo == null) {
-      throw PackageInfoNotFound();
-    } else {
-      return DeviceUtility.instance.packageInfo!.buildNumber;
-    }
-  }
+  String get version => _packageInfo.version;
 
   @override
-  Future<String> get deviceId async {
-    {
-      if (DeviceUtility.instance.packageInfo == null) {
-        throw PackageInfoNotFound();
-      } else {
-        return DeviceUtility.instance.getUniqueDeviceId();
-      }
-    }
-  }
+  String get buildNumber => _packageInfo.buildNumber;
+
+  @override
+  Future<String> get deviceId async => _deviceUtils.getUniqueDeviceId();
 
   @override
   Future<void> shareWhatsApp(String? value) async {
@@ -82,15 +63,27 @@ final class AppPlatform implements Platform {
   @override
   Future<void> share(String? value) async {
     if (io.Platform.isIOS) {
-      final isAppIpad = await DeviceUtility.instance.isIpad();
+      final isAppIpad = await _deviceUtils.isIpad();
       if (isAppIpad) {
         await Share.share(
           value ?? '',
-          sharePositionOrigin: DeviceUtility.instance.ipadPaddingBottom,
+          sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
         );
       }
     }
 
     await Share.share(value ?? '');
   }
+
+  @override
+  bool get isAndroid => io.Platform.isAndroid;
+
+  @override
+  bool get isLinux => io.Platform.isLinux;
+
+  @override
+  bool get isMacOS => io.Platform.isMacOS;
+
+  @override
+  bool get isWindows => io.Platform.isWindows;
 }
