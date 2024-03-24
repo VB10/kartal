@@ -16,7 +16,10 @@ final class DeviceUtility {
   static DeviceUtility? _instance;
 
   /// Returns the singleton instance of [DeviceUtility].
-  static DeviceUtility get instance => _instance ??= DeviceUtility._init();
+  static DeviceUtility get instance {
+    _instance ??= DeviceUtility._init();
+    return _instance!;
+  }
 
   /// There is device general utils for each platform
   DeviceUtils get deviceUtils => device_utils.instance;
@@ -29,9 +32,7 @@ final class DeviceUtility {
       device_utils.instance.shareMailText(title, body);
 
   /// Initializes the package information.
-  Future<void> initPackageInfo() async {
-    await device_utils.instance.initPackageInfo();
-  }
+  Future<void> initPackageInfo() => device_utils.instance.initPackageInfo();
 
   /// Retrieves the unique device ID for the current device.
   Future<String> getUniqueDeviceId() =>

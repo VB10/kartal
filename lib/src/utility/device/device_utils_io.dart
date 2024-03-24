@@ -5,9 +5,12 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:kartal/kartal.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-DeviceUtils get instance => DeviceUtilsIO();
+DeviceUtils get instance => DeviceUtilsIO._instance;
 
 final class DeviceUtilsIO extends DeviceUtils {
+  DeviceUtilsIO._init();
+
+  static final DeviceUtilsIO _instance = DeviceUtilsIO._init();
   PackageInfo? packageInfo;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
