@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Extension methods for [Widget] to apply visibility and disable animations.
 extension WidgetExtension on Widget {
   /// Widget extension with [ext] property.
   _WidgetExtension get ext => _WidgetExtension(this);

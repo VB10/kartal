@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Provides convenient access to commonly used properties from [BuildContext].
 extension ContextExtension on BuildContext {
+  /// Provides convenient access to commonly used properties from [BuildContext].
   _ContextGeneralExtension get general => _ContextGeneralExtension(this);
 }
 

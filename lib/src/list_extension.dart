@@ -1,8 +1,10 @@
+/// List extension for nullable lists.
 extension ListExtension<T> on List<T>? {
   /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
+/// List extension for non-nullable lists.
 extension ListDefaultExtension<T> on List<T> {
   /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);

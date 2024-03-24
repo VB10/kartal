@@ -3,7 +3,9 @@ import 'package:kartal/src/constants/index.dart';
 import 'package:kartal/src/platform/custom_platform.dart';
 import 'package:kartal/src/private/sub_extension/context/index.dart';
 
+/// Extension methods for [BuildContext] to access device-related properties.
 extension ContextDeviceTypeExtension on BuildContext {
+  /// Provides convenient access to commonly used properties related to screen sizes and device platforms.
   _ContextDeviceExtension get device => _ContextDeviceExtension(this);
 }
 

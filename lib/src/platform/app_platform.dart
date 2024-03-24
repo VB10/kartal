@@ -2,14 +2,15 @@ import 'dart:io' as io;
 
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
-import 'package:kartal/src/platform/custom_platform.dart';
 import 'package:kartal/src/utility/device/device_utils_io.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+/// The `AppPlatform` class is used to provide platform-specific implementations of the [CustomPlatform] interface.
 CustomPlatform get instance => AppPlatform();
 
+/// Represents the platform-specific implementation of the [CustomPlatform] interface.
 final class AppPlatform implements CustomPlatform {
   @override
   bool get isIOS => io.Platform.isIOS;

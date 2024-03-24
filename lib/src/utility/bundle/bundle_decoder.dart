@@ -4,9 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/src/utility/bundle/asset_model_interface.dart';
 
-typedef ComputeCallback<T extends IAssetModel<T>, R> = Future<R> Function(
-  _ComputeArgument<T>,
-);
+/// The `BundleDecoder` class is used to decode the data from a bundle.
 
 final class BundleDecoder extends _BaseBundleDecoder with _BundleHelpers {
   BundleDecoder(super.assetPath);
@@ -82,6 +80,8 @@ mixin _BundleHelpers {
 
 class _BaseBundleDecoder {
   _BaseBundleDecoder(this.assetPath);
+
+  /// There is local asset path from locally
   final String assetPath;
 }
 

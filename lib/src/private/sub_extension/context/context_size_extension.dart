@@ -3,7 +3,9 @@ import 'package:kartal/src/private/sub_extension/context/index.dart';
 import 'package:kartal/src/widget/sized_box/space_sized_height_box.dart';
 import 'package:kartal/src/widget/sized_box/space_sized_width_box.dart';
 
+/// Extension methods for [BuildContext] to access size-related properties.
 extension SizedBoxExtension on BuildContext {
+  /// Provides convenient access to commonly used properties related to sizes.
   _ContextSizeExtension get sized => _ContextSizeExtension(this);
 }
 

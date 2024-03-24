@@ -3,11 +3,13 @@ import 'dart:io' if (dart.library.html) 'dart:html' show File;
 import 'package:kartal/src/constants/file_constants.dart';
 import 'package:mime/mime.dart';
 
+/// Extension methods for [File] to determine the type of the file.
 extension FileTypeExtension on File {
   _FileExtension get ext => _FileExtension(this);
 }
 
-// ignore: constant_identifier_names
+/// Represents the type of a file.
+/// The type can be one of the following: [IMAGE], [VIDEO], [AUDIO], [TEXT], or [UNKNOWN].
 enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
 
 /// Provides convenient access to determine the type of a file and check

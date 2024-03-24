@@ -12,11 +12,15 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 part 'private/mixin/string_extension_mixin.dart';
 
+/// Extension methods for [String] to provide additional functionalities.
 extension StringExtension on String? {
+  /// Provides convenient access to additional functionalities for [String].
   _StringExtension get ext => _StringExtension(this);
 }
 
+/// Extension methods for [String] to provide additional functionalities.
 extension StringDefaultExtension on String {
+  /// Provides convenient access to additional functionalities for [String].
   _StringExtension get ext => _StringExtension(this);
 }
 
@@ -25,7 +29,10 @@ final class _StringExtension with _StringExtensionMixin {
 
   final String? _value;
 
+  /// Returns the length of the string.
   int get lineLength => '\n'.allMatches(_value ?? '').length + 1;
+
+  /// Returns the length of the string.
   Color get color => Color(int.parse('0xff$_value'));
 
   /// Converts the generic value `T` to its primitive form.
