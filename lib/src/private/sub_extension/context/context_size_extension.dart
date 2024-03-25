@@ -13,32 +13,6 @@ final class _ContextSizeExtension {
   _ContextSizeExtension(BuildContext context) : _context = context;
   final BuildContext _context;
 
-  /// Returns an empty [SpaceSizedWidthBox] widget with a low width size of 0.01 times the height.
-  Widget get emptySizedWidthBoxLow => const SpaceSizedWidthBox(width: 0.01);
-
-  /// Returns an empty [SpaceSizedWidthBox] widget with a low width size of 0.03 times the height.
-  Widget get emptySizedWidthBoxLow3x => const SpaceSizedWidthBox(width: 0.03);
-
-  /// Returns an empty [SpaceSizedWidthBox] widget with a normal width size of 0.05 times the height.
-  Widget get emptySizedWidthBoxNormal => const SpaceSizedWidthBox(width: 0.05);
-
-  /// Returns an empty [SpaceSizedWidthBox] widget with a high width size of 0.1 times the height.
-  Widget get emptySizedWidthBoxHigh => const SpaceSizedWidthBox(width: 0.1);
-
-  /// Returns an empty [SpaceSizedHeightBox] widget with a low height size of 0.01 times the height.
-  Widget get emptySizedHeightBoxLow => const SpaceSizedHeightBox(height: 0.01);
-
-  /// Returns an empty [SpaceSizedHeightBox] widget with a low height size of 0.03 times the height.
-  Widget get emptySizedHeightBoxLow3x =>
-      const SpaceSizedHeightBox(height: 0.03);
-
-  /// Returns an empty [SpaceSizedHeightBox] widget with a normal height size of 0.05 times the height.
-  Widget get emptySizedHeightBoxNormal =>
-      const SpaceSizedHeightBox(height: 0.05);
-
-  /// Returns an empty [SpaceSizedHeightBox] widget with a high height size of 0.1 times the height.
-  Widget get emptySizedHeightBoxHigh => const SpaceSizedHeightBox(height: 0.1);
-
   /// Returns the height of the current widget's [MediaQuery].
   double get height => _context.general.mediaSize.height;
 
@@ -62,4 +36,36 @@ final class _ContextSizeExtension {
 
   /// Calculates and returns a dynamic height value based on the provided [val] and the current widget's height.
   double dynamicHeight(double val) => height * val;
+
+  /// Returns an empty [SpaceSizedWidthBox] widget with a low width size of 0.01 times the height.
+  SpaceSizedWidthBox get emptySizedWidthBoxLow =>
+      const SpaceSizedWidthBox(width: 0.01);
+
+  /// Returns an empty [SpaceSizedWidthBox] widget with a low width size of 0.03 times the height.
+  SpaceSizedWidthBox get emptySizedWidthBoxLow3x =>
+      const SpaceSizedWidthBox(width: 0.03);
+
+  /// Returns an empty [SpaceSizedWidthBox] widget with a normal width size of 0.05 times the height.
+  SpaceSizedWidthBox get emptySizedWidthBoxNormal =>
+      const SpaceSizedWidthBox(width: 0.05);
+
+  /// Returns an empty [SpaceSizedWidthBox] widget with a high width size of 0.1 times the height.
+  SpaceSizedWidthBox get emptySizedWidthBoxHigh =>
+      const SpaceSizedWidthBox(width: 0.1);
+
+  /// Returns an empty [SpaceSizedHeightBox] widget with a low height size of 0.01 times the height.
+  SpaceSizedHeightBox get emptySizedHeightBoxLow =>
+      const SpaceSizedHeightBox(height: 0.01);
+
+  /// Returns an empty [SpaceSizedHeightBox] widget with a low height size of 0.03 times the height.
+  SpaceSizedHeightBox get emptySizedHeightBoxLow3x =>
+      const SpaceSizedHeightBox(height: 0.03);
+
+  /// Returns an empty [SpaceSizedHeightBox] widget with a normal height size of 0.05 times the height.
+  SpaceSizedHeightBox get emptySizedHeightBoxNormal =>
+      const SpaceSizedHeightBox(height: 0.05);
+
+  /// Returns an empty [SpaceSizedHeightBox] widget with a high height size of 0.1 times the height.
+  SpaceSizedHeightBox get emptySizedHeightBoxHigh =>
+      const SpaceSizedHeightBox(height: 0.1);
 }
