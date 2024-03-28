@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/src/widget/route/slide_route.dart';
 
+/// Extension methods for [BuildContext] to navigate between routes.
 extension NavigationExtension on BuildContext {
+  /// Provides convenient access to navigation methods.
   _ContextNavigationExtension get route => _ContextNavigationExtension(this);
 }
 

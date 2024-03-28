@@ -1,4 +1,8 @@
-# [4.0.0-dev3]
+# [4.0.0-dev4]
+- Added web support for all extension
+- Updated documentation for general
+
+## [4.0.0-dev3]
 - Fixed some extension with default value
 - Added new extension for nullable boolean check
 - Some coding fixes

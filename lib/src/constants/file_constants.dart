@@ -1,4 +1,4 @@
-class FileConstants {
+final class FileConstants {
   FileConstants._init();
   factory FileConstants.instance() => _instance ??= FileConstants._init();
   static FileConstants? _instance;

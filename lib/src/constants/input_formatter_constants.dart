@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_constructors_over_static_methods
+
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class InputFormatter {
+final class InputFormatter {
   InputFormatter._init();
   static InputFormatter get instance => _instance ??= InputFormatter._init();
   static InputFormatter? _instance;

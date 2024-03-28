@@ -33,9 +33,9 @@ void main() {
   test('Get Device Package', () {
     // final iosDeviceInfo = IosDeviceInfo.fromMap(iosDeviceInfoMap);
 
-    expect(''.appName, isNotNull);
-    expect(''.packageName, isNotNull);
-    expect(''.version, isNotNull);
-    expect(''.buildNumber, isNotNull);
+    expect(''.ext.appName, isNotNull);
+    expect(''.ext.packageName, isNotNull);
+    expect(''.ext.version, isNotNull);
+    expect(''.ext.buildNumber, isNotNull);
   });
 }

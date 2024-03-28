@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-class SpaceSizedWidthBox extends StatelessWidget {
+final class SpaceSizedWidthBox extends StatelessWidget {
   const SpaceSizedWidthBox({
     required this.width,
     super.key,

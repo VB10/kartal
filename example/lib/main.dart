@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-import 'samples/future_extension_view.dart';
+import 'src/future_extension_view.dart';
 
 void main() {
   _appInit();

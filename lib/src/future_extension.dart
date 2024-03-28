@@ -1,6 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Provides convenient access to commonly used properties from [Future].
+extension FutureExtension<T> on Future<T> {
+  /// Provides convenient access to commonly used properties from [Future].
+  _FutureExtension<T> get ext => _FutureExtension(this);
+}
+
 /// You can use future utility so easy with [FutureExtension]
 final class _FutureExtension<T> {
   _FutureExtension(Future<T> future) : _future = future;
@@ -39,6 +45,7 @@ final class _FutureExtension<T> {
         },
       );
 
+  /// Returns the future value if it is not null, otherwise returns the default value.
   Future<T?> timeoutOrNull({
     Duration timeOutDuration = const Duration(seconds: 10),
     bool enableLogger = true,
@@ -51,8 +58,4 @@ final class _FutureExtension<T> {
       return null;
     }
   }
-}
-
-extension FutureExtension<T> on Future<T> {
-  _FutureExtension<T> get ext => _FutureExtension(this);
 }

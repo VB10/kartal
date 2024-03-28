@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Extension methods for [Image] to apply rotation animations.
 extension ImageRotateExtension on Image {
+  /// Provides convenient access to widgets that apply rotation animations to an [Image].
   _ImageExtension get ext => _ImageExtension(this);
 }
 
