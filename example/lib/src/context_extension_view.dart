@@ -8,10 +8,42 @@ class ContextExtensionView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         body: Container(
           height: context.sized.height,
-          color: context.general.colorScheme.onBackground,
-          child: Text(
-            context.general.isKeyBoardOpen ? 'Open' : 'Close',
-            style: context.general.textTheme.titleMedium,
+          width: context.sized.width,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  context.general.isKeyBoardOpen ? 'Keyboard is Open' : 'Keyboard is Closed',
+                  style: context.general.textTheme.titleMedium,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    context.popupManager.showLoader();
+                    Future.delayed(const Duration(seconds: 2), () {
+                      context.popupManager.hideLoader();
+                    });
+                  },
+                  child: const Text('Show loader'),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final id = UniqueKey();
+                    context.popupManager.showLoader(id: id.toString());
+                    Future.delayed(const Duration(seconds: 2), () {
+                      context.popupManager.hideLoader(id: id.toString());
+                    });
+                  },
+                  child: const Text('Show loader with id'),
+                ),
+              ],
+            ),
           ),
         ),
       );

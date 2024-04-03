@@ -158,6 +158,13 @@ You can use for size properties with context.sized. For example: `context.sized.
 
 </details>
 
+## Popup
+
+You can use context.popupManager to all
+
+- `showLoader` (Function): A method shows loader indicator by pushing a `DialogRoute`. Takes optional `id`, `barrierDismissible` and `widgetBuilder`.
+- `hideLoader` (Function): A method hides current active loader by removing `DialogRoute`. Takes optional `id`. If `id` is not provided will close latest one.
+
 ## String extension
 
 ![Context Extension](./github/string_extension.png)
