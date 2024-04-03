@@ -15,8 +15,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      const MaterialApp(title: 'Material App', home: FutureExtensionView());
+  Widget build(BuildContext context) => const MaterialApp(title: 'Material App', home: FutureExtensionView());
 }
 
 class HomePage extends StatelessWidget {
@@ -83,8 +82,7 @@ class HomePage extends StatelessWidget {
   ///
   /// You can rotate right, left, top, bottom any image widget.
 
-  Widget buildImageRotate() =>
-      Image.network('https://picsum.photos/200/300').ext.upRotation;
+  Widget buildImageRotate() => Image.network('https://picsum.photos/200/300').ext.upRotation;
 }
 
 void _appInit() {

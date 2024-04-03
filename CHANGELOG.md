@@ -1,3 +1,7 @@
+## [4.0.0-dev4]
+- Added PopupManager extension on BuildContext for showing loader widget
+- Added PopupManager class for showing loader widget
+
 # [4.0.0-dev3]
 - Fixed some extension with default value
 - Added new extension for nullable boolean check
@@ -148,7 +152,7 @@
 
 ## [1.0.0] - 19/12/2020
 
-- Documantation completed.
+- Documentation completed.
 
 ## [1.1.0] - 2/1/2021
 
