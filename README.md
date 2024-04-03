@@ -8,13 +8,14 @@ You should look at the example folder if you want to see an example using these 
 
 ## Context extension
 
-![Context Extension](./github/context_extension.png)
+<img src="./github/context_extension.png" alt="Context Extension" width="400"/>
+
 
 You can use context.border to all.
 
 ### Border
 
-You can use this extension with context.border.
+You can use this extension for border properties with context.border.
 For example
 
 `context.border.lowRadius // it equals to device width divided by 0.02`
@@ -76,7 +77,8 @@ You can use for general properties with context.general. For example: `context.g
 
 ### Navigation
 
-![Context Extension](./github/navigation_extension.png)
+<img src="./github/navigation_extension.png" alt="Navigation Extension" width="300"/>
+
 
 You can use for default navigation properties with context.navigation. For example: `context.navigation.pop()`
 
@@ -167,7 +169,8 @@ You can use context.popupManager to all
 
 ## String extension
 
-![Context Extension](./github/string_extension.png)
+
+<img src="./github/string_extension.png" alt="String Extension" width="300"/>
 
 You can use for string properties with string.ext. For example: `string.ext.toCapitalized()`
 
@@ -223,9 +226,10 @@ You can use for file properties with file.ext. For example: `file.ext.fileType`
 - `File().ext.isTextFile` (bool): Returns true if the file is of type FileType.TEXT.
 
 </details>
+
 ## Future extension
 
-![Context Extension](./github/future_extension.png)
+<img src="./github/future_extension.png" alt="Future Extension" width="400"/>
 
 You can use for future properties with future.ext. For example: `future.ext.toBuild`
 
@@ -242,7 +246,9 @@ You can use for future properties with future.ext. For example: `future.ext.toBu
 
 ## Image Extension
 
-![Context Extension](./github/image_extension.png)
+
+<img src="./github/image_extension.png" alt="Future Extension" width="400"/>
+
 
 You can use for Image widget properties with Image.ext. For example: `Image.ext.rightRotation`
 
@@ -301,7 +307,8 @@ You can use for List properties with list.ext. For example: `list.ext.isNotNullO
 
 ## Widget extension
 
-![Context Extension](./github/widget_extension.png)
+
+<img src="./github/widget_extension.png" alt="Widget Extension" width="400"/>
 
 You can use for Widget properties with widget.ext. For example: `widget.ext.toVisible()`
 
