@@ -14,7 +14,9 @@ class ContextExtensionView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.general.isKeyBoardOpen ? 'Keyboard is Open' : 'Keyboard is Closed',
+                  context.general.isKeyBoardOpen
+                      ? 'Keyboard is Open'
+                      : 'Keyboard is Closed',
                   style: context.general.textTheme.titleMedium,
                 ),
                 const SizedBox(
