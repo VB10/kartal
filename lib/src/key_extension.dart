@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Extension methods for [GlobalKey] to provide convenient access to properties and methods related to rendering and scrolling of widgets.
 extension KeyExtension<T extends State> on GlobalKey<T> {
+  /// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
   _KeyExtension<T> get ext => _KeyExtension<T>(this);
 }
 

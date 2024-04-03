@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_constructors_over_static_methods
+import 'package:kartal/src/utility/device/device_utils_io.dart'
+    if (dart.library.html) 'package:kartal/src/utility/device/device_utils_web.dart'
+    as device_utils;
 
-import 'dart:io';
-
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/material.dart';
-import 'package:kartal/src/constants/app_constants.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+abstract class DeviceUtils {
+  Future<String> getUniqueDeviceId();
+  Future<void> initPackageInfo();
+  Future<bool> isIpad();
+  String shareMailText(String title, String body);
+}
 
 /// A utility class for device-related operations and information.
 final class DeviceUtility {
@@ -19,39 +21,20 @@ final class DeviceUtility {
     return _instance!;
   }
 
-  PackageInfo? packageInfo;
-  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-
-  late IosDeviceInfo info;
-
-  /// The padding bottom area for iPad devices.
-  final Rect ipadPaddingBottom = const Rect.fromLTWH(30, 50, 30, 50);
+  /// There is device general utils for each platform
+  DeviceUtils get deviceUtils => device_utils.instance;
 
   /// Checks if the current device is an iPad.
-  Future<bool> isIpad() async {
-    info = await deviceInfo.iosInfo;
-    return (info.name).toLowerCase().contains(KartalAppConstants.IPAD_TYPE);
-  }
+  Future<bool> isIpad() => device_utils.instance.isIpad();
 
   /// Generates a mailto link with the given [title] and [body] for sharing via email.
   String shareMailText(String title, String body) =>
-      "mailto:?subject='$title'&body=$body ";
+      device_utils.instance.shareMailText(title, body);
 
   /// Initializes the package information.
-  Future<void> initPackageInfo() async {
-    packageInfo = await PackageInfo.fromPlatform();
-  }
+  Future<void> initPackageInfo() => device_utils.instance.initPackageInfo();
 
   /// Retrieves the unique device ID for the current device.
-  Future<String> getUniqueDeviceId() async {
-    if (Platform.isIOS) {
-      final iosDeviceInfo = await deviceInfo.iosInfo;
-      return iosDeviceInfo.identifierForVendor ?? '';
-    } else if (Platform.isAndroid) {
-      final androidDeviceInfo = await deviceInfo.androidInfo;
-      return androidDeviceInfo.id;
-    } else {
-      throw Exception('That platform is not supported.');
-    }
-  }
+  Future<String> getUniqueDeviceId() =>
+      device_utils.instance.getUniqueDeviceId();
 }

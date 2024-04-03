@@ -14,7 +14,9 @@ class ContextExtensionView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  context.general.isKeyBoardOpen ? 'Keyboard is Open' : 'Keyboard is Closed',
+                  context.general.isKeyBoardOpen
+                      ? 'Keyboard is Open'
+                      : 'Keyboard is Closed',
                   style: context.general.textTheme.titleMedium,
                 ),
                 const SizedBox(
@@ -56,21 +58,21 @@ class ContextExtensionView extends StatelessWidget {
 
   Widget animatedContainerDuration(BuildContext context) => AnimatedOpacity(
         opacity: context.general.isKeyBoardOpen ? 1 : 0,
-        duration: context.duration.durationLow,
-        child: Text('${context.duration.durationLow.inHours}'),
+        duration: Durations.extralong2,
+        child: Text('${Durations.extralong2.inHours}'),
       );
 
   Widget paddingExtension(BuildContext context) => Padding(
         padding: context.padding.low,
         child: Padding(
           padding: context.padding.horizontalMedium,
-          child: Text('${context.duration.durationLow.inHours}'),
+          child: Text('${Durations.extralong2.inHours}'),
         ),
       );
 
   Widget emptySizedBox(BuildContext context) => Column(
         children: [
-          Text('${context.duration.durationLow.inHours}'),
+          Text('${Durations.extralong2.inHours}'),
           context.sized.emptySizedHeightBoxHigh,
           Row(
             children: [
@@ -78,7 +80,7 @@ class ContextExtensionView extends StatelessWidget {
               context.sized.emptySizedWidthBoxLow,
               const Text('Row'),
             ],
-          )
+          ),
         ],
       );
 

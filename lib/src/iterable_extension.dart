@@ -1,8 +1,15 @@
+/// Provides convenient access to commonly used properties from [Iterable].
+extension IterableExtensions<T> on Iterable<T?> {
+  /// Iterable extension with [exts] property.
+  _IterableExtension<T> get exts => _IterableExtension<T>(this);
+}
+
 final class _IterableExtension<T> {
   _IterableExtension(Iterable<T?> list) : _list = list;
 
   final Iterable<T?> _list;
 
+  ///  Convert to nullable list for safe operations.
   List<T> makeSafe() =>
       _list.where((element) => element != null).cast<T>().toList();
 
@@ -15,8 +22,4 @@ final class _IterableExtension<T> {
   /// function.
   List<T> makeSafeCustom(bool Function(T? value) onHandle) =>
       _list.where(onHandle).cast<T>().toList();
-}
-
-extension IterableExtensions<T> on Iterable<T?> {
-  _IterableExtension<T> get exts => _IterableExtension<T>(this);
 }

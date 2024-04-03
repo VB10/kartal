@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
+import 'package:kartal/src/utility/http_result.dart';
 
 void main() {
   test('Test randomColorValue property', () {
@@ -13,5 +14,13 @@ void main() {
       randomColor,
       lessThan(colorRange),
     ); // Rastgele değer, renk aralığından küçük olmalı
+  });
+
+  test('IntegerExt.httpStatus property', () {
+    final httpStatus = 200.ext.httpStatus;
+    expect(
+      httpStatus,
+      HttpResult.success,
+    ); // 200, başarılı bir durumu temsil etmeli
   });
 }

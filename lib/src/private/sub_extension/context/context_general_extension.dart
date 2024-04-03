@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Provides convenient access to commonly used properties from [BuildContext].
 extension ContextExtension on BuildContext {
+  /// Provides convenient access to commonly used properties from [BuildContext].
   _ContextGeneralExtension get general => _ContextGeneralExtension(this);
 }
 
@@ -25,7 +27,8 @@ final class _ContextGeneralExtension {
   Brightness get mediaBrightness => MediaQuery.platformBrightnessOf(_context);
 
   /// Returns the [double] associated with the current [BuildContext].
-  double get mediaTextScale => MediaQuery.textScaleFactorOf(_context);
+  double mediaTextScale(double font) =>
+      MediaQuery.textScalerOf(_context).scale(font);
 
   /// Returns the [ThemeData] associated with the current [BuildContext].
   ThemeData get appTheme => Theme.of(_context);
@@ -53,8 +56,4 @@ final class _ContextGeneralExtension {
   /// Returns the brightness of the application, based on the platform brightness of the current
   /// [MediaQueryData].
   Brightness get appBrightness => mediaBrightness;
-
-  /// Returns the text scale factor applied to the application, based on the current
-  /// [MediaQueryData].
-  double get textScaleFactor => mediaTextScale;
 }

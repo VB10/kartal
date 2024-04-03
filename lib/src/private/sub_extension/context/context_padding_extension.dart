@@ -4,6 +4,7 @@ import 'package:kartal/src/private/sub_extension/context/index.dart';
 /// Contains extension methods on the [BuildContext] class to simplify the creation of
 /// [EdgeInsets] objects for padding in Flutter.
 extension PaddingExtension on BuildContext {
+  /// Provides convenient access to commonly used padding values.
   _ContextExtension get padding => _ContextExtension(this);
 }
 

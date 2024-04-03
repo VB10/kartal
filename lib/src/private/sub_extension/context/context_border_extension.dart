@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/src/private/sub_extension/context/index.dart';
 
+/// Extension methods for [BuildContext] to create [Border] objects.
 extension BorderExtension on BuildContext {
+  /// Provides convenient access to commonly used properties from [Border] and [BorderRadius]
   _ContextBorderExtension get border => _ContextBorderExtension(this);
 }
 
@@ -13,9 +15,17 @@ final class _ContextBorderExtension {
   final BuildContext _context;
 
   double get _width => _context.sized.width;
+
+  /// Returns a value representing a low dimension, calculated as 0.01 times the current widget's height.
   double get _lowValue => _context.sized.lowValue;
+
+  /// Returns a value representing a normal dimension, calculated as 0.02 times the current widget's height.
   double get _normalValue => _context.sized.normalValue;
+
+  /// Returns a value representing a high dimension, calculated as 0.1 times the current widget's height.
   double get _highValue => _context.sized.highValue;
+
+  /// Returns a value representing a medium dimension, calculated as 0.04 times the current widget's height.
   double get _mediumValue => _context.sized.mediumValue;
 
   /// Returns a [Radius] object with a circular radius equal to [_width] multiplied by 0.02.
@@ -39,7 +49,7 @@ final class _ContextBorderExtension {
   BorderRadius get highBorderRadius =>
       BorderRadius.all(Radius.circular(_width * 0.1));
 
-  /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [_lowValue].
+  /// Returns a [RoundedRectangleBorder] object with the top corners having a circular radius of [_width]  multiplied by 0.01.
   RoundedRectangleBorder get roundedRectangleBorderLow =>
       RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(_lowValue)),

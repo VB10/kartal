@@ -1,8 +1,12 @@
+/// List extension for nullable lists.
 extension ListExtension<T> on List<T>? {
+  /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
+/// List extension for non-nullable lists.
 extension ListDefaultExtension<T> on List<T> {
+  /// List extension with [ext] property.
   _ListExtension<T> get ext => _ListExtension<T>(this);
 }
 
@@ -17,12 +21,13 @@ final class _ListExtension<T> {
   /// Returns `true` if the list is not null and not empty.
   bool get isNotNullOrEmpty {
     if (_list != null) {
-      return _list!.isNotEmpty;
+      return _list.isNotEmpty;
     } else {
       return false;
     }
   }
 
+  /// Convert to nullable list for safe operations.
   List<T> makeSafe() =>
       _list?.where((element) => element != null).cast<T>().toList() ?? [];
 
