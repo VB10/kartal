@@ -14,182 +14,215 @@ You can use context.border to all.
 
 ### Border
 
-- `lowRadius` (Radius)
-- `normalRadius` (Radius)
-- `highRadius` (Radius)
-- `normalBorderRadius` (BorderRadius)
-- `lowBorderRadius` (BorderRadius)
-- `highBorderRadius` (BorderRadius)
-- `roundedRectangleBorderLow` (RoundedRectangleBorder)
-- `roundedRectangleAllBorderNormal` (RoundedRectangleBorder)
-- `roundedRectangleBorderNormal` (RoundedRectangleBorder)
-- `roundedRectangleBorderMedium` (RoundedRectangleBorder)
-- `roundedRectangleBorderHigh` (RoundedRectangleBorder)
+You can use this extension with context.border.
+For example
+
+`context.border.lowRadius // it equals to device width divided by 0.02`
+
+<details open> 
+
+<summary>Usages:</summary> 
+
+- `context.border.lowRadius` // it equals to device width divided by 0.02
+- `context.border.normalRadius` // it equals to device width divided by 0.05
+- `context.border.highRadius` // it equals to device width divided by 0.1
+- `context.border.normalBorderRadius` // it equals to device width divided by 0.05
+- `context.border.lowBorderRadius` // it equals to device width divided by 0.02
+- `context.border.highBorderRadius` // it equals to device width divided by 0.1
+- `context.border.roundedRectangleBorderLow` // it equals to device width divided by 0.02
+- `context.border.roundedRectangleAllBorderNormal` // it equals to device width divided by 0.05
+- `context.border.roundedRectangleBorderNormal` // it equals to device width divided by 0.02
+- `context.border.roundedRectangleBorderMedium` // it equals to device width divided by 0.04
+- `context.border.roundedRectangleBorderHigh` // it equals to device width divided by 0.1
+
+</details>
+
 
 ### Device
 
-You can use context.device to all.
+You can use for device properties with context.device. For example: `context.device.isSmallScreen`
 
-- `isSmallScreen` (bool)
-- `isMediumScreen` (bool)
-- `isLargeScreen` (bool)
-- `isAndroidDevice` (bool)
-- `isIOSDevice` (bool)
-- `isWindowsDevice` (bool)
-- `isLinuxDevice` (bool)
-- `isMacOSDevice` (bool)
+<details>
+<summary> Usages: </summary>
 
-### Duration
+- `context.device.isSmallScreen` // The range is defined as `0 <= width < 300`.
+- `context.device.isMediumScreen` // The range is defined as `300 <= width < 600`.
+- `context.device.isLargeScreen` // The range is defined as `600 <= width < 900`.
+- `context.device.isAndroidDevice` // Returns true if the device is an Android device.
+- `context.device.isIOSDevice`  // Returns true if the device is an iOS device.
+- `context.device.isWindowsDevice` // Returns true if the device is a Windows device.
+- `context.device.isLinuxDevice` // Returns true if the device is a Linux device.
+- `context.device.isMacOSDevice` // Returns true if the device is a macOS device.
+ </details>
 
-You can use context.duration to all.
-
-- `durationLow` (Duration)
-- `durationNormal` (Duration)
-- `durationSlow` (Duration)
 
 ### General
 
-You can use context.general to all
+You can use for general properties with context.general. For example: `context.general.appTheme`
 
-- `mediaQuery` (MediaQueryData)
-- `appTheme` (ThemeData)
-- `textTheme` (TextTheme)
-- `primaryTextTheme` (TextTheme)
-- `colorScheme` (ColorScheme)
-- `randomColor` (MaterialColor)
-- `isKeyBoardOpen` (bool)
-- `keyboardPadding` (double)
-- `appBrightness` (Brightness)
-- `textScaleFactor` (double)
+<details>
+<summary> Usages: </summary>
+
+- `context.general.mediaQuery` (MediaQueryData)
+- `context.general.appTheme` (ThemeData)
+- `context.general.textTheme` (TextTheme)
+- `context.general.primaryTextTheme` (TextTheme)
+- `context.general.colorScheme` (ColorScheme)
+- `context.general.randomColor` (MaterialColor)
+- `context.general.isKeyBoardOpen` // Returns true if the keyboard is open.
+- `context.general.keyboardPadding` // When the keyboard is open, it returns the padding value of the keyboard.
+- `context.general.appBrightness` (Brightness)
+ </details>
 
 ### Navigation
 
 ![Context Extension](./github/navigation_extension.png)
 
-You can use context.route to all
+You can use for default navigation properties with context.navigation. For example: `context.navigation.pop()`
 
-- `navigation` (NavigatorState)
-- `pop<T extends Object?>` (Future<bool>)
-- `popWithRoot` (void)
-- `navigateName<T extends Object?>` (Future<T?>)
-- `navigateToReset<T extends Object?>` (Future<T?>)
-- `navigateToPage<T extends Object?>` (Future<T?>)
+<details>
+<summary> Usages: </summary>
+
+- `context.navigation.pop` // Pops the current route off the navigator.
+- `popWithRoot` /// Pops the current route off the navigator and returns to the root route.
+- `navigateName<T extends Object?>` // Pushes a named route onto the navigator.
+- `navigateToReset<T extends Object?>` // Pushes a named route onto the navigator and removes all previous routes.
+- `navigateToPage<T extends Object?>` // Pushes a new route onto the navigator.
+  </details>
+
 
 ### Padding
 
-You can use context.padding to all
+You can use for padding properties with context.padding. For example: `context.padding.low`
 
-- `_lowValue` (double): 0.01 \* widget height
-- `_normalValue` (double): 0.02 \* widget height
-- `_mediumValue` (double): 0.04 \* widget height
-- `_highValue` (double): 0.1 \* widget height
-- `low` (EdgeInsets): EdgeInsets.all(\_lowValue)
-- `normal` (EdgeInsets): EdgeInsets.all(\_normalValue)
-- `medium` (EdgeInsets): EdgeInsets.all(\_mediumValue)
-- `high` (EdgeInsets): EdgeInsets.all(\_highValue)
-- `horizontalLow` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_lowValue)
-- `horizontalNormal` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_normalValue)
-- `horizontalMedium` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_mediumValue)
-- `horizontalHigh` (EdgeInsets): EdgeInsets.symmetric(horizontal: \_highValue)
-- `verticalLow` (EdgeInsets): EdgeInsets.symmetric(vertical: \_lowValue)
-- `verticalNormal` (EdgeInsets): EdgeInsets.symmetric(vertical: \_normalValue)
-- `verticalMedium` (EdgeInsets): EdgeInsets.symmetric(vertical: \_mediumValue)
-- `verticalHigh` (EdgeInsets): EdgeInsets.symmetric(vertical: \_highValue)
-- `onlyLeftLow` (EdgeInsets): EdgeInsets.only(left: \_lowValue)
-- `onlyLeftNormal` (EdgeInsets): EdgeInsets.only(left: \_normalValue)
-- `onlyLeftMedium` (EdgeInsets): EdgeInsets.only(left: \_mediumValue)
-- `onlyLeftHigh` (EdgeInsets): EdgeInsets.only(left: \_highValue)
-- `onlyRightLow` (EdgeInsets): EdgeInsets.only(right: \_lowValue)
-- `onlyRightNormal` (EdgeInsets): EdgeInsets.only(right: \_normalValue)
-- `onlyRightMedium` (EdgeInsets): EdgeInsets.only(right: \_mediumValue)
-- `onlyRightHigh` (EdgeInsets): EdgeInsets.only(right: \_highValue)
-- `onlyBottomLow` (EdgeInsets): EdgeInsets.only(bottom: \_lowValue)
-- `onlyBottomNormal` (EdgeInsets): EdgeInsets.only(bottom: \_normalValue)
-- `onlyBottomMedium` (EdgeInsets): EdgeInsets.only(bottom: \_mediumValue)
-- `onlyBottomHigh` (EdgeInsets): EdgeInsets.only(bottom: \_highValue)
-- `onlyTopLow` (EdgeInsets): EdgeInsets.only(top: \_lowValue)
-- `onlyTopNormal` (EdgeInsets): EdgeInsets.only(top: \_normalValue)
-- `onlyTopMedium` (EdgeInsets): EdgeInsets.only(top: \_mediumValue)
-- `onlyTopHigh` (EdgeInsets): EdgeInsets.only(top: \_highValue)
+<details>
+<summary> Usages: </summary>
+
+>  low is 0.01, normal is 0.02, medium is 0.04, high is 0.1 of the device height. (Basically, it is a percentage of the device height.)
+
+- `context.padding.low` // Add [0.01 percentage of device height ] padding to all sides
+- `context.padding.normal`// Add [0.02 percentage of device height ] padding to all sides
+- `context.padding.medium` //  Add [0.04 percentage of device height ] padding to all sides
+- `context.padding.high` // Add [0.1 percentage of device height ] padding to all sides
+- `context.padding.horizontalLow` // Add [0.01 percentage of device height ] padding to horizontal sides
+- `context.padding.horizontalNormal` // Add [0.02 percentage of device height ] padding to horizontal sides
+- `context.padding.horizontalMedium` // Add [0.04 percentage of device height ] padding to horizontal sides
+- `context.padding.horizontalHigh` // Add [0.1 percentage of device height ] padding to horizontal sides
+- `context.padding.verticalLow` // Add [0.01 percentage of device height ] padding to vertical sides
+- `context.padding.verticalNormal` // Add [0.02 percentage of device height ] padding to vertical sides
+- `context.padding.verticalMedium` // Add [0.04 percentage of device height ] padding to vertical sides
+- `context.padding.verticalHigh` // Add [0.1 percentage of device height ] padding to vertical sides
+- `context.padding.onlyLeftLow` // Add [0.01 percentage of device height ] padding to left side
+- `context.padding.onlyLeftNormal` // Add [0.02 percentage of device height ] padding to left side
+- `context.padding.onlyLeftMedium` 
+- `context.padding.onlyLeftHigh` // Add [0.1 percentage of device height ] padding to left side
+- `context.padding.onlyRightLow` // Add [0.01 percentage of device height ] padding to right side
+- `context.padding.onlyRightNormal` // Add [0.02 percentage of device height ] padding to right side
+- `context.padding.onlyRightMedium` // Add [0.04 percentage of device height ] padding to right side
+- `context.padding.onlyRightHigh`  // Add [0.1 percentage of device height ] padding to right side
+- `context.padding.onlyBottomLow` // Add [0.01 percentage of device height ] padding to bottom side
+- `context.padding.onlyBottomNormal` // Add [0.02 percentage of device height ] padding to bottom side
+- `context.padding.onlyBottomMedium` // Add [0.04 percentage of device height ] padding to bottom side
+- `context.padding.onlyBottomHigh` // Add [0.1 percentage of device height ] padding to bottom side
+- `context.padding.onlyTopLow` // Add [0.01 percentage of device height ] padding to top side
+- `context.padding.onlyTopNormal` // Add [0.02 percentage of device height ] padding to top side
+- `context.padding.onlyTopMedium` // Add [0.04 percentage of device height ] padding to top side
+- `context.padding.onlyTopHigh` // Add [0.1 percentage of device height ] padding to top side
+
+</details>
 
 ### Size
 
-You can use context.sized to all
+You can use for size properties with context.sized. For example: `context.sized.low`
 
-- `emptySizedWidthBoxLow` (Widget): Empty `SpaceSizedWidthBox` widget with a low width size of 0.01 times the height.
-- `emptySizedWidthBoxLow3x` (Widget): Empty `SpaceSizedWidthBox` widget with a low width size of 0.03 times the height.
-- `emptySizedWidthBoxNormal` (Widget): Empty `SpaceSizedWidthBox` widget with a normal width size of 0.05 times the height.
-- `emptySizedWidthBoxHigh` (Widget): Empty `SpaceSizedWidthBox` widget with a high width size of 0.1 times the height.
-- `emptySizedHeightBoxLow` (Widget): Empty `SpaceSizedHeightBox` widget with a low height size of 0.01 times the height.
-- `emptySizedHeightBoxLow3x` (Widget): Empty `SpaceSizedHeightBox` widget with a low height size of 0.03 times the height.
-- `emptySizedHeightBoxNormal` (Widget): Empty `SpaceSizedHeightBox` widget with a normal height size of 0.05 times the height.
-- `emptySizedHeightBoxHigh` (Widget): Empty `SpaceSizedHeightBox` widget with a high height size of 0.1 times the height.
-- `height` (double): Height of the current widget's `MediaQuery`.
-- `width` (double): Width of the current widget's `MediaQuery`.
-- `lowValue` (double): A value representing a low dimension, calculated as 0.01 times the current widget's height.
-- `normalValue` (double): A value representing a normal dimension, calculated as 0.02 times the current widget's height.
-- `mediumValue` (double): A value representing a medium dimension, calculated as 0.04 times the current widget's height.
-- `highValue` (double): A value representing a high dimension, calculated as 0.1 times the current widget's height.
-- `dynamicWidth(double val)` (double): Calculates and returns a dynamic width value based on the provided `val` and the current widget's width.
-- `dynamicHeight(double val)` (double): Calculates and returns a dynamic height value based on the provided `val` and the current widget's height.
+<details>
+<summary> Usages: </summary>
+
+
+- `context.sized.height` // Height of the current device.
+- `context.sized.width` // Width of the current device.
+- `context.sized.lowValue` // 0.01 percentage of the current widget's height.
+- `context.sized.normalValue` // 0.02 percentage of the current widget's height.
+- `context.sized.mediumValue` // 0.04 percentage of the current widget's height.
+- `context.sized.highValue` // 0.1 percentage of the current widget's height.
+- `context.sized.dynamicWidth(double val)` // Calculates and returns a dynamic width value based on the provided `val` and the current widget's width.
+- `context.sized.dynamicHeight(double val)` // Calculates and returns a dynamic height value based on the provided `val` and the current widget's height.
+- `context.sized.emptySizedWidthBoxLow` // 0.01 percentage to width empty width box
+- `context.sized.emptySizedWidthBoxLow3x` // 0.03 percentage of width to empty width box
+- `context.sized.emptySizedWidthBoxNormal`// 0.05 percentage to width empty width box
+- `context.sized.emptySizedWidthBoxHigh` // 0.1 percentage to width empty width box
+- `context.sized.emptySizedHeightBoxLow` // 0.01 percentage to height empty height box
+- `context.sized.emptySizedHeightBoxLow3x` // 0.03 percentage of height to empty height box
+- `context.sized.emptySizedHeightBoxNormal` // 0.05 percentage to height empty height box
+- `context.sized.emptySizedHeightBoxHigh` // 0.1 percentage to height empty height box
+
+</details>
 
 ## String extension
 
 ![Context Extension](./github/string_extension.png)
 
-You can use 'any string '.ext to all
+You can use for string properties with string.ext. For example: `string.ext.toCapitalized()`
 
-- `lineLength` (int): Returns the number of lines in the string.
-- `color` (Color): Returns a Color object parsed from the string.
-- `toCapitalized()` (String): Converts the first letter of the string to a capital letter.
-- `toTitleCase()` (String): Converts all letters of the string to title case.
-- `colorCode` (int?): Returns the color code parsed from the string.
-- `toColor` (Color): Returns a Color object from the color code.
-- `isNullOrEmpty` (bool): Returns true if the string is null or empty.
-- `isNotNullOrNoEmpty` (bool): Returns true if the string is not null and not empty.
-- `isValidEmail` (bool): Checks if the string is a valid email address.
-- `isValidPassword` (bool): Checks if the string is a valid password.
-- `withoutSpecialCharacters` (String?): Removes all diacritics from the string.
-- `phoneFormatValue` (String): Returns the value of the phone number without formatting characters.
-- `timeFormatValue` (String): Formats the value of the string as a time.
-- `timeOverlineFormatValue` (String): Unmasks the text for the time overline format.
-- `randomImage` (String): Returns a URL for a random image.
-- `randomSquareImage` (String): Returns a URL for a random square image.
-- `customProfileImage` (String): Returns a URL for a custom profile image.
-- `customHighProfileImage` (String): Returns a URL for a custom high-resolution profile image.
-- `bearer` (Map<String, dynamic>): Returns a map with a bearer token.
-- `launchEmail` (Future<bool>): Launches the email app with the email address.
-- `launchPhone` (Future<bool>): Launches the phone app with the phone number.
-- `launchWebsite` (Future<bool>): Launches the website with the string as the URL.
-- `launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
-- `launchMap` (Future<bool>): Launches the map with any value.
-- `shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
-- `shareMail(String title)` (Future<void>): Shares the string via email with a title.
-- `share()` (Future<void>): Shares the string.
-- `appName` (String): Returns the name of the app.
-- `packageName` (String): Returns the package name of the app.
-- `version` (String): Returns the version of the app.
-- `buildNumber` (String): Returns the build number of the app.
-- `deviceId` (Future<String>): Returns the unique device ID.
+<details>
+<summary> Usages: </summary>
+
+- `'SAMPLE'.lineLength` (int): Returns the number of lines in the string.
+- `'SAMPLE'..color` (Color): Returns a Color object parsed from the string.
+- `'SAMPLE'.toCapitalized()` (String): Converts the first letter of the string to a capital letter.
+- `'SAMPLE'.toTitleCase()` (String): Converts all letters of the string to title case.
+- `'SAMPLE'.colorCode` (int?): Returns the color code parsed from the string.
+- `'SAMPLE'.toColor` (Color): Returns a Color object from the color code.
+- `'SAMPLE'.isNullOrEmpty` (bool): Returns true if the string is null or empty.
+- `'SAMPLE'.isNotNullOrNoEmpty` (bool): Returns true if the string is not null and not empty.
+- `'SAMPLE'.isValidEmail` (bool): Checks if the string is a valid email address.
+- `'SAMPLE'.isValidPassword` (bool): Checks if the string is a valid password.
+- `'SAMPLE'.withoutSpecialCharacters` (String?): Removes all diacritics from the string.
+- `'SAMPLE'.phoneFormatValue` (String): Returns the value of the phone number without formatting characters.
+- `'SAMPLE'.timeFormatValue` (String): Formats the value of the string as a time.
+- `'SAMPLE'.timeOverlineFormatValue` (String): Unmasks the text for the time overline format.
+- `'SAMPLE'.randomImage` (String): Returns a URL for a random image.
+- `'SAMPLE'.randomSquareImage` (String): Returns a URL for a random square image.
+- `'SAMPLE'.customProfileImage` (String): Returns a URL for a custom profile image.
+- `'SAMPLE'.customHighProfileImage` (String): Returns a URL for a custom high-resolution profile image.
+- `'SAMPLE'.bearer` (Map<String, dynamic>): Returns a map with a bearer token.
+- `'SAMPLE'.launchEmail` (Future<bool>): Launches the email app with the email address.
+- `'SAMPLE'.launchPhone` (Future<bool>): Launches the phone app with the phone number.
+- `'SAMPLE'.launchWebsite` (Future<bool>): Launches the website with the string as the URL.
+- `'SAMPLE'.launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
+- `'SAMPLE'.launchMap` (Future<bool>): Launches the map with any value.
+- `'SAMPLE'.shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
+- `'SAMPLE'.shareMail(String title)` (Future<void>): Shares the string via email with a title.
+- `'SAMPLE'.share()` (Future<void>): Shares the string.
+- `'SAMPLE'.appName` (String): Returns the name of the app.
+- `'SAMPLE'.packageName` (String): Returns the package name of the app.
+- `'SAMPLE'.version` (String): Returns the version of the app.
+- `'SAMPLE'.buildNumber` (String): Returns the build number of the app.
+- `'SAMPLE'.deviceId` (Future<String>): Returns the unique device ID.
+
+</details>
 
 ## File extension
 
-You can use File().ext to all
+You can use for file properties with file.ext. For example: `file.ext.fileType`
 
-- `fileType` (FileType): Returns the FileType of the file based on its MIME type.
-- `isImageFile` (bool): Returns true if the file is of type FileType.IMAGE.
-- `isVideoFile` (bool): Returns true if the file is of type FileType.VIDEO.
-- `isAudioFile` (bool): Returns true if the file is of type FileType.AUDIO.
-- `isTextFile` (bool): Returns true if the file is of type FileType.TEXT.
+<details>
+<summary> Usages: </summary>
 
+- `File().ext.fileType` (FileType): Returns the FileType of the file based on its MIME type.
+- `File().ext.isImageFile` (bool): Returns true if the file is of type FileType.IMAGE.
+- `File().ext.isVideoFile` (bool): Returns true if the file is of type FileType.VIDEO.
+- `File().ext.isAudioFile` (bool): Returns true if the file is of type FileType.AUDIO.
+- `File().ext.isTextFile` (bool): Returns true if the file is of type FileType.TEXT.
+
+</details>
 ## Future extension
 
 ![Context Extension](./github/future_extension.png)
 
-You can use Future().ext
+You can use for future properties with future.ext. For example: `future.ext.toBuild`
 
 - `toBuild` (Widget): Builds a widget based on the state of a future. It allows specifying different widgets for different states, such as loading, success, not found, and error.
-
   - `onSuccess` (required): Widget Function(T? data) - Specifies the widget to display when the future completes successfully. It receives the data from the future as a parameter.
   - `loadingWidget` (required): Widget - Specifies the widget to display while the future is loading or in an active state.
   - `notFoundWidget` (required): Widget - Specifies the widget to display when the future has no connection state.
@@ -197,7 +230,6 @@ You can use Future().ext
   - `data` (optional): T? - The initial data to provide to the future builder.
 
 - `timeoutOrNull` (T or null) When operation complete before the timeout limit it will return data. if any problem accrued it will return null.
-
   - `timeOutDuration` (required): Duration - Specifies the timeout duration. Default value is 10 seconds.
   - `enableLogger`, (optional): It will print your error issues in debug console.
 
@@ -205,34 +237,32 @@ You can use Future().ext
 
 ![Context Extension](./github/image_extension.png)
 
-You can use Image().ext to all
+You can use for Image widget properties with Image.ext. For example: `Image.ext.rightRotation`
 
 - `rightRotation` (Widget): Returns a [RotationTransition] widget that applies a right rotation animation to the image.
-
 - `upRotation` (Widget): Returns a [RotationTransition] widget that applies an up rotation animation to the image.
-
 - `bottomRotation` (Widget): Returns a [RotationTransition] widget that applies a bottom rotation animation to the image.
-
 - `leftRotation` (Widget): Returns a [RotationTransition] widget that applies a left rotation animation to the image.
 
 ## Key Extension
 
-- `RenderBox? get rendererBox`
+You can use for GlobalKey properties with key.ext. For example: `Key().ext.offSet`
 
+- `GlobalKey.rendererBox`
   - Returns the `RenderBox` associated with the current widget.
   - Return Type: `RenderBox?`
 
-- `Offset? get offset`
+- `GlobalKey.offset`
 
   - Returns the global offset of the current widget.
   - Return Type: `Offset?`
 
-- `double? get height`
+- `GlobalKey.height`
 
   - Returns the height of the current widget.
   - Return Type: `double?`
 
-- `void scrollToWidget({ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit})`
+- `GlobalKey.scrollToWidget`
   - Scrolls to the current widget.
   - Parameters:
     - `alignmentPolicy` (optional): The alignment policy during scrolling. Default: `ScrollPositionAlignmentPolicy.explicit`.
@@ -249,37 +279,37 @@ You can parse your asset file with generic way.
 
 ## Iterable Extension
 
-You can use [Iterable.ext] to all
+You can use for Iterable properties with iterable.ext. For example: `iterable.ext.makeSafe()`
 
-- `List<T> makeSafe()`
-- `List<T> makeSafeCustom(bool Function(T? value) onHandle)`
+- `[null,1].makeSafe()` // Returns a list with non-null values.
+- `[null,1].makeSafeCustom(bool Function(T? value) onHandle)` // Returns a list with non-null values based on the custom function.
 
 ## List Extension
 
-You can use List.ext to all
+You can use for List properties with list.ext. For example: `list.ext.isNotNullOrEmpty`
 
-- `bool get isNullOrEmpty`
-- `bool get isNotNullOrEmpty`
-- `int? indexOrNull(bool Function(T) search)`
+- `[].isNullOrEmpty` // Returns true if the list is null or empty.
+- `[]?.isNotNullOrEmpty` // Returns true if the list is not null and not empty.
+- `[]?.indexOrNull(bool Function(T) search)` // Returns the index of the first element that satisfies the provided search function.
 
 ## Widget extension
 
 ![Context Extension](./github/widget_extension.png)
 
-You can use Widget.ext
+You can use for Widget properties with widget.ext. For example: `widget.ext.toVisible()`
 
-- `toVisible({bool value = true})`
-- `toDisabled({bool? disable, double? opacity})`
-- `get sliver`
+- `Widget.toVisible({bool value = true})` // Returns a widget with visibility based on the value.
+- `Widget.toDisabled({bool? disable, double? opacity})` // Returns a widget with disabled properties based on the value.
+- `Widget.sliver` // Returns a sliver version of the current widget.
 
 ## Utility
 
-Some useful functions for general using.
+You can use for utility properties with utility. For example: `Utility.openAppleMapsWithQuery`
 
-- `MapsUtility.openAppleMapsWithQuery`, `MapsUtility.openGoogleMapsWithQuery`, `MapsUtility.openGoogleWebMapsWithQuery`,
-- `CustomLinkPreview.getLinkPreviewData`
-- `CustomLogger.showError`
-- `BundleDecoder('assetPath').crackBundle`
+- `MapsUtility.openAppleMapsWithQuery`, `MapsUtility.openGoogleMapsWithQuery`, `MapsUtility.openGoogleWebMapsWithQuery`, // Opens the map with the query.
+- `CustomLinkPreview.getLinkPreviewData` // Gets the link preview data.
+- `CustomLogger.showError` // Shows an error message in .
+- `BundleDecoder('assetPath').crackBundle` // Decodes the asset file.
 
 ## License
 
