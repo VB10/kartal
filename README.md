@@ -1,3 +1,15 @@
+<p align="center">
+<a href="https://pub.dev/packages/kartal"><img src="https://img.shields.io/pub/v/kartal.svg" alt="Pub"></a>
+<a href="https://github.com/vb10/kartal"><img src="https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on Github"></a> 
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>   
+<a href="https://www.youtube.com/hardwareandro"><img src="https://img.shields.io/youtube/channel/subscribers/UCdUaAKTLJrPZFStzEJnpQAg" alt="Youtube: HardwareAndro"></a>
+<a href="https://medium.com/@vbacik-10"> <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium: Vbacik">  </a> 
+ 
+
+[![](https://dcbadge.vercel.app/api/server/Bzn8WtuZD2?style=flat)](https://discord.gg/Bzn8WtuZD2) 
+
+</p>
+
 # kartal
 
 My birth country is Kartal, so I created an extension to give born more power.
