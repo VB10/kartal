@@ -27,7 +27,7 @@ void main() {
 }
 
 final class _ContextExtensionView extends StatelessWidget {
-  const _ContextExtensionView({super.key});
+  const _ContextExtensionView();
 
   @override
   Widget build(BuildContext context) => Scaffold(

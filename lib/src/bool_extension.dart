@@ -11,12 +11,12 @@ final class _BoolExtension {
   /// Returns `true` if the value is `true`, otherwise `false`.
   bool get isSuccess {
     if (_value == null) return false;
-    return _value! == true;
+    return _value == true;
   }
 
   /// Returns `true` if the value is `false`, otherwise `false`.
   bool get isFail {
     if (_value == null) return true;
-    return _value! == false;
+    return _value == false;
   }
 }

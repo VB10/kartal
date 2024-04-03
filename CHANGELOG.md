@@ -1,13 +1,25 @@
-# [4.0.0-dev4]
+# [4.0.0]
+
 - Added web support for all extension
 - Updated documentation for general
+- Added PopupManager extension on BuildContext for showing loader widget
+- Added PopupManager class for showing
+- Added link preview extension
+- Implemented new date extension from #60
+- Added new extension for iterable list
+- New version has removed all deprecated code now using.
+- Added new extension about LinkPreview for any url.
+- Fixed issue for iterable extension
+- Updated readme file for utility and some other extension
+- Fixed open maps issue for android side.
 
-## [4.0.0-dev3]
 ## [4.0.0-dev4]
+- Added web support for all extension
+- Updated documentation for general
 - Added PopupManager extension on BuildContext for showing loader widget
 - Added PopupManager class for showing loader widget
 
-# [4.0.0-dev3]
+## [4.0.0-dev3]
 - Fixed some extension with default value
 - Added new extension for nullable boolean check
 - Some coding fixes

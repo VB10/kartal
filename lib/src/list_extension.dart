@@ -21,7 +21,7 @@ final class _ListExtension<T> {
   /// Returns `true` if the list is not null and not empty.
   bool get isNotNullOrEmpty {
     if (_list != null) {
-      return _list!.isNotEmpty;
+      return _list.isNotEmpty;
     } else {
       return false;
     }

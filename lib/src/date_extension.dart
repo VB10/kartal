@@ -29,7 +29,7 @@ final class _CurrentTimeExtension {
     /// The `currentTime` variable represents the current time.
     final currentTime = DateTime.now();
 
-    final targetTime = _targetTime!;
+    final targetTime = _targetTime;
 
     /// The `yearDifference` variable represents the difference between the current time and the `targetTime` in years.
     final yearDifference = currentTime.difference(targetTime).inDays ~/ 365;

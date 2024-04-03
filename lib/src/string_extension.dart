@@ -61,14 +61,14 @@ final class _StringExtension with _StringExtensionMixin {
     final condition = _value?.isNotEmpty ?? false;
     if (!condition) return '';
     final firstIndexUpperCased = _value![0].toUpperCase();
-    final restOfTheString = _value!.substring(1).toLowerCase();
+    final restOfTheString = _value.substring(1).toLowerCase();
     return condition ? firstIndexUpperCased + restOfTheString : '';
   }
 
   /// Converts all letters of the string to title case and returns the resulting string.
   /// If the string is null or empty, returns an empty string.
   String toTitleCase() => _value != null
-      ? _value!
+      ? _value
           .replaceAll(
             RegExp(' +'),
             ' ',
@@ -107,7 +107,7 @@ final class _StringExtension with _StringExtensionMixin {
     if (_value == null) return false;
     return RegExp(
       RegexConstants.instance().passwordRegex,
-    ).hasMatch(_value!);
+    ).hasMatch(_value);
   }
 
   /// Removes all diacritics from the string.
