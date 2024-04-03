@@ -12,6 +12,9 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
+## [4.0.2]
+- Updated readme file for new screen shoot url
+
 ## [4.0.1]
 - Updated readme file for new version
 
