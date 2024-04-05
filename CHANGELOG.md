@@ -1,5 +1,4 @@
 # [4.0.0]
-
 - Added web support for all extension
 - Updated documentation for general
 - Added PopupManager extension on BuildContext for showing loader widget
@@ -12,6 +11,12 @@
 - Fixed issue for iterable extension
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
+
+## [4.0.2]
+- Updated readme file for new screen shoot url
+
+## [4.0.1]
+- Updated readme file for new version
 
 ## [4.0.0-dev4]
 - Added web support for all extension

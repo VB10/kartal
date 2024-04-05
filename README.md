@@ -1,14 +1,26 @@
+<p align="center">
+<a href="https://pub.dev/packages/kartal"><img src="https://img.shields.io/pub/v/kartal.svg" alt="Pub"></a>
+<a href="https://github.com/vb10/kartal"><img src="https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on Github"></a> 
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>   
+<a href="https://www.youtube.com/hardwareandro"><img src="https://img.shields.io/youtube/channel/subscribers/UCdUaAKTLJrPZFStzEJnpQAg" alt="Youtube: HardwareAndro"></a>
+<a href="https://medium.com/@vbacik-10"> <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium: Vbacik">  </a> 
+ 
+
+[![](https://dcbadge.vercel.app/api/server/Bzn8WtuZD2?style=flat)](https://discord.gg/Bzn8WtuZD2) 
+
+</p>
+
 # kartal
 
 My birth country is Kartal, so I created an extension to give born more power.
 
 You should look at the example folder if you want to see an example using these extensions.
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/vb10)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png?raw=true)](https://www.buymeacoffee.com/vb10)
 
 ## Context extension
 
-<img src="./github/context_extension.png" alt="Context Extension" width="400"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/context_extension.png?raw=true" alt="Context Extension" width="400"/>
 
 
 You can use context.border to all.
@@ -77,7 +89,7 @@ You can use for general properties with context.general. For example: `context.g
 
 ### Navigation
 
-<img src="./github/navigation_extension.png" alt="Navigation Extension" width="300"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/navigation_extension.png?raw=true" alt="Navigation Extension" width="300"/>
 
 
 You can use for default navigation properties with context.navigation. For example: `context.navigation.pop()`
@@ -170,7 +182,7 @@ You can use context.popupManager to all
 ## String extension
 
 
-<img src="./github/string_extension.png" alt="String Extension" width="300"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/string_extension.png?raw=true" alt="String Extension" width="300"/>
 
 You can use for string properties with string.ext. For example: `string.ext.toCapitalized()`
 
@@ -229,7 +241,7 @@ You can use for file properties with file.ext. For example: `file.ext.fileType`
 
 ## Future extension
 
-<img src="./github/future_extension.png" alt="Future Extension" width="400"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/future_extension.png?raw=true" alt="Future Extension" width="400"/>
 
 You can use for future properties with future.ext. For example: `future.ext.toBuild`
 
@@ -247,7 +259,7 @@ You can use for future properties with future.ext. For example: `future.ext.toBu
 ## Image Extension
 
 
-<img src="./github/image_extension.png" alt="Future Extension" width="400"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/image_extension.png?raw=true" alt="Future Extension" width="400"/>
 
 
 You can use for Image widget properties with Image.ext. For example: `Image.ext.rightRotation`
@@ -308,7 +320,7 @@ You can use for List properties with list.ext. For example: `list.ext.isNotNullO
 ## Widget extension
 
 
-<img src="./github/widget_extension.png" alt="Widget Extension" width="400"/>
+<img src="https://github.com/VB10/kartal/blob/master/github/widget_extension.png?raw=true" alt="Widget Extension" width="400"/>
 
 You can use for Widget properties with widget.ext. For example: `widget.ext.toVisible()`
 
