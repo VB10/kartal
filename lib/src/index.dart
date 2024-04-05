@@ -1,7 +1,7 @@
 export 'bool_extension.dart';
 export 'context_extension.dart';
 export 'date_extension.dart';
-export 'file_extension.dart';
+export 'file/index.dart';
 export 'future_extension.dart';
 export 'image_extension.dart';
 export 'int_extension.dart';

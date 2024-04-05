@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kartal/src/file/file_type.dart';
+import 'package:kartal/src/index.dart';
 // ignore: avoid_relative_lib_imports
-import '../../lib/src/file_extension.dart';
 
 void main() {
   test('Filetype Extension Returning File Type', () {
