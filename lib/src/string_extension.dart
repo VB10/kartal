@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/src/constants/input_formatter_constants.dart';
 import 'package:kartal/src/constants/regex_constants.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
-import 'package:kartal/src/platform/custom_platform.dart';
+import 'package:kartal/src/private/platform/custom_platform.dart';
 import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

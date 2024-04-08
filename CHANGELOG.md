@@ -12,6 +12,9 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
+## [4.0.3]
+- Fixed [#67](https://github.com/VB10/kartal/issues/67)
+
 ## [4.0.2]
 - Updated readme file for new screen shoot url
 

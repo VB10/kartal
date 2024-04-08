@@ -1,5 +1,5 @@
-import 'package:kartal/src/platform/app_platform.dart'
-    if (dart.library.html) 'package:kartal/src/platform/web_platform.dart'
+import 'package:kartal/src/private/platform/app_platform.dart'
+    if (dart.library.html) 'package:kartal/src/private/platform/web_platform.dart'
     as platform;
 
 /// Represents the platform-specific implementation of the [CustomPlatform] interface.
