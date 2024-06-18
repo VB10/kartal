@@ -12,6 +12,9 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
+## [4.0.4]
+- Updated package name issues for string extension
+
 ## [4.0.3]
 - Fixed [#67](https://github.com/VB10/kartal/issues/67)
 
