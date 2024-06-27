@@ -222,7 +222,7 @@ final class _StringExtension with _StringExtensionMixin {
   String get appName => CustomPlatform.instance.appName;
 
   /// Application package name from CustomPlatform
-  String get packageName => CustomPlatform.instance.version;
+  String get packageName => CustomPlatform.instance.packageName;
 
   /// Application version from CustomPlatform
   String get version => CustomPlatform.instance.version;
