@@ -5,6 +5,10 @@ import 'package:kartal/kartal.dart';
 mixin StringValidatorMixin {
   String get value;
 
+  /// Returns lowercase version with no special characters.
+  String get searchable =>
+      value.toLowerCase().ext.withoutSpecialCharacters ?? '';
+
   /// Returns true if this string is null or empty.
   bool get isNullOrEmpty => value.isEmpty;
 
