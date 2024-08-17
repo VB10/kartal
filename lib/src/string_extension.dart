@@ -27,7 +27,7 @@ final class _StringExtension
   final String? _value;
 
   @override
-  String get value => _value ?? '';
+  String? get value => _value;
 
   /// Returns the length of the string.
   int get lineLength => '\n'.allMatches(_value ?? '').length + 1;

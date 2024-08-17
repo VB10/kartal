@@ -2,7 +2,7 @@ import 'package:kartal/kartal.dart';
 
 /// It provides platform-specific functionalities for [String].
 mixin StringPlatformMixin {
-  String get value;
+  String? get value;
 
   /// Application name from CustomPlatform
   String get appName => CustomPlatform.instance.appName;

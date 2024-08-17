@@ -5,7 +5,7 @@ import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
 
 mixin StringCoreMixin {
-  String get value;
+  String? get value;
 
   /// Converts the generic value `T` to its primitive form.
   ///
@@ -17,10 +17,11 @@ mixin StringCoreMixin {
   /// Returns:
   ///   The primitive value of type `T` or null.
   T? toPrimitiveFromGeneric<T>() {
+    if (value == null) return null;
     if (checkListFormat(T.toString())) throw const ListTypeNotSupported();
-    if (T == bool) return _getBoolFromString(value) as T?;
-    if (T == int) return int.tryParse(value) as T?;
-    if (T == double) return double.tryParse(value) as T?;
+    if (T == bool) return _getBoolFromString(value!) as T?;
+    if (T == int) return int.tryParse(value!) as T?;
+    if (T == double) return double.tryParse(value!) as T?;
     if (T == String) return value as T?;
     return null;
   }
@@ -28,25 +29,27 @@ mixin StringCoreMixin {
   /// Converts the first letter of the string to capital letter and returns the resulting string.
   /// If the string is null or empty, returns an empty string.
   String toCapitalized() {
-    final condition = value.isNotEmpty;
+    if (value == null) return '';
+    final condition = value!.isNotEmpty;
     if (!condition) return '';
-    final firstIndexUpperCased = value[0].toUpperCase();
-    final restOfTheString = value.substring(1).toLowerCase();
+    final firstIndexUpperCased = value![0].toUpperCase();
+    final restOfTheString = value!.substring(1).toLowerCase();
     return condition ? firstIndexUpperCased + restOfTheString : '';
   }
 
   /// Converts all letters of the string to title case and returns the resulting string.
   /// If the string is null or empty, returns an empty string.
-  String toTitleCase() => value.isNotEmpty
-      ? value
-          .replaceAll(
-            RegExp(' +'),
-            ' ',
-          )
-          .split(' ')
-          .map((str) => str.ext.toCapitalized())
-          .join(' ')
-      : '';
+  String toTitleCase() {
+    if (value.ext.isNullOrEmpty) return '';
+    return value!
+        .replaceAll(
+          RegExp(' +'),
+          ' ',
+        )
+        .split(' ')
+        .map((str) => str.ext.toCapitalized())
+        .join(' ');
+  }
 
   /// this method work with string value to convert json or any model
   Future<T?> safeJsonDecodeCompute<T>() async {
@@ -54,7 +57,7 @@ mixin StringCoreMixin {
     try {
       final response = await compute<String, dynamic>(
         jsonDecode,
-        value,
+        value!,
       );
 
       if (response is T) {
