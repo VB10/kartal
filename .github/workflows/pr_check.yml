@@ -13,10 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: dart-lang/setup-dart@v1
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'latest'
+          flutter-version: 'stable'
 
       - name: Flutter Pub Get
         run: flutter pub get
