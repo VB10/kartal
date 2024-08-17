@@ -168,4 +168,30 @@ void main() {
       expect(context.device.isLargeScreen, false);
     });
   });
+
+  testWidgets('unfocus removes focus from the FocusNode',
+      (WidgetTester tester) async {
+    // Create a widget for testing that provides the FocusNode and a TextField
+    final focusNode = FocusNode();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: TextField(
+            focusNode: focusNode,
+          ),
+        ),
+      ),
+    );
+
+    focusNode.requestFocus();
+    await tester.pump();
+
+    expect(focusNode.hasFocus, isTrue);
+
+    FocusScope.of(tester.element(find.byType(TextField))).unfocus();
+    await tester.pump();
+
+    expect(focusNode.hasFocus, isFalse);
+  });
 }

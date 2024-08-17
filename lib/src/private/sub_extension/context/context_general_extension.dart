@@ -33,6 +33,9 @@ final class _ContextGeneralExtension {
   /// Returns the [ThemeData] associated with the current [BuildContext].
   ThemeData get appTheme => Theme.of(_context);
 
+  /// Returns the [FocusNode] associated with the current [BuildContext].
+  FocusNode get focusNode => FocusScope.of(_context);
+
   /// Returns the [TextTheme] defined in the current [ThemeData].
   TextTheme get textTheme => appTheme.textTheme;
 
@@ -56,4 +59,7 @@ final class _ContextGeneralExtension {
   /// Returns the brightness of the application, based on the platform brightness of the current
   /// [MediaQueryData].
   Brightness get appBrightness => mediaBrightness;
+
+  /// Removes focus from the currently focused [FocusNode].
+  void unfocus() => focusNode.unfocus();
 }
