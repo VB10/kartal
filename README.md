@@ -7,7 +7,7 @@
  
 
 [![](https://dcbadge.vercel.app/api/server/Bzn8WtuZD2?style=flat)](https://discord.gg/Bzn8WtuZD2) 
-[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
 </p>
 
 # kartal
@@ -200,6 +200,7 @@ You can use for string properties with string.ext. For example: `string.ext.toCa
 - `'SAMPLE'.isValidEmail` (bool): Checks if the string is a valid email address.
 - `'SAMPLE'.isValidPassword` (bool): Checks if the string is a valid password.
 - `'SAMPLE'.withoutSpecialCharacters` (String?): Removes all diacritics from the string.
+- `'SAMPLE'.ext.searchable` (String): Returns the searchable version of the string(without special characters with lower case).
 - `'SAMPLE'.phoneFormatValue` (String): Returns the value of the phone number without formatting characters.
 - `'SAMPLE'.timeFormatValue` (String): Formats the value of the string as a time.
 - `'SAMPLE'.timeOverlineFormatValue` (String): Unmasks the text for the time overline format.

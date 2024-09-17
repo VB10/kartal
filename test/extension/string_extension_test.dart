@@ -24,6 +24,13 @@ void main() {
     final correctText = 'çamur'.ext.withoutSpecialCharacters;
     expect(correctText, 'camur');
   });
+
+  test('Make a searchable word', () {
+    const text = 'Hellö WörlŞé';
+    print(text.ext.searchable);
+    expect(text.ext.searchable, 'hello worlse');
+  });
+
   group('toTitle Tests', () {
     test('test no word title case', () async {
       const text = 'hello world';

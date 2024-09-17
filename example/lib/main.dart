@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -30,25 +28,14 @@ class HomePage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                File([], 'a.jpg').ext.fileType;
+                // File([], 'a.jpg').ext.fileType;
               },
               icon: const Icon(Icons.arrow_forward, color: Colors.red),
             ),
           ],
         ),
         // appBar: AppBar(title: Text('Kartal Extension Application')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildImageRotate(),
-              // buildContainerPaddingAndHeight(context),
-              // buildTextFormFieldValid(),
-              // buildContainerRandomColor(context),
-              // buildTextFieldFormatter()
-            ],
-          ),
-        ),
+        body: ListUserSearch(),
       );
 
   /// [Input Formatter] Validation
@@ -101,4 +88,27 @@ class HomePage extends StatelessWidget {
 
 void _appInit() {
   WidgetsFlutterBinding.ensureInitialized();
+}
+
+class ListUserSearch extends StatelessWidget {
+  ListUserSearch({super.key});
+  final List<String> sampleWords = [
+    "Helloş ±Worldö",
+    "wÖrldİ",
+    "Flütter world",
+  ];
+  @override
+  Widget build(BuildContext context) {
+    const search = 'world';
+    final results = sampleWords
+        .where(
+            (element) => element.ext.searchable.contains(search.ext.searchable))
+        .toList();
+    return ListView.builder(
+      itemCount: results.length,
+      itemBuilder: (context, index) => ListTile(
+        title: Text(results[index]),
+      ),
+    );
+  }
 }
