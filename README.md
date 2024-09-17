@@ -85,6 +85,8 @@ You can use for general properties with context.general. For example: `context.g
 - `context.general.isKeyBoardOpen` // Returns true if the keyboard is open.
 - `context.general.keyboardPadding` // When the keyboard is open, it returns the padding value of the keyboard.
 - `context.general.appBrightness` (Brightness)
+- `context.general.focusNode` (FocusNode)
+- `context.general.unfocus` // Removes focus from the currently focused input field or widget.
  </details>
 
 ### Navigation
