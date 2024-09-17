@@ -12,6 +12,10 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
+## [4.1.0]
+- Updated package for share_plus with major update
+- Added new pr about focus scope node #73 
+
 ## [4.0.4]
 - Updated package name issues for string extension
 
