@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:kartal/src/private/platform/custom_platform.dart';
+import 'package:web/web.dart';
 
 CustomPlatform get instance => WebPlatform();
 

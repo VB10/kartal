@@ -21,7 +21,7 @@ final class _MapExtension {
       );
 
       return response;
-    } catch (e) {
+    } on Exception {
       return null;
     }
   }

@@ -48,7 +48,7 @@ final class AppPlatform implements CustomPlatform {
         '${KartalAppConstants.WHATS_APP_PREFIX}$value',
       );
       if (!isLaunch) await share(value);
-    } catch (e) {
+    } on Exception {
       await share(value);
     }
   }

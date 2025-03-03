@@ -23,7 +23,7 @@ final class CustomLinkPreview {
     Response<dynamic> response;
     try {
       response = await Dio().get<dynamic>(url);
-    } catch (_) {
+    } on Exception {
       return null;
     }
     if (response.statusCode == _ok) {
