@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,10 +23,20 @@ jobs:
       - name: Run Tests
         run: flutter test
 
-      - name: Check Test Results 
-        if: success()
+      - name: Check if PR is from Owner
+        id: check-owner
+        run: |
+          if [[ "${{ github.event.pull_request.user.login }}" == "VB10" ]]; then
+            echo "is_owner=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_owner=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Check Test Results for Owner
+        if: steps.check-owner.outputs.is_owner == 'true' && success()
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.payload.pull_request.number,
