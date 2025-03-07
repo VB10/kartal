@@ -23,8 +23,17 @@ jobs:
       - name: Run Tests
         run: flutter test
 
-      - name: Check Test Results (Only for VB10)
-        if: github.actor == 'VB10' && success()
+      - name: Check if PR is from Owner
+        id: check-owner
+        run: |
+          if [[ "${{ github.event.pull_request.user.login }}" == "VB10" ]]; then
+            echo "is_owner=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_owner=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Check Test Results for Owner
+        if: steps.check-owner.outputs.is_owner == 'true' && success()
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
