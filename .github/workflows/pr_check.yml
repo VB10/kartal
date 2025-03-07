@@ -24,11 +24,18 @@ jobs:
       - name: Run Tests
         run: flutter test
 
+      - name: Check if PR is from Me
+        run: |
+          if [[ "${{ github.event.pull_request.user.login }}" != "VB10" ]]; then
+            echo "PR was not created by VB10. Skipping comment action."
+            exit 0
+          fi
+      
       - name: Check Test Results 
         if: success()
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GH_PAT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.payload.pull_request.number,
@@ -36,3 +43,4 @@ jobs:
               repo: context.repo.repo,
               body: 'All tests passed! 🎉'
             })
+      
