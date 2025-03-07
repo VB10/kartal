@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,15 +23,8 @@ jobs:
       - name: Run Tests
         run: flutter test
 
-      - name: Check if PR is from Me
-        run: |
-          if [[ "${{ github.event.pull_request.user.login }}" != "VB10" ]]; then
-            echo "PR was not created by VB10. Skipping comment action."
-            exit 1
-          fi
-      
-      - name: Check Test Results 
-        if: success()
+      - name: Check Test Results (Only for VB10)
+        if: github.actor == 'VB10' && success()
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -43,4 +35,3 @@ jobs:
               repo: context.repo.repo,
               body: 'All tests passed! 🎉'
             })
-      
