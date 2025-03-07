@@ -1,9 +1,7 @@
-// ignore_for_file: avoid_relative_lib_imports
-
+import 'package:example/src/model/post.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/src/utility/bundle/bundle_decoder.dart';
 
-import '../../example/lib/src/model/post.dart';
 import '../mock/mock_bundle_asset.dart';
 
 void main() {

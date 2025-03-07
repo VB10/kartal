@@ -63,7 +63,7 @@ mixin StringCoreMixin {
       if (response is T) {
         return response;
       }
-    } catch (e) {
+    } on Exception {
       return null;
     }
 

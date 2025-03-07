@@ -17,3 +17,5 @@ linter:
     prefer_expression_function_bodies: true
     lines_longer_than_80_chars: false
     library_private_types_in_public_api: false
+    document_ignores: false
+    constant_identifier_names: false

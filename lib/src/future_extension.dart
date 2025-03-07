@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ final class _FutureExtension<T> {
     try {
       final response = await _future.timeout(timeOutDuration);
       return response;
-    } catch (e) {
+    } on TimeoutException catch (e) {
       if (enableLogger && kDebugMode) debugPrint('$T $e');
       return null;
     }
