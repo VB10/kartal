@@ -28,7 +28,7 @@ jobs:
         run: |
           if [[ "${{ github.event.pull_request.user.login }}" != "VB10" ]]; then
             echo "PR was not created by VB10. Skipping comment action."
-            exit 0
+            exit 1
           fi
       
       - name: Check Test Results 
