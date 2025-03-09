@@ -58,4 +58,12 @@ final class _FutureExtension<T> {
       return null;
     }
   }
+
+  Future<T?> withSafety() async {
+    try {
+     return await _future;
+    } catch (e) {
+      return null;
+    }
+  }
 }
