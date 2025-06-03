@@ -12,9 +12,10 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
-## [4.1.1]
+## [4.2.0]
 - Added new color extension for random color and with opacity
 - Updated readme file for new version
+- Updated package for mime and share_plus
 
 ## [4.1.0]
 - Updated package for share_plus with major update
