@@ -45,9 +45,6 @@ final class _ContextGeneralExtension {
   /// Returns the [ColorScheme] defined in the current [ThemeData].
   ColorScheme get colorScheme => appTheme.colorScheme;
 
-  /// Returns a random [MaterialColor] from the predefined list of primary colors.
-  MaterialColor get randomColor => Colors.primaries[Random().nextInt(17)];
-
   /// Returns whether the software keyboard is open, based on the bottom insets of the current
   /// [MediaQueryData].
   bool get isKeyBoardOpen => mediaViewInset.bottom > 0;
