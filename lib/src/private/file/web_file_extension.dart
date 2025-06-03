@@ -1,4 +1,4 @@
-import 'package:web/web.dart';
+import 'dart:html';
 
 /// Using for io:File
 extension FileExtension on File {
