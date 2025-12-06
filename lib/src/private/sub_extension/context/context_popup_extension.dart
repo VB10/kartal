@@ -9,7 +9,8 @@ extension PopupExtension on BuildContext {
 final class _PopupExtension {
   _PopupExtension(this._context);
 
-  factory _PopupExtension._init(BuildContext context) => _instance ??= _PopupExtension(context);
+  factory _PopupExtension._init(BuildContext context) =>
+      _instance ??= _PopupExtension(context);
 
   final BuildContext _context;
 
@@ -21,9 +22,19 @@ final class _PopupExtension {
   /// Provide [id] id if you have multiple loaders and want to close a specific one
   /// [barrierDismissible] is false by default
   /// [widgetBuilder] is a optional builder function that returns a widget to show as loader
-  void showLoader({String? id, bool barrierDismissible = false, WidgetBuilder? widgetBuilder}) {
-    _manager ??= PopupManager.withState(Navigator.of(_context, rootNavigator: true));
-    _manager!.showLoader(id: id, barrierDismissible: barrierDismissible, widgetBuilder: widgetBuilder);
+  Future<void> showLoader({
+    String? id,
+    bool barrierDismissible = false,
+    WidgetBuilder? widgetBuilder,
+  }) async {
+    _manager ??= PopupManager.withState(
+      Navigator.of(_context, rootNavigator: true),
+    );
+    await _manager!.showLoader(
+      id: id,
+      barrierDismissible: barrierDismissible,
+      widgetBuilder: widgetBuilder,
+    );
   }
 
   /// Close loader with given [id]

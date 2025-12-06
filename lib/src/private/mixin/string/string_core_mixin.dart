@@ -60,14 +60,12 @@ mixin StringCoreMixin {
         value!,
       );
 
-      if (response is T) {
-        return response;
-      }
-    } catch (e) {
+      if (response is! T) return null;
+
+      return response;
+    } on Object catch (_) {
       return null;
     }
-
-    return null;
   }
 
   /// The function `_getBoolFromString` converts a string value to a boolean value if it matches the

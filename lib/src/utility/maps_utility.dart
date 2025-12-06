@@ -26,7 +26,7 @@ final class MapsUtility {
     try {
       return callBack?.call(appleMapsWithQuery) ??
           launchUrlString(appleMapsWithQuery);
-    } catch (error) {
+    } on Object catch (error) {
       CustomLogger.showError<MapsUtility>(error);
 
       return false;
@@ -48,7 +48,7 @@ final class MapsUtility {
     try {
       return callBack?.call(googleMapsWithQuery) ??
           launchUrlString(googleMapsWithQuery);
-    } catch (error) {
+    } on Object catch (error) {
       CustomLogger.showError<MapsUtility>(error);
       return false;
     }
@@ -65,7 +65,7 @@ final class MapsUtility {
 
     try {
       return launchUrlString(googleMapsWithQuery);
-    } catch (error) {
+    } on Object catch (error) {
       CustomLogger.showError<MapsUtility>(error);
       return false;
     }

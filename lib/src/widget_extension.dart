@@ -7,7 +7,7 @@ extension WidgetExtension on Widget {
 }
 
 final class _WidgetExtension {
-  _WidgetExtension(Widget widget) : _widget = widget;
+  const _WidgetExtension(Widget widget) : _widget = widget;
 
   final Widget _widget;
 

@@ -11,7 +11,7 @@ extension ListDefaultExtension<T> on List<T> {
 }
 
 final class _ListExtension<T> {
-  _ListExtension(List<T>? list) : _list = list;
+  const _ListExtension(List<T>? list) : _list = list;
 
   final List<T>? _list;
 

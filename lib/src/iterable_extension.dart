@@ -5,7 +5,7 @@ extension IterableExtensions<T> on Iterable<T?> {
 }
 
 final class _IterableExtension<T> {
-  _IterableExtension(Iterable<T?> list) : _list = list;
+  const _IterableExtension(Iterable<T?> list) : _list = list;
 
   final Iterable<T?> _list;
 

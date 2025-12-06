@@ -13,7 +13,7 @@ extension ComparingDateLocalizationNullableExtension on DateTime? {
 /// The `_CurrentTimeExtension` takes a `targetTime` parameter in its constructor
 /// and compares it with the current time.
 final class _CurrentTimeExtension {
-  _CurrentTimeExtension(
+  const _CurrentTimeExtension(
     DateTime? targetTime,
   ) : _targetTime = targetTime;
 

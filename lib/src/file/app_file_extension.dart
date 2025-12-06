@@ -1,5 +1,3 @@
-import 'dart:io' if (dart.library.html) 'dart:html' show File;
-
 import 'package:kartal/src/constants/file_constants.dart';
 import 'package:kartal/src/file/file_type.dart';
 import 'package:kartal/src/private/file/app_file_extension.dart'
@@ -7,8 +5,8 @@ import 'package:kartal/src/private/file/app_file_extension.dart'
     as custom_file;
 import 'package:mime/mime.dart';
 
-/// Extension methods for [File] to determine the type of the file.
-extension FileTypeExtension on File {
+/// Extension methods for [custom_file.File] to determine the type of the file.
+extension FileTypeExtension on custom_file.File {
   _FileExtension get ext => _FileExtension(this);
 }
 
@@ -16,8 +14,8 @@ extension FileTypeExtension on File {
 /// if it belongs to specific types.
 
 final class _FileExtension {
-  _FileExtension(File file) : _file = file;
-  final File _file;
+  _FileExtension(custom_file.File file) : _file = file;
+  final custom_file.File _file;
 
   /// Returns the [FileType] of the file based on its MIME type.
   FileType get fileType {

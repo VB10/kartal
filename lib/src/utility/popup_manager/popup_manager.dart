@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// A [DialogRoute] shows [CircularProgressIndicator] in center
@@ -30,11 +32,11 @@ final class PopupManager {
 
   /// Shows loader dialog
   /// Provide [id] id if you have multiple loaders and want to close a specific one
-  void showLoader({
+  Future<void> showLoader({
     String? id,
     bool barrierDismissible = false,
     WidgetBuilder? widgetBuilder,
-  }) {
+  }) async {
     assert(_state != null, 'Tried to show loader but navigatorState was null.');
 
     assert(
@@ -53,7 +55,7 @@ final class PopupManager {
     );
 
     _routes.add(route);
-    _state.push(route);
+    unawaited(_state.push(route));
   }
 
   /// If [id] is provided closes loader with given [id]

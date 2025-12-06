@@ -59,7 +59,7 @@ void main() {
       expect(scrollable.position.pixels, 0);
 
       // Scroll to widget
-      testKey.ext.scrollToWidget();
+      await testKey.ext.scrollToWidget();
       await tester.pumpAndSettle();
 
       // Verify that scroll position has changed
@@ -79,7 +79,7 @@ void main() {
       final unusedKey = GlobalKey<State>();
 
       // Should not throw error
-      unusedKey.ext.scrollToWidget();
+      await unusedKey.ext.scrollToWidget();
       await tester.pumpAndSettle();
     });
   });

@@ -1,4 +1,5 @@
 import 'dart:io' as io;
+import 'dart:ui' show Rect;
 
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
@@ -48,7 +49,7 @@ final class AppPlatform implements CustomPlatform {
         '${KartalAppConstants.WHATS_APP_PREFIX}$value',
       );
       if (!isLaunch) await share(value);
-    } catch (e) {
+    } on Object catch (_) {
       await share(value);
     }
   }
@@ -63,17 +64,19 @@ final class AppPlatform implements CustomPlatform {
 
   @override
   Future<void> share(String? value) async {
+    Rect? sharePositionOrigin;
     if (io.Platform.isIOS) {
       final isAppIpad = await _deviceUtils.isIpad();
       if (isAppIpad) {
-        await Share.share(
-          value ?? '',
-          sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
-        );
+        sharePositionOrigin = _deviceUtils.ipadPaddingBottom;
       }
     }
-
-    await Share.share(value ?? '');
+    await SharePlus.instance.share(
+      ShareParams(
+        text: value,
+        sharePositionOrigin: sharePositionOrigin,
+      ),
+    );
   }
 
   @override

@@ -22,7 +22,7 @@ final class _StringExtension
         StringShareMixin,
         StringValidatorMixin,
         StringCoreMixin {
-  _StringExtension(String? value) : _value = value;
+  const _StringExtension(String? value) : _value = value;
 
   final String? _value;
 
