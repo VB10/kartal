@@ -32,11 +32,11 @@ final class PopupManager {
 
   /// Shows loader dialog
   /// Provide [id] id if you have multiple loaders and want to close a specific one
-  Future<void> showLoader({
+  void showLoader({
     String? id,
     bool barrierDismissible = false,
     WidgetBuilder? widgetBuilder,
-  }) async {
+  }) {
     assert(_state != null, 'Tried to show loader but navigatorState was null.');
 
     assert(

@@ -6,7 +6,7 @@ class ContextExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Container(
+        body: SizedBox(
           height: context.sized.height,
           width: context.sized.width,
           child: Center(
@@ -26,7 +26,9 @@ class ContextExtensionView extends StatelessWidget {
                   onPressed: () {
                     context.popupManager.showLoader();
                     Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader();
+                      if (context.mounted) {
+                        context.popupManager.hideLoader();
+                      }
                     });
                   },
                   child: const Text('Show loader'),
@@ -39,7 +41,9 @@ class ContextExtensionView extends StatelessWidget {
                     final id = UniqueKey();
                     context.popupManager.showLoader(id: id.toString());
                     Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader(id: id.toString());
+                      if (context.mounted) {
+                        context.popupManager.hideLoader(id: id.toString());
+                      }
                     });
                   },
                   child: const Text('Show loader with id'),

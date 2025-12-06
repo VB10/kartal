@@ -22,15 +22,15 @@ final class _PopupExtension {
   /// Provide [id] id if you have multiple loaders and want to close a specific one
   /// [barrierDismissible] is false by default
   /// [widgetBuilder] is a optional builder function that returns a widget to show as loader
-  Future<void> showLoader({
+  void showLoader({
     String? id,
     bool barrierDismissible = false,
     WidgetBuilder? widgetBuilder,
-  }) async {
+  }) {
     _manager ??= PopupManager.withState(
       Navigator.of(_context, rootNavigator: true),
     );
-    await _manager!.showLoader(
+    _manager!.showLoader(
       id: id,
       barrierDismissible: barrierDismissible,
       widgetBuilder: widgetBuilder,
