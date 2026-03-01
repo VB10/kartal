@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'package:web/web.dart' as web;
 
 import 'package:kartal/src/utility/device_utility.dart';
 
@@ -10,7 +10,7 @@ final class DeviceUtilsWeb extends DeviceUtils {
   static final DeviceUtilsWeb _instance = DeviceUtilsWeb._init();
   @override
   Future<String> getUniqueDeviceId() =>
-      Future.value(window.navigator.appCodeName);
+      Future.value(web.window.navigator.appCodeName);
 
   @override
   Future<void> initPackageInfo() {

@@ -1,10 +1,9 @@
-import 'dart:io' if (dart.library.html) 'dart:html' show File;
+import 'dart:io' if (dart.library.js_interop) 'dart:html' show File;
 
 import 'package:kartal/src/constants/file_constants.dart';
 import 'package:kartal/src/file/file_type.dart';
 import 'package:kartal/src/private/file/app_file_extension.dart'
-    if (dart.library.html) 'package:kartal/src/private/file/web_file_extension.dart'
-    as custom_file;
+    if (dart.library.js_interop) 'package:kartal/src/private/file/web_file_extension.dart';
 import 'package:mime/mime.dart';
 
 /// Extension methods for [File] to determine the type of the file.

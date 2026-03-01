@@ -1,5 +1,5 @@
 import 'package:kartal/src/utility/device/device_utils_io.dart'
-    if (dart.library.html) 'package:kartal/src/utility/device/device_utils_web.dart'
+    if (dart.library.js_interop) 'package:kartal/src/utility/device/device_utils_web.dart'
     as device_utils;
 
 abstract class DeviceUtils {

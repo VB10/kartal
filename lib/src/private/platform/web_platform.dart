@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'package:web/web.dart' as web;
 
 import 'package:kartal/src/private/platform/custom_platform.dart';
 
@@ -9,16 +9,16 @@ final class WebPlatform implements CustomPlatform {
   bool get isIOS => false;
 
   @override
-  String get appName => window.navigator.appName;
+  String get appName => web.window.navigator.appName;
 
   @override
-  String get buildNumber => window.navigator.appCodeName;
+  String get buildNumber => web.window.navigator.appCodeName;
 
   @override
-  Future<String> get deviceId async => window.navigator.userAgent;
+  Future<String> get deviceId async => web.window.navigator.userAgent;
 
   @override
-  String get packageName => window.navigator.appCodeName;
+  String get packageName => web.window.navigator.appCodeName;
 
   @override
   Future<void> share(String? value) => throw UnimplementedError();
@@ -31,7 +31,7 @@ final class WebPlatform implements CustomPlatform {
   Future<void> shareWhatsApp(String? value) => throw UnimplementedError();
 
   @override
-  String get version => window.navigator.appVersion;
+  String get version => web.window.navigator.appVersion;
 
   /// TODO: fix it for web platform by checking the user agent
   @override
