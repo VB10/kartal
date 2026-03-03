@@ -1,4 +1,5 @@
 export 'bool_extension.dart';
+export 'color_extension.dart';
 export 'context_extension.dart';
 export 'date_extension.dart';
 export 'file/index.dart';
