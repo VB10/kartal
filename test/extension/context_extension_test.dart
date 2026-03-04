@@ -102,7 +102,6 @@ void main() {
       expect(context.general.mediaQuery, isA<MediaQueryData>());
       expect(context.general.mediaSize, const Size(500, 500));
 
-      expect(context.general.randomColor, isA<MaterialColor>());
       expect(context.general.isKeyBoardOpen, false);
       expect(context.general.keyboardPadding, 0);
     });

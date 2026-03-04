@@ -15,7 +15,6 @@
 *.iws
 .idea/
 **/CLAUDE.md
-
 *.lock
 
 # Flutter ephemeral files

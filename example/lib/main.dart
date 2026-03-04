@@ -58,7 +58,6 @@ class HomePage extends StatelessWidget {
         padding: context.padding.low,
         height: context.sized.dynamicHeight(0.1),
         width: context.sized.dynamicWidth(0.5),
-        color: context.general.randomColor,
         child: const Text('Hello World'),
       );
 
@@ -74,7 +73,7 @@ class HomePage extends StatelessWidget {
   ///
   /// Need draw any color for widget, just call context.randomColor
   ColoredBox buildContainerRandomColor(BuildContext context) => ColoredBox(
-        color: context.general.randomColor,
+        color: Colors.red.ext.randomColor,
         child: const Text('Hello World'),
       );
 
