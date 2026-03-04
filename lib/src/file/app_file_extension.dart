@@ -22,29 +22,29 @@ final class _FileExtension {
   FileType get fileType {
     final mimeType = lookupMimeType(_file.pathName);
     if (mimeType?.startsWith(FileConstants.instance().imageType) ?? false) {
-      return FileType.IMAGE;
+      return FileType.image;
     }
     if (mimeType?.startsWith(FileConstants.instance().videoType) ?? false) {
-      return FileType.VIDEO;
+      return FileType.video;
     }
     if (mimeType?.startsWith(FileConstants.instance().audioType) ?? false) {
-      return FileType.AUDIO;
+      return FileType.audio;
     }
     if (mimeType?.startsWith(FileConstants.instance().textType) ?? false) {
-      return FileType.TEXT;
+      return FileType.text;
     }
-    return FileType.UNKNOWN;
+    return FileType.unknown;
   }
 
-  /// Returns `true` if the file is of type [FileType.IMAGE].
-  bool get isImageFile => fileType == FileType.IMAGE;
+  /// Returns `true` if the file is of type [FileType.image].
+  bool get isImageFile => fileType == FileType.image;
 
-  /// Returns `true` if the file is of type [FileType.VIDEO].
-  bool get isVideoFile => fileType == FileType.VIDEO;
+  /// Returns `true` if the file is of type [FileType.video].
+  bool get isVideoFile => fileType == FileType.video;
 
-  /// Returns `true` if the file is of type [FileType.AUDIO].
-  bool get isAudioFile => fileType == FileType.AUDIO;
+  /// Returns `true` if the file is of type [FileType.audio].
+  bool get isAudioFile => fileType == FileType.audio;
 
-  /// Returns `true` if the file is of type [FileType.TEXT].
-  bool get isTextFile => fileType == FileType.TEXT;
+  /// Returns `true` if the file is of type [FileType.text].
+  bool get isTextFile => fileType == FileType.text;
 }

@@ -48,7 +48,7 @@ final class AppPlatform implements CustomPlatform {
         '${KartalAppConstants.WHATS_APP_PREFIX}$value',
       );
       if (!isLaunch) await share(value);
-    } catch (e) {
+    } on Exception {
       await share(value);
     }
   }
@@ -66,14 +66,16 @@ final class AppPlatform implements CustomPlatform {
     if (io.Platform.isIOS) {
       final isAppIpad = await _deviceUtils.isIpad();
       if (isAppIpad) {
-        await Share.share(
-          value ?? '',
-          sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
+        await SharePlus.instance.share(
+          ShareParams(
+            text: value ?? '',
+            sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
+          ),
         );
       }
     }
 
-    await Share.share(value ?? '');
+    await SharePlus.instance.share(ShareParams(text: value ?? ''));
   }
 
   @override

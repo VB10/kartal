@@ -1,6 +1,5 @@
-import 'package:web/web.dart' as web;
-
 import 'package:kartal/src/utility/device_utility.dart';
+import 'package:web/web.dart' as web;
 
 DeviceUtils get instance => DeviceUtilsWeb._instance;
 

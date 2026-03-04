@@ -37,3 +37,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+scripts:
+  publish: flutter pub publish
+  publish-dry-run: flutter pub publish --dry-run

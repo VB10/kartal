@@ -1,5 +1,5 @@
+// Project conventions allow uppercase constant names
 // ignore_for_file: constant_identifier_names
-// Because it's magic number usage
 
 final class KartalAppConstants {
   KartalAppConstants._();

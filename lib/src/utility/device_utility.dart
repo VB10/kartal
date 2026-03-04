@@ -15,7 +15,8 @@ final class DeviceUtility {
 
   static DeviceUtility? _instance;
 
-  /// Returns the singleton instance of [DeviceUtility].
+  // This is a singleton pattern, so we ignore the prefer_constructors_over_static_methods lint
+  // ignore: prefer_constructors_over_static_methods
   static DeviceUtility get instance {
     _instance ??= DeviceUtility._init();
     return _instance!;

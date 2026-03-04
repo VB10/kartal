@@ -1,6 +1,5 @@
-import 'package:web/web.dart' as web;
-
 import 'package:kartal/src/private/platform/custom_platform.dart';
+import 'package:web/web.dart' as web;
 
 CustomPlatform get instance => WebPlatform();
 
@@ -33,7 +32,7 @@ final class WebPlatform implements CustomPlatform {
   @override
   String get version => web.window.navigator.appVersion;
 
-  /// TODO: fix it for web platform by checking the user agent
+  // TODO(kartal): fix it for web platform by checking the user agent
   @override
   bool get isAndroid => false;
 
