@@ -48,12 +48,12 @@ final class _ContextNavigationExtension {
 
   /// Pushes a custom [page] onto the [Navigator] stack. You can optionally pass [extra] data to be
   /// passed as arguments to the pushed page. The [type] parameter specifies the transition type
-  /// when pushing the page, with the default value being [SlideType.DEFAULT]. Returns a [Future]
+  /// when pushing the page, with the default value being [SlideType.defaultType]. Returns a [Future]
   /// that completes with the result value returned by the page.
   Future<T?> navigateToPage<T extends Object?>(
     Widget page, {
     Object? extra,
-    SlideType type = SlideType.DEFAULT,
+    SlideType type = SlideType.defaultType,
   }) async =>
       navigation.push<T>(
         type.route(page, RouteSettings(arguments: extra)),

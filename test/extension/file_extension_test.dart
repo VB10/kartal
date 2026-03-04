@@ -8,7 +8,7 @@ void main() {
   test('Filetype Extension Returning File Type', () {
     final testFile = File('/test/file/path/testFile.jpeg');
 
-    expect(testFile.ext.fileType, FileType.IMAGE);
+    expect(testFile.ext.fileType, FileType.image);
   });
 
   test('FileType Extension .isImageFile Checking', () {
@@ -38,6 +38,6 @@ void main() {
   test('FileType Extension Unknown Type', () {
     final testFile = File('/test/file/path/testFile.asdasrsr');
 
-    expect(testFile.ext.fileType, FileType.UNKNOWN);
+    expect(testFile.ext.fileType, FileType.unknown);
   });
 }

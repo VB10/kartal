@@ -1,6 +1,6 @@
-import 'dart:html';
+import 'package:web/web.dart';
 
-/// Using for io:File
+/// Using for web `File`
 extension FileExtension on File {
   String get pathName => name;
 }
