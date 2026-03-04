@@ -1,4 +1,4 @@
-import 'dart:io' if (dart.library.js_interop) 'dart:html' show File;
+import 'dart:io' if (dart.library.js_interop) 'package:web/web.dart' show File;
 
 import 'package:kartal/src/constants/file_constants.dart';
 import 'package:kartal/src/file/file_type.dart';

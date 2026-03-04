@@ -35,7 +35,7 @@ Add `kartal` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  kartal: ^4.3.0
+  kartal: 4.3.0-dev.1
 ```
 
 Then run:
@@ -56,7 +56,7 @@ import 'package:kartal/kartal.dart';
 |:-------:|:---:|:---:|:-----:|:-------:|:-----:|
 |   ✅    | ✅  | ✅  |  ✅   |   ✅    |  ✅   |
 
-**Requirements:** Dart >=3.3.1 | Flutter >=1.17.0
+**Requirements:** Dart >=3.3.1 | Flutter >=3.19.0
 
 ## Quick Start
 
