@@ -8,7 +8,7 @@ extension KeyExtension<T extends State> on GlobalKey<T> {
 
 /// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
 final class _KeyExtension<T extends State> {
-  _KeyExtension(GlobalKey<T> key) : _key = key;
+  const _KeyExtension(GlobalKey<T> key) : _key = key;
   final GlobalKey<T> _key;
 
   /// Returns the [RenderBox] associated with the current widget.
@@ -27,12 +27,12 @@ final class _KeyExtension<T extends State> {
   double? get height => rendererBox?.size.height;
 
   /// Scrolls to the current widget.
-  void scrollToWidget({
+  Future<void> scrollToWidget({
     ScrollPositionAlignmentPolicy alignmentPolicy =
         ScrollPositionAlignmentPolicy.explicit,
-  }) {
+  }) async {
     if (_key.currentContext == null) return;
-    Scrollable.ensureVisible(
+    await Scrollable.ensureVisible(
       _key.currentContext!,
       alignmentPolicy: alignmentPolicy,
     );

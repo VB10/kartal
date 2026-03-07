@@ -10,7 +10,7 @@ extension IntegerExtension on int {
 }
 
 final class _IntegerExt {
-  _IntegerExt(int value) : _value = value;
+  const _IntegerExt(int value) : _value = value;
 
   final int _value;
 

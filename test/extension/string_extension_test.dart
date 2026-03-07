@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/generic_type_exception.dart';
@@ -27,7 +28,7 @@ void main() {
 
   test('Make a searchable word', () {
     const text = 'Hellö WörlŞé';
-    print(text.ext.searchable);
+    debugPrint(text.ext.searchable);
     expect(text.ext.searchable, 'hello worlse');
   });
 
@@ -350,8 +351,8 @@ void main() {
     );
   });
 
-  test('Test launchMaps function it as expected for scenario', () {
-    ''.ext.launchMaps();
+  test('Test launchMaps function it as expected for scenario', () async {
+    await ''.ext.launchMaps();
   });
 
   group('Test launchMAps', () {

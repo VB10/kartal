@@ -9,7 +9,7 @@ extension FutureExtension<T> on Future<T> {
 
 /// You can use future utility so easy with [FutureExtension]
 final class _FutureExtension<T> {
-  _FutureExtension(Future<T> future) : _future = future;
+  const _FutureExtension(Future<T> future) : _future = future;
 
   final Future<T> _future;
 
@@ -26,7 +26,7 @@ final class _FutureExtension<T> {
       FutureBuilder<T>(
         future: _future,
         initialData: data,
-        builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
+        builder: (context, snapshot) {
           final result = switch (snapshot.connectionState) {
             // Display the loading widget when the future is in a waiting
             //  or active state.
@@ -53,7 +53,7 @@ final class _FutureExtension<T> {
     try {
       final response = await _future.timeout(timeOutDuration);
       return response;
-    } catch (e) {
+    } on Object catch (e) {
       if (enableLogger && kDebugMode) debugPrint('$T $e');
       return null;
     }

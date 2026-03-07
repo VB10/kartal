@@ -8,7 +8,7 @@ extension ImageRotateExtension on Image {
 
 /// Provides convenient access to widgets that apply rotation animations to an [Image].
 final class _ImageExtension {
-  _ImageExtension(Image image) : _image = image;
+  const _ImageExtension(Image image) : _image = image;
   final Image _image;
 
   /// Returns a [RotationTransition] widget that applies a right rotation animation to the [Image].

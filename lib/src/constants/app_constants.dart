@@ -1,5 +1,5 @@
-// ignore_for_file: constant_identifier_names
 // Because it's magic number usage
+// ignore_for_file: constant_identifier_names
 
 final class KartalAppConstants {
   KartalAppConstants._();

@@ -5,18 +5,12 @@ extension BoolExtension on bool? {
 }
 
 final class _BoolExtension {
-  _BoolExtension({required bool? value}) : _value = value;
+  const _BoolExtension({required bool? value}) : _value = value;
   final bool? _value;
 
   /// Returns `true` if the value is `true`, otherwise `false`.
-  bool get isSuccess {
-    if (_value == null) return false;
-    return _value == true;
-  }
+  bool get isSuccess => _value ?? false;
 
   /// Returns `true` if the value is `false`, otherwise `false`.
-  bool get isFail {
-    if (_value == null) return true;
-    return _value == false;
-  }
+  bool get isFail => _value != true;
 }

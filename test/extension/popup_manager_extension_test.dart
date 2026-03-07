@@ -48,11 +48,14 @@ final class _ContextExtensionView extends StatelessWidget {
                   height: 12,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     context.popupManager.showLoader();
-                    Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader();
-                    });
+                    Future.delayed(
+                      const Duration(seconds: 2),
+                      () {
+                        if (context.mounted) context.popupManager.hideLoader();
+                      },
+                    );
                   },
                   child: const Text('Show loader'),
                 ),
@@ -60,11 +63,13 @@ final class _ContextExtensionView extends StatelessWidget {
                   height: 12,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     final id = UniqueKey();
                     context.popupManager.showLoader(id: id.toString());
                     Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader(id: id.toString());
+                      if (context.mounted) {
+                        context.popupManager.hideLoader(id: id.toString());
+                      }
                     });
                   },
                   child: const Text('Show loader with id'),

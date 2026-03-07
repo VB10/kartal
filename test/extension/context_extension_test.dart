@@ -11,7 +11,7 @@ void main() {
     const mockHeight = 500.0;
     testWidgets(
         'SizedBoxExtension on context should return height and width values correctly',
-        (WidgetTester tester) async {
+        (tester) async {
       // Create a widget for testing that provides a MediaQuery with the desired dimensions
       await tester.pumpWidget(
         Builder(
@@ -45,7 +45,7 @@ void main() {
 
     testWidgets(
         'PaddingExtension on context should return padding values correctly',
-        (WidgetTester tester) async {
+        (tester) async {
       // Create a widget for testing that provides a MediaQuery with the desired dimensions
       await tester.pumpWidget(
         Builder(
@@ -74,7 +74,7 @@ void main() {
 
     testWidgets(
         'MediaQueryExtension on context should return mediaQuery values correctly',
-        (WidgetTester tester) async {
+        (tester) async {
       // Create a widget for testing that provides a MediaQuery with the desired dimensions
       await tester.pumpWidget(
         Builder(
@@ -108,7 +108,7 @@ void main() {
 
     testWidgets(
         'BorderExtension on context should return mediaQuery values correctly',
-        (WidgetTester tester) async {
+        (tester) async {
       // Create a widget for testing that provides a MediaQuery with the desired dimensions
       await tester.pumpWidget(
         Builder(
@@ -140,7 +140,7 @@ void main() {
 
     testWidgets(
         'ContextDeviceTypeExtension on context should return mediaQuery values correctly',
-        (WidgetTester tester) async {
+        (tester) async {
       // Create a widget for testing that provides a MediaQuery with the desired dimensions
       await tester.pumpWidget(
         Builder(
@@ -168,8 +168,7 @@ void main() {
     });
   });
 
-  testWidgets('unfocus removes focus from the FocusNode',
-      (WidgetTester tester) async {
+  testWidgets('unfocus removes focus from the FocusNode', (tester) async {
     // Create a widget for testing that provides the FocusNode and a TextField
     final focusNode = FocusNode();
 
