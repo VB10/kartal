@@ -65,7 +65,7 @@ final class MapsUtility {
 
     try {
       return launchUrlString(googleMapsWithQuery);
-    } on Object catch (error) {
+    } on Exception catch (error) {
       CustomLogger.showError<MapsUtility>(error);
       return false;
     }

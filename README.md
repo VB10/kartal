@@ -81,7 +81,6 @@ You can use for general properties with context.general. For example: `context.g
 - `context.general.textTheme` (TextTheme)
 - `context.general.primaryTextTheme` (TextTheme)
 - `context.general.colorScheme` (ColorScheme)
-- `context.general.randomColor` (MaterialColor)
 - `context.general.isKeyBoardOpen` // Returns true if the keyboard is open.
 - `context.general.keyboardPadding` // When the keyboard is open, it returns the padding value of the keyboard.
 - `context.general.appBrightness` (Brightness)
@@ -319,6 +318,15 @@ You can use for List properties with list.ext. For example: `list.ext.isNotNullO
 - `[].isNullOrEmpty` // Returns true if the list is null or empty.
 - `[]?.isNotNullOrEmpty` // Returns true if the list is not null and not empty.
 - `[]?.indexOrNull(bool Function(T) search)` // Returns the index of the first element that satisfies the provided search function.
+
+
+## Color Extension
+
+You can use for Color properties with color.ext. For example: `color.ext.randomColor`
+
+- `color.ext.randomColor` (MaterialColor)
+- `color.ext.withOpacity` (Color)
+
 
 ## Widget extension
 
