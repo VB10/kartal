@@ -14,7 +14,7 @@ extension FileTypeExtension on custom_file.File {
 /// if it belongs to specific types.
 
 final class _FileExtension {
-  _FileExtension(custom_file.File file) : _file = file;
+  const _FileExtension(custom_file.File file) : _file = file;
   final custom_file.File _file;
 
   /// Returns the [FileType] of the file based on its MIME type.

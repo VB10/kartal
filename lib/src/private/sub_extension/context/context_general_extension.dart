@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 /// Provides convenient access to commonly used properties from [BuildContext].

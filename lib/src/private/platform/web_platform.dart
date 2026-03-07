@@ -32,7 +32,7 @@ final class WebPlatform implements CustomPlatform {
   @override
   String get version => window.navigator.appVersion;
 
-  /// TODO: fix it for web platform by checking the user agent
+  // TODO(dev): fix it for web platform by checking the user agent
   @override
   bool get isAndroid => false;
 

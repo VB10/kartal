@@ -1,3 +1,6 @@
+// Enum values are capitalized for backwards compatibility.
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 enum SlideType {
@@ -30,18 +33,8 @@ class _SlideRoute<T> extends PageRouteBuilder<T> {
     required SlideType slideType,
     super.settings,
   }) : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               SlideTransition(
             position: Tween<Offset>(
               begin: slideType.offSet,

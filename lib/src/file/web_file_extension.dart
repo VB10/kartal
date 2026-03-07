@@ -4,7 +4,6 @@ import 'package:kartal/src/private/file/web_file_extension.dart'
     if (dart.library.io) 'package:kartal/src/private/file/app_file_extension.dart'
     as custom_file;
 import 'package:mime/mime.dart';
-import 'dart:html' if (dart.library.html) 'dart:io' show File;
 
 /// Extension methods for [custom_file.File] to determine the type of the file.
 extension WebFileTypeExtension on custom_file.File {

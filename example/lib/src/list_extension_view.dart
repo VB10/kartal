@@ -1,16 +1,14 @@
-// ignore_for_file: avoid_field_initializers_in_const_classes
-
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class ListExtensionView extends StatelessWidget {
-  const ListExtensionView({super.key});
+  const ListExtensionView({this.values, super.key});
 
-  final List<void>? values = null;
+  final List<void>? values;
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: values.ext.isNotNullOrEmpty ? const Text('ok') : const Text('false'),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        child: values.ext.isNotNullOrEmpty
+            ? const Text('ok')
+            : const Text('false'),
+      );
 }
