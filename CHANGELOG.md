@@ -1,3 +1,7 @@
+## [Unreleased]
+
+- Added `skills/` directory with 9 [Agent Skills](https://agentskills.io/specification) (`kartal-*`) so the [`skills`](https://pub.dev/packages/skills) CLI can install kartal docs into Cursor, Claude Code, Codex, GitHub Copilot, Cline, and Antigravity. ([#88](https://github.com/VB10/kartal/issues/88))
+
 # [4.0.0]
 - Added web support for all extension
 - Updated documentation for general
