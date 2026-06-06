@@ -33,7 +33,7 @@ extension DurationReadableExtension on Duration {
 
   String timeFromNow() {
     if (inSeconds < 0) {
-      return '${-this}.timeAgo';
+      return (-this).timeAgo();
     }
     return 'in ${toHumanReadable()}';
   }
