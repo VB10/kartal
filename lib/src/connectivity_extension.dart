@@ -14,7 +14,7 @@ extension ConnectivityExtension on BuildContext {
 
   bool get isEthernet => _connectivity == ConnectivityResult.ethernet;
 
-  ConnectivityResult get _connectivity => _connectivityResults.first;
+  ConnectivityResult get _connectivity => _connectivityResults.isEmpty ? ConnectivityResult.none : _connectivityResults.first;
 
   static final List<ConnectivityResult> _connectivityResults = [
     ConnectivityResult.none
