@@ -16,12 +16,18 @@ mixin StringLocaleMixin {
 
   String get toTrLowerCase {
     if (value == null) return '';
-    return value!.toLowerCase();
+    return value!
+        .replaceAll('I', 'ı')
+        .replaceAll('İ', 'i')
+        .toLowerCase();
   }
 
   String get toTrUpperCase {
     if (value == null) return '';
-    return value!.toUpperCase();
+    return value!
+        .replaceAll('i', 'İ')
+        .replaceAll('ı', 'I')
+        .toUpperCase();
   }
 
   bool get isValidHexColor {
