@@ -29,23 +29,23 @@ extension ColorManipulationExtension on Color {
     return '#${toHexWithoutAlpha()}';
   }
 
-  String toHexWithAlpha() => '${_toHexPart(a.toInt())}'
-      '${_toHexPart(r.toInt())}'
-      '${_toHexPart(g.toInt())}'
-      '${_toHexPart(b.toInt())}';
+  String toHexWithAlpha() => '${_toHexPart(alpha)}'
+      '${_toHexPart(red)}'
+      '${_toHexPart(green)}'
+      '${_toHexPart(blue)}';
 
-  String toHexWithoutAlpha() => '${_toHexPart(r.toInt())}'
-      '${_toHexPart(g.toInt())}'
-      '${_toHexPart(b.toInt())}';
+  String toHexWithoutAlpha() => '${_toHexPart(red)}'
+      '${_toHexPart(green)}'
+      '${_toHexPart(blue)}';
 
   String _toHexPart(int value) =>
       value.toRadixString(16).padLeft(2, '0').toUpperCase();
 
   Color invert() => Color.fromARGB(
-        a.toInt(),
-        (255 - r).toInt(),
-        (255 - g).toInt(),
-        (255 - b).toInt(),
+        alpha,
+        255 - red,
+        255 - green,
+        255 - blue,
       );
 
   bool get isLight => computeLuminance() > 0.5;
