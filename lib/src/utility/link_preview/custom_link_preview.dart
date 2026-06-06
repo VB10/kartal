@@ -7,6 +7,11 @@ import 'package:kartal/src/utility/link_preview/custom_link_preview_data.dart';
 final class CustomLinkPreview {
   const CustomLinkPreview._();
 
+  static final Dio _dio = Dio(BaseOptions(
+    connectTimeout: const Duration(seconds: 10),
+    receiveTimeout: const Duration(seconds: 10),
+  ));
+
   /// This method is used to validate the url
   static const _ok = 200;
 
@@ -22,8 +27,8 @@ final class CustomLinkPreview {
     if (!_validateUrl(url)) return null;
     Response<dynamic> response;
     try {
-      response = await Dio().get<dynamic>(url);
-    } catch (_) {
+      response = await _dio.get<dynamic>(url);
+    } on Exception catch (_) {
       return null;
     }
     if (response.statusCode == _ok) {

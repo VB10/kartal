@@ -1,40 +1,62 @@
 import 'package:flutter/material.dart';
 
-/// Extension methods for [GlobalKey] to provide convenient access to properties and methods related to rendering and scrolling of widgets.
 extension KeyExtension<T extends State> on GlobalKey<T> {
-  /// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
   _KeyExtension<T> get ext => _KeyExtension<T>(this);
 }
 
-/// Provides convenient access to properties and methods related to rendering and scrolling of widgets.
 final class _KeyExtension<T extends State> {
-  _KeyExtension(GlobalKey<T> key) : _key = key;
+  _KeyExtension(this._key);
   final GlobalKey<T> _key;
 
-  /// Returns the [RenderBox] associated with the current widget.
   RenderBox? get rendererBox {
-    final object = _key.currentContext?.findRenderObject();
-    if (object == null) return null;
-    if (object is! RenderBox) return null;
-
-    return object;
+    final element = _key.currentContext as Element?;
+    return element?.renderObject as RenderBox?;
   }
 
-  /// Returns the global offset of the current widget.
-  Offset? get offset => rendererBox?.localToGlobal(Offset.zero);
+  Offset? get offset {
+    final box = rendererBox;
+    return box?.localToGlobal(Offset.zero);
+  }
 
-  /// Returns the height of the current widget.
-  double? get height => rendererBox?.size.height;
+  double? get height {
+    final box = rendererBox;
+    return box?.size.height;
+  }
 
-  /// Scrolls to the current widget.
-  void scrollToWidget({
-    ScrollPositionAlignmentPolicy alignmentPolicy =
-        ScrollPositionAlignmentPolicy.explicit,
-  }) {
-    if (_key.currentContext == null) return;
-    Scrollable.ensureVisible(
-      _key.currentContext!,
-      alignmentPolicy: alignmentPolicy,
+  void scrollToWidget({Duration duration = const Duration(milliseconds: 300)}) {
+    final box = rendererBox;
+    if (box == null) return;
+    final context = _key.currentContext;
+    if (context == null) return;
+    final renderBox = box;
+    final position = renderBox.localToGlobal(Offset.zero);
+    final scrollable = Scrollable.of(context);
+    scrollable.position.animateTo(
+      position.dy,
+      duration: duration,
+      curve: Curves.ease,
     );
   }
+}
+
+extension FormKeyExtension on GlobalKey<FormState> {
+  bool validateOrFocus() {
+    final state = currentState;
+    if (state == null) return false;
+    return state.validate();
+  }
+
+  void resetForm() {
+    final state = currentState;
+    state?.reset();
+  }
+
+  void saveForm() {
+    final state = currentState;
+    state?.save();
+  }
+
+  bool get isValid => currentState?.validate() ?? false;
+
+  bool get isInvalid => !isValid;
 }

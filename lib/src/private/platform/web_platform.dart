@@ -1,6 +1,7 @@
-import 'dart:html';
-
+import 'package:kartal/kartal.dart';
 import 'package:kartal/src/private/platform/custom_platform.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:web/web.dart';
 
 CustomPlatform get instance => WebPlatform();
 
@@ -21,21 +22,33 @@ final class WebPlatform implements CustomPlatform {
   String get packageName => window.navigator.appCodeName;
 
   @override
-  Future<void> share(String? value) => throw UnimplementedError();
+  Future<void> share(String? value) async {
+    if (value == null) return;
+    window.navigator.clipboard.writeText(value);
+  }
 
   @override
-  Future<void> shareMail(String title, String? value) =>
-      throw UnimplementedError();
+  Future<void> shareMail(String title, String? value) async {
+    final mailBodyText = '$title\n${value ?? ''}';
+    await launchUrlString(
+      Uri.encodeFull('mailto:?body=${Uri.encodeComponent(mailBodyText)}'),
+    );
+  }
 
   @override
-  Future<void> shareWhatsApp(String? value) => throw UnimplementedError();
+  Future<void> shareWhatsApp(String? value) async {
+    if (value == null) return;
+    await launchUrlString(
+      'https://wa.me/?text=${Uri.encodeComponent(value)}',
+    );
+  }
 
   @override
   String get version => window.navigator.appVersion;
 
-  /// TODO: fix it for web platform by checking the user agent
   @override
-  bool get isAndroid => false;
+  bool get isAndroid =>
+      window.navigator.userAgent.toLowerCase().contains('android');
 
   @override
   bool get isLinux => false;

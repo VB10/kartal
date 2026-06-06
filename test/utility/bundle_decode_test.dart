@@ -1,3 +1,4 @@
+// Relative library imports are used in tests to mock/reference local files.
 // ignore_for_file: avoid_relative_lib_imports
 
 import 'package:flutter_test/flutter_test.dart';

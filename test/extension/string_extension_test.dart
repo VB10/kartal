@@ -9,7 +9,7 @@ void main() {
   test('adds one to input values', () {
     const fifteenLiras = '15';
 
-    expect(fifteenLiras.ext.isNotNullOrNoEmpty, true);
+    expect(fifteenLiras.ext.isNotNullOrNotEmpty, true);
   });
 
   test('[isnullormepty] check', () {
@@ -27,7 +27,6 @@ void main() {
 
   test('Make a searchable word', () {
     const text = 'Hellö WörlŞé';
-    print(text.ext.searchable);
     expect(text.ext.searchable, 'hello worlse');
   });
 
@@ -125,9 +124,9 @@ void main() {
     expect(text.ext.isNullOrEmpty, isTrue);
   });
 
-  test('Test isNotNullOrNoEmpty property', () {
+  test('Test isNotNullOrNotEmpty property', () {
     const text = 'Hello';
-    expect(text.ext.isNotNullOrNoEmpty, isTrue);
+    expect(text.ext.isNotNullOrNotEmpty, isTrue);
   });
 
   test('Test isValidEmail property', () {

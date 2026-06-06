@@ -1,5 +1,5 @@
+// The constant names in this class use UPPER_SNAKE_CASE which doesn't match standard camelCase names.
 // ignore_for_file: constant_identifier_names
-// Because it's magic number usage
 
 final class KartalAppConstants {
   KartalAppConstants._();

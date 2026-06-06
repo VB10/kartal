@@ -16,6 +16,8 @@ final class DeviceUtility {
   static DeviceUtility? _instance;
 
   /// Returns the singleton instance of [DeviceUtility].
+  // A static getter is preferred over a factory constructor to maintain the singleton instance API.
+  // ignore: prefer_constructors_over_static_methods
   static DeviceUtility get instance {
     _instance ??= DeviceUtility._init();
     return _instance!;

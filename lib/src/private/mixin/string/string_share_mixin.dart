@@ -5,11 +5,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 mixin StringShareMixin {
   String? get value;
 
+  /// Launches the device's maps application with the given query.
   ///
-  /// The function will launch to relaeted maps for your in device
-  /// When try to launch in apple it will open AppleMaps or Gogle maps web link if catch any problem.
-  /// When try to launch in android it will open GoogleMaps or Gogle maps web link if catch any problem.
-  ///
+  /// On iOS, opens Apple Maps; on Android, opens Google Maps.
+  /// Falls back to Google Maps web if the native app fails to launch.
   Future<bool> launchMaps({
     LaunchUrlCallBack? callBack,
   }) async {
@@ -39,7 +38,8 @@ mixin StringShareMixin {
 
   /// Launches the email app with this email address.
   Future<bool> get launchEmail => launchUrlString('mailto:$value');
-  // Launch the phone application with the given number.
+
+  /// Launches the phone application with the given number.
   Future<bool> get launchPhone => launchUrlString('tel:$value');
 
   /// Returns whether or not the user can launch the website.

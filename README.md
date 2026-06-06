@@ -197,7 +197,7 @@ You can use for string properties with string.ext. For example: `string.ext.toCa
 - `'SAMPLE'.colorCode` (int?): Returns the color code parsed from the string.
 - `'SAMPLE'.toColor` (Color): Returns a Color object from the color code.
 - `'SAMPLE'.isNullOrEmpty` (bool): Returns true if the string is null or empty.
-- `'SAMPLE'.isNotNullOrNoEmpty` (bool): Returns true if the string is not null and not empty.
+- `'SAMPLE'.isNotNullOrNotEmpty` (bool): Returns true if the string is not null and not empty.
 - `'SAMPLE'.isValidEmail` (bool): Checks if the string is a valid email address.
 - `'SAMPLE'.isValidPassword` (bool): Checks if the string is a valid password.
 - `'SAMPLE'.withoutSpecialCharacters` (String?): Removes all diacritics from the string.
@@ -217,7 +217,7 @@ You can use for string properties with string.ext. For example: `string.ext.toCa
 - `'SAMPLE'.launchMap` (Future<bool>): Launches the map with any value.
 - `'SAMPLE'.shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
 - `'SAMPLE'.shareMail(String title)` (Future<void>): Shares the string via email with a title.
-- `'SAMPLE'.share()` (Future<void>): Shares the string.
+- `'SAMPLE'.share()` (Future<void>): Shares the string. On web, uses clipboard API.
 - `'SAMPLE'.appName` (String): Returns the name of the app.
 - `'SAMPLE'.packageName` (String): Returns the package name of the app.
 - `'SAMPLE'.version` (String): Returns the version of the app.
@@ -347,6 +347,106 @@ You can use for utility properties with utility. For example: `Utility.openApple
 - `CustomLinkPreview.getLinkPreviewData` // Gets the link preview data.
 - `CustomLogger.showError` // Shows an error message in .
 - `BundleDecoder('assetPath').crackBundle` // Decodes the asset file.
+
+## New Extensions (4.4.0)
+
+### Duration Extension
+```dart
+5.minutes       // Duration(minutes: 5)
+2.hours         // Duration(hours: 2)
+1.days          // Duration(days: 1)
+
+duration.toHumanReadable()  // "2 days 3 hours"
+dateTime.timeAgo            // "5 minutes ago"
+```
+
+### Color Manipulation Extension
+```dart
+color.darken(0.2)           // Darken by 20%
+color.lighten(0.1)          // Lighten by 10%
+color.contrast()            // Black or White
+color.toHex()              // "#FF0000"
+color.invert()             // Inverted color
+color.isLight              // true if light
+color.mix(otherColor, 0.5)  // Mix with other
+```
+
+### Dialog Extension
+```dart
+context.showSnack('Message')
+context.showSuccessSnack('Success!')
+context.showErrorSnack('Error!')
+await context.showConfirm('Title', 'Message')  // returns bool
+await context.showAlert('Title', 'Message')
+await context.showModalBottom(builder: ...)
+```
+
+### List Operations Extension
+```dart
+list.chunked(3)           // [[1,2,3],[4,5,6]]
+list.groupBy((e) => e.type)  // Map by type
+list.sum((e) => e.count)    // Sum of counts
+list.distinct()            // Unique items
+list.firstOrNull          // First or null
+list.takeLast(3)          // Last 3 items
+```
+
+### String Locale Extension
+```dart
+'Hello World'.slugify()          // "hello-world"
+'İSTANBUL'.toTrLowerCase()       // "istanbul"
+'#FF0000'.isValidHexColor        // true
+'café'.removeAccents             // "cafe"
+'hello world'.capitalizeWords() // "Hello World"
+```
+
+### Map Safe Access Extension
+```dart
+map.getString('name')       // String? or null
+map.getInt('age')          // int? or null
+map.getDouble('price')     // double? or null
+map.getBool('active')      // bool? or null
+map.getList<T>('items')    // List<T>? or null
+map.getValueOrDefault('key', defaultValue)
+```
+
+### Network Info Extension
+```dart
+await context.wifiIP       // "192.168.1.100"
+await context.wifiName     // "MyNetwork"
+await context.hostname     // hostname
+```
+
+### Asset Path Extension
+```dart
+'icon.png'.asImagePath     // "assets/images/icon.png"
+'data.json'.asJsonPath     // "assets/json/data.json"
+'image.png'.asSvgPath      // "assets/svg/image.png"
+```
+
+### Widget Animation Extension
+```dart
+widget.shake()
+widget.fadeIn()
+widget.scaleIn()
+widget.pulse()
+widget.bounceIn()
+```
+
+### Form Key Extension
+```dart
+formKey.validateOrFocus()  // Validate or focus first error
+formKey.resetForm()        // Reset form
+formKey.saveForm()         // Save form
+formKey.isValid            // Check if valid
+```
+
+### Context Arguments Extension
+```dart
+context.routeArgs<T>()        // Type-safe route arguments
+context.routeName             // Current route name
+context.isCurrentRouteFirst   // Check if first route
+```
 
 ## License
 

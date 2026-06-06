@@ -13,4 +13,8 @@ final class RegexConstants {
 
   /// Regex for list
   final String listRegex = r'^List(?:<(?:List<[^>]+>|[^<>])+>)?$';
+
+  /// Regex for hex color
+  final String hexColorRegex =
+      r'^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$';
 }

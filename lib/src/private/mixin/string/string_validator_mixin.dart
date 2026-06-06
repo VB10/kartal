@@ -13,11 +13,11 @@ mixin StringValidatorMixin {
   bool get isNullOrEmpty => value?.isEmpty ?? true;
 
   /// Returns true if this string is not null and not empty.
-  bool get isNotNullOrNoEmpty => value?.isNotEmpty ?? false;
+  bool get isNotNullOrNotEmpty => value?.isNotEmpty ?? false;
 
   // Check if email is valid
   bool get isValidEmail {
-    if (!isNotNullOrNoEmpty) return false;
+    if (!isNotNullOrNotEmpty) return false;
     return RegExp(
       RegexConstants.instance().emailRegex,
     ).hasMatch(value!);

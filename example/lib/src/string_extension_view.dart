@@ -16,7 +16,7 @@ class StringExtensionView extends StatelessWidget {
           children: [
             TextFormField(
               validator: (value) =>
-                  value.ext.isNotNullOrNoEmpty ? null : 'fail',
+                  value.ext.isNotNullOrNotEmpty ? null : 'fail',
             ),
             TextFormField(
               validator: (value) => value.ext.isValidEmail ? null : 'fail',

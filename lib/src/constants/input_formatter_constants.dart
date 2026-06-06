@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_constructors_over_static_methods
-
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 final class InputFormatter {
   InputFormatter._init();
+  // A static getter is preferred over a factory constructor to maintain the singleton instance API.
+  // ignore: prefer_constructors_over_static_methods
   static InputFormatter get instance => _instance ??= InputFormatter._init();
   static InputFormatter? _instance;
 

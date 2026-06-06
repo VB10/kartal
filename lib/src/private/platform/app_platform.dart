@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:kartal/src/exception/package_info_exception.dart';
 import 'package:kartal/src/utility/device/device_utils_io.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/share_plus.dart' as share_plus;
 import 'package:url_launcher/url_launcher_string.dart';
 
 /// The `AppPlatform` class is used to provide platform-specific implementations of the [CustomPlatform] interface.
@@ -48,7 +48,7 @@ final class AppPlatform implements CustomPlatform {
         '${KartalAppConstants.WHATS_APP_PREFIX}$value',
       );
       if (!isLaunch) await share(value);
-    } catch (e) {
+    } on Exception catch (_) {
       await share(value);
     }
   }
@@ -66,14 +66,16 @@ final class AppPlatform implements CustomPlatform {
     if (io.Platform.isIOS) {
       final isAppIpad = await _deviceUtils.isIpad();
       if (isAppIpad) {
-        await Share.share(
-          value ?? '',
-          sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
+        await share_plus.SharePlus.instance.share(
+          share_plus.ShareParams(
+              text: value ?? '',
+              sharePositionOrigin: _deviceUtils.ipadPaddingBottom),
         );
       }
     }
 
-    await Share.share(value ?? '');
+    await share_plus.SharePlus.instance
+        .share(share_plus.ShareParams(text: value ?? ''));
   }
 
   @override
