@@ -63,14 +63,16 @@ final class PopupManager {
   /// is safe to call from cleanup paths such as `finally` blocks.
   void hideLoader({String? id}) {
     assert(_state != null, 'Tried to hide loader but navigatorState was null.');
+    final state = _state;
+    if (state == null) return;
 
     if (id == null) {
       if (_routes.isEmpty) return;
-      _state!.removeRoute(_routes.removeLast());
+      state.removeRoute(_routes.removeLast());
       return;
     }
     final routeIndex = _routes.indexWhere((element) => element.id == id);
     if (routeIndex == -1) return;
-    _state!.removeRoute(_routes.removeAt(routeIndex));
+    state.removeRoute(_routes.removeAt(routeIndex));
   }
 }
