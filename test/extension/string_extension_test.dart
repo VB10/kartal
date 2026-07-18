@@ -69,6 +69,21 @@ void main() {
       const text = 'veli+plus@x-y.com';
       expect(text.ext.isValidEmail, true);
     });
+
+    test('email with a subdomain is valid', () async {
+      const text = 'test@mail.google.com';
+      expect(text.ext.isValidEmail, true);
+    });
+
+    test('email with a comma in the local part is invalid', () async {
+      const text = 'a,b@c.com';
+      expect(text.ext.isValidEmail, false);
+    });
+
+    test('email with trailing characters is invalid', () async {
+      const text = 'user@domain.com<script>';
+      expect(text.ext.isValidEmail, false);
+    });
   });
 
   group('toCapitalized Tests', () {
