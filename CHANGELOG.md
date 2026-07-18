@@ -1,3 +1,11 @@
+# [4.3.0]
+- Migrated web support from dart:html to package:web, the package now builds with wasm
+- Renamed FileType and SlideType enum values to lowercase (breaking, e.g. FileType.IMAGE -> FileType.image, SlideType.DEFAULT -> SlideType.defaultType)
+- Updated share extension to the new SharePlus API
+- Catch blocks now use on Exception instead of catching everything
+- Raised minimum Flutter version to 3.19.0
+- Updated README with a full overview of extensions and utilities
+
 # [4.0.0]
 - Added web support for all extension
 - Updated documentation for general
