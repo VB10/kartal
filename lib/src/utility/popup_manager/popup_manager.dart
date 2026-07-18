@@ -58,18 +58,19 @@ final class PopupManager {
 
   /// If [id] is provided closes loader with given [id]
   /// If not closes latest shown loader
+  ///
+  /// Does nothing when no loader is showing or no loader matches [id], so it
+  /// is safe to call from cleanup paths such as `finally` blocks.
   void hideLoader({String? id}) {
-    assert(
-      id == null || _routes.where((element) => element.id == id).isNotEmpty,
-      'Tried to close loader with id: $id which does not exist',
-    );
     assert(_state != null, 'Tried to hide loader but navigatorState was null.');
 
     if (id == null) {
+      if (_routes.isEmpty) return;
       _state!.removeRoute(_routes.removeLast());
       return;
     }
     final routeIndex = _routes.indexWhere((element) => element.id == id);
+    if (routeIndex == -1) return;
     _state!.removeRoute(_routes.removeAt(routeIndex));
   }
 }

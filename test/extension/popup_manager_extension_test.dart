@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
+import 'package:kartal/src/utility/popup_manager/popup_manager.dart';
 
 void main() {
   testWidgets(
@@ -21,6 +22,61 @@ void main() {
       await tester.pump();
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       await tester.pump(const Duration(milliseconds: 2500));
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'hideLoader without a showing loader does nothing',
+    (tester) async {
+      final navigatorKey = GlobalKey<NavigatorState>();
+      await tester.pumpWidget(
+        MaterialApp(navigatorKey: navigatorKey, home: const Scaffold()),
+      );
+
+      PopupManager(navigatorKey).hideLoader();
+
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'hideLoader is safe to call twice for the same loader',
+    (tester) async {
+      final navigatorKey = GlobalKey<NavigatorState>();
+      await tester.pumpWidget(
+        MaterialApp(navigatorKey: navigatorKey, home: const Scaffold()),
+      );
+      final manager = PopupManager(navigatorKey)..showLoader();
+      await tester.pump();
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+      manager.hideLoader();
+      await tester.pumpAndSettle();
+      manager.hideLoader();
+      await tester.pump();
+
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'hideLoader with an unknown id keeps the current loader',
+    (tester) async {
+      final navigatorKey = GlobalKey<NavigatorState>();
+      await tester.pumpWidget(
+        MaterialApp(navigatorKey: navigatorKey, home: const Scaffold()),
+      );
+      final manager = PopupManager(navigatorKey)..showLoader(id: 'upload');
+      await tester.pump();
+
+      manager.hideLoader(id: 'download');
+      await tester.pump();
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      manager.hideLoader(id: 'upload');
+      await tester.pumpAndSettle();
       expect(find.byType(CircularProgressIndicator), findsNothing);
     },
   );
