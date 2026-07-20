@@ -84,6 +84,21 @@ void main() {
       const text = 'user@domain.com<script>';
       expect(text.ext.isValidEmail, false);
     });
+
+    test('email with an underscore in the domain is invalid', () async {
+      const text = 'user@my_mail.com';
+      expect(text.ext.isValidEmail, false);
+    });
+
+    test('email with a single-letter tld is invalid', () async {
+      const text = 'user@domain.a';
+      expect(text.ext.isValidEmail, false);
+    });
+
+    test('email with a punycode tld is valid', () async {
+      const text = 'user@example.xn--90a3ac';
+      expect(text.ext.isValidEmail, true);
+    });
   });
 
   group('toCapitalized Tests', () {
