@@ -12,6 +12,10 @@
 - Updated readme file for utility and some other extension
 - Fixed open maps issue for android side.
 
+## [4.3.0]
+- Fixed the share sheet opening twice on iPad, the iPad branch no longer falls through to the second share call
+- Widened the share_plus constraint to `>=11.0.0 <14.0.0` so apps can pick up the iOS 26 share crash fix released in share_plus 12.0.1
+
 ## [4.2.0]
 - Added new color extension for random color and with opacity
 - Updated readme file for new version

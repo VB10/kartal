@@ -70,6 +70,7 @@ final class AppPlatform implements CustomPlatform {
           value ?? '',
           sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
         );
+        return;
       }
     }
 
