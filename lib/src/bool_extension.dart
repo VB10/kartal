@@ -9,14 +9,10 @@ final class _BoolExtension {
   final bool? _value;
 
   /// Returns `true` if the value is `true`, otherwise `false`.
-  bool get isSuccess {
-    if (_value == null) return false;
-    return _value == true;
-  }
+  ///
+  /// A `null` value is treated as `false`.
+  bool get isSuccess => _value ?? false;
 
-  /// Returns `true` if the value is `false`, otherwise `false`.
-  bool get isFail {
-    if (_value == null) return true;
-    return _value == false;
-  }
+  /// Returns `true` if the value is `false` or `null`, otherwise `false`.
+  bool get isFail => !isSuccess;
 }

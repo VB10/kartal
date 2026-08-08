@@ -26,7 +26,7 @@ final class _FutureExtension<T> {
       FutureBuilder<T>(
         future: _future,
         initialData: data,
-        builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
+        builder: (context, snapshot) {
           final result = switch (snapshot.connectionState) {
             // Display the loading widget when the future is in a waiting
             //  or active state.

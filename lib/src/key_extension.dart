@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// Extension methods for [GlobalKey] to provide convenient access to properties and methods related to rendering and scrolling of widgets.
@@ -32,9 +34,11 @@ final class _KeyExtension<T extends State> {
         ScrollPositionAlignmentPolicy.explicit,
   }) {
     if (_key.currentContext == null) return;
-    Scrollable.ensureVisible(
-      _key.currentContext!,
-      alignmentPolicy: alignmentPolicy,
+    unawaited(
+      Scrollable.ensureVisible(
+        _key.currentContext!,
+        alignmentPolicy: alignmentPolicy,
+      ),
     );
   }
 }

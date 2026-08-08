@@ -349,8 +349,8 @@ void main() {
     );
   });
 
-  test('Test launchMaps function it as expected for scenario', () {
-    ''.ext.launchMaps();
+  test('Test launchMaps function it as expected for scenario', () async {
+    expect(await ''.ext.launchMaps(), isFalse);
   });
 
   group('Test launchMAps', () {

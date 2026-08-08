@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// A [DialogRoute] shows [CircularProgressIndicator] in center
@@ -53,7 +55,7 @@ final class PopupManager {
     );
 
     _routes.add(route);
-    _state.push(route);
+    unawaited(_state.push(route));
   }
 
   /// If [id] is provided closes loader with given [id]
