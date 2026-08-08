@@ -1,11 +1,8 @@
-// Internal testing library paths are required for mocking
-// ignore_for_file: avoid_relative_lib_imports
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/src/utility/bundle/bundle_decoder.dart';
 
-import '../../example/lib/src/model/post.dart';
 import '../mock/mock_bundle_asset.dart';
+import '../mock/post_model.dart';
 
 void main() {
   late List<Post>? posts;

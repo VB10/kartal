@@ -1,10 +1,17 @@
 [![Pub Version](https://img.shields.io/pub/v/kartal.svg)](https://pub.dev/packages/kartal)
 [![GitHub Stars](https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/vb10/kartal)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![Live demo](https://img.shields.io/badge/live%20demo-vb10.github.io%2Fkartal-blue)](https://vb10.github.io/kartal/)
 
 # Kartal
 
 A comprehensive Flutter extension and utility package that supercharges your development workflow. Provides 16 type extensions and built-in utilities for context access, string operations, navigation, responsive sizing, and more -- all accessible through a clean `.ext` syntax.
+
+**[Try it live at vb10.github.io/kartal](https://vb10.github.io/kartal/)** — an
+interactive gallery where you can type into the validators, drag the
+formatters, pick colours, and resize the window to watch the responsive
+breakpoints switch. Its source is [`example/`](example/), so every snippet in
+this README is running code.
 
 ## Table of Contents
 
@@ -30,6 +37,7 @@ A comprehensive Flutter extension and utility package that supercharges your dev
   - [Map Extension](#map-extension)
 - [Utilities](#utilities)
 - [Configuration](#configuration)
+- [Demo gallery](#demo-gallery)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -1045,6 +1053,29 @@ construction rather than producing silently overlapping bands.
 
 `DateLocalizationLabel.tr()` ships Turkish labels, so `differenceTime()` needs
 no wiring for the common case.
+
+## Demo gallery
+
+The [`example/`](example/) app doubles as the live demo at
+[vb10.github.io/kartal](https://vb10.github.io/kartal/). One page per feature
+set, each interactive:
+
+| Page | What you can do |
+|---|---|
+| Validators | Type a TCKN, IBAN, card or phone number and watch the checksum verdict flip on a single changed digit |
+| Formatters | Enter a number and see `compact`, `currency`, `readableFileSize`; drag a slider to watch `mm:ss` promote to `hh:mm:ss` |
+| Colours | Pick or paste a colour and see hex, luminance, contrast foreground, lighten/darken ramps and the generated swatch |
+| Responsive | Resize the window and watch the band, derived metrics and a `responsive()`-driven grid react live |
+| Collections | `chunked`, `groupBy`, `partition` and friends over sample data, plus working `Debouncer`, `Throttler` and `kartalRetry` demos |
+| Widgets | Toggle and drag the chaining helpers to see the composed result |
+| Overlays | Snack bars, sheets, confirmation dialogs, loaders and relative-time labels |
+
+Run it locally:
+
+```bash
+cd example
+flutter run           # or: flutter run -d chrome
+```
 
 ## Contributing
 

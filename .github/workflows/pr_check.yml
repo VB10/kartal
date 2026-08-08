@@ -115,6 +115,11 @@ jobs:
         working-directory: example
         run: flutter pub get
 
+      # Catches a package change that breaks the gallery documenting it.
+      - name: Smoke test the gallery
+        working-directory: example
+        run: flutter test
+
       # Proves the package:web migration actually compiles for the web,
       # including the wasm target that dart:html could never satisfy.
       - name: Build web
