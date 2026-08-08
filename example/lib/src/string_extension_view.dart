@@ -7,31 +7,30 @@ class StringExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            'Istanbul Kartal'.ext.launchMaps();
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        'Istanbul Kartal'.ext.launchMaps();
+      },
+    ),
+    body: Column(
+      children: [
+        TextFormField(
+          validator: (value) => value.ext.isNotNullOrNoEmpty ? null : 'fail',
+        ),
+        TextFormField(
+          validator: (value) => value.ext.isValidEmail ? null : 'fail',
+        ),
+        TextField(
+          inputFormatters: [InputFormatter.instance.phoneFormatter],
+          onChanged: (value) {
+            if (kDebugMode) {
+              print(value.ext.phoneFormatValue);
+            }
           },
         ),
-        body: Column(
-          children: [
-            TextFormField(
-              validator: (value) =>
-                  value.ext.isNotNullOrNoEmpty ? null : 'fail',
-            ),
-            TextFormField(
-              validator: (value) => value.ext.isValidEmail ? null : 'fail',
-            ),
-            TextField(
-              inputFormatters: [InputFormatter.instance.phoneFormatter],
-              onChanged: (value) {
-                if (kDebugMode) {
-                  print(value.ext.phoneFormatValue);
-                }
-              },
-            ),
-          ],
-        ),
-      );
+      ],
+    ),
+  );
 
   void shareWhatsApp(String value) {
     value.ext.shareWhatsApp();

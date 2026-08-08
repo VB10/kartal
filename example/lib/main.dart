@@ -24,58 +24,58 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                // File([], 'a.jpg').ext.fileType;
-              },
-              icon: const Icon(Icons.arrow_forward, color: Colors.red),
-            ),
-          ],
+    appBar: AppBar(
+      actions: [
+        IconButton(
+          onPressed: () {
+            // File([], 'a.jpg').ext.fileType;
+          },
+          icon: const Icon(Icons.arrow_forward, color: Colors.red),
         ),
-        // appBar: AppBar(title: Text('Kartal Extension Application')),
-        body: ListUserSearch(),
-      );
+      ],
+    ),
+    // appBar: AppBar(title: Text('Kartal Extension Application')),
+    body: ListUserSearch(),
+  );
 
   /// [Input Formatter] Validation
   ///
   /// [String] value mask and unmask
   Widget buildTextFieldFormatter() => TextField(
-        inputFormatters: [InputFormatter.instance.phoneFormatter],
-        onChanged: (value) {
-          if (kDebugMode) {
-            print(value.ext.phoneFormatValue);
-          }
-        },
-      );
+    inputFormatters: [InputFormatter.instance.phoneFormatter],
+    onChanged: (value) {
+      if (kDebugMode) {
+        print(value.ext.phoneFormatValue);
+      }
+    },
+  );
 
   /// [BuildContext] Helper
   ///
   /// Padding, height etc. direct access and use centrally for app
 
   Widget buildContainerPaddingAndHeight(BuildContext context) => Container(
-        padding: context.padding.low,
-        height: context.sized.dynamicHeight(0.1),
-        width: context.sized.dynamicWidth(0.5),
-        child: const Text('Hello World'),
-      );
+    padding: context.padding.low,
+    height: context.sized.dynamicHeight(0.1),
+    width: context.sized.dynamicWidth(0.5),
+    child: const Text('Hello World'),
+  );
 
   /// [String] Validator
   ///
   /// Need validation for your field, use to "string.isValidEmail"
   TextFormField buildTextFormFieldValid() => TextFormField(
-        autovalidateMode: AutovalidateMode.always,
-        validator: (value) => value.ext.isValidEmail ? null : 'OH NOO',
-      );
+    autovalidateMode: AutovalidateMode.always,
+    validator: (value) => value.ext.isValidEmail ? null : 'OH NOO',
+  );
 
   /// [Color] Generator
   ///
   /// Need draw any color for widget, just call context.randomColor
   ColoredBox buildContainerRandomColor(BuildContext context) => ColoredBox(
-        color: Colors.red.ext.randomColor,
-        child: const Text('Hello World'),
-      );
+    color: Colors.red.ext.randomColor,
+    child: const Text('Hello World'),
+  );
 
   /// [Image] Rotation
   ///
@@ -101,7 +101,8 @@ class ListUserSearch extends StatelessWidget {
     const search = 'world';
     final results = sampleWords
         .where(
-            (element) => element.ext.searchable.contains(search.ext.searchable))
+          (element) => element.ext.searchable.contains(search.ext.searchable),
+        )
         .toList();
     return ListView.builder(
       itemCount: results.length,

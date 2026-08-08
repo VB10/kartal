@@ -8,11 +8,11 @@ class Post extends IAssetModel<Post> {
     this.body,
   });
   factory Post.fromJson(Map<String, dynamic> json) => Post(
-        userId: json['userId'] as int?,
-        id: json['id'] as int?,
-        title: json['title'] as String?,
-        body: json['body'] as String?,
-      );
+    userId: json['userId'] as int?,
+    id: json['id'] as int?,
+    title: json['title'] as String?,
+    body: json['body'] as String?,
+  );
   int? userId;
   int? id;
   String? title;
@@ -25,9 +25,9 @@ class Post extends IAssetModel<Post> {
   Map<String, dynamic>? toJson() => _toJson();
 
   Map<String, dynamic> _toJson() => {
-        'userId': userId,
-        'id': id,
-        'title': title,
-        'body': body,
-      };
+    'userId': userId,
+    'id': id,
+    'title': title,
+    'body': body,
+  };
 }

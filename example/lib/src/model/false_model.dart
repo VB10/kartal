@@ -9,12 +9,12 @@ class FalseModel extends IAssetModel<FalseModel> {
     this.thumbnailUrl,
   });
   factory FalseModel.fromJson(Map<String, dynamic> json) => FalseModel(
-        albumId: json['albumId'] as int?,
-        id: json['id'] as int?,
-        title: json['title'] as String?,
-        url: json['url'] as String?,
-        thumbnailUrl: json['thumbnailUrl'] as String?,
-      );
+    albumId: json['albumId'] as int?,
+    id: json['id'] as int?,
+    title: json['title'] as String?,
+    url: json['url'] as String?,
+    thumbnailUrl: json['thumbnailUrl'] as String?,
+  );
   int? albumId;
   int? id;
   String? title;
@@ -28,10 +28,10 @@ class FalseModel extends IAssetModel<FalseModel> {
   Map<String, dynamic>? toJson() => _toJson();
 
   Map<String, dynamic> _toJson() => {
-        'albumId': albumId,
-        'id': id,
-        'title': title,
-        'url': url,
-        'thumbnailUrl': thumbnailUrl,
-      };
+    'albumId': albumId,
+    'id': id,
+    'title': title,
+    'url': url,
+    'thumbnailUrl': thumbnailUrl,
+  };
 }

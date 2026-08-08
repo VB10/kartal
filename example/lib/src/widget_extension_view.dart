@@ -9,18 +9,18 @@ class WidgetExtensionViews extends StatelessWidget {
   final bool isDataValid = false;
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          const Text(
-            'is data not found',
-          ).ext.toVisible(
-                value: isDataValid,
-              ),
-          const Text(
-            'is data not found',
-          ).ext.toDisabled(
-                opacity: 0.5,
-                disable: true,
-              ),
-        ],
-      );
+    children: [
+      const Text(
+        'is data not found',
+      ).ext.toVisible(
+        value: isDataValid,
+      ),
+      const Text(
+        'is data not found',
+      ).ext.toDisabled(
+        opacity: 0.5,
+        disable: true,
+      ),
+    ],
+  );
 }

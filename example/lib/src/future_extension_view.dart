@@ -22,17 +22,17 @@ class FutureExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(),
-        body: fetchDummyData(context)
-            .timeoutOrNull(timeOutDuration: const Duration(seconds: 1))
-            .ext
-            .toBuild(
-              onSuccess: (data) => Center(child: Text(data ?? '')),
-              loadingWidget: const Center(child: CircularProgressIndicator()),
-              notFoundWidget: const Text('Oh no'),
-              onError: const FlutterLogo(),
-            ),
-      );
+    appBar: AppBar(),
+    body: fetchDummyData(context)
+        .timeoutOrNull(timeOutDuration: const Duration(seconds: 1))
+        .ext
+        .toBuild(
+          onSuccess: (data) => Center(child: Text(data ?? '')),
+          loadingWidget: const Center(child: CircularProgressIndicator()),
+          notFoundWidget: const Text('Oh no'),
+          onError: const FlutterLogo(),
+        ),
+  );
 }
 
 extension FutureExtension<T> on Future<T> {

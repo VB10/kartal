@@ -1,16 +1,47 @@
-# [4.0.0]
-- Added web support for all extension
-- Updated documentation for general
-- Added PopupManager extension on BuildContext for showing loader widget
-- Added PopupManager class for showing
-- Added link preview extension
-- Implemented new date extension from #60
-- Added new extension for iterable list
-- New version has removed all deprecated code now using.
-- Added new extension about LinkPreview for any url.
-- Fixed issue for iterable extension
-- Updated readme file for utility and some other extension
-- Fixed open maps issue for android side.
+## [5.0.0]
+
+Requires Dart `>=3.10.0` and Flutter `>=3.38.1`.
+
+### Breaking changes
+
+| Before | Now | Why |
+| --- | --- | --- |
+| `404.ext.httpStatus` returned `success` | returns `clientError` | `HttpResult.fromStatusCode` used `\|\|` between its relational patterns, so the first arm matched every integer and *every* status code resolved to `success`. Codes outside `[200, 600)` now map to `unknown`. |
+| `isSmallScreen` was `300 <= w < 600`, `isMediumScreen` was `600 <= w < 900` | `isSmallScreen` is `w < 300`, `isMediumScreen` is `300 <= w < 600` | The getters were shifted a band from their own documentation, so a 200px screen answered `false` to all three. `isExpandedScreen` is new and covers the `600..900` gap that had no accessor. |
+| `differenceTime()` threw on a null receiver | returns `DateLocalizationLabel.emptyLabel` | The extension is declared on `DateTime?`, so a null receiver is expected input, not an error. |
+| `differenceTime()` returned `''` for sub-second and future times | returns `justNowLabel` | `''` was indistinguishable from the null-receiver result. |
+| `differenceTime({DateLocalizationLabel localizationLabel = ...})` | `differenceTime({DateLocalizationLabel? localizationLabel})` | Omitting it now uses the labels from `KartalConfig`, still defaulting to English. Callers passing a label are unaffected. |
+| `WebFileTypeExtension` | `FileTypeExtension` | The web copy was a verbatim duplicate; the remaining extension already resolves `File` for every platform through conditional imports. |
+| `String.ext.toColor` returned white for `'#FF0000'` | parses it | Hex parsing now accepts an optional leading `#` and 8-digit ARGB. |
+| `CustomLinkPreview.getLinkPreviewData('https://example.com')` returned `null` | fetches it | URL validation tested `Uri.hasAbsolutePath`, which asks whether the *path* starts with a slash, so every URL without a trailing path was rejected — while a bare `/relative/path` was accepted. |
+
+### Fixed
+
+- `context.popupManager` cached a single instance in a static field, pinning the first `BuildContext` it ever saw. Once that route was disposed every `showLoader()` pushed onto a dead navigator. Managers are now held in an `Expando` keyed by `NavigatorState`.
+- `share()` presented the share sheet twice on iPad, because the iPad branch fell through to the generic call.
+- `Color.ext.randomColor` indexed `Colors.primaries` with `nextInt(17)` against an 18 entry list, so `blueGrey` was unreachable.
+- The web platform's `isAndroid`/`isMacOS`/`isWindows`/`isLinux` getters were hardcoded `false` behind a `TODO`. They now sniff the user agent, ordered so that Android (which reports `Linux`) and iOS (which reports `like Mac OS X`) are not misclassified.
+
+### Added
+
+- **Numbers**: `compact()`, `readableFileSize`, `currency()`, `percent()`, `fraction()`, `clampRange()`, `toRadians`, `toDegrees`, `isBetween()`, plus `int.ordinal` and `int.ms`/`seconds`/`minutes`/`hours`/`days` as `Duration` builders.
+- **Duration**: `formatted`, `format(forceHours:)`, `delay()`, `delayed()`.
+- **Colour toolkit**: `toHex()`, `lighten()`, `darken()`, `isDark`, `isLight`, `luminance`, `contrastText()`, `blend()`, `toMaterialColor()`, plus `KartalColor.random(seed:)` and `KartalColor.tryParse()`.
+- **Validators**, implemented as checksums rather than shape checks: `isValidTckn` (Turkish identity), `isValidIban` (ISO 13616 mod-97), `isValidCreditCard` (Luhn), `isValidUrl`, `isValidPhone`, `isNumeric`.
+- **String formatting**: `mask()`, `maskEmail`, `maskPhone()`, `toSlug()`, `truncate()`, `initials()`, `removeHtmlTags`, `wordCount`, `readingTimeMinutes`, `reversed`, `base64Encoded`, `base64Decoded`, `toDateTimeOrNull()`.
+- **Collections**, on both `List` and `Iterable`: `chunked()`, `paged()`, `groupBy()`, `distinctBy()`, `sortedBy()`, `sortedByDescending()`, `sumBy()`, `averageBy()`, `partition()`, `mapIndexed()`, `firstWhereOrNull()`, `randomOrNull()`, and `swap()`, `takeLast()`, `separatedBy()`, `replaceAt()`, `elementAtOrNull()`.
+- **Async**: `kartalRetry()` with optional exponential backoff and a `retryIf` predicate, `onErrorReturn()`, `orNull()`, an `errorBuilder` on `toBuild`, plus new `Debouncer` and `Throttler`.
+- **Widget chaining**: `paddingAll()`, `paddingSymmetric()`, `paddingOnly()`, `padding()`, `center`, `expanded()`, `flexible()`, `onTap()`, `safeArea`, `tooltip()`, `hero()`, `align()`, `opacity()`, `constrained()`, `sized()`, `card()`, `rotated()`, `clipRounded()`, `positioned()`.
+- **Context**: `device.breakpoint` with a `DeviceBreakpoint` enum and `device.responsive()`; `general.isDarkMode`, `isLightMode`, `orientation`, `isLandscape`, `isPortrait`, `locale`, `safePadding`, `topPadding`, `bottomPadding`, `devicePixelRatio`; and a new `context.overlay` for `showSnack()`, `showSheet()`, `showDialogCustom()` and `showConfirm()`.
+- **`KartalConfig`** to override breakpoints and date labels globally, plus a `DateLocalizationLabel.tr()` preset.
+- `HttpResult`, `SlideType`, `MapsUtility`, `SpaceSizedHeightBox` and `SpaceSizedWidthBox` are now exported. All were already reachable from the public API but could only be named through a deep `src/` import.
+
+### Changed
+
+- Dependencies: `device_info_plus` 11→13, `package_info_plus` 8→10, `share_plus` 11→13, `very_good_analysis` 8→10, `dio` 5.11, `logger` 2.7.
+- `CustomLinkPreview.getLinkPreviewData` accepts an optional `Dio`, so the tests no longer make real HTTP requests.
+- CI now gates on formatting, `analyze --fatal-infos`, an 85% coverage floor, `pub publish --dry-run`, and a web **and wasm** build of the example.
+- Test coverage 58% → 91%, 95 → 423 tests.
 
 ## [4.2.0]
 - Added new color extension for random color and with opacity
@@ -32,6 +63,20 @@
 
 ## [4.0.1]
 - Updated readme file for new version
+
+## [4.0.0]
+- Added web support for all extension
+- Updated documentation for general
+- Added PopupManager extension on BuildContext for showing loader widget
+- Added PopupManager class for showing
+- Added link preview extension
+- Implemented new date extension from #60
+- Added new extension for iterable list
+- New version has removed all deprecated code now using.
+- Added new extension about LinkPreview for any url.
+- Fixed issue for iterable extension
+- Updated readme file for utility and some other extension
+- Fixed open maps issue for android side.
 
 ## [4.0.0-dev4]
 - Added web support for all extension

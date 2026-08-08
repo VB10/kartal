@@ -6,6 +6,6 @@ class ImageExtensionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Image.network(
-        'https://picsum.photos/200/300',
-      ).ext.bottomRotation;
+    'https://picsum.photos/200/300',
+  ).ext.bottomRotation;
 }

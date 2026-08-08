@@ -1,25 +1,26 @@
 name: example
-description: A new Flutter project.
+description: Demo gallery for the kartal extension package.
 
 publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.1 <3.0.0"
+  sdk: ">=3.10.0 <4.0.0"
+  flutter: ">=3.38.1"
 
 dependencies:
-  cupertino_icons: ^1.0.5
-  http: ^1.0.0
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  http: ^1.5.0
   kartal:
     path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^4.0.0+1
+  very_good_analysis: ^10.3.0
 
 flutter:
   uses-material-design: true

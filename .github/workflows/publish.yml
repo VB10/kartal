@@ -1,0 +1,18 @@
+name: Publish to pub.dev
+
+# Publishing was manual. This runs on a version tag using pub.dev's OIDC
+# automated publishing, so no long lived credentials are stored in the repo.
+#
+# One time setup on pub.dev: Admin -> Automated publishing -> enable GitHub
+# Actions for VB10/kartal with the tag pattern v{{version}}.
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    permissions:
+      # Required to mint the OIDC token pub.dev verifies.
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
