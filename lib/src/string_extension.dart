@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/src/color_extension.dart';
 import 'package:kartal/src/private/mixin/string/string_core_mixin.dart';
+import 'package:kartal/src/private/mixin/string/string_format_mixin.dart';
 import 'package:kartal/src/private/mixin/string/string_platform_mixin.dart';
 import 'package:kartal/src/private/mixin/string/string_share_mixin.dart';
 import 'package:kartal/src/private/mixin/string/string_validator_mixin.dart';
@@ -22,6 +23,7 @@ final class _StringExtension
         StringPlatformMixin,
         StringShareMixin,
         StringValidatorMixin,
+        StringFormatMixin,
         StringCoreMixin {
   _StringExtension(String? value) : _value = value;
 
