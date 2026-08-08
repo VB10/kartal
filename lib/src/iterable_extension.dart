@@ -1,7 +1,22 @@
-/// Provides convenient access to commonly used properties from [Iterable].
+import 'package:kartal/src/private/mixin/collection/collection_core_mixin.dart';
+
+/// Provides null-stripping helpers for iterables with nullable elements.
+///
+/// This keeps the `exts` accessor because its element type is `T?`, which the
+/// collection helpers on [IterableCollectionExtension] cannot express.
 extension IterableExtensions<T> on Iterable<T?> {
   /// Iterable extension with [exts] property.
   _IterableExtension<T> get exts => _IterableExtension<T>(this);
+}
+
+/// Provides the shared collection helpers for non-nullable iterables.
+///
+/// For [List] receivers the more specific list extension wins, but both mix in
+/// the same helpers, so `.ext` behaves identically either way.
+extension IterableCollectionExtension<T> on Iterable<T> {
+  /// Iterable extension with [ext] property.
+  _IterableCollectionExtension<T> get ext =>
+      _IterableCollectionExtension<T>(this);
 }
 
 final class _IterableExtension<T> {
@@ -22,4 +37,17 @@ final class _IterableExtension<T> {
   /// function.
   List<T> makeSafeCustom(bool Function(T? value) onHandle) =>
       _list.where(onHandle).cast<T>().toList();
+}
+
+final class _IterableCollectionExtension<T> with CollectionCoreMixin<T> {
+  _IterableCollectionExtension(this.items);
+
+  @override
+  final Iterable<T> items;
+
+  /// Returns `true` if the iterable is empty.
+  bool get isNullOrEmpty => items.isEmpty;
+
+  /// Returns `true` if the iterable has at least one element.
+  bool get isNotNullOrEmpty => items.isNotEmpty;
 }
