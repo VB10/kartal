@@ -8,6 +8,7 @@ export 'future_extension.dart';
 export 'image_extension.dart';
 export 'int_extension.dart';
 export 'iterable_extension.dart';
+export 'kartal_config.dart';
 export 'key_extension.dart';
 export 'list_extension.dart';
 export 'map_extension.dart';

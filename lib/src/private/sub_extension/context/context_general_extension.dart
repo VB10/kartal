@@ -57,4 +57,38 @@ final class _ContextGeneralExtension {
 
   /// Removes focus from the currently focused [FocusNode].
   void unfocus() => focusNode.unfocus();
+
+  /// Whether the app is currently rendering in dark mode.
+  ///
+  /// Reads the resolved [ThemeData.brightness] rather than the platform
+  /// brightness, so it respects an explicit `themeMode` override.
+  bool get isDarkMode => appTheme.brightness == Brightness.dark;
+
+  /// Whether the app is currently rendering in light mode.
+  bool get isLightMode => !isDarkMode;
+
+  /// The current screen [Orientation].
+  Orientation get orientation => MediaQuery.orientationOf(_context);
+
+  /// Whether the screen is currently landscape.
+  bool get isLandscape => orientation == Orientation.landscape;
+
+  /// Whether the screen is currently portrait.
+  bool get isPortrait => orientation == Orientation.portrait;
+
+  /// The current [Locale], falling back to the system locale.
+  Locale get locale =>
+      Localizations.maybeLocaleOf(_context) ?? const Locale('en');
+
+  /// The insets intruded on by system UI such as notches and home indicators.
+  EdgeInsets get safePadding => MediaQuery.viewPaddingOf(_context);
+
+  /// The top safe area inset, typically the status bar or notch.
+  double get topPadding => safePadding.top;
+
+  /// The bottom safe area inset, typically the home indicator.
+  double get bottomPadding => safePadding.bottom;
+
+  /// The device pixel ratio.
+  double get devicePixelRatio => MediaQuery.devicePixelRatioOf(_context);
 }
