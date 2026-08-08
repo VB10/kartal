@@ -14,4 +14,5 @@ export 'list_extension.dart';
 export 'map_extension.dart';
 export 'num_extension.dart';
 export 'string_extension.dart';
+export 'widget/index.dart';
 export 'widget_extension.dart';

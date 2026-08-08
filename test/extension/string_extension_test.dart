@@ -375,29 +375,9 @@ void main() {
     });
   });
 
-  test('Custom link preview test- Success', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'https://www.wnycstudios.org/podcasts/radiolab/podcasts',
-    );
-
-    expect(response != null, true);
-  });
-
-  test('Custom link preview test- Fail', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'https://www.wnycstudios.org/ss',
-    );
-
-    expect(response == null, true);
-  });
-
-  test('Custom link preview test- Without url', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'xssxs',
-    );
-
-    expect(response == null, true);
-  });
+  // The link preview tests used to live here and issued real HTTP requests,
+  // which made the suite slow and dependent on a third party site staying up.
+  // They now run against a stubbed Dio in link_preview_test.dart.
 }
 
 class _User {

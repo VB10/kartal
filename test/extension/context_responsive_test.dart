@@ -194,6 +194,27 @@ void main() {
     });
   });
 
+  group('platform getters', () {
+    testWidgets('exactly one host platform reports true', (tester) async {
+      final device = (await _contextAtWidth(tester, 400)).device;
+
+      final flags = <String, bool>{
+        'android': device.isAndroidDevice,
+        'ios': device.isIOSDevice,
+        'windows': device.isWindowsDevice,
+        'linux': device.isLinuxDevice,
+        'macos': device.isMacOSDevice,
+      };
+
+      // Whichever machine runs the suite, precisely one must match.
+      expect(
+        flags.values.where((isHost) => isHost).length,
+        1,
+        reason: 'resolved to $flags',
+      );
+    });
+  });
+
   group('general extension additions', () {
     // Two separate tests rather than switching themes inside one: MaterialApp
     // wraps its child in an AnimatedTheme, so a single pump after a theme swap

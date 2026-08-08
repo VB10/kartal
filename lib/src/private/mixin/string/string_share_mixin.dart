@@ -1,5 +1,4 @@
 import 'package:kartal/kartal.dart';
-import 'package:kartal/src/utility/maps_utility.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 mixin StringShareMixin {

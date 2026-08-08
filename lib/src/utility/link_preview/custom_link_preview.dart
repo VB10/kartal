@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as html_parser;
+import 'package:kartal/src/string_extension.dart';
 import 'package:kartal/src/utility/link_preview/custom_link_preview_data.dart';
 
 /// A utility class that provides methods to fetch the title, description, and image of a given URL.
@@ -10,19 +12,28 @@ final class CustomLinkPreview {
   /// This method is used to validate the url
   static const _ok = 200;
 
-  /// This method is used to validate the url
-  static bool _validateUrl(String url) =>
-      Uri.tryParse(url)?.hasAbsolutePath ?? false;
+  /// Whether [url] is a fetchable absolute http(s) URL.
+  ///
+  /// This used to test `Uri.hasAbsolutePath`, which asks whether the *path*
+  /// component starts with a slash. That rejected perfectly valid inputs such
+  /// as `https://example.com` (whose path is empty) while accepting a bare
+  /// `/relative/path` that cannot be fetched at all.
+  static bool _validateUrl(String url) => url.ext.isValidUrl;
 
   /// This method is used to get the link preview data
   /// Returns the [CustomLinkPreviewData] object containing the title, description, and image of the given URL.
   /// If the URL is invalid or the data cannot be fetched, returns `null`.
-  /// Throws an exception if the response status code is not 200.
-  static Future<CustomLinkPreviewData?> getLinkPreviewData(String url) async {
+  ///
+  /// Pass [client] to supply your own [Dio], which lets tests stub the
+  /// response instead of making a real request.
+  static Future<CustomLinkPreviewData?> getLinkPreviewData(
+    String url, {
+    @visibleForTesting Dio? client,
+  }) async {
     if (!_validateUrl(url)) return null;
     Response<dynamic> response;
     try {
-      response = await Dio().get<dynamic>(url);
+      response = await (client ?? Dio()).get<dynamic>(url);
     } on Exception catch (_) {
       return null;
     }
