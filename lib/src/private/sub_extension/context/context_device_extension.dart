@@ -15,22 +15,34 @@ final class _ContextDeviceExtension {
       ResponsibilityConstants.instance();
   double get _width => _context.sized.width;
 
-  /// Returns `true` if the width of the screen is within the range of small screens,
-  /// based on the values defined in [ResponsibilityConstants].
+  /// Returns `true` if the screen is narrower than
+  /// [ResponsibilityConstants.smallScreenSize].
+  ///
   /// The range is defined as `0 <= width < 300`.
-  bool get isSmallScreen =>
+  bool get isSmallScreen => _width < _responsibilityConstants.smallScreenSize;
+
+  /// Returns `true` if the screen width falls between
+  /// [ResponsibilityConstants.smallScreenSize] and
+  /// [ResponsibilityConstants.mediumScreenSize].
+  ///
+  /// The range is defined as `300 <= width < 600`.
+  bool get isMediumScreen =>
       _width >= _responsibilityConstants.smallScreenSize &&
       _width < _responsibilityConstants.mediumScreenSize;
 
-  /// Returns `true` if the width of the screen is within the range of medium screens,
-  /// based on the values defined in [ResponsibilityConstants].
-  /// The range is defined as `300 <= width < 600`.
-  bool get isMediumScreen =>
+  /// Returns `true` if the screen width falls between
+  /// [ResponsibilityConstants.mediumScreenSize] and
+  /// [ResponsibilityConstants.largeScreenSize].
+  ///
+  /// The range is defined as `600 <= width < 900`. This band previously had
+  /// no accessor at all, which left those widths unclassified.
+  bool get isExpandedScreen =>
       _width >= _responsibilityConstants.mediumScreenSize &&
       _width < _responsibilityConstants.largeScreenSize;
 
-  /// Returns `true` if the width of the screen is within the range of large screens,
-  /// based on the values defined in [ResponsibilityConstants].
+  /// Returns `true` if the screen is at least
+  /// [ResponsibilityConstants.largeScreenSize] wide.
+  ///
   /// The range is defined as `900 <= width`.
   bool get isLargeScreen => _width >= _responsibilityConstants.largeScreenSize;
 

@@ -22,28 +22,28 @@ final class _FutureExtension<T> {
     required Widget notFoundWidget,
     required Widget onError,
     T? data,
-  }) =>
-      FutureBuilder<T>(
-        future: _future,
-        initialData: data,
-        builder: (context, snapshot) {
-          final result = switch (snapshot.connectionState) {
-            // Display the loading widget when the future is in a waiting
-            //  or active state.
-            ConnectionState.waiting || ConnectionState.active => loadingWidget,
-            // Display the success widget when the future is done and has data.
-            ConnectionState.done => snapshot.hasData
-                ?
+  }) => FutureBuilder<T>(
+    future: _future,
+    initialData: data,
+    builder: (context, snapshot) {
+      final result = switch (snapshot.connectionState) {
+        // Display the loading widget when the future is in a waiting
+        //  or active state.
+        ConnectionState.waiting || ConnectionState.active => loadingWidget,
+        // Display the success widget when the future is done and has data.
+        ConnectionState.done =>
+          snapshot.hasData
+              ?
                 // Display the success widget when the future is done and has data.
                 onSuccess(snapshot.data)
-                // Display the error widget when the future is done but has no data.
-                : onError,
-            // Display the not found widget when the future has no connection state.
-            _ => notFoundWidget,
-          };
-          return result;
-        },
-      );
+              // Display the error widget when the future is done but has no data.
+              : onError,
+        // Display the not found widget when the future has no connection state.
+        _ => notFoundWidget,
+      };
+      return result;
+    },
+  );
 
   /// Returns the future value if it is not null, otherwise returns the default value.
   Future<T?> timeoutOrNull({

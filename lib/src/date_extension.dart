@@ -21,10 +21,14 @@ final class _CurrentTimeExtension {
 
   /// The `differenceTime` method returns that represents the difference
   ///  between the current time and the `targetTime`.
+  ///
+  /// Returns [DateLocalizationLabel.emptyLabel] when the target time is null,
+  /// rather than throwing — the extension is declared on `DateTime?`, so a
+  /// null receiver is an expected input.
   String differenceTime({
     DateLocalizationLabel localizationLabel = const DateLocalizationLabel(),
   }) {
-    if (_targetTime == null) throw Exception('The targetTime cannot be null.');
+    if (_targetTime == null) return localizationLabel.emptyLabel;
 
     /// The `currentTime` variable represents the current time.
     final currentTime = DateTime.now();
@@ -66,7 +70,11 @@ final class _CurrentTimeExtension {
     if (secondDifference > 0) {
       return '$secondDifference ${localizationLabel.secondLabel}';
     }
-    return '';
+
+    // Sub-second gaps, and timestamps that have not elapsed yet, both land
+    // here. Previously this returned an empty string, which callers could not
+    // distinguish from a null target time.
+    return localizationLabel.justNowLabel;
   }
 }
 
@@ -78,6 +86,21 @@ final class DateLocalizationLabel {
     this.hourLabel = 'hours ago',
     this.minuteLabel = 'minutes ago',
     this.secondLabel = 'seconds ago',
+    this.justNowLabel = 'just now',
+    this.emptyLabel = '',
+  });
+
+  /// Turkish labels, ready to pass to
+  /// [_CurrentTimeExtension.differenceTime].
+  const DateLocalizationLabel.tr({
+    this.yearLabel = 'yıl önce',
+    this.monthLabel = 'ay önce',
+    this.dayLabel = 'gün önce',
+    this.hourLabel = 'saat önce',
+    this.minuteLabel = 'dakika önce',
+    this.secondLabel = 'saniye önce',
+    this.justNowLabel = 'az önce',
+    this.emptyLabel = '',
   });
 
   /// The `yearLabel` property represents the label for the year. The default value is `years ago`.
@@ -97,4 +120,12 @@ final class DateLocalizationLabel {
 
   /// The `secondLabel` property represents the label for the second. The default value is `seconds ago`.
   final String secondLabel;
+
+  /// The label used for gaps under one second, and for future timestamps.
+  /// The default value is `just now`.
+  final String justNowLabel;
+
+  /// The label returned when the target time is null. The default value is an
+  /// empty string.
+  final String emptyLabel;
 }

@@ -43,7 +43,8 @@ final class CustomLinkPreview {
   }
 
   static String _fetchTitleFromUrl(Document document) {
-    final title = document
+    final title =
+        document
             .querySelector('meta[property="og:title"]')
             ?.attributes['content'] ??
         document
@@ -55,7 +56,8 @@ final class CustomLinkPreview {
   }
 
   static String _fetchDescriptionFromUrl(Document document) {
-    final description = document
+    final description =
+        document
             .querySelector('meta[property="og:description"]')
             ?.attributes['content'] ??
         document
@@ -69,7 +71,8 @@ final class CustomLinkPreview {
   }
 
   static String _fetchImageFromUrl(Document document) {
-    final image = document
+    final image =
+        document
             .querySelector('meta[property="og:image"]')
             ?.attributes['content'] ??
         document

@@ -22,7 +22,7 @@ final class LoaderRoute extends DialogRoute<void> {
 final class PopupManager {
   /// It is recommended to use root navigator's key
   PopupManager(GlobalKey<NavigatorState> navigatorKey)
-      : _state = navigatorKey.currentState;
+    : _state = navigatorKey.currentState;
 
   /// It is recommended to set rootNavigator: true eg. Navigator.of(context, rootNavigator: true)
   PopupManager.withState(this._state);
@@ -48,10 +48,11 @@ final class PopupManager {
       id: id,
       barrierDismissible: barrierDismissible,
       context: _state!.context,
-      builder: widgetBuilder ??
+      builder:
+          widgetBuilder ??
           (BuildContext context) => const Center(
-                child: CircularProgressIndicator(),
-              ),
+            child: CircularProgressIndicator(),
+          ),
     );
 
     _routes.add(route);

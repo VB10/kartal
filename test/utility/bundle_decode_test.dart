@@ -40,15 +40,16 @@ void main() {
   test('expect decoding to return correct number of items', () async {
     posts = await BundleDecoder('test/files/placeholder.json')
         .crackBundle<Post, List<Post>>(
-      model: Post(),
-      assetBundle: MockAssetBundle(),
-    );
+          model: Post(),
+          assetBundle: MockAssetBundle(),
+        );
     expect(posts?.length, 100);
   });
 
   test('expect decoding to return correct number of items', () async {
-    final item = await BundleDecoder('test/files/place_holder_single.json')
-        .crackBundle<Post, Post>(model: Post(), assetBundle: MockAssetBundle());
+    final item = await BundleDecoder(
+      'test/files/place_holder_single.json',
+    ).crackBundle<Post, Post>(model: Post(), assetBundle: MockAssetBundle());
     expect(item != null, true);
   });
 }

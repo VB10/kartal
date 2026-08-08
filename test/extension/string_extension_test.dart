@@ -211,8 +211,8 @@ void main() {
   test('Test safeJsonDecodeCompute property', () async {
     const response = '{"name": "John Doe"}';
 
-    final jsonMap =
-        await response.ext.safeJsonDecodeCompute<Map<String, dynamic>>();
+    final jsonMap = await response.ext
+        .safeJsonDecodeCompute<Map<String, dynamic>>();
 
     if (jsonMap != null) {
       final name = jsonMap['name'];
@@ -362,14 +362,14 @@ void main() {
 
     test('Launch maps with right text [True]', () async {
       final response = await 'Istanbul'.ext.launchMaps(
-            callBack: (
+        callBack:
+            (
               urlString, {
               mode = LaunchMode.externalApplication,
               webOnlyWindowName,
               webViewConfiguration = const WebViewConfiguration(),
-            }) =>
-                Future.value(true),
-          );
+            }) => Future.value(true),
+      );
 
       expect(response, true);
     });
@@ -406,6 +406,6 @@ class _User {
   final String name;
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-      };
+    'name': name,
+  };
 }

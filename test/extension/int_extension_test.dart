@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kartal/kartal.dart';
-import 'package:kartal/src/utility/http_result.dart';
 
 void main() {
   test('Test randomColorValue property', () {

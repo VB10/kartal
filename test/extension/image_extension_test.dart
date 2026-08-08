@@ -15,8 +15,10 @@ void main() {
     expect(widget, isA<RotationTransition>());
     final rotationTransition = widget as RotationTransition;
     expect(rotationTransition.turns, isA<AlwaysStoppedAnimation<double>>());
-    expect((rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
-        0.5);
+    expect(
+      (rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
+      0.5,
+    );
     expect(rotationTransition.child, equals(testImage));
   });
 
@@ -26,8 +28,10 @@ void main() {
     expect(widget, isA<RotationTransition>());
     final rotationTransition = widget as RotationTransition;
     expect(rotationTransition.turns, isA<AlwaysStoppedAnimation<double>>());
-    expect((rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
-        0.25);
+    expect(
+      (rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
+      0.25,
+    );
     expect(rotationTransition.child, equals(testImage));
   });
 
@@ -37,8 +41,10 @@ void main() {
     expect(widget, isA<RotationTransition>());
     final rotationTransition = widget as RotationTransition;
     expect(rotationTransition.turns, isA<AlwaysStoppedAnimation<double>>());
-    expect((rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
-        0.75);
+    expect(
+      (rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
+      0.75,
+    );
     expect(rotationTransition.child, equals(testImage));
   });
 
@@ -48,8 +54,10 @@ void main() {
     expect(widget, isA<RotationTransition>());
     final rotationTransition = widget as RotationTransition;
     expect(rotationTransition.turns, isA<AlwaysStoppedAnimation<double>>());
-    expect((rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
-        1.0);
+    expect(
+      (rotationTransition.turns as AlwaysStoppedAnimation<double>).value,
+      1.0,
+    );
     expect(rotationTransition.child, equals(testImage));
   });
 }

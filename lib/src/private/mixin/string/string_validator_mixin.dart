@@ -31,8 +31,8 @@ mixin StringValidatorMixin {
   ///
   /// Returns `true` if the password is valid, otherwise returns `false`.
   bool get isValidPassword => RegExp(
-        RegexConstants.instance().passwordRegex,
-      ).hasMatch(value ?? '');
+    RegexConstants.instance().passwordRegex,
+  ).hasMatch(value ?? '');
 
   /// Removes all diacritics from the string.
   ///

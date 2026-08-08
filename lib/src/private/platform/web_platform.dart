@@ -1,11 +1,15 @@
 import 'package:kartal/src/private/platform/custom_platform.dart';
+import 'package:kartal/src/private/platform/user_agent_parser.dart';
 import 'package:web/web.dart' as web;
 
 CustomPlatform get instance => WebPlatform();
 
 final class WebPlatform implements CustomPlatform {
+  UserAgentPlatform get _platform =>
+      UserAgentPlatform.from(web.window.navigator.userAgent);
+
   @override
-  bool get isIOS => false;
+  bool get isIOS => _platform == UserAgentPlatform.ios;
 
   @override
   String get appName => web.window.navigator.appName;
@@ -32,16 +36,15 @@ final class WebPlatform implements CustomPlatform {
   @override
   String get version => web.window.navigator.appVersion;
 
-  // TODO(kartal): fix it for web platform by checking the user agent
   @override
-  bool get isAndroid => false;
+  bool get isAndroid => _platform == UserAgentPlatform.android;
 
   @override
-  bool get isLinux => false;
+  bool get isLinux => _platform == UserAgentPlatform.linux;
 
   @override
-  bool get isMacOS => false;
+  bool get isMacOS => _platform == UserAgentPlatform.macOS;
 
   @override
-  bool get isWindows => false;
+  bool get isWindows => _platform == UserAgentPlatform.windows;
 }

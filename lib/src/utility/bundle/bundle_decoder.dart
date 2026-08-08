@@ -63,12 +63,15 @@ mixin _BundleHelpers {
   ) async {
     if (R == List<T>) {
       final listJson = json.decode(argument.bundle) as List<dynamic>;
-      final transformedData = listJson
-          .map(
-            (data) => argument.model.fromJson(data as Map<String, dynamic>),
-          )
-          .cast<T>()
-          .toList() as R;
+      final transformedData =
+          listJson
+                  .map(
+                    (data) =>
+                        argument.model.fromJson(data as Map<String, dynamic>),
+                  )
+                  .cast<T>()
+                  .toList()
+              as R;
 
       return transformedData;
     }

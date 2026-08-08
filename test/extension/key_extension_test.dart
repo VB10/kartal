@@ -27,31 +27,35 @@ void main() {
       );
     });
 
-    testWidgets('rendererBox property returns correct RenderBox',
-        (tester) async {
+    testWidgets('rendererBox property returns correct RenderBox', (
+      tester,
+    ) async {
       await tester.pumpWidget(testWidget);
 
       expect(testKey.ext.rendererBox, isNotNull);
       expect(testKey.ext.rendererBox, isA<RenderBox>());
     });
 
-    testWidgets('offset property returns correct global position',
-        (tester) async {
+    testWidgets('offset property returns correct global position', (
+      tester,
+    ) async {
       await tester.pumpWidget(testWidget);
 
       expect(testKey.ext.offset, isNotNull);
       expect(testKey.ext.offset, isA<Offset>());
     });
 
-    testWidgets('height property returns correct widget height',
-        (tester) async {
+    testWidgets('height property returns correct widget height', (
+      tester,
+    ) async {
       await tester.pumpWidget(testWidget);
 
       expect(testKey.ext.height, 100);
     });
 
-    testWidgets('scrollToWidget scrolls to the widget position',
-        (tester) async {
+    testWidgets('scrollToWidget scrolls to the widget position', (
+      tester,
+    ) async {
       await tester.pumpWidget(testWidget);
 
       // Initial scroll position should be 0
@@ -74,8 +78,9 @@ void main() {
       expect(unusedKey.ext.height, isNull);
     });
 
-    testWidgets('scrollToWidget does nothing when context is null',
-        (tester) async {
+    testWidgets('scrollToWidget does nothing when context is null', (
+      tester,
+    ) async {
       final unusedKey = GlobalKey<State>();
 
       // Should not throw error

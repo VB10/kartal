@@ -1,12 +1,13 @@
 import 'package:kartal/kartal.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-typedef LaunchUrlCallBack = Future<bool> Function(
-  String urlString, {
-  LaunchMode mode,
-  WebViewConfiguration webViewConfiguration,
-  String? webOnlyWindowName,
-});
+typedef LaunchUrlCallBack =
+    Future<bool> Function(
+      String urlString, {
+      LaunchMode mode,
+      WebViewConfiguration webViewConfiguration,
+      String? webOnlyWindowName,
+    });
 
 final class MapsUtility {
   const MapsUtility._();

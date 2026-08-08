@@ -3,7 +3,6 @@ import 'package:logger/web.dart'
     if (dart.library.io) 'package:logger/logger.dart';
 
 @immutable
-
 /// Provides a custom logger for debugging purposes.
 final class CustomLogger {
   const CustomLogger._();
