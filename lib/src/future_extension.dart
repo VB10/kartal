@@ -53,7 +53,7 @@ final class _FutureExtension<T> {
     try {
       final response = await _future.timeout(timeOutDuration);
       return response;
-    } catch (e) {
+    } on Exception catch (e) {
       if (enableLogger && kDebugMode) debugPrint('$T $e');
       return null;
     }

@@ -1,0 +1,24 @@
+# CI/CD and tooling
+.github/
+.claude/
+CLAUDE.md
+**/CLAUDE.md
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+
+# Lock files
+*.lock
+
+# Example build artifacts
+example/build/
+example/.dart_tool/
+example/ios/Flutter/ephemeral/
+example/ios/Pods/

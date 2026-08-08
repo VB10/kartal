@@ -1,364 +1,670 @@
-<p align="center">
-<a href="https://pub.dev/packages/kartal"><img src="https://img.shields.io/pub/v/kartal.svg" alt="Pub"></a>
-<a href="https://github.com/vb10/kartal"><img src="https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on Github"></a> 
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>   
-<a href="https://www.youtube.com/hardwareandro"><img src="https://img.shields.io/youtube/channel/subscribers/UCdUaAKTLJrPZFStzEJnpQAg" alt="Youtube: HardwareAndro"></a>
-<a href="https://medium.com/@vbacik-10"> <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" alt="Medium: Vbacik">  </a> 
- 
-
-[![](https://dcbadge.vercel.app/api/server/Bzn8WtuZD2?style=flat)](https://discord.gg/Bzn8WtuZD2) 
-
-</p>
-
-# kartal
-
-My birth country is Kartal, so I created an extension to give born more power.
-
-You should look at the example folder if you want to see an example using these extensions.
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png?raw=true)](https://www.buymeacoffee.com/vb10)
-
-## Context extension
-
-<img src="https://github.com/VB10/kartal/blob/master/github/context_extension.png?raw=true" alt="Context Extension" width="400"/>
-
-
-You can use context.border to all.
-
-### Border
-
-You can use this extension for border properties with context.border.
-For example
-
-`context.border.lowRadius // it equals to device width divided by 0.02`
-
-<details open> 
-
-<summary>Usages:</summary> 
-
-- `context.border.lowRadius` // it equals to device width divided by 0.02
-- `context.border.normalRadius` // it equals to device width divided by 0.05
-- `context.border.highRadius` // it equals to device width divided by 0.1
-- `context.border.normalBorderRadius` // it equals to device width divided by 0.05
-- `context.border.lowBorderRadius` // it equals to device width divided by 0.02
-- `context.border.highBorderRadius` // it equals to device width divided by 0.1
-- `context.border.roundedRectangleBorderLow` // it equals to device width divided by 0.02
-- `context.border.roundedRectangleAllBorderNormal` // it equals to device width divided by 0.05
-- `context.border.roundedRectangleBorderNormal` // it equals to device width divided by 0.02
-- `context.border.roundedRectangleBorderMedium` // it equals to device width divided by 0.04
-- `context.border.roundedRectangleBorderHigh` // it equals to device width divided by 0.1
-
-</details>
-
-
-### Device
-
-You can use for device properties with context.device. For example: `context.device.isSmallScreen`
-
-<details>
-<summary> Usages: </summary>
-
-- `context.device.isSmallScreen` // The range is defined as `0 <= width < 300`.
-- `context.device.isMediumScreen` // The range is defined as `300 <= width < 600`.
-- `context.device.isLargeScreen` // The range is defined as `600 <= width < 900`.
-- `context.device.isAndroidDevice` // Returns true if the device is an Android device.
-- `context.device.isIOSDevice`  // Returns true if the device is an iOS device.
-- `context.device.isWindowsDevice` // Returns true if the device is a Windows device.
-- `context.device.isLinuxDevice` // Returns true if the device is a Linux device.
-- `context.device.isMacOSDevice` // Returns true if the device is a macOS device.
- </details>
-
-
-### General
-
-You can use for general properties with context.general. For example: `context.general.appTheme`
-
-<details>
-<summary> Usages: </summary>
-
-- `context.general.mediaQuery` (MediaQueryData)
-- `context.general.appTheme` (ThemeData)
-- `context.general.textTheme` (TextTheme)
-- `context.general.primaryTextTheme` (TextTheme)
-- `context.general.colorScheme` (ColorScheme)
-- `context.general.isKeyBoardOpen` // Returns true if the keyboard is open.
-- `context.general.keyboardPadding` // When the keyboard is open, it returns the padding value of the keyboard.
-- `context.general.appBrightness` (Brightness)
-- `context.general.focusNode` (FocusNode)
-- `context.general.unfocus` // Removes focus from the currently focused input field or widget.
- </details>
-
-### Navigation
-
-<img src="https://github.com/VB10/kartal/blob/master/github/navigation_extension.png?raw=true" alt="Navigation Extension" width="300"/>
-
-
-You can use for default navigation properties with context.navigation. For example: `context.navigation.pop()`
-
-<details>
-<summary> Usages: </summary>
-
-- `context.navigation.pop` // Pops the current route off the navigator.
-- `popWithRoot` /// Pops the current route off the navigator and returns to the root route.
-- `navigateName<T extends Object?>` // Pushes a named route onto the navigator.
-- `navigateToReset<T extends Object?>` // Pushes a named route onto the navigator and removes all previous routes.
-- `navigateToPage<T extends Object?>` // Pushes a new route onto the navigator.
-  </details>
-
-
-### Padding
-
-You can use for padding properties with context.padding. For example: `context.padding.low`
-
-<details>
-<summary> Usages: </summary>
-
->  low is 0.01, normal is 0.02, medium is 0.04, high is 0.1 of the device height. (Basically, it is a percentage of the device height.)
-
-- `context.padding.low` // Add [0.01 percentage of device height ] padding to all sides
-- `context.padding.normal`// Add [0.02 percentage of device height ] padding to all sides
-- `context.padding.medium` //  Add [0.04 percentage of device height ] padding to all sides
-- `context.padding.high` // Add [0.1 percentage of device height ] padding to all sides
-- `context.padding.horizontalLow` // Add [0.01 percentage of device height ] padding to horizontal sides
-- `context.padding.horizontalNormal` // Add [0.02 percentage of device height ] padding to horizontal sides
-- `context.padding.horizontalMedium` // Add [0.04 percentage of device height ] padding to horizontal sides
-- `context.padding.horizontalHigh` // Add [0.1 percentage of device height ] padding to horizontal sides
-- `context.padding.verticalLow` // Add [0.01 percentage of device height ] padding to vertical sides
-- `context.padding.verticalNormal` // Add [0.02 percentage of device height ] padding to vertical sides
-- `context.padding.verticalMedium` // Add [0.04 percentage of device height ] padding to vertical sides
-- `context.padding.verticalHigh` // Add [0.1 percentage of device height ] padding to vertical sides
-- `context.padding.onlyLeftLow` // Add [0.01 percentage of device height ] padding to left side
-- `context.padding.onlyLeftNormal` // Add [0.02 percentage of device height ] padding to left side
-- `context.padding.onlyLeftMedium` 
-- `context.padding.onlyLeftHigh` // Add [0.1 percentage of device height ] padding to left side
-- `context.padding.onlyRightLow` // Add [0.01 percentage of device height ] padding to right side
-- `context.padding.onlyRightNormal` // Add [0.02 percentage of device height ] padding to right side
-- `context.padding.onlyRightMedium` // Add [0.04 percentage of device height ] padding to right side
-- `context.padding.onlyRightHigh`  // Add [0.1 percentage of device height ] padding to right side
-- `context.padding.onlyBottomLow` // Add [0.01 percentage of device height ] padding to bottom side
-- `context.padding.onlyBottomNormal` // Add [0.02 percentage of device height ] padding to bottom side
-- `context.padding.onlyBottomMedium` // Add [0.04 percentage of device height ] padding to bottom side
-- `context.padding.onlyBottomHigh` // Add [0.1 percentage of device height ] padding to bottom side
-- `context.padding.onlyTopLow` // Add [0.01 percentage of device height ] padding to top side
-- `context.padding.onlyTopNormal` // Add [0.02 percentage of device height ] padding to top side
-- `context.padding.onlyTopMedium` // Add [0.04 percentage of device height ] padding to top side
-- `context.padding.onlyTopHigh` // Add [0.1 percentage of device height ] padding to top side
-
-</details>
-
-### Size
-
-You can use for size properties with context.sized. For example: `context.sized.low`
-
-<details>
-<summary> Usages: </summary>
-
-
-- `context.sized.height` // Height of the current device.
-- `context.sized.width` // Width of the current device.
-- `context.sized.lowValue` // 0.01 percentage of the current widget's height.
-- `context.sized.normalValue` // 0.02 percentage of the current widget's height.
-- `context.sized.mediumValue` // 0.04 percentage of the current widget's height.
-- `context.sized.highValue` // 0.1 percentage of the current widget's height.
-- `context.sized.dynamicWidth(double val)` // Calculates and returns a dynamic width value based on the provided `val` and the current widget's width.
-- `context.sized.dynamicHeight(double val)` // Calculates and returns a dynamic height value based on the provided `val` and the current widget's height.
-- `context.sized.emptySizedWidthBoxLow` // 0.01 percentage to width empty width box
-- `context.sized.emptySizedWidthBoxLow3x` // 0.03 percentage of width to empty width box
-- `context.sized.emptySizedWidthBoxNormal`// 0.05 percentage to width empty width box
-- `context.sized.emptySizedWidthBoxHigh` // 0.1 percentage to width empty width box
-- `context.sized.emptySizedHeightBoxLow` // 0.01 percentage to height empty height box
-- `context.sized.emptySizedHeightBoxLow3x` // 0.03 percentage of height to empty height box
-- `context.sized.emptySizedHeightBoxNormal` // 0.05 percentage to height empty height box
-- `context.sized.emptySizedHeightBoxHigh` // 0.1 percentage to height empty height box
-
-</details>
-
-## Popup
-
-You can use context.popupManager to all
-
-- `showLoader` (Function): A method shows loader indicator by pushing a `DialogRoute`. Takes optional `id`, `barrierDismissible` and `widgetBuilder`.
-- `hideLoader` (Function): A method hides current active loader by removing `DialogRoute`. Takes optional `id`. If `id` is not provided will close latest one.
-
-## String extension
-
-
-<img src="https://github.com/VB10/kartal/blob/master/github/string_extension.png?raw=true" alt="String Extension" width="300"/>
-
-You can use for string properties with string.ext. For example: `string.ext.toCapitalized()`
-
-<details>
-<summary> Usages: </summary>
-
-- `'SAMPLE'.lineLength` (int): Returns the number of lines in the string.
-- `'SAMPLE'..color` (Color): Returns a Color object parsed from the string.
-- `'SAMPLE'.toCapitalized()` (String): Converts the first letter of the string to a capital letter.
-- `'SAMPLE'.toTitleCase()` (String): Converts all letters of the string to title case.
-- `'SAMPLE'.colorCode` (int?): Returns the color code parsed from the string.
-- `'SAMPLE'.toColor` (Color): Returns a Color object from the color code.
-- `'SAMPLE'.isNullOrEmpty` (bool): Returns true if the string is null or empty.
-- `'SAMPLE'.isNotNullOrNoEmpty` (bool): Returns true if the string is not null and not empty.
-- `'SAMPLE'.isValidEmail` (bool): Checks if the string is a valid email address.
-- `'SAMPLE'.isValidPassword` (bool): Checks if the string is a valid password.
-- `'SAMPLE'.withoutSpecialCharacters` (String?): Removes all diacritics from the string.
-- `'SAMPLE'.ext.searchable` (String): Returns the searchable version of the string(without special characters with lower case).
-- `'SAMPLE'.phoneFormatValue` (String): Returns the value of the phone number without formatting characters.
-- `'SAMPLE'.timeFormatValue` (String): Formats the value of the string as a time.
-- `'SAMPLE'.timeOverlineFormatValue` (String): Unmasks the text for the time overline format.
-- `'SAMPLE'.randomImage` (String): Returns a URL for a random image.
-- `'SAMPLE'.randomSquareImage` (String): Returns a URL for a random square image.
-- `'SAMPLE'.customProfileImage` (String): Returns a URL for a custom profile image.
-- `'SAMPLE'.customHighProfileImage` (String): Returns a URL for a custom high-resolution profile image.
-- `'SAMPLE'.bearer` (Map<String, dynamic>): Returns a map with a bearer token.
-- `'SAMPLE'.launchEmail` (Future<bool>): Launches the email app with the email address.
-- `'SAMPLE'.launchPhone` (Future<bool>): Launches the phone app with the phone number.
-- `'SAMPLE'.launchWebsite` (Future<bool>): Launches the website with the string as the URL.
-- `'SAMPLE'.launchWebsiteCustom` (Future<bool>): Launches the website with custom configuration.
-- `'SAMPLE'.launchMap` (Future<bool>): Launches the map with any value.
-- `'SAMPLE'.shareWhatsApp()` (Future<void>): Shares the string via WhatsApp.
-- `'SAMPLE'.shareMail(String title)` (Future<void>): Shares the string via email with a title.
-- `'SAMPLE'.share()` (Future<void>): Shares the string.
-- `'SAMPLE'.appName` (String): Returns the name of the app.
-- `'SAMPLE'.packageName` (String): Returns the package name of the app.
-- `'SAMPLE'.version` (String): Returns the version of the app.
-- `'SAMPLE'.buildNumber` (String): Returns the build number of the app.
-- `'SAMPLE'.deviceId` (Future<String>): Returns the unique device ID.
-
-</details>
-
-## File extension
-
-You can use for file properties with file.ext. For example: `file.ext.fileType`
-
-<details>
-<summary> Usages: </summary>
-
-- `File().ext.fileType` (FileType): Returns the FileType of the file based on its MIME type.
-- `File().ext.isImageFile` (bool): Returns true if the file is of type FileType.IMAGE.
-- `File().ext.isVideoFile` (bool): Returns true if the file is of type FileType.VIDEO.
-- `File().ext.isAudioFile` (bool): Returns true if the file is of type FileType.AUDIO.
-- `File().ext.isTextFile` (bool): Returns true if the file is of type FileType.TEXT.
-
-</details>
-
-## Future extension
-
-<img src="https://github.com/VB10/kartal/blob/master/github/future_extension.png?raw=true" alt="Future Extension" width="400"/>
-
-You can use for future properties with future.ext. For example: `future.ext.toBuild`
-
-- `toBuild` (Widget): Builds a widget based on the state of a future. It allows specifying different widgets for different states, such as loading, success, not found, and error.
-  - `onSuccess` (required): Widget Function(T? data) - Specifies the widget to display when the future completes successfully. It receives the data from the future as a parameter.
-  - `loadingWidget` (required): Widget - Specifies the widget to display while the future is loading or in an active state.
-  - `notFoundWidget` (required): Widget - Specifies the widget to display when the future has no connection state.
-  - `onError` (required): Widget - Specifies the widget to display when an error occurs during the future's execution.
-  - `data` (optional): T? - The initial data to provide to the future builder.
-
-- `timeoutOrNull` (T or null) When operation complete before the timeout limit it will return data. if any problem accrued it will return null.
-  - `timeOutDuration` (required): Duration - Specifies the timeout duration. Default value is 10 seconds.
-  - `enableLogger`, (optional): It will print your error issues in debug console.
-
-## Image Extension
-
-
-<img src="https://github.com/VB10/kartal/blob/master/github/image_extension.png?raw=true" alt="Future Extension" width="400"/>
-
-
-You can use for Image widget properties with Image.ext. For example: `Image.ext.rightRotation`
-
-- `rightRotation` (Widget): Returns a [RotationTransition] widget that applies a right rotation animation to the image.
-- `upRotation` (Widget): Returns a [RotationTransition] widget that applies an up rotation animation to the image.
-- `bottomRotation` (Widget): Returns a [RotationTransition] widget that applies a bottom rotation animation to the image.
-- `leftRotation` (Widget): Returns a [RotationTransition] widget that applies a left rotation animation to the image.
-
-## Key Extension
-
-You can use for GlobalKey properties with key.ext. For example: `Key().ext.offSet`
-
-- `GlobalKey.rendererBox`
-  - Returns the `RenderBox` associated with the current widget.
-  - Return Type: `RenderBox?`
-
-- `GlobalKey.offset`
-
-  - Returns the global offset of the current widget.
-  - Return Type: `Offset?`
-
-- `GlobalKey.height`
-
-  - Returns the height of the current widget.
-  - Return Type: `double?`
-
-- `GlobalKey.scrollToWidget`
-  - Scrolls to the current widget.
-  - Parameters:
-    - `alignmentPolicy` (optional): The alignment policy during scrolling. Default: `ScrollPositionAlignmentPolicy.explicit`.
-  - Return Type: `void`
-
-## Asset Reader
-
-You can parse your asset file with generic way.
-
-```dart
-   final posts = await BundleDecoder('assets/placeholder.json')
-        .crackBundle<Post, List<Post>>(model: Post());
+[![Pub Version](https://img.shields.io/pub/v/kartal.svg)](https://pub.dev/packages/kartal)
+[![GitHub Stars](https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/vb10/kartal)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+
+# Kartal
+
+A comprehensive Flutter extension and utility package that supercharges your development workflow. Provides 13 type extensions and built-in utilities for context access, string operations, navigation, responsive sizing, and more -- all accessible through a clean `.ext` syntax.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Platform Support](#platform-support)
+- [Quick Start](#quick-start)
+- [Extensions](#extensions)
+  - [Context Extensions](#context-extensions) ([General](#general) | [Sized](#sized) | [Padding](#padding) | [Border](#border) | [Device](#device) | [Navigation](#navigation) | [Popup Manager](#popup-manager))
+  - [String Extension](#string-extension)
+  - [Widget Extension](#widget-extension)
+  - [Future Extension](#future-extension)
+  - [List Extension](#list-extension)
+  - [Iterable Extension](#iterable-extension)
+  - [File Extension](#file-extension)
+  - [Image Extension](#image-extension)
+  - [Key Extension](#key-extension)
+  - [Int Extension](#int-extension)
+  - [Bool Extension](#bool-extension)
+  - [Date Extension](#date-extension)
+  - [Map Extension](#map-extension)
+- [Utilities](#utilities)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+Add `kartal` to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  kartal: 4.3.0-dev.1
 ```
 
-## Iterable Extension
+Then run:
 
-You can use for Iterable properties with iterable.ext. For example: `iterable.ext.makeSafe()`
+```bash
+flutter pub get
+```
 
-- `[null,1].makeSafe()` // Returns a list with non-null values.
-- `[null,1].makeSafeCustom(bool Function(T? value) onHandle)` // Returns a list with non-null values based on the custom function.
+Import it in your Dart files:
 
-## List Extension
+```dart
+import 'package:kartal/kartal.dart';
+```
 
-You can use for List properties with list.ext. For example: `list.ext.isNotNullOrEmpty`
+## Platform Support
 
-- `[].isNullOrEmpty` // Returns true if the list is null or empty.
-- `[]?.isNotNullOrEmpty` // Returns true if the list is not null and not empty.
-- `[]?.indexOrNull(bool Function(T) search)` // Returns the index of the first element that satisfies the provided search function.
+| Android | iOS | Web | macOS | Windows | Linux |
+|:-------:|:---:|:---:|:-----:|:-------:|:-----:|
+|   ✅    | ✅  | ✅  |  ✅   |   ✅    |  ✅   |
 
+**Requirements:** Dart >=3.3.1 | Flutter >=3.19.0
 
-## Color Extension
+## Quick Start
 
-You can use for Color properties with color.ext. For example: `color.ext.randomColor`
+```dart
+// Responsive sizing and theming
+Container(
+  padding: context.padding.low,
+  height: context.sized.dynamicHeight(0.1),
+  child: Text(
+    'Hello',
+    style: context.general.textTheme.titleMedium,
+  ),
+)
 
-- `color.ext.randomColor` (MaterialColor)
-- `color.ext.withOpacity` (Color)
+// Form validation
+final isValid = 'user@mail.com'.ext.isValidEmail; // true
 
+// Conditional visibility
+const Text('Premium Feature').ext.toVisible(value: isPremiumUser)
 
-## Widget extension
+// Safe future building
+fetchUserData().ext.toBuild(
+  onSuccess: (data) => Text(data?.name ?? ''),
+  loadingWidget: const CircularProgressIndicator(),
+  notFoundWidget: const Text('No data'),
+  onError: const Text('Something went wrong'),
+)
+```
 
+## Extensions
 
-<img src="https://github.com/VB10/kartal/blob/master/github/widget_extension.png?raw=true" alt="Widget Extension" width="400"/>
+### Context Extensions
 
-You can use for Widget properties with widget.ext. For example: `widget.ext.toVisible()`
+Kartal extends `BuildContext` with 7 sub-extensions: `context.general`, `context.sized`, `context.padding`, `context.border`, `context.device`, `context.route`, and `context.popupManager`.
 
-- `Widget.toVisible({bool value = true})` // Returns a widget with visibility based on the value.
-- `Widget.toDisabled({bool? disable, double? opacity})` // Returns a widget with disabled properties based on the value.
-- `Widget.sliver` // Returns a sliver version of the current widget.
+#### General
 
-## Utility
+Access theme data, media query, keyboard state, and focus management.
 
-You can use for utility properties with utility. For example: `Utility.openAppleMapsWithQuery`
+```dart
+final theme = context.general.appTheme;
+final isOpen = context.general.isKeyBoardOpen;
+context.general.unfocus(); // dismiss keyboard
+```
 
-- `MapsUtility.openAppleMapsWithQuery`, `MapsUtility.openGoogleMapsWithQuery`, `MapsUtility.openGoogleWebMapsWithQuery`, // Opens the map with the query.
-- `CustomLinkPreview.getLinkPreviewData` // Gets the link preview data.
-- `CustomLogger.showError` // Shows an error message in .
-- `BundleDecoder('assetPath').crackBundle` // Decodes the asset file.
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `mediaQuery` | `MediaQueryData` | Current media query data |
+| `mediaSize` | `Size` | Current media size |
+| `mediaViewInset` | `EdgeInsets` | Current view insets |
+| `mediaBrightness` | `Brightness` | Platform brightness |
+| `mediaTextScale(double)` | `double` | Scaled font size |
+| `appTheme` | `ThemeData` | Current app theme |
+| `textTheme` | `TextTheme` | Text theme from current theme |
+| `primaryTextTheme` | `TextTheme` | Primary text theme |
+| `colorScheme` | `ColorScheme` | Color scheme from current theme |
+| `randomColor` | `MaterialColor` | Random material primary color |
+| `isKeyBoardOpen` | `bool` | Whether the software keyboard is visible |
+| `keyboardPadding` | `double` | Height of the keyboard when open |
+| `appBrightness` | `Brightness` | Platform brightness (light/dark) |
+| `focusNode` | `FocusNode` | Current focus scope node |
+| `unfocus()` | `void` | Remove focus from current widget |
+
+#### Sized
+
+Responsive sizing helpers based on device dimensions.
+
+```dart
+SizedBox(
+  height: context.sized.dynamicHeight(0.1),
+  width: context.sized.dynamicWidth(0.5),
+)
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `height` | `double` | Device height |
+| `width` | `double` | Device width |
+| `lowValue` | `double` | 1% of device height |
+| `normalValue` | `double` | 2% of device height |
+| `mediumValue` | `double` | 4% of device height |
+| `highValue` | `double` | 10% of device height |
+| `dynamicWidth(double)` | `double` | Width multiplied by value |
+| `dynamicHeight(double)` | `double` | Height multiplied by value |
+| `emptySizedWidthBoxLow` | `Widget` | 1% width empty box |
+| `emptySizedWidthBoxLow3x` | `Widget` | 3% width empty box |
+| `emptySizedWidthBoxNormal` | `Widget` | 5% width empty box |
+| `emptySizedWidthBoxHigh` | `Widget` | 10% width empty box |
+| `emptySizedHeightBoxLow` | `Widget` | 1% height empty box |
+| `emptySizedHeightBoxLow3x` | `Widget` | 3% height empty box |
+| `emptySizedHeightBoxNormal` | `Widget` | 5% height empty box |
+| `emptySizedHeightBoxHigh` | `Widget` | 10% height empty box |
+
+#### Padding
+
+Responsive padding helpers. Values are percentages of device height: low=1%, normal=2%, medium=4%, high=10%.
+
+```dart
+Padding(
+  padding: context.padding.horizontalNormal,
+  child: Text('Hello'),
+)
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `low` | `EdgeInsets` | 1% padding on all sides |
+| `normal` | `EdgeInsets` | 2% padding on all sides |
+| `medium` | `EdgeInsets` | 4% padding on all sides |
+| `high` | `EdgeInsets` | 10% padding on all sides |
+| `horizontalLow` | `EdgeInsets` | 1% horizontal padding |
+| `horizontalNormal` | `EdgeInsets` | 2% horizontal padding |
+| `horizontalMedium` | `EdgeInsets` | 4% horizontal padding |
+| `horizontalHigh` | `EdgeInsets` | 10% horizontal padding |
+| `verticalLow` | `EdgeInsets` | 1% vertical padding |
+| `verticalNormal` | `EdgeInsets` | 2% vertical padding |
+| `verticalMedium` | `EdgeInsets` | 4% vertical padding |
+| `verticalHigh` | `EdgeInsets` | 10% vertical padding |
+| `onlyLeftLow` | `EdgeInsets` | 1% left-only padding |
+| `onlyLeftNormal` | `EdgeInsets` | 2% left-only padding |
+| `onlyLeftMedium` | `EdgeInsets` | 4% left-only padding |
+| `onlyLeftHigh` | `EdgeInsets` | 10% left-only padding |
+| `onlyRightLow` | `EdgeInsets` | 1% right-only padding |
+| `onlyRightNormal` | `EdgeInsets` | 2% right-only padding |
+| `onlyRightMedium` | `EdgeInsets` | 4% right-only padding |
+| `onlyRightHigh` | `EdgeInsets` | 10% right-only padding |
+| `onlyBottomLow` | `EdgeInsets` | 1% bottom-only padding |
+| `onlyBottomNormal` | `EdgeInsets` | 2% bottom-only padding |
+| `onlyBottomMedium` | `EdgeInsets` | 4% bottom-only padding |
+| `onlyBottomHigh` | `EdgeInsets` | 10% bottom-only padding |
+| `onlyTopLow` | `EdgeInsets` | 1% top-only padding |
+| `onlyTopNormal` | `EdgeInsets` | 2% top-only padding |
+| `onlyTopMedium` | `EdgeInsets` | 4% top-only padding |
+| `onlyTopHigh` | `EdgeInsets` | 10% top-only padding |
+
+#### Border
+
+Border radius and rounded rectangle helpers based on device width.
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: context.border.normalBorderRadius,
+  ),
+)
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `lowRadius` | `Radius` | 2% of width circular radius |
+| `normalRadius` | `Radius` | 5% of width circular radius |
+| `highRadius` | `Radius` | 10% of width circular radius |
+| `lowBorderRadius` | `BorderRadius` | 2% of width all corners |
+| `normalBorderRadius` | `BorderRadius` | 5% of width all corners |
+| `highBorderRadius` | `BorderRadius` | 10% of width all corners |
+| `roundedRectangleBorderLow` | `RoundedRectangleBorder` | Low radius top corners |
+| `roundedRectangleAllBorderNormal` | `RoundedRectangleBorder` | Normal radius all corners |
+| `roundedRectangleBorderNormal` | `RoundedRectangleBorder` | Normal radius top corners |
+| `roundedRectangleBorderMedium` | `RoundedRectangleBorder` | Medium radius top corners |
+| `roundedRectangleBorderHigh` | `RoundedRectangleBorder` | High radius top corners |
+
+#### Device
+
+Screen size checks and platform detection.
+
+```dart
+if (context.device.isSmallScreen) {
+  // compact layout
+}
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `isSmallScreen` | `bool` | `0 <= width < 300` |
+| `isMediumScreen` | `bool` | `300 <= width < 600` |
+| `isLargeScreen` | `bool` | `width >= 900` |
+| `isAndroidDevice` | `bool` | Running on Android |
+| `isIOSDevice` | `bool` | Running on iOS |
+| `isWindowsDevice` | `bool` | Running on Windows |
+| `isLinuxDevice` | `bool` | Running on Linux |
+| `isMacOSDevice` | `bool` | Running on macOS |
+
+#### Navigation
+
+Route navigation helpers via `context.route`.
+
+```dart
+context.route.pop();
+context.route.navigateName('/details', data: item);
+context.route.navigateToPage(const DetailsPage());
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `navigation` | `NavigatorState` | Current navigator state |
+| `pop<T>([T? data])` | `Future<bool>` | Pop current route |
+| `popWithRoot()` | `void` | Pop to root route |
+| `navigateName<T>(String path, {Object? data})` | `Future<T?>` | Push named route |
+| `navigateToReset<T>(String path, {Object? data})` | `Future<T?>` | Push named and clear stack |
+| `navigateToPage<T>(Widget page, {Object? extra, SlideType type})` | `Future<T?>` | Push widget with slide transition |
+
+#### Popup Manager
+
+Show and hide loading dialogs via `context.popupManager`.
+
+```dart
+// Show loader
+context.popupManager.showLoader();
+
+// Hide loader
+context.popupManager.hideLoader();
+
+// With custom widget and ID
+context.popupManager.showLoader(
+  id: 'upload',
+  widgetBuilder: (context) => const MyCustomLoader(),
+);
+context.popupManager.hideLoader(id: 'upload');
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `showLoader({String? id, bool barrierDismissible, WidgetBuilder? widgetBuilder})` | `void` | Show a loading dialog |
+| `hideLoader({String? id})` | `void` | Hide loader by ID or the latest one |
+
+---
+
+### String Extension
+
+Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
+
+##### Validation & Formatting
+
+```dart
+'test@email.com'.ext.isValidEmail      // true
+'Abc123!@'.ext.isValidPassword         // true
+'hello world'.ext.toTitleCase()        // "Hello World"
+'hello world'.ext.toCapitalized()      // "Hello world"
+'ÇÖĞ'.ext.withoutSpecialCharacters    // "COG"
+'ÇÖĞ test'.ext.searchable             // "cog test"
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `isNullOrEmpty` | `bool` | `true` if null or empty |
+| `isNotNullOrNoEmpty` | `bool` | `true` if not null and not empty |
+| `isValidEmail` | `bool` | Email validation via regex |
+| `isValidPassword` | `bool` | Min 8 chars, upper, lower, number, symbol |
+| `searchable` | `String` | Lowercase with diacritics removed |
+| `withoutSpecialCharacters` | `String?` | Removes diacritics |
+| `toCapitalized()` | `String` | First letter uppercase, rest lowercase |
+| `toTitleCase()` | `String` | Each word capitalized |
+| `lineLength` | `int` | Number of lines |
+| `phoneFormatValue` | `String` | Unmasked phone value |
+| `timeFormatValue` | `String` | Unmasked time value |
+| `timeOverlineFormatValue` | `String` | Unmasked time overline value |
+
+##### Color & Images
+
+```dart
+'FF5733'.ext.color          // Color(0xffFF5733)
+'FF5733'.ext.toColor        // Color from color code
+'avatar'.ext.randomImage    // picsum.photos URL
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `color` | `Color` | Color from hex string |
+| `colorCode` | `int?` | Parsed color code |
+| `toColor` | `Color` | Color from color code |
+| `randomImage` | `String` | Random 200x300 image URL |
+| `randomSquareImage` | `String` | Random 200x200 image URL |
+| `customProfileImage` | `String` | Gravatar placeholder URL |
+| `customHighProfileImage` | `String` | Gravatar high-res placeholder URL |
+
+##### Sharing & Launching
+
+```dart
+'user@mail.com'.ext.launchEmail
+'+905551234567'.ext.launchPhone
+'https://pub.dev'.ext.launchWebsite
+'Istanbul'.ext.launchMaps()
+'Hello!'.ext.share()
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `launchEmail` | `Future<bool>` | Open email app |
+| `launchPhone` | `Future<bool>` | Open phone app |
+| `launchWebsite` | `Future<bool>` | Open URL in browser |
+| `launchWebsiteCustom(...)` | `Future<bool>` | Open URL with custom config |
+| `launchMaps()` | `Future<bool>` | Open maps (Apple Maps on iOS, Google Maps on Android) |
+| `shareWhatsApp()` | `Future<void>` | Share via WhatsApp |
+| `shareMail(String title)` | `Future<void>` | Share via email |
+| `share()` | `Future<void>` | Share via system dialog |
+
+##### Platform Info & Utilities
+
+```dart
+final name = ''.ext.appName;
+final id = await ''.ext.deviceId;
+final header = 'my-token'.ext.bearer; // {'Authorization': 'Bearer my-token'}
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `appName` | `String` | Application name |
+| `packageName` | `String` | Package name |
+| `version` | `String` | App version |
+| `buildNumber` | `String` | Build number |
+| `deviceId` | `Future<String>` | Unique device ID |
+| `bearer` | `Map<String, dynamic>` | Bearer token authorization header |
+
+##### JSON & Type Conversion
+
+```dart
+final map = await '{"name":"kartal"}'.ext.safeJsonDecodeCompute<Map<String, dynamic>>();
+final intVal = '42'.ext.toPrimitiveFromGeneric<int>(); // 42
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `safeJsonDecodeCompute<T>()` | `Future<T?>` | JSON decode in background isolate |
+| `toPrimitiveFromGeneric<T>()` | `T?` | Convert to bool, int, double, or String |
+
+---
+
+### Widget Extension
+
+```dart
+const Text('Hello').ext.toVisible(value: isLoggedIn)
+const Text('Disabled').ext.toDisabled(opacity: 0.5)
+myWidget.ext.sliver  // wrap in SliverToBoxAdapter
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `toVisible({bool value = true})` | `Widget` | Show widget or `SizedBox.shrink()` |
+| `toDisabled({bool? disable, double? opacity})` | `Widget` | Wrap in `IgnorePointer` + `Opacity` (default opacity: 0.2) |
+| `sliver` | `Widget` | Wrap in `SliverToBoxAdapter` |
+
+---
+
+### Future Extension
+
+```dart
+fetchData().ext.toBuild(
+  onSuccess: (data) => Text(data.toString()),
+  loadingWidget: const CircularProgressIndicator(),
+  notFoundWidget: const Text('Not found'),
+  onError: const Text('Error'),
+)
+
+// Returns null on timeout instead of throwing
+final result = await fetchData().ext.timeoutOrNull(
+  timeOutDuration: const Duration(seconds: 5),
+);
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `toBuild({onSuccess, loadingWidget, notFoundWidget, onError, data})` | `Widget` | FutureBuilder with typed callbacks |
+| `timeoutOrNull({Duration timeOutDuration, bool enableLogger})` | `Future<T?>` | Returns null on timeout (default: 10s) |
+
+---
+
+### List Extension
+
+Works on both `List<T>` and `List<T>?`.
+
+```dart
+List<String>? names;
+names.ext.isNullOrEmpty        // true (null-safe)
+[1, null, 3].ext.makeSafe()    // [1, 3]
+['a', 'b'].ext.indexOrNull((e) => e == 'b')  // 1
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `isNullOrEmpty` | `bool` | `true` if list is null or empty |
+| `isNotNullOrEmpty` | `bool` | `true` if list has elements |
+| `makeSafe()` | `List<T>` | Filters out null values |
+| `indexOrNull(bool Function(T))` | `int?` | Index of first match, or `null` |
+
+---
+
+### Iterable Extension
+
+> **Note:** Uses `.exts` (plural) accessor.
+
+```dart
+[null, 1, null, 3].exts.makeSafe()  // [1, 3]
+[1, 2, 3, null].exts.makeSafeCustom((v) => v != null && v > 1)  // [2, 3]
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `makeSafe()` | `List<T>` | Filters out null values |
+| `makeSafeCustom(bool Function(T?))` | `List<T>` | Filters by custom predicate |
+
+---
+
+### File Extension
+
+```dart
+final file = File('photo.jpg');
+file.ext.isImageFile  // true
+file.ext.fileType     // FileType.IMAGE
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `fileType` | `FileType` | File type based on MIME (IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN) |
+| `isImageFile` | `bool` | Check if image |
+| `isVideoFile` | `bool` | Check if video |
+| `isAudioFile` | `bool` | Check if audio |
+| `isTextFile` | `bool` | Check if text |
+
+---
+
+### Image Extension
+
+Apply rotation transformations to Image widgets.
+
+```dart
+Image.network('https://picsum.photos/200').ext.upRotation
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `rightRotation` | `Widget` | 180-degree rotation |
+| `upRotation` | `Widget` | 90-degree (quarter turn) rotation |
+| `bottomRotation` | `Widget` | 270-degree rotation |
+| `leftRotation` | `Widget` | 360-degree (full) rotation |
+
+---
+
+### Key Extension
+
+Access render information and scroll behavior for `GlobalKey`.
+
+```dart
+final key = GlobalKey();
+// after build:
+final widgetHeight = key.ext.height;
+final position = key.ext.offset;
+key.ext.scrollToWidget();
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `rendererBox` | `RenderBox?` | RenderBox of the widget |
+| `offset` | `Offset?` | Global position |
+| `height` | `double?` | Widget height |
+| `scrollToWidget({ScrollPositionAlignmentPolicy})` | `void` | Scroll to make widget visible |
+
+---
+
+### Int Extension
+
+```dart
+final color = 42.ext.randomColorValue;       // Random 0-255
+final status = 200.ext.httpStatus;           // HttpResult.success
+final statusColor = 404.ext.httpStatusColor; // Colors.orange
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `randomColorValue` | `int` | Random color value 0-255 seeded by the int |
+| `httpStatus` | `HttpResult` | HTTP result category (success, redirection, clientError, serverError, unknown) |
+| `httpStatusColor` | `Color` | Color for the HTTP status (green, blue, orange, red, grey) |
+
+---
+
+### Bool Extension
+
+Works on `bool?` (nullable booleans). Null is treated as failure.
+
+```dart
+bool? apiResult = true;
+apiResult.ext.isSuccess  // true
+apiResult.ext.isFail     // false
+
+bool? nullResult;
+nullResult.ext.isSuccess // false
+nullResult.ext.isFail    // true
+```
+
+| Property | Return Type | Description |
+|---|---|---|
+| `isSuccess` | `bool` | `true` only if value is `true` |
+| `isFail` | `bool` | `true` if value is `false` or `null` |
+
+---
+
+### Date Extension
+
+Human-readable relative time with localizable labels. Works on both `DateTime` and `DateTime?`.
+
+```dart
+final postDate = DateTime(2024, 1, 15);
+postDate.ext.differenceTime()  // "1 years ago"
+
+// Custom localization
+postDate.ext.differenceTime(
+  localizationLabel: DateLocalizationLabel(
+    yearLabel: 'yil once',
+    monthLabel: 'ay once',
+    dayLabel: 'gun once',
+  ),
+)
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `differenceTime({DateLocalizationLabel})` | `String` | Human-readable time difference from now |
+
+`DateLocalizationLabel` fields: `yearLabel`, `monthLabel`, `dayLabel`, `hourLabel`, `minuteLabel`, `secondLabel` (all default to English, e.g. "years ago").
+
+---
+
+### Map Extension
+
+```dart
+final map = {'name': 'Kartal', 'version': 4};
+final json = await map.ext.safeJsonEncodeCompute(); // runs in isolate
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `safeJsonEncodeCompute()` | `Future<String?>` | JSON-encode in background isolate; returns null on failure |
+
+---
+
+## Utilities
+
+### BundleDecoder
+
+Parse local asset JSON files into typed Dart models using isolate-based decoding. Your model must implement `IAssetModel<T>` with a `fromJson` factory.
+
+```dart
+final posts = await BundleDecoder('assets/posts.json')
+    .crackBundle<Post, List<Post>>(model: Post());
+```
+
+### MapsUtility
+
+Open map applications with a search query.
+
+```dart
+await MapsUtility.openAppleMapsWithQuery('Istanbul Kartal');
+await MapsUtility.openGoogleMapsWithQuery('Istanbul Kartal');
+await MapsUtility.openGoogleWebMapsWithQuery('Istanbul Kartal');
+```
+
+### CustomLinkPreview
+
+Fetch Open Graph metadata (title, description, image) from any URL.
+
+```dart
+final preview = await CustomLinkPreview.getLinkPreviewData('https://example.com');
+print(preview?.title);
+print(preview?.description);
+print(preview?.image);
+```
+
+### CustomLogger
+
+Debug-mode-only error logging.
+
+```dart
+CustomLogger.showError<MyClass>(errorObject);
+```
+
+### DeviceUtility
+
+Singleton for device-related operations.
+
+```dart
+final deviceId = await DeviceUtility.instance.getUniqueDeviceId();
+final isIpad = await DeviceUtility.instance.isIpad();
+```
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-2020 created for @VB10
+## Author
 
-## Youtube Channel
+Created and maintained by [VB10](https://github.com/vb10).
 
-[![Youtube](https://yt3.ggpht.com/a/AATXAJyul3hpzl86GIjF-EZxBzy6T62PJxpvzRwz9AbUOw=s288-c-k-c0xffffffff-no-rj-mo)](https://www.youtube.com/watch?v=UCdUaAKTLJrPZFStzEJnpQAg)
+[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCdUaAKTLJrPZFStzEJnpQAg?label=HardwareAndro&style=social)](https://www.youtube.com/@hardwareandro)
+[![Medium](https://img.shields.io/badge/Medium-@vbacik--10-black?logo=medium)](https://medium.com/@vbacik-10)
+[![Discord](https://dcbadge.vercel.app/api/server/Bzn8WtuZD2?style=flat)](https://discord.gg/Bzn8WtuZD2)
 
-## Contributors
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/vb10)
+
+### Contributors
 
 <a href="https://github.com/vb10/kartal/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=vb10/kartal" />

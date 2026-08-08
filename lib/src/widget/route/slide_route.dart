@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 enum SlideType {
-  RIGHT(offSet: Offset(-1, 0)),
-  LEFT(offSet: Offset(1, 0)),
-  BOTTOM(offSet: Offset(0, -1)),
-  TOP(offSet: Offset(0, 1)),
-  DEFAULT();
+  right(offSet: Offset(-1, 0)),
+  left(offSet: Offset(1, 0)),
+  bottom(offSet: Offset(0, -1)),
+  top(offSet: Offset(0, 1)),
+  defaultType();
 
   const SlideType({this.offSet});
 
   final Offset? offSet;
 
   Route<T> route<T>(Widget page, RouteSettings settings) =>
-      this == SlideType.DEFAULT
+      this == SlideType.defaultType
           ? MaterialPageRoute(
               builder: (context) => page,
               settings: settings,

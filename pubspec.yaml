@@ -2,7 +2,7 @@ name: kartal
 description: Kartal is an extension package for easy to use at app development
   time. You can access more features with primitive variables(context, string
   etc.).
-version: 4.2.0
+version: 4.3.0-dev.1
 issue_tracker: https://github.com/vb10/kartal/issues
 repository: https://github.com/VB10/kartal
 screenshots:
@@ -11,7 +11,7 @@ screenshots:
 
 environment:
   sdk: ">=3.3.1 <4.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   collection: ^1.16.0
@@ -27,6 +27,7 @@ dependencies:
   package_info_plus: ^8.0.2
   share_plus: ^11.0.0
   url_launcher: ^6.1.5
+  web: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +37,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+scripts:
+  publish: flutter pub publish
+  publish-dry-run: flutter pub publish --dry-run

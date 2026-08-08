@@ -27,7 +27,6 @@ void main() {
 
   test('Make a searchable word', () {
     const text = 'Hellö WörlŞé';
-    print(text.ext.searchable);
     expect(text.ext.searchable, 'hello worlse');
   });
 

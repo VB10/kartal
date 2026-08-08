@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+*.lock
+CLAUDE.md
 
 # IntelliJ related
 *.iml
@@ -24,6 +26,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+**/Flutter/ephemeral/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies

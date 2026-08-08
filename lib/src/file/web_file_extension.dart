@@ -1,10 +1,9 @@
 import 'package:kartal/src/constants/file_constants.dart';
 import 'package:kartal/src/file/file_type.dart';
 import 'package:kartal/src/private/file/web_file_extension.dart'
-    if (dart.library.html) 'package:kartal/src/private/file/app_file_extension.dart'
-    as custom_file;
+    if (dart.library.io) 'package:kartal/src/private/file/app_file_extension.dart';
 import 'package:mime/mime.dart';
-import 'dart:html' if (dart.library.html) 'dart:io' show File;
+import 'package:web/web.dart' if (dart.library.io) 'dart:io' show File;
 
 /// Extension methods for [File] to determine the type of the file.
 extension WebFileTypeExtension on File {
@@ -22,29 +21,29 @@ final class _FileExtension {
   FileType get fileType {
     final mimeType = lookupMimeType(_file.pathName);
     if (mimeType?.startsWith(FileConstants.instance().imageType) ?? false) {
-      return FileType.IMAGE;
+      return FileType.image;
     }
     if (mimeType?.startsWith(FileConstants.instance().videoType) ?? false) {
-      return FileType.VIDEO;
+      return FileType.video;
     }
     if (mimeType?.startsWith(FileConstants.instance().audioType) ?? false) {
-      return FileType.AUDIO;
+      return FileType.audio;
     }
     if (mimeType?.startsWith(FileConstants.instance().textType) ?? false) {
-      return FileType.TEXT;
+      return FileType.text;
     }
-    return FileType.UNKNOWN;
+    return FileType.unknown;
   }
 
-  /// Returns `true` if the file is of type [FileType.IMAGE].
-  bool get isImageFile => fileType == FileType.IMAGE;
+  /// Returns `true` if the file is of type [FileType.image].
+  bool get isImageFile => fileType == FileType.image;
 
-  /// Returns `true` if the file is of type [FileType.VIDEO].
-  bool get isVideoFile => fileType == FileType.VIDEO;
+  /// Returns `true` if the file is of type [FileType.video].
+  bool get isVideoFile => fileType == FileType.video;
 
-  /// Returns `true` if the file is of type [FileType.AUDIO].
-  bool get isAudioFile => fileType == FileType.AUDIO;
+  /// Returns `true` if the file is of type [FileType.audio].
+  bool get isAudioFile => fileType == FileType.audio;
 
-  /// Returns `true` if the file is of type [FileType.TEXT].
-  bool get isTextFile => fileType == FileType.TEXT;
+  /// Returns `true` if the file is of type [FileType.text].
+  bool get isTextFile => fileType == FileType.text;
 }
