@@ -1,12 +1,12 @@
 {
-    "name": "example",
-    "short_name": "example",
+    "name": "kartal — demo gallery",
+    "short_name": "kartal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "description": "Live demo gallery for kartal, a Flutter extension package for context, string, num, colour, collection and validator helpers.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
