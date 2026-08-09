@@ -1,46 +1,131 @@
-name: Flutter Test
+name: CI
 
 on:
   pull_request:
     branches:
       - master
+  push:
+    branches:
+      - master
+
+# Cancel superseded runs on the same ref rather than paying for both.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so a Flutter release cannot turn CI red without a commit here.
+  FLUTTER_VERSION: "3.38.1"
 
 jobs:
-  build:
+  analyze:
+    name: Format & analyze
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: dart-lang/setup-dart@v1
       - uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
 
-      - name: Flutter Pub Get
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Tests
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+  test:
+    name: Test & coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Check coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v3
+        with:
+          path: coverage/lcov.info
+          min_coverage: 85
+          # These need a real device or a plugin channel, so they are
+          # unreachable from VM tests and would cap the achievable total.
+          exclude: >-
+            **/private/platform/app_platform.dart
+            **/private/platform/web_platform.dart
+            **/utility/device/device_utils_io.dart
+            **/utility/device/device_utils_web.dart
+            **/private/file/web_file_extension.dart
+            **/private/mixin/string/string_platform_mixin.dart
+            **/private/mixin/string/string_share_mixin.dart
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/lcov.info
+          if-no-files-found: warn
+
+  package:
+    name: Publish dry run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Validate the package
+        run: flutter pub publish --dry-run
+
+  example:
+    name: Build example (web + wasm)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: example
+        run: flutter pub get
+
+      # Catches a package change that breaks the gallery documenting it.
+      - name: Smoke test the gallery
+        working-directory: example
         run: flutter test
 
-      - name: Check if PR is from Owner
-        id: check-owner
-        run: |
-          if [[ "${{ github.event.pull_request.user.login }}" == "VB10" ]]; then
-            echo "is_owner=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_owner=false" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Check Test Results for Owner
-        if: steps.check-owner.outputs.is_owner == 'true' && success()
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.payload.pull_request.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'All tests passed! 🎉'
-            })
+      # Proves the package:web migration actually compiles for the web,
+      # including the wasm target that dart:html could never satisfy.
+      - name: Build web
+        working-directory: example
+        run: flutter build web --release
+
+      - name: Build wasm
+        working-directory: example
+        run: flutter build web --wasm --release

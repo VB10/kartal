@@ -1,3 +1,5 @@
+import 'package:kartal/src/kartal_config.dart';
+
 /// The `ComparingDateLocalizationExtension` extension is used to compare the current time with a target time.
 extension ComparingDateLocalizationExtension on DateTime {
   /// The `ext` property provides access to the `_CurrentTimeExtension` class.
@@ -21,10 +23,17 @@ final class _CurrentTimeExtension {
 
   /// The `differenceTime` method returns that represents the difference
   ///  between the current time and the `targetTime`.
-  String differenceTime({
-    DateLocalizationLabel localizationLabel = const DateLocalizationLabel(),
-  }) {
-    if (_targetTime == null) throw Exception('The targetTime cannot be null.');
+  ///
+  /// Returns [DateLocalizationLabel.emptyLabel] when the target time is null,
+  /// rather than throwing — the extension is declared on `DateTime?`, so a
+  /// null receiver is an expected input.
+  ///
+  /// When [localizationLabel] is omitted the labels configured through
+  /// [KartalConfig.configure] are used, defaulting to English.
+  String differenceTime({DateLocalizationLabel? localizationLabel}) {
+    final label = localizationLabel ?? KartalConfig.instance.dateLabel;
+
+    if (_targetTime == null) return label.emptyLabel;
 
     /// The `currentTime` variable represents the current time.
     final currentTime = DateTime.now();
@@ -34,39 +43,43 @@ final class _CurrentTimeExtension {
     /// The `yearDifference` variable represents the difference between the current time and the `targetTime` in years.
     final yearDifference = currentTime.difference(targetTime).inDays ~/ 365;
     if (yearDifference > 0) {
-      return '$yearDifference ${localizationLabel.yearLabel}';
+      return '$yearDifference ${label.yearLabel}';
     }
 
     /// The `monthDifference` variable represents the difference between the current time and the `targetTime` in months.
     final monthDifference = currentTime.difference(targetTime).inDays ~/ 30;
     if (monthDifference > 0) {
-      return '$monthDifference ${localizationLabel.monthLabel}';
+      return '$monthDifference ${label.monthLabel}';
     }
 
     /// The `dayDifference` variable represents the difference between the current time and the `targetTime` in days.
     final dayDifference = currentTime.difference(targetTime).inDays;
     if (dayDifference > 0) {
-      return '$dayDifference ${localizationLabel.dayLabel}';
+      return '$dayDifference ${label.dayLabel}';
     }
 
     /// The `hourDifference` variable represents the difference between the current time and the `targetTime` in hours.
     final hourDifference = currentTime.difference(targetTime).inHours;
     if (hourDifference > 0) {
-      return '$hourDifference ${localizationLabel.hourLabel}';
+      return '$hourDifference ${label.hourLabel}';
     }
 
     /// The `minuteDifference` variable represents the difference between the current time and the `targetTime` in minutes.
     final minuteDifference = currentTime.difference(targetTime).inMinutes;
     if (minuteDifference > 0) {
-      return '$minuteDifference ${localizationLabel.minuteLabel}';
+      return '$minuteDifference ${label.minuteLabel}';
     }
 
     /// The `secondDifference` variable represents the difference between the current time and the `targetTime` in seconds.
     final secondDifference = currentTime.difference(targetTime).inSeconds;
     if (secondDifference > 0) {
-      return '$secondDifference ${localizationLabel.secondLabel}';
+      return '$secondDifference ${label.secondLabel}';
     }
-    return '';
+
+    // Sub-second gaps, and timestamps that have not elapsed yet, both land
+    // here. Previously this returned an empty string, which callers could not
+    // distinguish from a null target time.
+    return label.justNowLabel;
   }
 }
 
@@ -78,6 +91,21 @@ final class DateLocalizationLabel {
     this.hourLabel = 'hours ago',
     this.minuteLabel = 'minutes ago',
     this.secondLabel = 'seconds ago',
+    this.justNowLabel = 'just now',
+    this.emptyLabel = '',
+  });
+
+  /// Turkish labels, ready to pass to
+  /// [_CurrentTimeExtension.differenceTime].
+  const DateLocalizationLabel.tr({
+    this.yearLabel = 'yıl önce',
+    this.monthLabel = 'ay önce',
+    this.dayLabel = 'gün önce',
+    this.hourLabel = 'saat önce',
+    this.minuteLabel = 'dakika önce',
+    this.secondLabel = 'saniye önce',
+    this.justNowLabel = 'az önce',
+    this.emptyLabel = '',
   });
 
   /// The `yearLabel` property represents the label for the year. The default value is `years ago`.
@@ -97,4 +125,12 @@ final class DateLocalizationLabel {
 
   /// The `secondLabel` property represents the label for the second. The default value is `seconds ago`.
   final String secondLabel;
+
+  /// The label used for gaps under one second, and for future timestamps.
+  /// The default value is `just now`.
+  final String justNowLabel;
+
+  /// The label returned when the target time is null. The default value is an
+  /// empty string.
+  final String emptyLabel;
 }

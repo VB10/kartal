@@ -29,8 +29,7 @@ final class _ContextNavigationExtension {
   Future<T?> navigateName<T extends Object?>(
     String path, {
     Object? data,
-  }) async =>
-      navigation.pushNamed<T>(path, arguments: data);
+  }) async => navigation.pushNamed<T>(path, arguments: data);
 
   /// Pushes a named route onto the [Navigator] stack identified by [path] and removes all the
   /// existing routes until the new route becomes the only one in the stack. You can optionally pass
@@ -39,12 +38,11 @@ final class _ContextNavigationExtension {
   Future<T?> navigateToReset<T extends Object?>(
     String path, {
     Object? data,
-  }) async =>
-      navigation.pushNamedAndRemoveUntil(
-        path,
-        (route) => false,
-        arguments: data,
-      );
+  }) async => navigation.pushNamedAndRemoveUntil(
+    path,
+    (route) => false,
+    arguments: data,
+  );
 
   /// Pushes a custom [page] onto the [Navigator] stack. You can optionally pass [extra] data to be
   /// passed as arguments to the pushed page. The [type] parameter specifies the transition type
@@ -54,8 +52,7 @@ final class _ContextNavigationExtension {
     Widget page, {
     Object? extra,
     SlideType type = SlideType.defaultType,
-  }) async =>
-      navigation.push<T>(
-        type.route(page, RouteSettings(arguments: extra)),
-      );
+  }) async => navigation.push<T>(
+    type.route(page, RouteSettings(arguments: extra)),
+  );
 }

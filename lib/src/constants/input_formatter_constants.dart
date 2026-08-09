@@ -13,19 +13,19 @@ final class InputFormatter {
   String get _timeMaskUnderLine => '####-##-##';
 
   MaskTextInputFormatter get phoneFormatter => MaskTextInputFormatter(
-        mask: _phoneMask,
-        filter: {
-          '#': RegExp('[0-9]'),
-        },
-      );
+    mask: _phoneMask,
+    filter: {
+      '#': RegExp('[0-9]'),
+    },
+  );
   MaskTextInputFormatter get timeFormatter => MaskTextInputFormatter(
-        mask: _timeMask,
-        filter: {
-          '#': RegExp('[0-9]'),
-        },
-      );
+    mask: _timeMask,
+    filter: {
+      '#': RegExp('[0-9]'),
+    },
+  );
   MaskTextInputFormatter get timeFormatterOverLine => MaskTextInputFormatter(
-        mask: _timeMaskUnderLine,
-        filter: {'#': RegExp('[0-9]')},
-      );
+    mask: _timeMaskUnderLine,
+    filter: {'#': RegExp('[0-9]')},
+  );
 }

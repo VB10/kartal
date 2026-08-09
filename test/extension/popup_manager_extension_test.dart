@@ -27,6 +27,35 @@ void main() {
   );
 
   testWidgets(
+    'context.popupManager still works after the original route is gone',
+    (tester) async {
+      // Regression guard: the extension used to cache a single instance in a
+      // static field, pinning the first BuildContext it ever saw. Once that
+      // route was disposed, every later showLoader() pushed onto a dead
+      // navigator.
+      await tester.pumpWidget(const MaterialApp(home: _ContextExtensionView()));
+      await tester.pumpAndSettle();
+
+      // Prime the cache from the first route.
+      await tester.tap(find.text('Show loader'));
+      await tester.pump();
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      await tester.pump(const Duration(milliseconds: 2500));
+      await tester.pumpAndSettle();
+
+      // Replace the whole tree, disposing the context captured above.
+      await tester.pumpWidget(const MaterialApp(home: _SecondRoute()));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Show loader from second route'));
+      await tester.pump();
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
     'hideLoader without a showing loader does nothing',
     (tester) async {
       final navigatorKey = GlobalKey<NavigatorState>();
@@ -82,90 +111,105 @@ void main() {
   );
 }
 
+/// A second screen that shows a loader from its own [BuildContext].
+final class _SecondRoute extends StatelessWidget {
+  const _SecondRoute();
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: Center(
+      child: ElevatedButton(
+        onPressed: () => context.popupManager.showLoader(),
+        child: const Text('Show loader from second route'),
+      ),
+    ),
+  );
+}
+
 final class _ContextExtensionView extends StatelessWidget {
   const _ContextExtensionView();
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: SizedBox(
-          height: context.sized.height,
-          width: context.sized.width,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  context.general.isKeyBoardOpen
-                      ? 'Keyboard is Open'
-                      : 'Keyboard is Closed',
-                  style: context.general.textTheme.titleMedium,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.popupManager.showLoader();
-                    Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader();
-                    });
-                  },
-                  child: const Text('Show loader'),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    final id = UniqueKey();
-                    context.popupManager.showLoader(id: id.toString());
-                    Future.delayed(const Duration(seconds: 2), () {
-                      context.popupManager.hideLoader(id: id.toString());
-                    });
-                  },
-                  child: const Text('Show loader with id'),
-                ),
-              ],
+    body: SizedBox(
+      height: context.sized.height,
+      width: context.sized.width,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              context.general.isKeyBoardOpen
+                  ? 'Keyboard is Open'
+                  : 'Keyboard is Closed',
+              style: context.general.textTheme.titleMedium,
             ),
-          ),
+            const SizedBox(
+              height: 12,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.popupManager.showLoader();
+                Future.delayed(const Duration(seconds: 2), () {
+                  context.popupManager.hideLoader();
+                });
+              },
+              child: const Text('Show loader'),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final id = UniqueKey();
+                context.popupManager.showLoader(id: id.toString());
+                Future.delayed(const Duration(seconds: 2), () {
+                  context.popupManager.hideLoader(id: id.toString());
+                });
+              },
+              child: const Text('Show loader with id'),
+            ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 
   Widget mediaQueryWidgets(BuildContext context) => SizedBox(
-        height: context.sized.dynamicHeight(0.1),
-        width: context.sized.dynamicWidth(0.1),
-        child: Text('${context.sized.lowValue}'),
-      );
+    height: context.sized.dynamicHeight(0.1),
+    width: context.sized.dynamicWidth(0.1),
+    child: Text('${context.sized.lowValue}'),
+  );
 
   Widget animatedContainerDuration(BuildContext context) => AnimatedOpacity(
-        opacity: context.general.isKeyBoardOpen ? 1 : 0,
-        duration: Durations.extralong2,
-        child: Text('${Durations.extralong2.inHours}'),
-      );
+    opacity: context.general.isKeyBoardOpen ? 1 : 0,
+    duration: Durations.extralong2,
+    child: Text('${Durations.extralong2.inHours}'),
+  );
 
   Widget paddingExtension(BuildContext context) => Padding(
-        padding: context.padding.low,
-        child: Padding(
-          padding: context.padding.horizontalMedium,
-          child: Text('${Durations.extralong2.inHours}'),
-        ),
-      );
+    padding: context.padding.low,
+    child: Padding(
+      padding: context.padding.horizontalMedium,
+      child: Text('${Durations.extralong2.inHours}'),
+    ),
+  );
 
   Widget emptySizedBox(BuildContext context) => Column(
+    children: [
+      Text('${Durations.extralong2.inHours}'),
+      context.sized.emptySizedHeightBoxHigh,
+      Row(
         children: [
-          Text('${Durations.extralong2.inHours}'),
-          context.sized.emptySizedHeightBoxHigh,
-          Row(
-            children: [
-              const Text('Row'),
-              context.sized.emptySizedWidthBoxLow,
-              const Text('Row'),
-            ],
-          ),
+          const Text('Row'),
+          context.sized.emptySizedWidthBoxLow,
+          const Text('Row'),
         ],
-      );
+      ),
+    ],
+  );
 
   Widget radiusExtension(BuildContext context) => DecoratedBox(
-        decoration: BoxDecoration(borderRadius: context.border.lowBorderRadius),
-      );
+    decoration: BoxDecoration(borderRadius: context.border.lowBorderRadius),
+  );
 }

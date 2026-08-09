@@ -1,10 +1,17 @@
 [![Pub Version](https://img.shields.io/pub/v/kartal.svg)](https://pub.dev/packages/kartal)
 [![GitHub Stars](https://img.shields.io/github/stars/vb10/kartal.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/vb10/kartal)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+[![Live demo](https://img.shields.io/badge/live%20demo-vb10.github.io%2Fkartal-blue)](https://vb10.github.io/kartal/)
 
 # Kartal
 
-A comprehensive Flutter extension and utility package that supercharges your development workflow. Provides 13 type extensions and built-in utilities for context access, string operations, navigation, responsive sizing, and more -- all accessible through a clean `.ext` syntax.
+A comprehensive Flutter extension and utility package that supercharges your development workflow. Provides 16 type extensions and built-in utilities for context access, string operations, navigation, responsive sizing, and more -- all accessible through a clean `.ext` syntax.
+
+**[Try it live at vb10.github.io/kartal](https://vb10.github.io/kartal/)** — an
+interactive gallery where you can type into the validators, drag the
+formatters, pick colours, and resize the window to watch the responsive
+breakpoints switch. Its source is [`example/`](example/), so every snippet in
+this README is running code.
 
 ## Table of Contents
 
@@ -12,7 +19,7 @@ A comprehensive Flutter extension and utility package that supercharges your dev
 - [Platform Support](#platform-support)
 - [Quick Start](#quick-start)
 - [Extensions](#extensions)
-  - [Context Extensions](#context-extensions) ([General](#general) | [Sized](#sized) | [Padding](#padding) | [Border](#border) | [Device](#device) | [Navigation](#navigation) | [Popup Manager](#popup-manager))
+  - [Context Extensions](#context-extensions) ([General](#general) | [Sized](#sized) | [Padding](#padding) | [Border](#border) | [Device](#device) | [Navigation](#navigation) | [Popup Manager](#popup-manager) | [Overlay](#overlay))
   - [String Extension](#string-extension)
   - [Widget Extension](#widget-extension)
   - [Future Extension](#future-extension)
@@ -22,10 +29,15 @@ A comprehensive Flutter extension and utility package that supercharges your dev
   - [Image Extension](#image-extension)
   - [Key Extension](#key-extension)
   - [Int Extension](#int-extension)
+  - [Num Extension](#num-extension)
+  - [Duration Extension](#duration-extension)
+  - [Color Extension](#color-extension)
   - [Bool Extension](#bool-extension)
   - [Date Extension](#date-extension)
   - [Map Extension](#map-extension)
 - [Utilities](#utilities)
+- [Configuration](#configuration)
+- [Demo gallery](#demo-gallery)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -35,7 +47,7 @@ Add `kartal` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  kartal: 4.3.0-dev.1
+  kartal: ^5.0.0
 ```
 
 Then run:
@@ -56,7 +68,9 @@ import 'package:kartal/kartal.dart';
 |:-------:|:---:|:---:|:-----:|:-------:|:-----:|
 |   ✅    | ✅  | ✅  |  ✅   |   ✅    |  ✅   |
 
-**Requirements:** Dart >=3.3.1 | Flutter >=3.19.0
+**Requirements:** Dart >=3.10.0 | Flutter >=3.38.1
+
+Compiles for the web with both `dart2js` and `dart2wasm`.
 
 ## Quick Start
 
@@ -90,7 +104,7 @@ fetchUserData().ext.toBuild(
 
 ### Context Extensions
 
-Kartal extends `BuildContext` with 7 sub-extensions: `context.general`, `context.sized`, `context.padding`, `context.border`, `context.device`, `context.route`, and `context.popupManager`.
+Kartal extends `BuildContext` with 8 sub-extensions: `context.general`, `context.sized`, `context.padding`, `context.border`, `context.device`, `context.route`, `context.popupManager`, and `context.overlay`.
 
 #### General
 
@@ -113,12 +127,24 @@ context.general.unfocus(); // dismiss keyboard
 | `textTheme` | `TextTheme` | Text theme from current theme |
 | `primaryTextTheme` | `TextTheme` | Primary text theme |
 | `colorScheme` | `ColorScheme` | Color scheme from current theme |
-| `randomColor` | `MaterialColor` | Random material primary color |
 | `isKeyBoardOpen` | `bool` | Whether the software keyboard is visible |
 | `keyboardPadding` | `double` | Height of the keyboard when open |
 | `appBrightness` | `Brightness` | Platform brightness (light/dark) |
+| `isDarkMode` | `bool` | Whether the resolved theme is dark |
+| `isLightMode` | `bool` | Whether the resolved theme is light |
+| `orientation` | `Orientation` | Current screen orientation |
+| `isLandscape` | `bool` | Whether the screen is landscape |
+| `isPortrait` | `bool` | Whether the screen is portrait |
+| `locale` | `Locale` | Current locale, falling back to `en` |
+| `safePadding` | `EdgeInsets` | Insets taken by notches and home indicators |
+| `topPadding` | `double` | Top safe area inset |
+| `bottomPadding` | `double` | Bottom safe area inset |
+| `devicePixelRatio` | `double` | Device pixel ratio |
 | `focusNode` | `FocusNode` | Current focus scope node |
 | `unfocus()` | `void` | Remove focus from current widget |
+
+`isDarkMode` reads the resolved `ThemeData.brightness` rather than the platform
+brightness, so it respects an explicit `themeMode` override.
 
 #### Sized
 
@@ -228,16 +254,47 @@ if (context.device.isSmallScreen) {
 }
 ```
 
+The four bands are contiguous, so exactly one is always true.
+
 | Property | Return Type | Description |
 |---|---|---|
-| `isSmallScreen` | `bool` | `0 <= width < 300` |
+| `isSmallScreen` | `bool` | `width < 300` |
 | `isMediumScreen` | `bool` | `300 <= width < 600` |
+| `isExpandedScreen` | `bool` | `600 <= width < 900` |
 | `isLargeScreen` | `bool` | `width >= 900` |
+| `breakpoint` | `DeviceBreakpoint` | The band as an exhaustive enum |
+| `responsive<T>(...)` | `T` | Picks a value for the current band |
 | `isAndroidDevice` | `bool` | Running on Android |
 | `isIOSDevice` | `bool` | Running on iOS |
 | `isWindowsDevice` | `bool` | Running on Windows |
 | `isLinuxDevice` | `bool` | Running on Linux |
 | `isMacOSDevice` | `bool` | Running on macOS |
+
+`responsive` takes a required `small` value and optional wider ones. Wider
+bands fall back to the next narrower value supplied, so you only specify the
+breakpoints you actually care about:
+
+```dart
+final columns = context.device.responsive(small: 1, medium: 2, large: 4);
+
+final padding = context.device.responsive<EdgeInsets>(
+  small: const EdgeInsets.all(8),
+  large: const EdgeInsets.all(32),
+);
+```
+
+Switch over `breakpoint` when you need every case handled:
+
+```dart
+final layout = switch (context.device.breakpoint) {
+  DeviceBreakpoint.small => const PhoneLayout(),
+  DeviceBreakpoint.medium => const TabletLayout(),
+  DeviceBreakpoint.expanded => const SplitLayout(),
+  DeviceBreakpoint.large => const DesktopLayout(),
+};
+```
+
+The thresholds are configurable — see [Configuration](#configuration).
 
 #### Navigation
 
@@ -282,6 +339,43 @@ context.popupManager.hideLoader(id: 'upload');
 | `showLoader({String? id, bool barrierDismissible, WidgetBuilder? widgetBuilder})` | `void` | Show a loading dialog |
 | `hideLoader({String? id})` | `void` | Hide loader by ID or the latest one |
 
+Managers are held per `NavigatorState`, so a loader shown before a route change
+does not strand the next `hideLoader` on a disposed navigator. `hideLoader` is a
+no-op when nothing is showing, making it safe to call from a `finally`.
+
+#### Overlay
+
+Transient UI via `context.overlay`.
+
+```dart
+context.overlay.showSnack('Saved');
+
+final confirmed = await context.overlay.showConfirm(
+  title: 'Delete this item?',
+  message: 'This cannot be undone.',
+  confirmLabel: 'Delete',
+  isDestructive: true,
+);
+if (confirmed) await delete();
+
+await context.overlay.showSheet(const FilterSheet());
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `showSnack(String, {duration, action, backgroundColor, behavior})` | `ScaffoldFeatureController` | Show a snack bar |
+| `showSnackWidget(SnackBar)` | `ScaffoldFeatureController` | Show a fully custom snack bar |
+| `hideSnack()` | `void` | Dismiss the current snack bar |
+| `removeSnack()` | `void` | Remove it without the exit animation |
+| `showSheet<T>(Widget, {isScrollControlled, isDismissible, useSafeArea, backgroundColor, shape})` | `Future<T?>` | Modal bottom sheet |
+| `showDialogCustom<T>(Widget, {barrierDismissible})` | `Future<T?>` | Modal dialog |
+| `showConfirm({title, message, confirmLabel, cancelLabel, isDestructive})` | `Future<bool>` | Two-button confirmation |
+
+`showConfirm` completes with `false` rather than `null` when dismissed, so the
+result is usable directly in an `if`. `showSheet` defaults to
+`isScrollControlled: true`, since a sheet holding a text field or a long list
+needs it to size correctly above the keyboard.
+
 ---
 
 ### String Extension
@@ -303,8 +397,14 @@ Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
 |---|---|---|
 | `isNullOrEmpty` | `bool` | `true` if null or empty |
 | `isNotNullOrNoEmpty` | `bool` | `true` if not null and not empty |
-| `isValidEmail` | `bool` | Email validation via regex |
+| `isValidEmail` | `bool` | Email validation via regex — see the caveat below |
 | `isValidPassword` | `bool` | Min 8 chars, upper, lower, number, symbol |
+| `isValidUrl` | `bool` | Absolute `http(s)` URL |
+| `isValidPhone` | `bool` | Turkish number, across common written forms |
+| `isValidTckn` | `bool` | Turkish identity number, full checksum |
+| `isValidIban` | `bool` | IBAN, ISO 13616 mod-97 check |
+| `isValidCreditCard` | `bool` | Card number, Luhn check |
+| `isNumeric` | `bool` | Digits only |
 | `searchable` | `String` | Lowercase with diacritics removed |
 | `withoutSpecialCharacters` | `String?` | Removes diacritics |
 | `toCapitalized()` | `String` | First letter uppercase, rest lowercase |
@@ -313,6 +413,57 @@ Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
 | `phoneFormatValue` | `String` | Unmasked phone value |
 | `timeFormatValue` | `String` | Unmasked time value |
 | `timeOverlineFormatValue` | `String` | Unmasked time overline value |
+
+> **`isValidEmail` is more permissive than it looks.** Its regex is not anchored
+> at the end, so trailing content passes, and it accepts a comma in the local
+> part. `'user@domain.com<script>'` and `'veli,test@kartal.dev'` both return
+> `true`. Do not use it as a sanitising gate. Tracked in
+> [#93](https://github.com/VB10/kartal/pull/93); the fix is deferred because it
+> rejects addresses that pass today.
+
+`isValidTckn`, `isValidIban` and `isValidCreditCard` run the real checksum
+algorithms rather than length or shape checks, so they reject plausible-looking
+invalid input. Spaces, dashes and grouping are tolerated:
+
+```dart
+'4242 4242 4242 4242'.ext.isValidCreditCard;         // true
+'4242424242424241'.ext.isValidCreditCard;            // false
+'TR33 0006 1005 1978 6457 8413 26'.ext.isValidIban;  // true
+'+90 532 123 45 67'.ext.isValidPhone;                // true
+'0(032) 123-45-67'.ext.isValidPhone;                 // false, area code
+```
+
+##### Text shaping
+
+```dart
+'4242424242424242'.ext.mask();                  // '4242********4242'
+'veli@kartal.dev'.ext.maskEmail;                // 've**@kartal.dev'
+'Cok Guzel Bir Baslik'.ext.toSlug();            // 'cok-guzel-bir-baslik'
+'Kartal makes Flutter nicer'.ext.truncate(12);  // 'Kartal ma...'
+'Veli Bacik'.ext.initials();                    // 'VB'
+'<p>Tom &amp; Jerry</p>'.ext.removeHtmlTags;     // 'Tom & Jerry'
+```
+
+| Property / Method | Return Type | Description |
+|---|---|---|
+| `mask({start, end, char})` | `String` | Middle masked, ends visible |
+| `maskEmail` | `String` | Local part masked, domain kept |
+| `maskPhone({int visibleDigits})` | `String` | Only the trailing digits kept |
+| `toSlug({String separator})` | `String` | URL-friendly slug |
+| `truncate(int, {String ellipsis})` | `String` | Shortened, never exceeding the budget |
+| `initials({int count})` | `String` | Initials from the first n words |
+| `removeHtmlTags` | `String` | Tags stripped and entities decoded |
+| `wordCount` | `int` | Whitespace separated word count |
+| `readingTimeMinutes` | `int` | Estimated reading time |
+| `reversed` | `String` | Characters reversed |
+| `base64Encoded` | `String` | Encoded as base64 |
+| `base64Decoded` | `String?` | Decoded, `null` when invalid |
+| `toDateTimeOrNull()` | `DateTime?` | Parsed, `null` when invalid |
+
+`toSlug` folds diacritics before slugifying, so Turkish text survives the
+conversion. `truncate` counts the ellipsis inside `maxLength` rather than
+appending past it, and `mask` masks in full when the input is too short to keep
+both ends visible, so it never leaks more than requested.
 
 ##### Color & Images
 
@@ -324,9 +475,10 @@ Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
 
 | Property | Return Type | Description |
 |---|---|---|
-| `color` | `Color` | Color from hex string |
+| `color` | `Color` | Color from hex string; **throws** when invalid |
 | `colorCode` | `int?` | Parsed color code |
-| `toColor` | `Color` | Color from color code |
+| `toColor` | `Color` | Parsed colour, falling back to white |
+| `toColorOrNull` | `Color?` | Parsed colour, `null` when invalid |
 | `randomImage` | `String` | Random 200x300 image URL |
 | `randomSquareImage` | `String` | Random 200x200 image URL |
 | `customProfileImage` | `String` | Gravatar placeholder URL |
@@ -397,6 +549,34 @@ myWidget.ext.sliver  // wrap in SliverToBoxAdapter
 | `toVisible({bool value = true})` | `Widget` | Show widget or `SizedBox.shrink()` |
 | `toDisabled({bool? disable, double? opacity})` | `Widget` | Wrap in `IgnorePointer` + `Opacity` (default opacity: 0.2) |
 | `sliver` | `Widget` | Wrap in `SliverToBoxAdapter` |
+| `paddingAll(double)` | `Widget` | Equal padding on every side |
+| `paddingSymmetric({horizontal, vertical})` | `Widget` | Symmetric padding |
+| `paddingOnly({left, top, right, bottom})` | `Widget` | Per-side padding |
+| `padding(EdgeInsetsGeometry)` | `Widget` | Padding from an explicit value |
+| `center` | `Widget` | Wrap in `Center` |
+| `expanded({int flex = 1})` | `Widget` | Wrap in `Expanded` |
+| `flexible({int flex, FlexFit fit})` | `Widget` | Wrap in `Flexible` |
+| `onTap(VoidCallback, {withRipple, borderRadius})` | `Widget` | `InkWell`, or `GestureDetector` when `withRipple: false` |
+| `safeArea` | `Widget` | Wrap in `SafeArea` |
+| `tooltip(String)` | `Widget` | Attach a long-press tooltip |
+| `hero(Object tag)` | `Widget` | Wrap in `Hero` |
+| `align([AlignmentGeometry])` | `Widget` | Wrap in `Align` |
+| `opacity(double)` | `Widget` | Wrap in `Opacity` |
+| `constrained({minWidth, maxWidth, minHeight, maxHeight})` | `Widget` | Wrap in `ConstrainedBox` |
+| `sized({width, height})` | `Widget` | Wrap in `SizedBox` |
+| `card({elevation, color, shape})` | `Widget` | Wrap in `Card` |
+| `rotated(int quarterTurns)` | `Widget` | Wrap in `RotatedBox` |
+| `clipRounded([double radius = 8])` | `Widget` | Wrap in `ClipRRect` |
+| `positioned({left, top, right, bottom, width, height})` | `Widget` | Wrap in `Positioned` |
+
+Helpers compose left to right, so the last one applied ends up outermost:
+
+```dart
+const Text('Tap me')
+    .ext.paddingAll(12)
+    .ext.card(elevation: 2)
+    .ext.onTap(onPressed);
+```
 
 ---
 
@@ -418,8 +598,29 @@ final result = await fetchData().ext.timeoutOrNull(
 
 | Method | Return Type | Description |
 |---|---|---|
-| `toBuild({onSuccess, loadingWidget, notFoundWidget, onError, data})` | `Widget` | FutureBuilder with typed callbacks |
+| `toBuild({onSuccess, loadingWidget, notFoundWidget, onError, data, errorBuilder})` | `Widget` | FutureBuilder with typed callbacks |
 | `timeoutOrNull({Duration timeOutDuration, bool enableLogger})` | `Future<T?>` | Returns null on timeout (default: 10s) |
+| `onErrorReturn(T fallback)` | `Future<T>` | Falls back to a value on error |
+| `orNull()` | `Future<T?>` | Returns null on error |
+
+`errorBuilder` takes precedence over `onError` and, unlike it, receives the
+error itself.
+
+Retrying lives in a top-level function rather than on the extension, because a
+`Future` can only be awaited once — retrying needs something that produces a
+fresh future per attempt:
+
+```dart
+final data = await kartalRetry(
+  () => api.fetch(),
+  attempts: 3,
+  delay: const Duration(milliseconds: 200),
+  exponentialBackoff: true,
+  retryIf: (error) => error is! ArgumentError,
+);
+```
+
+The last error is rethrown once the attempts are exhausted.
 
 ---
 
@@ -440,12 +641,52 @@ names.ext.isNullOrEmpty        // true (null-safe)
 | `isNotNullOrEmpty` | `bool` | `true` if list has elements |
 | `makeSafe()` | `List<T>` | Filters out null values |
 | `indexOrNull(bool Function(T))` | `int?` | Index of first match, or `null` |
+| `swap(int, int)` | `List<T>` | Two positions exchanged |
+| `takeLast(int)` | `List<T>` | The last n elements |
+| `separatedBy(T)` | `List<T>` | Separator inserted between elements |
+| `replaceAt(int, T)` | `List<T>` | One element replaced |
+| `elementAtOrNull(int)` | `T?` | Bounds-safe element access |
+
+None of these mutate the receiver.
+
+#### Collection helpers
+
+These are available on **both** `List` and `Iterable` through `.ext`:
+
+```dart
+[1, 2, 3, 4, 5].ext.chunked(2);            // [[1, 2], [3, 4], [5]]
+people.ext.groupBy((p) => p.city);          // {'Istanbul': [...], ...}
+people.ext.sortedBy((p) => p.age);          // does not mutate
+orders.ext.sumBy((o) => o.total);
+final (adults, minors) = people.ext.partition((p) => p.age >= 18);
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `chunked(int size)` | `List<List<T>>` | Fixed size chunks, remainder kept |
+| `paged(int size)` | `Map<int, List<T>>` | Chunks keyed by page index |
+| `groupBy<K>(K Function(T))` | `Map<K, List<T>>` | Grouped by key |
+| `distinctBy<K>(K Function(T))` | `List<T>` | First occurrence per key |
+| `sortedBy<K>(K Function(T))` | `List<T>` | Sorted ascending, non-mutating |
+| `sortedByDescending<K>(K Function(T))` | `List<T>` | Sorted descending |
+| `sumBy(num Function(T))` | `num` | Sum, 0 when empty |
+| `averageBy(num Function(T))` | `double?` | Mean, `null` when empty |
+| `partition(bool Function(T))` | `(List<T>, List<T>)` | Matching and rest |
+| `mapIndexed<R>(R Function(int, T))` | `List<R>` | Map with the index |
+| `firstWhereOrNull(bool Function(T))` | `T?` | First match or `null` |
+| `randomOrNull({int? seed})` | `T?` | Random element, seedable |
+
+`averageBy` returns `null` rather than `NaN` for an empty collection, so "no
+data" stays distinguishable from a genuine zero average.
 
 ---
 
 ### Iterable Extension
 
-> **Note:** Uses `.exts` (plural) accessor.
+> **Note:** The null-stripping helpers use the `.exts` (plural) accessor,
+> because their element type is `T?`. The
+> [collection helpers](#collection-helpers) are on `.ext` and work on any
+> `Iterable`.
 
 ```dart
 [null, 1, null, 3].exts.makeSafe()  // [1, 3]
@@ -528,6 +769,103 @@ final statusColor = 404.ext.httpStatusColor; // Colors.orange
 | `randomColorValue` | `int` | Random color value 0-255 seeded by the int |
 | `httpStatus` | `HttpResult` | HTTP result category (success, redirection, clientError, serverError, unknown) |
 | `httpStatusColor` | `Color` | Color for the HTTP status (green, blue, orange, red, grey) |
+| `ordinal` | `String` | English ordinal, handling the 11th/12th/13th exception |
+| `microseconds` / `ms` / `milliseconds` | `Duration` | This many of the unit |
+| `seconds` / `minutes` / `hours` / `days` | `Duration` | This many of the unit |
+
+`int` also carries every [Num Extension](#num-extension) member.
+
+Status codes outside `[200, 600)`, including informational `1xx`, map to
+`HttpResult.unknown`.
+
+---
+
+### Num Extension
+
+Available on `num`, and on `int` through the same accessor.
+
+```dart
+1234567.ext.compact();          // '1.2M'
+1536000.ext.readableFileSize;   // '1.5 MB'
+1234.5.ext.currency(symbol: r'$');  // '$1,234.50'
+0.85.ext.fraction();            // '85%'
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `compact({int decimals = 1})` | `String` | Short form scaling through K/M/B/T |
+| `readableFileSize` | `String` | Byte count with a binary unit |
+| `readableFileSizeWith({int decimals})` | `String` | As above, with precision control |
+| `currency({symbol, decimals, thousandSeparator, decimalSeparator, symbolOnLeft})` | `String` | Grouped amount |
+| `percent({int decimals})` | `String` | Treats the value as already scaled |
+| `fraction({int decimals})` | `String` | Treats the value as a `[0, 1]` ratio |
+| `clampRange(num, num)` | `num` | Clamped, returning `num` not `Comparable` |
+| `toRadians` | `double` | Degrees to radians |
+| `toDegrees` | `double` | Radians to degrees |
+| `isBetween(num, num, {bool inclusive})` | `bool` | Range check |
+
+Turkish-style formatting is expressible without adding `intl`:
+
+```dart
+1234567.89.ext.currency(
+  symbol: '\u20BA',
+  symbolOnLeft: false,
+  thousandSeparator: '.',
+  decimalSeparator: ',',
+);  // '1.234.567,89 \u20BA'
+```
+
+---
+
+### Duration Extension
+
+```dart
+const Duration(minutes: 3, seconds: 7).ext.formatted;  // '03:07'
+const Duration(hours: 1, minutes: 2).ext.formatted;    // '01:02:00'
+
+await 300.ext.ms.ext.delay();
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `formatted` | `String` | `mm:ss`, promoting to `hh:mm:ss` past an hour |
+| `format({bool forceHours})` | `String` | Always include hours when forced |
+| `delay()` | `Future<void>` | Wait for this duration |
+| `delayed<T>(T Function())` | `Future<T>` | Wait, then run and return |
+
+Negative durations keep their sign: `-00:45`.
+
+---
+
+### Color Extension
+
+```dart
+const Color(0xFF3F51B5).ext.toHex();         // '#3f51b5'
+Colors.indigo.ext.lighten(0.2);
+Colors.indigo.ext.contrastText();            // white or black
+Colors.indigo.ext.toMaterialColor();         // full 50..900 swatch
+KartalColor.tryParse('#FF0000');             // Color? -- null when invalid
+KartalColor.random(seed: 42);                // deterministic
+```
+
+| Method | Return Type | Description |
+|---|---|---|
+| `toHex({includeAlpha, uppercase})` | `String` | Hex string, `#AARRGGBB` when alpha is included |
+| `withOpacity(double)` | `Color` | Alpha applied via `withValues` |
+| `luminance` | `double` | WCAG relative luminance |
+| `isDark` / `isLight` | `bool` | Perceptual, not a naive RGB average |
+| `contrastText({light, dark})` | `Color` | A readable foreground for this colour |
+| `lighten([double])` / `darken([double])` | `Color` | HSL shade, clamped at white/black |
+| `blend(Color, [double t])` | `Color` | Interpolate towards another colour |
+| `toMaterialColor()` | `MaterialColor` | Swatch from this colour as shade 500 |
+| `randomColor` | `MaterialColor` | Random entry from `Colors.primaries` |
+
+`isDark` uses relative luminance, so perceptually bright hues such as yellow are
+correctly reported as light.
+
+`KartalColor.tryParse` accepts an optional leading `#` and either 6-digit RGB or
+8-digit ARGB. `String.ext.toColorOrNull` is the same parser on a string
+receiver, and `String.ext.toColor` falls back to white.
 
 ---
 
@@ -572,9 +910,25 @@ postDate.ext.differenceTime(
 
 | Method | Return Type | Description |
 |---|---|---|
-| `differenceTime({DateLocalizationLabel})` | `String` | Human-readable time difference from now |
+| `differenceTime({DateLocalizationLabel? localizationLabel})` | `String` | Human-readable time difference from now |
 
-`DateLocalizationLabel` fields: `yearLabel`, `monthLabel`, `dayLabel`, `hourLabel`, `minuteLabel`, `secondLabel` (all default to English, e.g. "years ago").
+`DateLocalizationLabel` fields: `yearLabel`, `monthLabel`, `dayLabel`,
+`hourLabel`, `minuteLabel`, `secondLabel`, `justNowLabel` and `emptyLabel` (all
+default to English, e.g. "years ago"). `DateLocalizationLabel.tr()` provides the
+Turkish set:
+
+```dart
+postDate.ext.differenceTime(
+  localizationLabel: const DateLocalizationLabel.tr(),
+);  // '1 yil once'
+```
+
+Omitting `localizationLabel` uses whatever is set through
+[`KartalConfig`](#configuration), so you can pick a language once at startup
+instead of at every call site.
+
+A `null` receiver returns `emptyLabel` (empty by default) rather than throwing,
+and sub-second or future timestamps return `justNowLabel`.
 
 ---
 
@@ -631,6 +985,37 @@ Debug-mode-only error logging.
 CustomLogger.showError<MyClass>(errorObject);
 ```
 
+### Debouncer and Throttler
+
+`Debouncer` waits until the caller stops firing, keeping only the last call in a
+burst -- the usual case for a search field. `Throttler` runs the first call and
+drops the rest inside the window, for continuous events such as scrolling.
+
+```dart
+final _debouncer = Debouncer(const Duration(milliseconds: 300));
+
+void onChanged(String query) => _debouncer.call(() => search(query));
+
+@override
+void dispose() {
+  _debouncer.dispose();
+  super.dispose();
+}
+```
+
+| Member | Type | Description |
+|---|---|---|
+| `Debouncer.call(VoidCallback)` | `void` | Schedule, replacing any pending call |
+| `Debouncer.isPending` | `bool` | Whether a call is waiting |
+| `Debouncer.cancel()` | `void` | Drop the pending call |
+| `Debouncer.flush(VoidCallback)` | `void` | Run now instead of waiting out the delay |
+| `Throttler.call(VoidCallback)` | `bool` | Run unless inside the cooldown; returns whether it ran |
+| `Throttler.isThrottled` | `bool` | Whether a call now would be dropped |
+| `Throttler.reset()` | `void` | Clear the cooldown |
+
+Always `dispose()` both, otherwise a pending timer can outlive the widget that
+owns it.
+
 ### DeviceUtility
 
 Singleton for device-related operations.
@@ -638,6 +1023,65 @@ Singleton for device-related operations.
 ```dart
 final deviceId = await DeviceUtility.instance.getUniqueDeviceId();
 final isIpad = await DeviceUtility.instance.isIpad();
+```
+
+## Configuration
+
+Breakpoints and relative-time labels are the two opinionated parts of the
+package. Both previously had values baked in with no way to change them, which
+forced apps on a different design system or language to avoid those helpers
+entirely. Configure them once during startup:
+
+```dart
+void main() {
+  KartalConfig.instance.configure(
+    breakpoints: const KartalBreakpoints(
+      small: 480,
+      medium: 768,
+      large: 1200,
+    ),
+    dateLabel: const DateLocalizationLabel.tr(),
+  );
+
+  runApp(const MyApp());
+}
+```
+
+Everything has a default, so configuring is optional. `KartalBreakpoints`
+asserts its values increase, which catches a misordered configuration at
+construction rather than producing silently overlapping bands.
+
+| Member | Description |
+|---|---|
+| `KartalConfig.instance.configure({breakpoints, dateLabel})` | Override defaults; arguments left null keep their current value |
+| `KartalConfig.instance.reset()` | Restore every default, intended for test `setUp` |
+| `KartalConfig.instance.breakpoints` | The thresholds currently in force |
+| `KartalConfig.instance.dateLabel` | The labels currently in force |
+
+`DateLocalizationLabel.tr()` ships Turkish labels, so `differenceTime()` needs
+no wiring for the common case.
+
+## Demo gallery
+
+The [`example/`](example/) app doubles as the live demo at
+[vb10.github.io/kartal](https://vb10.github.io/kartal/). One page per feature
+set, each interactive:
+
+| Page | What you can do |
+|---|---|
+| Validators | Type a TCKN, IBAN, card or phone number and watch the checksum verdict flip on a single changed digit |
+| Formatters | Enter a number and see `compact`, `currency`, `readableFileSize`; drag a slider to watch `mm:ss` promote to `hh:mm:ss` |
+| Colours | Pick or paste a colour and see hex, luminance, contrast foreground, lighten/darken ramps and the generated swatch |
+| Responsive | Resize the window and watch the band, derived metrics and a `responsive()`-driven grid react live |
+| Collections | `chunked`, `groupBy`, `partition` and friends over sample data, plus working `Debouncer`, `Throttler` and `kartalRetry` demos |
+| Widgets | Toggle and drag the chaining helpers to see the composed result |
+| Overlays | Snack bars, sheets, confirmation dialogs, loaders and relative-time labels |
+
+Run it locally:
+
+```bash
+cd example
+flutter run           # or: flutter run -d chrome
 ```
 
 ## Contributing

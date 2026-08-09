@@ -1,3 +1,14 @@
+# A .pubignore replaces .gitignore *entirely* for this directory, so every
+# local artefact has to be repeated here. Without `build/` below the archive
+# shipped ~126 MB of `build/test_cache/*.cache.dill.track.dill` left behind by
+# `flutter test`, which is what pushed it to 39 MB compressed.
+
+# Local build and tooling output
+build/
+/coverage/
+.dart_tool/
+*.log
+
 # CI/CD and tooling
 .github/
 .claude/
@@ -17,8 +28,14 @@ CLAUDE.md
 # Lock files
 *.lock
 
-# Example build artifacts
+# The example ships for its source only: pub.dev renders example/lib, while the
+# platform runners are bulky and contain generated registrants that get
+# rewritten by whichever toolchain last ran `pub get`.
 example/build/
 example/.dart_tool/
-example/ios/Flutter/ephemeral/
-example/ios/Pods/
+example/android/
+example/ios/
+example/linux/
+example/macos/
+example/windows/
+example/web/

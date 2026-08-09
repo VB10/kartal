@@ -55,24 +55,26 @@ final class AppPlatform implements CustomPlatform {
 
   @override
   Future<void> shareMail(String title, String? value) async {
-    final mailBodyText =
-        DeviceUtility.instance.shareMailText(title, value ?? '');
+    final mailBodyText = DeviceUtility.instance.shareMailText(
+      title,
+      value ?? '',
+    );
     final isLaunch = await launchUrlString(Uri.encodeFull(mailBodyText));
     if (!isLaunch) await value?.ext.share();
   }
 
   @override
   Future<void> share(String? value) async {
-    if (io.Platform.isIOS) {
-      final isAppIpad = await _deviceUtils.isIpad();
-      if (isAppIpad) {
-        await SharePlus.instance.share(
-          ShareParams(
-            text: value ?? '',
-            sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
-          ),
-        );
-      }
+    // iPad requires a non-null sharePositionOrigin to anchor the popover.
+    // This must return early: without it the sheet was presented twice.
+    if (io.Platform.isIOS && await _deviceUtils.isIpad()) {
+      await SharePlus.instance.share(
+        ShareParams(
+          text: value ?? '',
+          sharePositionOrigin: _deviceUtils.ipadPaddingBottom,
+        ),
+      );
+      return;
     }
 
     await SharePlus.instance.share(ShareParams(text: value ?? ''));

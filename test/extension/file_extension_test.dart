@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kartal/src/file/file_type.dart';
 import 'package:kartal/src/index.dart';
 
 void main() {

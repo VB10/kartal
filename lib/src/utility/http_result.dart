@@ -15,20 +15,25 @@ enum HttpResult {
   serverError,
 
   /// Unknown status code
-  unknown;
+  unknown
+  ;
 
+  /// Maps an HTTP [statusCode] onto its [HttpResult] class.
+  ///
+  /// Codes outside the `[200, 600)` range — including informational `1xx`
+  /// codes — map to [HttpResult.unknown].
   static HttpResult fromStatusCode(int statusCode) {
     switch (statusCode) {
-      case >= 200 || < 300:
+      case >= 200 && < 300:
         return HttpResult.success;
 
-      case >= 300 || < 400:
+      case >= 300 && < 400:
         return HttpResult.redirection;
 
-      case >= 400 || < 500:
+      case >= 400 && < 500:
         return HttpResult.clientError;
 
-      case >= 500 || < 600:
+      case >= 500 && < 600:
         return HttpResult.serverError;
 
       default:

@@ -211,8 +211,8 @@ void main() {
   test('Test safeJsonDecodeCompute property', () async {
     const response = '{"name": "John Doe"}';
 
-    final jsonMap =
-        await response.ext.safeJsonDecodeCompute<Map<String, dynamic>>();
+    final jsonMap = await response.ext
+        .safeJsonDecodeCompute<Map<String, dynamic>>();
 
     if (jsonMap != null) {
       final name = jsonMap['name'];
@@ -349,8 +349,8 @@ void main() {
     );
   });
 
-  test('Test launchMaps function it as expected for scenario', () {
-    ''.ext.launchMaps();
+  test('Test launchMaps function it as expected for scenario', () async {
+    expect(await ''.ext.launchMaps(), isFalse);
   });
 
   group('Test launchMAps', () {
@@ -362,42 +362,22 @@ void main() {
 
     test('Launch maps with right text [True]', () async {
       final response = await 'Istanbul'.ext.launchMaps(
-            callBack: (
+        callBack:
+            (
               urlString, {
               mode = LaunchMode.externalApplication,
               webOnlyWindowName,
               webViewConfiguration = const WebViewConfiguration(),
-            }) =>
-                Future.value(true),
-          );
+            }) => Future.value(true),
+      );
 
       expect(response, true);
     });
   });
 
-  test('Custom link preview test- Success', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'https://www.wnycstudios.org/podcasts/radiolab/podcasts',
-    );
-
-    expect(response != null, true);
-  });
-
-  test('Custom link preview test- Fail', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'https://www.wnycstudios.org/ss',
-    );
-
-    expect(response == null, true);
-  });
-
-  test('Custom link preview test- Without url', () async {
-    final response = await CustomLinkPreview.getLinkPreviewData(
-      'xssxs',
-    );
-
-    expect(response == null, true);
-  });
+  // The link preview tests used to live here and issued real HTTP requests,
+  // which made the suite slow and dependent on a third party site staying up.
+  // They now run against a stubbed Dio in link_preview_test.dart.
 }
 
 class _User {
@@ -406,6 +386,6 @@ class _User {
   final String name;
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-      };
+    'name': name,
+  };
 }
