@@ -43,6 +43,26 @@ Requires Dart `>=3.10.0` and Flutter `>=3.38.1`.
 - CI now gates on formatting, `analyze --fatal-infos`, an 85% coverage floor, `pub publish --dry-run`, and a web **and wasm** build of the example.
 - Test coverage 58% → 91%, 95 → 423 tests.
 
+### Known limitations
+
+`isValidEmail` is unchanged in this release and is more permissive than it
+looks. Its regex is not anchored at the end, and a `+-/` range inside the
+character class is read as a range rather than three literals, so all of these
+are currently accepted:
+
+```dart
+'veli,test@kartal.dev'.ext.isValidEmail;              // true, comma
+'user@domain.com<script>'.ext.isValidEmail;           // true, unanchored
+'veli@kartal.dev trailing text'.ext.isValidEmail;     // true, unanchored
+'user@my_mail.com'.ext.isValidEmail;                  // true, underscore
+'veli..test@kartal.dev'.ext.isValidEmail;             // true, double dot
+```
+
+Do not rely on it as a sanitising gate. A fix is open as
+[#93](https://github.com/VB10/kartal/pull/93) and is deferred to a follow-up
+release, because tightening it rejects addresses that pass today and so is a
+behavioural break of its own.
+
 ## [4.2.0]
 - Added new color extension for random color and with opacity
 - Updated readme file for new version

@@ -135,6 +135,38 @@ void main() {
     });
   });
 
+  // These assertions pin behaviour that is *known to be wrong*, so that the
+  // deferred fix in https://github.com/VB10/kartal/pull/93 shows up as a
+  // deliberate change rather than a silent one. When that lands, every
+  // expectation in this group flips to isFalse and the group can be folded
+  // into the normal isValidEmail tests.
+  group('isValidEmail known limitations (see #93)', () {
+    test('accepts a comma in the local part', () {
+      // The character class contains `+-/`, which is read as a range covering
+      // ',' rather than three literal characters.
+      expect('veli,test@kartal.dev'.ext.isValidEmail, isTrue);
+    });
+
+    test('accepts trailing content because the regex is not anchored', () {
+      expect('user@domain.com<script>'.ext.isValidEmail, isTrue);
+      expect('veli@kartal.dev trailing text'.ext.isValidEmail, isTrue);
+    });
+
+    test('accepts an underscore in the domain', () {
+      expect('user@my_mail.com'.ext.isValidEmail, isTrue);
+    });
+
+    test('accepts consecutive dots', () {
+      expect('veli..test@kartal.dev'.ext.isValidEmail, isTrue);
+    });
+
+    test('still rejects the obviously malformed cases', () {
+      expect('veli@kartal'.ext.isValidEmail, isFalse);
+      expect('@kartal.dev'.ext.isValidEmail, isFalse);
+      expect('not an email'.ext.isValidEmail, isFalse);
+    });
+  });
+
   group('isNumeric', () {
     test('accepts digit only strings', () {
       expect('12345'.ext.isNumeric, isTrue);

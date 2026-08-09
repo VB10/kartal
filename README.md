@@ -397,7 +397,7 @@ Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
 |---|---|---|
 | `isNullOrEmpty` | `bool` | `true` if null or empty |
 | `isNotNullOrNoEmpty` | `bool` | `true` if not null and not empty |
-| `isValidEmail` | `bool` | Email validation via regex |
+| `isValidEmail` | `bool` | Email validation via regex — see the caveat below |
 | `isValidPassword` | `bool` | Min 8 chars, upper, lower, number, symbol |
 | `isValidUrl` | `bool` | Absolute `http(s)` URL |
 | `isValidPhone` | `bool` | Turkish number, across common written forms |
@@ -413,6 +413,13 @@ Access string utilities via `'value'.ext`. Works on both `String` and `String?`.
 | `phoneFormatValue` | `String` | Unmasked phone value |
 | `timeFormatValue` | `String` | Unmasked time value |
 | `timeOverlineFormatValue` | `String` | Unmasked time overline value |
+
+> **`isValidEmail` is more permissive than it looks.** Its regex is not anchored
+> at the end, so trailing content passes, and it accepts a comma in the local
+> part. `'user@domain.com<script>'` and `'veli,test@kartal.dev'` both return
+> `true`. Do not use it as a sanitising gate. Tracked in
+> [#93](https://github.com/VB10/kartal/pull/93); the fix is deferred because it
+> rejects addresses that pass today.
 
 `isValidTckn`, `isValidIban` and `isValidCreditCard` run the real checksum
 algorithms rather than length or shape checks, so they reject plausible-looking
