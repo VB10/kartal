@@ -41,7 +41,7 @@ Requires Dart `>=3.10.0` and Flutter `>=3.38.1`.
 - Dependencies: `device_info_plus` 11→13, `package_info_plus` 8→10, `share_plus` 11→13, `very_good_analysis` 8→10, `dio` 5.11, `logger` 2.7.
 - `CustomLinkPreview.getLinkPreviewData` accepts an optional `Dio`, so the tests no longer make real HTTP requests.
 - CI now gates on formatting, `analyze --fatal-infos`, an 85% coverage floor, `pub publish --dry-run`, and a web **and wasm** build of the example.
-- Test coverage 58% → 91%, 95 → 423 tests.
+- Test coverage 58% → 91%, 95 → 428 tests.
 
 ### Known limitations
 
